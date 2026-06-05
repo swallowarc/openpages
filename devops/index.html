@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOps成熟度モデル（CALMSベース）</title>
+<style>
+body {
+  font-family: Arial, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  margin: 40px;
+  line-height: 1.6;
+  color: #222;
+  background: #fff;
+}
+h1, h2, h3 {
+  color: #222;
+}
+h1 {
+  margin-bottom: 8px;
+}
+h2 {
+  margin-top: 44px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 6px;
+}
+h3 {
+  margin-top: 22px;
+  margin-bottom: 8px;
+}
+p {
+  margin: 10px 0;
+}
+ul, ol {
+  margin-top: 8px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 12px 0 32px 0;
+  min-width: 960px;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  vertical-align: top;
+}
+th {
+  background: #f3f3f3;
+  text-align: left;
+}
+td:first-child, th:first-child {
+  font-weight: bold;
+  width: 130px;
+}
+.section {
+  margin-top: 40px;
+}
+.note {
+  background: #f8f9fa;
+  border-left: 4px solid #666;
+  padding: 12px 16px;
+  margin: 24px 0;
+}
+.table-wrap {
+  overflow-x: auto;
+}
+.toc {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 12px 16px;
+  margin: 24px 0;
+}
+.toc a {
+  color: #0645ad;
+  text-decoration: none;
+}
+.toc a:hover {
+  text-decoration: underline;
+}
+.footer {
+  margin-top: 48px;
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+  color: #555;
+}
+@media print {
+  body {
+    margin: 16mm;
+  }
+  .table-wrap {
+    overflow: visible;
+  }
+  table {
+    min-width: 0;
+    font-size: 11px;
+  }
+  th, td {
+    padding: 6px;
+  }
+}
+</style>
+</head>
+<body>
+
+<h1>DevOps成熟度モデル（CALMSベース）</h1>
+<p>理想状態を左側に置き、各チーム・組織の現在地と次の改善対象を確認するための評価表です。</p>
+
+<div class="note">
+<h2>この資料について</h2>
+<p>
+本資料は、DevOps の代表的な考え方である <strong>CALMS</strong> をベースとして作成した成熟度評価モデルです。
+CALMS は DevOps を <strong>Culture</strong>、<strong>Automation</strong>、<strong>Lean</strong>、<strong>Measurement</strong>、<strong>Sharing</strong> の5つの観点から捉えるフレームワークです。
+</p>
+<ul>
+<li><strong>Culture</strong> - 組織文化・協働</li>
+<li><strong>Automation</strong> - 自動化</li>
+<li><strong>Lean</strong> - 継続的改善とフロー最適化</li>
+<li><strong>Measurement</strong> - 計測と可視化</li>
+<li><strong>Sharing</strong> - ナレッジ共有</li>
+</ul>
+<p>
+この評価表では、各カテゴリに「理想状態」と「現状確認の観点」を定義し、その下に複数の小項目を配置しています。
+各小項目は <strong>L5 理想 → L4 良い → L3 普通 → L2 低い → L1 初期</strong> の順に並べています。
+左から右へ見ていくことで、自分たちがどの状態に近いかを判断しやすくする構成です。
+</p>
+<p>
+また、CALMS の5カテゴリに加えて、現代的なDevOps推進で重要になる <strong>Platform Engineering</strong> を追加カテゴリとして含めています。
+これは、開発者が安全にセルフサービスで開発・デプロイ・運用できる基盤を評価するための項目です。
+</p>
+</div>
+
+<div class="toc">
+<strong>カテゴリ構成</strong>
+<ol>
+<li><a href="#culture">Culture（文化・協働）</a></li>
+<li><a href="#automation">Automation（自動化）</a></li>
+<li><a href="#lean">Lean（継続的改善・フロー最適化）</a></li>
+<li><a href="#measurement">Measurement（計測・可視化）</a></li>
+<li><a href="#sharing">Sharing（共有・学習）</a></li>
+<li><a href="#platform">Platform Engineering（追加カテゴリ）</a></li>
+</ol>
+</div>
+
+
+<section id="culture" class="section">
+<h2>Culture（文化・協働）</h2>
+
+<h3>理想状態</h3>
+<div class="table-wrap">
+<table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td>理想状態</td><td>開発・運用・SREが共通目標を持ち、サービス品質に共同で責任を持つ。障害や品質問題を個人や部門の責任にせず、継続的な改善につなげる。</td></tr>
+<tr><td>現状確認の観点</td><td>責任の押し付け合いが起きるか。開発・運用・SREが同じ目標を見て動けているか。</td></tr>
+</table>
+</div>
+
+<h3>小項目評価</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>小項目</th>
+<th>L5 理想</th>
+<th>L4 良い</th>
+<th>L3 普通</th>
+<th>L2 低い</th>
+<th>L1 初期</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>責任共有</td><td>全員がサービス品質に責任を持つ</td><td>共通KPIあり</td><td>品質目標を共有している</td><td>一部の関係者のみ共有</td><td>開発と運用で責任が完全分離</td></tr>
+<tr><td>障害対応</td><td>振り返りと改善を共同実施</td><td>開発者も障害対応に参加</td><td>開発者は調査協力のみ</td><td>運用担当が主体</td><td>運用のみが対応し、開発へ引き継ぐ</td></tr>
+<tr><td>KPI</td><td>ビジネス成果とサービス品質が連動</td><td>SLOを中心に評価</td><td>共通指標あり</td><td>一部の指標のみ共有</td><td>部門ごとに別管理</td></tr>
+<tr><td>チーム構造</td><td>クロスファンクショナルに自律して活動</td><td>プロダクト単位で責任を持つ</td><td>プロジェクト単位で連携</td><td>機能別組織で調整が多い</td><td>完全にサイロ化</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="automation" class="section">
+<h2>Automation（自動化）</h2>
+
+<h3>理想状態</h3>
+<div class="table-wrap">
+<table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td>理想状態</td><td>ソースコードの変更からテスト、セキュリティチェック、デプロイ、インフラ変更までが自動化され、人手による定型作業がほぼ存在しない。開発者はサービス開発に集中できる。</td></tr>
+<tr><td>現状確認の観点</td><td>ビルド、テスト、デプロイ、環境構築のどこに人手作業が残っているか。</td></tr>
+</table>
+</div>
+
+<h3>小項目評価</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>小項目</th>
+<th>L5 理想</th>
+<th>L4 良い</th>
+<th>L3 普通</th>
+<th>L2 低い</th>
+<th>L1 初期</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>CI</td><td>PRごとにビルド・テスト・静的解析が実行され、失敗時はマージ不可</td><td>PRごとにビルド・テスト実施</td><td>push時にビルド実施</td><td>開発者が手動実行</td><td>ローカル実行のみ</td></tr>
+<tr><td>CD</td><td>mainへのマージで本番まで自動反映</td><td>ボタン一つで本番デプロイ可能</td><td>スクリプトでデプロイ</td><td>手順書を見ながら複数手順で実施</td><td>サーバへ手動配置</td></tr>
+<tr><td>IaC</td><td>全インフラ変更がPull Request経由</td><td>主要リソースをTerraform等で管理</td><td>一部Terraform化</td><td>限定的にIaCを利用</td><td>コンソール操作中心</td></tr>
+<tr><td>テスト自動化</td><td>Unit・Integration・E2Eが自動実行され品質指標に連動</td><td>Unit・Integrationが自動化</td><td>Unit Testのみ自動化</td><td>一部テストのみ自動化</td><td>手動テスト中心</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="lean" class="section">
+<h2>Lean（継続的改善・フロー最適化）</h2>
+
+<h3>理想状態</h3>
+<div class="table-wrap">
+<table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td>理想状態</td><td>小さな変更を素早く安全にリリースできる。待ち時間、手戻り、過剰な承認、巨大リリースが最小化されている。</td></tr>
+<tr><td>現状確認の観点</td><td>コード変更から本番反映までにどれだけ時間と手間がかかるか。変更が大きくなりすぎていないか。</td></tr>
+</table>
+</div>
+
+<h3>小項目評価</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>小項目</th>
+<th>L5 理想</th>
+<th>L4 良い</th>
+<th>L3 普通</th>
+<th>L2 低い</th>
+<th>L1 初期</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>リリース頻度</td><td>必要な時に即時リリース可能</td><td>日次でリリース可能</td><td>週次でリリース</td><td>月次でリリース</td><td>数ヶ月単位のリリース</td></tr>
+<tr><td>リードタイム</td><td>コード変更から本番反映まで数時間以内</td><td>1日以内</td><td>数日</td><td>数週間</td><td>数ヶ月</td></tr>
+<tr><td>承認フロー</td><td>自動チェックを通れば原則リリース可能</td><td>例外時のみ人手承認</td><td>一部承認が自動化</td><td>多数の人手承認あり</td><td>手作業中心で承認待ちが多い</td></tr>
+<tr><td>変更サイズ</td><td>極小変更を継続的に反映</td><td>小規模変更中心</td><td>中規模変更が多い</td><td>大規模変更が多い</td><td>巨大リリース中心</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="measurement" class="section">
+<h2>Measurement（計測・可視化）</h2>
+
+<h3>理想状態</h3>
+<div class="table-wrap">
+<table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td>理想状態</td><td>システムの品質・信頼性・デリバリー速度・コストを継続的に計測し、改善の意思決定に活用している。</td></tr>
+<tr><td>現状確認の観点</td><td>感覚や印象で運営しているか、データに基づいて改善しているか。</td></tr>
+</table>
+</div>
+
+<h3>小項目評価</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>小項目</th>
+<th>L5 理想</th>
+<th>L4 良い</th>
+<th>L3 普通</th>
+<th>L2 低い</th>
+<th>L1 初期</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>DORA</td><td>改善目標として継続的に活用</td><td>定期レビューを実施</td><td>全指標を自動計測</td><td>一部のみ計測</td><td>未計測</td></tr>
+<tr><td>Monitoring</td><td>ユーザー影響を示すSLOベースで運用</td><td>サービス単位で監視</td><td>ダッシュボードあり</td><td>サーバ監視のみ</td><td>利用者報告で障害検知</td></tr>
+<tr><td>Logging</td><td>障害分析や改善に活用</td><td>集約・検索可能</td><td>構造化ログを利用</td><td>ログ収集のみ</td><td>個別サーバで確認</td></tr>
+<tr><td>Tracing</td><td>開発・運用で日常的に利用</td><td>全主要システムに導入</td><td>一部システムに導入</td><td>PoC段階</td><td>未導入</td></tr>
+<tr><td>Cost</td><td>FinOpsとして継続運用</td><td>チーム別に可視化</td><td>月次レビューあり</td><td>請求額確認のみ</td><td>把握していない</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="sharing" class="section">
+<h2>Sharing（共有・学習）</h2>
+
+<h3>理想状態</h3>
+<div class="table-wrap">
+<table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td>理想状態</td><td>特定の担当者に依存せず、必要な知識や手順が共有されている。障害や改善から得た学びが組織に蓄積される。</td></tr>
+<tr><td>現状確認の観点</td><td>「あの人しか知らない」がどれだけ残っているか。知識が継続的に更新されているか。</td></tr>
+</table>
+</div>
+
+<h3>小項目評価</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>小項目</th>
+<th>L5 理想</th>
+<th>L4 良い</th>
+<th>L3 普通</th>
+<th>L2 低い</th>
+<th>L1 初期</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Runbook</td><td>障害対応ごとに改善され続ける</td><td>主要障害に整備済み</td><td>一部整備済み</td><td>限定的に存在</td><td>存在しない</td></tr>
+<tr><td>Postmortem</td><td>継続的改善文化として定着</td><td>全障害で実施</td><td>重大障害のみ実施</td><td>不定期に実施</td><td>実施なし</td></tr>
+<tr><td>ドキュメント</td><td>常に更新され業務に組み込まれている</td><td>レビュー運用あり</td><td>Wikiに主要情報あり</td><td>古い情報が多い</td><td>口頭伝承中心</td></tr>
+<tr><td>ナレッジ共有</td><td>定期的に組織へ展開</td><td>定期勉強会あり</td><td>不定期開催</td><td>有志のみ</td><td>なし</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="platform" class="section">
+<h2>Platform Engineering（追加カテゴリ）</h2>
+
+<h3>理想状態</h3>
+<div class="table-wrap">
+<table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td>理想状態</td><td>開発者がプラットフォームチームに都度依頼せず、自身で安全に環境やサービスを利用できる。共通基盤により開発者体験と運用品質が向上している。</td></tr>
+<tr><td>現状確認の観点</td><td>開発者がどれだけセルフサービスで作業できるか。共通基盤がチーム横断で再利用されているか。</td></tr>
+</table>
+</div>
+
+<h3>小項目評価</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>小項目</th>
+<th>L5 理想</th>
+<th>L4 良い</th>
+<th>L3 普通</th>
+<th>L2 低い</th>
+<th>L1 初期</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>開発環境</td><td>オンデマンドで生成可能</td><td>ワンコマンドで構築</td><td>自動構築あり</td><td>手順書あり</td><td>個人依存</td></tr>
+<tr><td>CI/CD基盤</td><td>リポジトリ作成時に自動生成</td><td>セルフサービスで利用可能</td><td>共通テンプレートあり</td><td>チームごとに構築</td><td>個別運用</td></tr>
+<tr><td>IaCテンプレート</td><td>カタログ化され自己利用可能</td><td>モジュール化済み</td><td>共通利用あり</td><td>一部共有</td><td>個別管理</td></tr>
+<tr><td>Developer Portal</td><td>ポータルから自己完結</td><td>サービスカタログあり</td><td>情報が集約されている</td><td>Wiki中心</td><td>存在しない</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+<div class="footer">
+<p>利用方法: 各小項目について現在の状態に最も近いレベルを選び、次に一段左の状態を目標として改善バックログへ落とし込む。</p>
+</div>
+
+</body>
+</html>
