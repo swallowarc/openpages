@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DORAレポートで辿るDevOpsの変遷 2017–2025</title>
+<style>
+body{font-family:"Hiragino Sans","Yu Gothic",sans-serif;line-height:1.8;color:#1a1a2e;max-width:920px;margin:0 auto;padding:32px 24px;background:#fafafa}
+header{border-left:6px solid #4361ee;padding:8px 20px;margin-bottom:32px;background:#fff;border-radius:0 8px 8px 0}
+h1{font-size:1.7em;margin:.2em 0}
+.meta{color:#555;font-size:.9em}
+h2{font-size:1.3em;border-bottom:2px solid #4361ee;padding-bottom:6px;margin-top:40px}
+h3{font-size:1.08em;color:#2b2d63}
+section{background:#fff;padding:20px 28px;border-radius:8px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:.9em}
+th,td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#eef1ff}
+td a{color:#4361ee;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(67,97,238,.3)}
+td a:hover{border-bottom-color:#4361ee;background:#f0f4ff}
+.key-finding{background:#f0f4ff;border-left:4px solid #4361ee;padding:10px 16px;margin:12px 0;border-radius:0 6px 6px 0}
+.era{background:#fff7ed;border-left:4px solid #f59e0b;padding:10px 16px;margin:12px 0;border-radius:0 6px 6px 0}
+.year-tag{display:inline-block;background:#4361ee;color:#fff;font-size:.8em;font-weight:bold;padding:2px 10px;border-radius:12px;margin-right:8px}
+.constant{background:#ecfdf5;border-left:4px solid #10b981;padding:10px 16px;margin:12px 0;border-radius:0 6px 6px 0}
+ul{margin:.4em 0}
+footer{color:#888;font-size:.8em;margin-top:40px;text-align:center}
+.lead{font-size:1.02em}
+</style>
+</head>
+<body>
+<header>
+<h1>DORAレポートで辿るDevOpsの変遷 2017–2025</h1>
+<div class="meta">対象: Puppet/DORA「State of DevOps」2017〜2024 + DORA「State of AI-assisted Software Development」2025 ほか付随レポート | 作成日: 2026-06-05 | 出典: 本ディレクトリ内の日本語要約9点</div>
+</header>
+
+<section>
+<h2>はじめに — この文書について</h2>
+<p class="lead">本書は、本ディレクトリにある2017年から2025年までのDORA(DevOps Research and Assessment)系レポートの日本語要約を横断的に読み解き、DevOpsという営みが約10年間でどのように姿を変えてきたかを通史としてまとめたものである。各年版の詳細は個別の要約ページに譲り、ここでは「何が変わり、何が変わらなかったか」という大きな流れを描く。</p>
+<p>対象としたレポートは次の9点である(2020年版はパンデミックの影響で未発行)。</p>
+<table>
+<tr><th>年</th><th>レポート名(クリックで各要約へ)</th><th>発行</th><th>中心テーマ</th></tr>
+<tr><td>2017</td><td><a href="2017-state-of-devops-report.html">State of DevOps Report</a></td><td>Puppet + DORA</td><td>変革型リーダーシップ・アーキテクチャ・自動化</td></tr>
+<tr><td>2018</td><td><a href="2018-accelerate-state-of-devops.html">Accelerate: State of DevOps</a></td><td>DORA / Google Cloud</td><td>クラウド・OSS・SDOパフォーマンス(可用性の追加)</td></tr>
+<tr><td>2019</td><td><a href="2019-accelerate-state-of-devops.html">Accelerate: State of DevOps</a></td><td>DORA / Google Cloud</td><td>生産性・変更承認・DevOpsのスケール戦略</td></tr>
+<tr><td>2021</td><td><a href="2021-accelerate-state-of-devops.html">Accelerate: State of DevOps</a></td><td>Google Cloud DORA</td><td>SRE・サプライチェーンセキュリティ・ドキュメント・COVID-19</td></tr>
+<tr><td>2022</td><td><a href="2022-accelerate-state-of-devops.html">Accelerate: State of DevOps</a></td><td>Google Cloud DORA</td><td>ソフトウェアサプライチェーンのセキュリティ(SLSA/SSDF)</td></tr>
+<tr><td>2023</td><td><a href="2023-accelerate-state-of-devops.html">Accelerate: State of DevOps</a></td><td>DORA / Google Cloud</td><td>ユーザー中心・ウェルビーイング・文化・AI(初出)</td></tr>
+<tr><td>2024</td><td><a href="2024-accelerate-state-of-devops.html">Accelerate: State of DevOps</a></td><td>DORA / Google Cloud</td><td>AIの影響・プラットフォームエンジニアリング(10周年)</td></tr>
+<tr><td>2025</td><td><a href="2025-state-of-ai-assisted-software-development.html">State of AI-assisted Software Development</a></td><td>Google Cloud DORA</td><td>AIは増幅器・AI Capabilities Model・7チームプロファイル</td></tr>
+<tr><td>2025(付随)</td><td><a href="2025-ai-capabilities-model.html">AI Capabilities Model</a> / <a href="2026-roi-of-ai-assisted-software-development.html">ROI of AI-assisted Dev</a></td><td>DORA</td><td>AIの価値を増幅する7能力・経営層向けROI</td></tr>
+</table>
+</section>
+
+<section>
+<h2>一目でわかる変遷 — 4つの時代</h2>
+<p>9年間の関心の移り変わりは、おおむね次の4つの時代に区切ると見通しがよい。</p>
+
+<div class="era"><span class="year-tag">2017–2019</span><strong>第1期: 「DevOpsは効く」の証明と一般化</strong><br>
+速度と安定性は二者択一ではないこと、自動化・疎結合アーキテクチャ・リーン・リーダーシップが効くことを統計的に確立。「ユニコーン企業だけのもの」という神話を崩し、あらゆる業種・規模・非営利組織にも適用できることを示した、基礎固めの時代。</div>
+
+<div class="era"><span class="year-tag">2021–2022</span><strong>第2期: 「運用」と「守り」への拡張</strong><br>
+作って速く届けるだけでなく、信頼性(SRE)・セキュリティ(サプライチェーン)・ドキュメントといった、デリバリーを支える運用面・守りの能力へ関心が拡大。SolarWinds攻撃やコロナ禍という外的事件が、レジリエンスとセキュリティを経営課題に押し上げた。</div>
+
+<div class="era"><span class="year-tag">2023</span><strong>第3期: 「人」と「ユーザー」への回帰</strong><br>
+測定対象を技術指標から、組織パフォーマンス・チームパフォーマンス・従業員のウェルビーイングという「成果」へと整理し直した。最重要の予測因子はユーザー中心と健全な文化であり、燃え尽き・公平な仕事配分という人の問題が前面に出た。AIがここで初めて登場するが効果は限定的と評価された。</div>
+
+<div class="era"><span class="year-tag">2024–2025</span><strong>第4期: AIの時代と「増幅器」という結論</strong><br>
+AIが事実上の標準(利用率90%)となり、テーマがAIに収斂。2024年は「AIはデリバリーを不安定化させる」と警告し、2025年は「AIは組織の実態を映し増幅する鏡である」と総括。AIの価値はツールではなく土台となる組織システムへの投資から生まれる、という10年来の主張への回帰で締めくくられた。</div>
+</section>
+
+<section>
+<h2>テーマの登場と展開 — 年表マトリクス</h2>
+<p>主要トピックがいつ登場し、どう扱われたかを一覧化した(◎=中心テーマ、○=重点的に扱う、・=言及・継続検証)。</p>
+<table>
+<tr><th>テーマ</th><th>17</th><th>18</th><th>19</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th></tr>
+<tr><td>速度×安定性の両立(4キーメトリクス)</td><td>◎</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr>
+<tr><td>自動化・継続的デリバリー</td><td>◎</td><td>○</td><td>○</td><td>○</td><td>○</td><td>・</td><td>・</td><td>・</td></tr>
+<tr><td>疎結合アーキテクチャ・トランクベース開発</td><td>◎</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>・</td><td>・</td></tr>
+<tr><td>リーダーシップ</td><td>◎</td><td>・</td><td>・</td><td>・</td><td>・</td><td>・</td><td>○</td><td>・</td></tr>
+<tr><td>文化(Westrum)・心理的安全性</td><td>○</td><td>○</td><td>○</td><td>○</td><td>◎</td><td>◎</td><td>○</td><td>○</td></tr>
+<tr><td>クラウド(NISTの5特性)</td><td>—</td><td>◎</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>・</td></tr>
+<tr><td>可用性 → 信頼性 / SRE</td><td>—</td><td>◎(可用性)</td><td>○</td><td>◎(SRE)</td><td>○</td><td>○</td><td>・</td><td>・</td></tr>
+<tr><td>セキュリティ(シフトレフト→サプライチェーン)</td><td>・</td><td>○</td><td>○</td><td>○</td><td>◎</td><td>・</td><td>・</td><td>○</td></tr>
+<tr><td>ドキュメント</td><td>—</td><td>—</td><td>—</td><td>◎(初)</td><td>○</td><td>◎</td><td>○</td><td>○</td></tr>
+<tr><td>生産性・ウェルビーイング・燃え尽き</td><td>・</td><td>・</td><td>◎(初)</td><td>○</td><td>○</td><td>◎</td><td>○</td><td>○</td></tr>
+<tr><td>ユーザー中心</td><td>・(リーン)</td><td>・</td><td>・</td><td>・</td><td>・</td><td>◎</td><td>○</td><td>◎</td></tr>
+<tr><td>プラットフォームエンジニアリング</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>◎(初)</td><td>◎</td></tr>
+<tr><td>AI / 生成AI</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>○(初)</td><td>◎</td><td>◎</td></tr>
+<tr><td>継続的改善の思想</td><td>○</td><td>○</td><td>◎</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr>
+</table>
+</section>
+
+<section>
+<h2>各年の転換点 — 何が新しかったか</h2>
+
+<div class="key-finding"><h3><span class="year-tag">2017</span>基礎理論の確立</h3>
+<p>Puppet+DORA共同の最後期。<strong>変革型リーダーシップ</strong>の5特性、<strong>疎結合アーキテクチャとチーム</strong>(逆Conwayの法則)、<strong>自動化</strong>、<strong>リーン製品管理</strong>がITパフォーマンスを駆動することを示した。「DevOpsは営利企業の財務だけでなく、非営利・政府を含むあらゆる組織のミッション達成を2倍にする」と適用範囲を拡張。ブランチは1日以上生かさない、といった具体指針も提示。</p></div>
+
+<div class="key-finding"><h3><span class="year-tag">2018</span>Google Cloud時代の幕開けと「エリート」の誕生</h3>
+<p>DORAがGoogle Cloudの下で「Accelerate」シリーズを開始。第4の最高位群<strong>「エリート」</strong>(全体の7%)が出現。<strong>可用性(Availability)</strong>を5つ目の指標として追加し、デリバリーと運用を統合した<strong>SDOパフォーマンス</strong>概念を定義。<strong>クラウドはNISTの5特性をどう実装するかが鍵</strong>(満たせばエリート23倍)、OSS活用が有利、機能単位の丸投げアウトソーシングは害、という知見を提示。</p></div>
+
+<div class="key-finding"><h3><span class="year-tag">2019</span>生産性とスケール戦略への展開</h3>
+<p>エリートが20%へほぼ3倍増。初めて<strong>エンジニアリング生産性</strong>(情報検索、使いやすいツール、技術的負債削減)と<strong>燃え尽き・ワークライフバランス</strong>を本格調査。<strong>重量級の変更承認(CAB)はスピード・安定性に有害</strong>で、ピアレビューへの「シフトレフト」を推奨。DevOpsを組織に広げる戦略としてCommunities of Practice等のコミュニティ重視が有効と示した。</p></div>
+
+<div class="key-finding"><h3><span class="year-tag">2021</span>運用・守り・在宅勤務</h3>
+<p>エリートが26%に拡大、回答者の2/3が高・エリートに。<strong>SREとDevOpsは補完的</strong>と位置づけ、可用性を<strong>「信頼性」</strong>(可用性・レイテンシ・スケーラビリティを含む)へ拡張。<strong>ソフトウェアサプライチェーンセキュリティ</strong>(SolarWinds事件)と<strong>内部ドキュメントの品質</strong>(初測定)を新領域として導入。コロナ禍でも業界の加速は止まらず、燃え尽きを左右する最大要因は文化だと示した。</p></div>
+
+<div class="key-finding"><h3><span class="year-tag">2022</span>セキュリティを正面に、そして「文脈が重要」</h3>
+<p>テーマを<strong>サプライチェーンセキュリティ</strong>(SLSA/SSDF)に集中。最大の発見は「<strong>セキュリティ対策の最大の予測因子は技術ではなく文化</strong>」であること、そしてセキュリティ効果はCIの有無に依存すること。「文脈(コンテキスト)が重要」として条件付き効果を明示モデル化し、<strong>デリバリーは信頼性とセットでなければ組織成果を生まない</strong>と示した。データの揺らぎから「エリート」分類を一旦廃止し、トランクベース開発が逆の結果を出すなど予想外の発見も多かった年。</p></div>
+
+<div class="key-finding"><h3><span class="year-tag">2023</span>成果の再定義とユーザー中心への回帰</h3>
+<p>測定の枠組みを刷新し、目指すべき3成果(<strong>組織パフォーマンス・チームパフォーマンス・従業員ウェルビーイング</strong>)と、手段としてのデリバリー/運用指標を区別。最重要の予測因子は<strong>ユーザー中心</strong>(組織パフォーマンス+40%)、次いで<strong>健全な文化</strong>(+30%)。コードレビュー迅速化、質の高いドキュメント(技術力を最大12.8倍に増幅)が効く。<strong>AIが初登場</strong>するが、個人のウェルビーイングを微改善する程度でグループ成果への効果は限定的と評価。仕事配分の不公平が燃え尽きを生む構造も指摘した。</p></div>
+
+<div class="key-finding"><h3><span class="year-tag">2024</span>10周年 — AIとプラットフォームエンジニアリング</h3>
+<p>二大テーマは<strong>AIの影響</strong>と<strong>プラットフォームエンジニアリング</strong>。AI利用は完全に到来(個人76%)したが、<strong>AI導入25%増でデリバリーのスループット-1.5%・安定性-7.2%</strong>と警告。原因は「小さなバッチ」原則の軽視と推測。AIが価値ある作業時間を-2.6%にする一方で余剰時間を生むという「空白仮説」を提示。<strong>社内開発者プラットフォーム(IDP)</strong>は生産性を上げるが安定性-14%という予期せぬ欠点も。優先順位の不安定さは何をもってしても相殺できないと結論。</p></div>
+
+<div class="key-finding"><h3><span class="year-tag">2025</span>「AIは増幅器である」</h3>
+<p>レポート名が「State of <strong>AI-assisted Software Development</strong>」に変わり、テーマがAIに収斂。核心メッセージは「<strong>AIは増幅器(アンプリファイア)であり、組織の実態を映す鏡である</strong>」。AI利用は90%に達し、昨年マイナスだったスループットは<strong>正に反転</strong>(ただし不安定性増加は継続)。AIの恩恵を増幅する<strong>7つの能力(DORA AI Capabilities Model)</strong>と<strong>7つのチームプロファイル</strong>を提示。プラットフォーム品質・バリューストリーム管理(VSM)・ユーザー中心がAI価値の前提条件だと示した。付随レポートで経営層向けの<strong>ROIフレームワーク</strong>も提供。</p></div>
+</section>
+
+<section>
+<h2>テーマ別の通史</h2>
+
+<h3>① メトリクス: 「4キー」から「成果の三層構造」へ</h3>
+<p>DevOps計測の中核は一貫して<strong>4つのキーメトリクス</strong>(デプロイ頻度・変更リードタイム=スループット / 変更失敗率・サービス復旧時間=安定性)だが、その周辺は拡張を続けた。</p>
+<ul>
+<li><strong>2018:</strong> 5つ目の指標として<strong>可用性</strong>を追加 → デリバリーと運用を統合した<strong>SDOパフォーマンス</strong>へ。</li>
+<li><strong>2021:</strong> 可用性を<strong>信頼性</strong>へ拡張。</li>
+<li><strong>2023:</strong> 復旧時間を「デプロイ失敗時の復旧時間」に、変更失敗率をスライダー方式に改良。測定対象を<strong>組織/チーム/ウェルビーイングという成果</strong>と、手段としてのデリバリー/運用指標に三層化。</li>
+<li><strong>2024:</strong> 「やり直し率」を加え、<strong>スループットと安定性の2要素</strong>に整理。</li>
+<li><strong>2025:</strong> 5指標を維持しつつ、多次元のクラスタ分析で<strong>7つのチームプロファイル</strong>を導出。</li>
+</ul>
+<p>クラスタの呼称と構成比も揺れ動いた。「エリート」は2018年に登場し2019→2021年に拡大(7%→20%→26%)したが、2022年はデータに合わず一旦廃止、2023年に復活(18%)。手法も2023年以降、単一の巨大モデルからベイズ統計と多数の小規模モデルへ移行している。</p>
+
+<table>
+<tr><th>最高位クラスタの構成比</th><th>2018</th><th>2019</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr>
+<tr><td>エリート</td><td>7%</td><td>20%</td><td>26%</td><td>廃止</td><td>18%</td><td>19%</td></tr>
+</table>
+
+<h3>② 速度×安定性の両立 — 9年間ぶれなかった中核主張</h3>
+<p>「速度を上げると品質が落ちる」というトレードオフは<strong>神話である</strong>——これは2017年から2025年まで一貫して再検証され続けた、DORAの最も中核的な主張である。ハイパフォーマーは品質を作り込むことで両方を達成する。2025年も、速度と安定性を両立する上位2クラスタ(計約40%)の実在をもって、これが「理論上の理想ではなく観測可能な現実」だと改めて裏づけた。</p>
+
+<h3>③ 技術プラクティス — 不変の基礎</h3>
+<p>継続的デリバリー、継続的インテグレーション、トランクベース開発、疎結合アーキテクチャ、包括的バージョン管理、テスト自動化は、初期から繰り返し「効く」と確認された基礎能力である。年を追うごとに「単独より<strong>組み合わせると相乗効果</strong>がある」(2022: 4機能すべてで組織パフォーマンス3.8倍)という理解が深まった。AI時代の2025年でも、<strong>小さなバッチ</strong>と<strong>強固なバージョン管理</strong>はAIの価値を増幅する7能力に組み込まれており、古典的プラクティスが新文脈で再評価されている。</p>
+
+<h3>④ クラウド — 「使うか」ではなく「どう実装するか」</h3>
+<p>2018年の本格登場以来、一貫したメッセージは「<strong>クラウドに移行した事実ではなく、NISTの5つの本質的特性をどう実装するかが効果を分ける</strong>」。パブリッククラウド利用率は56%(2021)→76%(2022)と急増した。2023〜2024年には「単なるリフト&シフトは有害になり得る」「柔軟なインフラを活用するつもりがなければデータセンターに留まる方がよい」とまで踏み込んだ。</p>
+
+<h3>⑤ セキュリティ — シフトレフトからサプライチェーンへ</h3>
+<p>2018年の「セキュリティのシフトレフト(開発早期への統合)」に始まり、SolarWinds攻撃(2020)を受けて2021〜2022年に<strong>ソフトウェアサプライチェーンセキュリティ</strong>(SLSA/SSDF)が主役級のテーマに。ここで得た「<strong>セキュリティ対策の最大の推進力は文化であり、CI/CDが統合の要</strong>」という洞察は、後年の「土台が大事」という思想に直結する。2025年はAI時代のセキュリティ(SAIF、最小権限)として再登場した。</p>
+
+<h3>⑥ 信頼性 / SRE — 運用の重視とJカーブ</h3>
+<p>可用性(2018)→信頼性(2021)への拡張と並走して、<strong>SREとDevOpsは補完的</strong>という整理が進んだ。2022〜2023年には、SRE/信頼性手法の効果が<strong>J曲線</strong>(導入初期は停滞し、一定の成熟度を超えて初めて成果が出る)を描くことが確認され、「途中の落ち込みで投資を引き揚げるな」という実務的教訓が定着。このJカーブの考え方は、後にプラットフォーム導入(2024)やAI導入(2025 ROI)にも適用される普遍的フレームになった。</p>
+
+<h3>⑦ ドキュメント — 地味だが効く「増幅器」</h3>
+<p>2021年に内部ドキュメント品質を初測定して以来、「<strong>質の高いドキュメントは他の技術能力の効果を増幅する</strong>」ことが繰り返し示された(2023: トランクベース開発の組織パフォーマンス影響を最大12.8倍に、新規採用者の生産性+30%)。「増幅(amplify)」という後のAI論の鍵概念は、ここで先取りされていたと言える。</p>
+
+<h3>⑧ 人・文化・ウェルビーイング — 一貫して最強の予測因子</h3>
+<p>Westrumの組織文化類型(病理的/官僚的/生成的)と心理的安全性は2017年から繰り返し登場し、2022年には<strong>セキュリティ対策の</strong>、各年で<strong>パフォーマンス全般の</strong>最大予測因子とされた。2019年に生産性・燃え尽きが、2023年にユーザー中心・仕事の公平な配分・過小評価グループの負担が前面化。「技術の問題に見えて、実は人と組織の問題」という認識が年々強まった。</p>
+
+<h3>⑨ プラットフォームエンジニアリング — 新しい中核能力</h3>
+<p>2024年に初登場(IDP利用率89%)し、生産性・チーム/組織パフォーマンスを高める一方で安定性を下げる(リスク補償)という両面性が示された。2025年には採用90%でほぼ普遍化し、課題は「持つか」から「複数プラットフォームの統治」へ。<strong>AI成功の必須基盤</strong>と位置づけられ、「プラットフォームを内部プロダクトとして扱う」ことが強調された。</p>
+
+<h3>⑩ AI — 限定的効果 → 警告 → 「増幅器」という総括</h3>
+<p>AIをめぐる評価は3年で大きく動いた。</p>
+<ul>
+<li><strong>2023(初登場):</strong> 個人のウェルビーイングを微改善する程度。グループ成果には効果なし〜悪影響。「導入は初期段階」。</li>
+<li><strong>2024(警告):</strong> 利用は完全に到来。だが<strong>デリバリーのスループット・安定性を低下</strong>させる。原因は基本原則(小さなバッチ)の軽視。「空白仮説」で価値ある時間の使い方を分析。</li>
+<li><strong>2025(総括):</strong> 利用率90%。スループットは<strong>正に反転</strong>(不安定性増加は継続)。結論は「<strong>AIは増幅器であり鏡</strong>」——AIは組織を修復せず、強みも弱みも拡大する。価値はツールではなく<strong>土台となる組織システム</strong>(プラットフォーム品質・データ基盤・ワークフローの明瞭さ・チームの整合)への投資から生まれる。これを増幅する7能力(明確なAI方針/健全なデータ基盤/AIアクセス可能な内部データ/強固なバージョン管理/小さなバッチ/ユーザー中心/高品質な内部プラットフォーム)を提示。</li>
+</ul>
+<p>注目すべきは、AI時代の処方箋が<strong>結局はDevOpsの古典的原則(小さなバッチ・バージョン管理・ユーザー中心・継続的改善)への回帰</strong>になっている点である。新しい道具は、古い規律の重要性をかえって際立たせた。</p>
+</section>
+
+<section>
+<h2>9年間を貫く「変わらなかったこと」</h2>
+<p>テーマは移り変わったが、その底流には一貫した不変の原則がある。これらはどの年版でも形を変えて再確認された。</p>
+
+<div class="constant"><strong>1. 速度と安定性はトレードオフではない。</strong>品質を作り込めば両方を得られる。2017→2025まで最も繰り返された中核主張。</div>
+<div class="constant"><strong>2. 成熟度モデルではなく継続的改善。</strong>静的な「到達水準」ではなく、ベンチマーク→制約の特定→改善→反復のサイクルこそが鍵。比較は他社とではなく「同じアプリの昨日と今日」で行う(2023)。最高のチームは卓越したパフォーマンスを持つチームではなく、卓越した改善を達成するチーム(2024)。</div>
+<div class="constant"><strong>3. 文化が最重要の予測因子。</strong>生成的(Westrum)文化・心理的安全性は、パフォーマンスもセキュリティもウェルビーイングも左右する土台。</div>
+<div class="constant"><strong>4. 技術プラクティスは基礎であり、組み合わせて効く。</strong>CI/CD・トランクベース開発・疎結合・バージョン管理・自動テストは古びない。とりわけ「小さなバッチ」はAI時代にこそ重要に。</div>
+<div class="constant"><strong>5. 「土台(システム)」が成否を分ける。</strong>クラウドもAIも「導入した事実」ではなく、それを活かす組織システムの質が効果を決める。「どう実装するか」の問い。</div>
+<div class="constant"><strong>6. デリバリーは運用・信頼性・ユーザー価値とセットで初めて意味を持つ。</strong>速く届けても、信頼性が低く、ユーザーを見ていなければ組織成果はむしろ悪化する。</div>
+<div class="constant"><strong>7. リーダーシップ・自動化・ドキュメント・プラットフォームは「増幅器」。</strong>それ自体が成果を生むのではなく、能力と実践の効果を拡大するイネーブラーとして働く——この「増幅」という見方が、最終的に2025年のAI論(AIは増幅器)へと結実した。</div>
+</section>
+
+<section>
+<h2>まとめ — DevOpsの10年が描いた弧</h2>
+<p>2017年から2025年までのDORAレポートを通読すると、DevOpsの関心は<strong>「作って速く届ける(デリバリー)」から始まり、「安定して運用し、安全に守る(信頼性・セキュリティ)」へ広がり、「人とユーザーを中心に据える(文化・ウェルビーイング・ユーザー中心)」へ深化し、最後に「AIという増幅器をいかに土台の上で活かすか」へ到達した</strong>、という一本の弧を描いている。</p>
+<p>しかしその弧の各点で、レポートが繰り返し立ち返ったのは同じ原則だった——速度と安定性の両立、継続的改善、健全な文化、堅実な技術プラクティス、そして「導入そのものではなく土台への投資が成果を決める」という洞察である。</p>
+<p>2025年に「AIは組織の実態を映す鏡だ」と述べたとき、DORAは皮肉にも、過去10年の自らの研究全体を要約していた。<strong>新しい技術は、組織が築いてきた規律をそのまま増幅する。</strong>DevOpsの変遷とは、ツールの変遷ではなく、この一貫した規律を新しい文脈で何度も再発見してきた歴史だったと言える。</p>
+</section>
+
+<footer>本ページは本ディレクトリ内のDORAレポート日本語要約(非公式)をもとに作成した通史です。各年の正確な内容は個別の要約ページおよび原文PDFを参照してください。 / 作成日: 2026-06-05</footer>
+</body>
+</html>
