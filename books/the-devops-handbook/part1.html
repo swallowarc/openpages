@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第1部 DevOpsと3つの道 ― 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>The DevOps</b> ハンドブック ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part2.html">第2部</a>
+      <a href="part3.html">第3部</a>
+      <a href="part4.html">第4部</a>
+      <a href="part5.html">第5部</a>
+      <a href="part6.html">第6部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART 1 ― 序章・第1〜4章</span>
+  <h1>DevOps と 3つの道</h1>
+  <p class="lead">なぜ DevOps が必要なのか、その理想像と、本書すべての土台となる原則「The Three Ways（3つの道）」を概観する。以降の章のあらゆる実践は、ここで示す <span class="term">フロー</span>・<span class="term">フィードバック</span>・<span class="term">継続的な学習と実験</span> の上に立つ。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>この部の章</h2>
+    <ol>
+      <li><a href="#ch0"><span class="ch-no">序</span><span>DevOpsが解決する世界と歴史的源流</span></a></li>
+      <li><a href="#ch1"><span class="ch-no">1</span><span>アジャイル、継続的デリバリー、そして3つの道</span></a></li>
+      <li><a href="#ch2"><span class="ch-no">2</span><span>第一の道：フローの原則</span></a></li>
+      <li><a href="#ch3"><span class="ch-no">3</span><span>第二の道：フィードバックの原則</span></a></li>
+      <li><a href="#ch4"><span class="ch-no">4</span><span>第三の道：継続的な学習と実験の原則</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 序章 ===== -->
+  <section class="chapter" id="ch0">
+    <div class="chapter-head"><span class="num">序章</span><h2>DevOpsが解決する世界と歴史的源流</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>開発と運用は <mark>放置すると対立し、悪循環に陥る</mark>。DevOps はその悪循環を断ち切り、<b>短いリードタイム・高い安定性・働く人の幸福</b>を同時に達成するための考え方である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌀</span>ITの負のスパイラル</h3>
+      <p class="summary">多くの組織は <span class="term">3幕構成の悪循環</span> に陥る。放置すると、技術的負債が利子付きで積み上がっていく。</p>
+      <div class="steps escalate">
+        <div class="step">
+          <span class="badge">1</span>
+          <div><h4>第一幕：脆いアプリと技術的負債</h4><p>構成管理されないインフラと、触ると壊れるレガシーが積み上がる。</p></div>
+        </div>
+        <div class="step">
+          <span class="badge">2</span>
+          <div><h4>第二幕：誰かが埋め合わせを強いられる</h4><p>場当たり的な手作業と、暗黙知に頼る英雄的な個人がカバーする。</p></div>
+        </div>
+        <div class="step">
+          <span class="badge">3</span>
+          <div><h4>第三幕：すべてが困難になる</h4><p>密結合・複雑化が進み、デプロイのたびに障害が起きる。負債が利子付きで膨らむ。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚔️</span>根深く慢性的な対立</h3>
+      <p class="summary">DevとOpsの対立の原因は、相反する目標が <span class="term">構造的に組み込まれている</span> ことにある。各部門の局所最適がぶつかり、システム全体を悪化させる。</p>
+      <div class="versus">
+        <div class="side a">
+          <h4>🚀 開発（Dev）の目標</h4>
+          <ul>
+            <li>市場・競争環境の変化に俊敏に対応する</li>
+            <li>新機能を素早く本番に投入する</li>
+          </ul>
+        </div>
+        <div class="vs"><span>VS</span></div>
+        <div class="side b">
+          <h4>🛡️ 運用（Ops）の目標</h4>
+          <ul>
+            <li>安定・信頼・セキュアなサービスを提供する</li>
+            <li>変更をリスクとみなす</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout warn">
+        <span class="emoji">⚠️</span>
+        <div><span class="ctitle">対立が招くコスト</span><p>対立はエスカレートし、最終的に全員が損をする。<b>燃え尽き・学習性無力感という人的コスト</b>と、<b>機会損失・競争力低下という経済的コスト</b>が生じる。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📈</span>DevOpsのビジネス価値</h3>
+      <p class="summary">DevOps は悪循環を断ち切るより良い道である。<mark>速さと安定性はトレードオフではなく両立できる</mark>。高パフォーマンス組織は次の4指標で見分けられる。</p>
+      <div class="metrics">
+        <div class="metric"><div class="big up">⬆</div><div class="name">デプロイ頻度</div><div class="dir">高い</div></div>
+        <div class="metric"><div class="big down">⬇</div><div class="name">変更のリードタイム</div><div class="dir">短い</div></div>
+        <div class="metric"><div class="big down">⬇</div><div class="name">平均復旧時間（MTTR）</div><div class="dir">短い</div></div>
+        <div class="metric"><div class="big down">⬇</div><div class="name">変更失敗率</div><div class="dir">低い</div></div>
+      </div>
+      <div class="callout tip">
+        <span class="emoji">✅</span>
+        <div><span class="ctitle">市場と組織への効果</span><p>生産性・市場シェア・収益性が向上し、<b>顧客満足と従業員満足が両立する</b>。働く人を疲弊させないという倫理的な側面でも優れた道である。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛣️</span>The Three Ways（3つの道）と歴史的源流</h3>
+      <p class="summary">本書の原則は <span class="term">3つの道</span> に集約される。これが全6部を貫く骨格である。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#3a5a8c">
+          <div class="icon-box">➡️</div>
+          <div>
+            <div class="wlabel">First Way</div>
+            <h4>フロー</h4>
+            <p>開発から運用への <b>左から右</b> の流れを高速化する。小さなバッチと仕掛りの削減による。</p>
+          </div>
+        </div>
+        <div class="way-row" style="--wc:#8c3a63">
+          <div class="icon-box">⬅️</div>
+          <div>
+            <div class="wlabel">Second Way</div>
+            <h4>フィードバック</h4>
+            <p><b>右から左</b> への速く絶え間ないフィードバック。問題を早期に検知し、源流で修正する。</p>
+          </div>
+        </div>
+        <div class="way-row" style="--wc:#5a6b1f">
+          <div class="icon-box">🔄</div>
+          <div>
+            <div class="wlabel">Third Way</div>
+            <h4>継続的な学習と実験</h4>
+            <p>学習文化と実験の奨励。失敗から学び、習熟を組織に定着させる。</p>
+          </div>
+        </div>
+      </div>
+      <div class="callout why">
+        <span class="emoji">📜</span>
+        <div><span class="ctitle">DevOpsの源流</span><p>リーン生産方式（トヨタ生産方式）、アジャイル運動、継続的デリバリー、トヨタ・カタ、アジャイル・インフラストラクチャ、Velocityカンファレンスなどが源流となっている。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">負のスパイラル</span><span class="k">慢性的対立</span><span class="k">技術的負債</span><span class="k">The Three Ways</span><span class="k">高パフォーマンス組織</span></div>
+  </section>
+
+  <!-- ===== 第1章 ===== -->
+  <section class="chapter" id="ch1">
+    <div class="chapter-head"><span class="num">第1章</span><h2>アジャイル、継続的デリバリー、そして3つの道</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>仕事を <mark>「顧客に価値が届くまでの流れ（バリューストリーム）」</mark> として捉え直す。改善は、<b>時間とムダを測ること</b>から始まる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏭</span>バリューストリーム</h3>
+      <p class="summary"><span class="term">バリューストリーム</span> はリーン製造の中核概念である。製造業では「原材料を顧客の要求する製品に変換する一連の活動」を指す。</p>
+      <div class="flow">
+        <div class="node"><div class="emoji">💭</div><div class="t">ビジネス仮説</div><div class="s">価値を生むはずの<br>仮説</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">⚙️</div><div class="t">開発〜運用</div><div class="s">作って届ける<br>活動の全体</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">😊</div><div class="t">顧客価値</div><div class="s">顧客に届く</div></div>
+      </div>
+      <p style="font-size:14px;color:var(--ink-soft);margin:6px 0 0;">テクノロジーのバリューストリームは、<b>ビジネス仮説を顧客価値に変換するプロセス</b>全体を指す。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⏱️</span>デプロイのリードタイムに着目する</h3>
+      <p class="summary">改善対象を特定するには、まず時間とムダを <mark>測る</mark>。鍵になる2つの見方がある。</p>
+      <div class="versus">
+        <div class="side a">
+          <h4>⏳ リードタイム</h4>
+          <ul>
+            <li>要求が出てから完了までの<b>全経過時間</b></li>
+            <li>待ち時間を含む</li>
+          </ul>
+        </div>
+        <div class="vs"><span>と</span></div>
+        <div class="side b">
+          <h4>⚡ プロセスタイム</h4>
+          <ul>
+            <li>実際に<b>作業している時間</b>のみ</li>
+            <li>両者の差が待ち時間を示す</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout tip">
+        <span class="emoji">📐</span>
+        <div><span class="ctitle">もう一つの指標：%C/A（完成・正確率）</span><p>各工程の成果物を、<b>下流の作業者が手戻りなくそのまま使える割合</b>。低い %C/A は大量の手戻りを生む。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>悲惨なシナリオとDevOpsの理想</h3>
+      <p class="summary">手作業中心で密結合なシステムでは、小さな変更でもデプロイに数ヶ月かかる。理想は <span class="term">高速・頻繁・低リスク</span> なデプロイである。</p>
+      <div class="versus">
+        <div class="side b">
+          <h4>🛑 よくある悲惨なシナリオ</h4>
+          <ul>
+            <li>小さな変更でもデプロイに数ヶ月かかる</li>
+            <li>手作業のデプロイと密結合なアプリ</li>
+            <li>技術的負債の蓄積と Dev・Ops の対立</li>
+          </ul>
+        </div>
+        <div class="vs"><span>→</span></div>
+        <div class="side a">
+          <h4>✅ DevOpsの理想</h4>
+          <ul>
+            <li>1日に何度もデプロイできる</li>
+            <li>小さな変更を頻繁にリリースする</li>
+            <li>障害発生時も迅速に復旧できる</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧱</span>3つの道の概観と理論的基盤</h3>
+      <p class="summary">3つの道は、<mark>確立された理論に裏打ちされている</mark>。</p>
+      <ul>
+        <li><b>第一の道（フロー）</b>：可視化、WIPの制限、バッチサイズの縮小</li>
+        <li><b>第二の道（フィードバック）</b>：問題の早期発見と、品質を源流に近づけること</li>
+        <li><b>第三の道（学習と実験）</b>：高信頼性の文化、日常業務の改善、失敗から学ぶ組織</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">📚</span>
+        <div><span class="ctitle">理論的基盤</span><p>リーンとトヨタ生産方式、制約理論、アジャイル、高信頼性組織（HRO）の安全文化の研究が基盤になっている。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">バリューストリーム</span><span class="k">リードタイム</span><span class="k">%C/A</span><span class="k">3つの道</span><span class="k">リーン／制約理論</span></div>
+  </section>
+
+  <!-- ===== 第2章 ===== -->
+  <section class="chapter" id="ch2">
+    <div class="chapter-head"><span class="num">第2章</span><h2>第一の道：フローの原則</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">➡️</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>仕事が <mark>開発から運用へ速く滑らかに流れる</mark> 状態を作る。そのための原則が次の6つである。</p>
+      </div>
+    </div>
+
+    <div class="flow" style="margin-bottom:8px;">
+      <div class="node"><div class="emoji">👁️</div><div class="t">①可視化</div></div>
+      <div class="node"><div class="emoji">🚧</div><div class="t">②WIP制限</div></div>
+      <div class="node"><div class="emoji">📦</div><div class="t">③小バッチ</div></div>
+      <div class="node"><div class="emoji">🤝</div><div class="t">④ハンドオフ削減</div></div>
+      <div class="node"><div class="emoji">🔍</div><div class="t">⑤制約の改善</div></div>
+      <div class="node"><div class="emoji">🧹</div><div class="t">⑥ムダ排除</div></div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">👁️</span>① 作業を可視化する</h3>
+      <p class="summary">ソフトウェアの仕事は目に見えない。<span class="term">kanbanボード</span> で物理的に表示すると、<mark>作業の流れと滞留が一目でわかる</mark>。</p>
+      <ul>
+        <li>カードを各列に配置し、開発と運用の作業を<b>1つのボード</b>で進捗表示する</li>
+        <li>隠れた仕掛りが表面化し、チーム全体が状況を共有できる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚧</span>② WIP（仕掛り）を制限する</h3>
+      <p class="summary">各列に同時進行できる作業数の上限を設け、<mark>完了させてから次に着手する</mark>。</p>
+      <ul>
+        <li>新しい作業の着手を意図的に抑える</li>
+        <li>マルチタスクによる効率低下を防ぎ、リードタイムの予測可能性が高まる</li>
+        <li>割り込み作業の影響が可視化される</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📦</span>③ バッチサイズを小さくする</h3>
+      <p class="summary">大量にまとめて流すより、<mark>1つずつ流すほうが速い</mark>。封筒折りの実験が1個流しの優位性を示す。</p>
+      <ul>
+        <li>大バッチは一度に大量の作業をまとめる。1個流しは作業を1つずつ流す</li>
+        <li>小バッチの利点は、リードタイムの大幅な短縮、問題の早期発見、手戻りコストの低減である</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤝</span>④ ハンドオフの数を減らす</h3>
+      <p class="summary">引き継ぎのたびに <mark>待ち時間が発生し、知識やコンテキストが失われる</mark>。</p>
+      <ul>
+        <li>部署をまたぐ引き継ぎを削減し、自動化により手作業の受け渡しをなくす</li>
+        <li>必要な人材をチームに統合する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔍</span>⑤ 制約（ボトルネック）を継続的に改善する</h3>
+      <p class="summary"><span class="term">制約理論</span> によれば、システム全体の能力は <mark>最も弱い工程</mark> で決まる。ボトルネック以外の改善は幻想にすぎない。</p>
+      <ul>
+        <li>制約を継続的に特定し、改善し続ける</li>
+        <li>典型的な制約は、環境構築の遅さ、手作業のコードデプロイ、テストの準備と実行の遅延、密結合アーキテクチャによる制約である</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜ制約以外を改善しても無駄なのか</span><p>システム全体のスループットは制約工程の能力で決まる。制約でない工程をいくら速くしても、制約が解消されなければ全体の処理量は増えない。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧹</span>⑥ バリューストリームの苦痛とムダを排除する</h3>
+      <p class="summary"><span class="term">ムダ</span> とは、顧客への価値提供を遅らせるすべてを指す。日常業務から<b>苦痛と重労働</b>を取り除く。</p>
+      <ul>
+        <li>リーンの7つのムダ：作りかけの作業（在庫）、余分なプロセスと機能、タスクの切替、待ちと移動、欠陥による手戻り</li>
+        <li>その他のムダ：非標準作業・手作業、英雄的行為への依存。これらを継続的に削減する</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">可視化／kanban</span><span class="k">WIP制限</span><span class="k">小バッチ</span><span class="k">ハンドオフ削減</span><span class="k">制約理論</span><span class="k">7つのムダ</span></div>
+  </section>
+
+  <!-- ===== 第3章 ===== -->
+  <section class="chapter" id="ch3">
+    <div class="chapter-head"><span class="num">第3章</span><h2>第二の道：フィードバックの原則</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">⬅️</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>複雑なシステムでは <mark>障害は避けられない</mark>。それを前提に、<b>問題を早期に検知し、源流で修正する</b>仕組みを作る。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>複雑なシステムの中で安全に働く</h3>
+      <p class="summary">複雑なシステムでは、各部分の相互作用が予測困難で、<mark>一部の理解だけでは全体を把握できない</mark>。障害は避けられないものとして捉える。</p>
+      <ul>
+        <li>作業を見える化して管理可能にする</li>
+        <li>問題を局所化して封じ込め、異常を早期に検知する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📡</span>問題が発生したらすぐに見える化する</h3>
+      <p class="summary"><span class="term">右から左への速く絶え間ないフィードバック</span> により、問題発生時に即座に検知する。</p>
+      <ul>
+        <li>関係者に素早く情報を伝える</li>
+        <li>テレメトリと監視でシステムの状態を常時計測し、異常を自動で通知して兆候を早期に捉える</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚨</span>問題に群がって新たな知識を作る</h3>
+      <p class="summary">トヨタの <span class="term">アンドンコード</span> に倣う。異常を見つけたら <mark>ラインを止め、全員で群がって源流で解決する</mark>。</p>
+      <div class="steps">
+        <div class="step"><span class="badge">1</span><div><h4>異常を発見したら止める</h4><p>異常を発見した作業者がラインを止め、問題を放置しない。</p></div></div>
+        <div class="step"><span class="badge">2</span><div><h4>群がって対応する（swarming）</h4><p>助けを呼び、全員で集中対応して、問題が広がる前に封じ込める。</p></div></div>
+        <div class="step"><span class="badge">3</span><div><h4>新たな知識を作る</h4><p>対応を通じて学びを得て、暗黙知を組織の知識へ変える。</p></div></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌊</span>品質を源流に近づける</h3>
+      <p class="summary"><mark>後工程の検査に依存しない</mark>。作業者自身が品質に責任を持つ。作業から遠い承認者ほど、判断は遅く不正確になる。</p>
+      <ul>
+        <li>問題を下流に流さず、作業に近い人が意思決定する</li>
+        <li>ピアレビューで品質を高める</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔧</span>下流の作業を最適化する</h3>
+      <p class="summary">運用しやすさを最初から設計に取り込む。局所最適より <span class="term">全体の流れ</span> を優先する。</p>
+      <ul>
+        <li>開発時点で運用の知見を取り込み、非機能要件を組み込む</li>
+        <li>バリューストリーム全体で品質を高める</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">複雑系で安全に働く</span><span class="k">テレメトリ</span><span class="k">swarming／アンドン</span><span class="k">源流での品質</span><span class="k">全体最適</span></div>
+  </section>
+
+  <!-- ===== 第4章 ===== -->
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="num">第4章</span><h2>第三の道：継続的な学習と実験の原則</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">🔄</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>失敗を <mark>学習の機会</mark> として扱う文化を作り、<b>改善と実験を日常業務そのものに組み込む</b>。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤲</span>学習する組織と安全文化</h3>
+      <p class="summary"><span class="term">公正な文化（just culture）</span> は、フィードバックを止めないための前提条件である。</p>
+      <div class="versus">
+        <div class="side b">
+          <h4>🙈 非難の文化</h4>
+          <ul>
+            <li>恐れが問題を隠蔽させる</li>
+            <li>フィードバックが止まる</li>
+            <li>同じ失敗が繰り返される</li>
+          </ul>
+        </div>
+        <div class="vs"><span>VS</span></div>
+        <div class="side a">
+          <h4>🤝 公正な文化</h4>
+          <ul>
+            <li>失敗を学習の機会として扱う</li>
+            <li>個人を非難せず原因を探る</li>
+            <li>心理的安全性が情報共有を促す</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🥋</span>日常業務の改善を制度化する</h3>
+      <p class="summary"><span class="term">改善のカタ（improvement kata）</span> により、<mark>日常業務そのものより、日常業務の改善を優先する</mark>。</p>
+      <ul>
+        <li>目標状態を定め、小さな実験を反復して近づく習慣を組み込む</li>
+        <li>技術的負債の返済を予定に組み込み、継続的に行う</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔁</span>局所的発見を全体の改善に変える</h3>
+      <p class="summary">個人の <span class="term">暗黙知</span> を <span class="term">形式知</span> に変え、<mark>組織全体で再利用できるようにする</mark>。</p>
+      <ul>
+        <li>個人の知識を文書化し、チャットや検索可能な形で共有する</li>
+        <li>局所的な学びを横展開し、成功事例を組織全体に広げる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">💪</span>日常業務に回復力パターンを注入する</h3>
+      <p class="summary">意図的に障害を起こし、<mark>平時に弱点を発見して修正する</mark>。これによりレジリエンス（回復力）を高める。</p>
+      <ul>
+        <li>ゲームデイで障害対応を訓練し、カオスエンジニアリングを実践する</li>
+        <li>適度な負荷をシステムに与え、復旧能力を日常的に鍛える</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>リーダーが学習文化を強化する</h3>
+      <p class="summary">学習と実験は、<mark>リーダーの奨励と支援なしには根付かない</mark>。</p>
+      <ul>
+        <li>改善のカタを現場に根付かせ、目標設定と方向づけを担う</li>
+        <li>失敗を罰せず学びを称え、改善の時間とリソースを確保する</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">just culture</span><span class="k">改善のカタ</span><span class="k">暗黙知の形式知化</span><span class="k">カオスエンジニアリング</span><span class="k">学習文化とリーダー</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="index.html"><span class="dir">← 目次</span><span class="ttl">要点まとめトップへ</span></a>
+    <a class="next" href="part2.html"><span class="dir">次の部 →</span><span class="ttl">第2部 どこから始めるか</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>The DevOps ハンドブック 要点まとめ ／ 第1部</p></footer>
+
+</body>
+</html>

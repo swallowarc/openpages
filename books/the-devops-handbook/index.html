@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE DEVOPS ハンドブック ― 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  :root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }
+  .overview-figure {
+    margin: 24px 0 8px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .overview-figure img { display: block; width: 100%; height: auto; }
+  .overview-figure figcaption {
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    text-align: center;
+    padding: 10px 16px;
+    border-top: 1px solid var(--line-soft);
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>THE DEVOPS</b> ハンドブック ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第1部</a>
+      <a href="part2.html">第2部</a>
+      <a href="part3.html">第3部</a>
+      <a href="part4.html">第4部</a>
+      <a href="part5.html">第5部</a>
+      <a href="part6.html">第6部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">READING NOTES</span>
+  <h1>The DevOps ハンドブック<br>理論・原則・実践のすべて</h1>
+  <p class="lead">本書全24章の要点を、本の論理構造（6つの部）に沿ってまとめた読書ノートである。各部のページで、章ごとの主要トピックと簡潔な解説を確認できる。</p>
+</header>
+
+<main>
+
+  <!-- ===== 全体像（手描きまとめ図・AIで生成） ===== -->
+  <figure class="overview-figure">
+    <img src="overview.png" alt="The DevOps ハンドブック 要点まとめ ― 3つの道と全6部の手描き概要図">
+    <figcaption>本書の全体像を1枚にまとめた図（AIで生成）</figcaption>
+  </figure>
+
+  <section class="bibliography">
+    <p class="title">The DevOps ハンドブック 理論・原則・実践のすべて<br><span style="font-size:13px;font-weight:400;color:var(--ink-faint);">原題：The DevOps Handbook</span></p>
+    <dl>
+      <dt>著者</dt><dd>ジーン・キム、ジェズ・ハンブル、パトリック・ボア、ジョン・ウィリス</dd>
+      <dt>訳者</dt><dd>長尾高弘</dd>
+      <dt>出版社</dt><dd>日経BP</dd>
+      <dt>発行年</dt><dd>2017年</dd>
+    </dl>
+  </section>
+
+  <section class="book-overview">
+    <h2>本書が描く世界</h2>
+    <p>開発（Dev）と運用（Ops）は、しばしば<b>構造的に相反する目標</b>を持たされ、技術的負債と障害が積み上がる「負のスパイラル」に陥る。DevOps は共通の目標と小さなバッチでの仕事の流れによってこの悪循環を断ち切り、<b>短いリードタイム・高いデプロイ頻度・高い安定性・働く人の幸福</b>を同時に実現する。</p>
+    <p>その実践は <b>The Three Ways（3つの道）</b> という原則に集約される。</p>
+
+    <div class="three-ways">
+      <div class="way">
+        <span class="tag">FIRST WAY</span>
+        <h3>フロー</h3>
+        <p>開発→運用への左から右への流れを高速化する。可視化・WIP制限・小さなバッチ。</p>
+      </div>
+      <div class="way">
+        <span class="tag">SECOND WAY</span>
+        <h3>フィードバック</h3>
+        <p>右から左への速く絶え間ないフィードバック。問題の早期検知と源流での品質作り込み。</p>
+      </div>
+      <div class="way">
+        <span class="tag">THIRD WAY</span>
+        <h3>継続的な学習と実験</h3>
+        <p>失敗から学ぶ文化と実験の奨励。学習と改善を組織に定着させる。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ターゲット読者（本書の内容から推定） ===== -->
+  <section class="book-overview">
+    <h2>この本がターゲットとする読者</h2>
+    <p>本書は、DevOps を組織に導入・定着させたい<b>技術リーダーと実務者</b>を主な対象とする。個別ツールの操作知識よりも、原則と全体像を体系的に押さえたい層に向く。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
+    <div class="persona-grid">
+      <div class="persona">
+        <span class="emoji">👩‍💻</span>
+        <h3>ソフトウェア開発者</h3>
+        <p>自分が書いたコードの本番運用まで責任を持ち、変更を速く安全に届けたい。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🛠️</span>
+        <h3>運用・インフラ／SRE</h3>
+        <p>開発と協働し、安定性と変更スピードを両立させたい。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🧭</span>
+        <h3>マネージャー／リーダー</h3>
+        <p>組織構造とプロセスを変革し、チームの成果を引き上げたい。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🔐</span>
+        <h3>情報セキュリティ／監査</h3>
+        <p>価値の流れを止めずに、統制とコンプライアンスを効かせたい。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== おすすめの読み進め方（AIによる分析・本書外） ===== -->
+  <section class="ai-analysis">
+    <div class="ai-badge"><span class="emoji">🤖</span>AIによる分析 ― 本書の記述ではなく、内容に基づく独自提案</div>
+    <h2>おすすめの読み進め方</h2>
+    <p>まず第1部で原則と全体像をつかみ、その後は立場と関心に応じて関連する部へ進むと、必要な実践に最短で到達できる。</p>
+    <div class="path-row">
+      <span class="who">まず全員</span>
+      <span class="route"><b>第1部 3つの道</b> ― フロー／フィードバック／学習という全体像を最初に押さえる</span>
+    </div>
+    <div class="path-row">
+      <span class="who">マネージャー・リーダー</span>
+      <span class="route">第1部 → <b>第2部 どこから始めるか</b> → 各技術部（第3〜6部）は概要を拾い読み</span>
+    </div>
+    <div class="path-row">
+      <span class="who">開発者</span>
+      <span class="route">第1部 → <b>第3部 フロー</b> → <b>第4部 フィードバック</b></span>
+    </div>
+    <div class="path-row">
+      <span class="who">運用・SRE</span>
+      <span class="route">第1部 → <b>第4部 フィードバック（テレメトリ）</b> → <b>第6部 情報セキュリティ</b></span>
+    </div>
+    <div class="path-row">
+      <span class="who">情報セキュリティ・監査</span>
+      <span class="route">第1部 → <b>第6部 情報セキュリティの統合</b> → 第4部 テレメトリ</span>
+    </div>
+    <div class="path-row">
+      <span class="who">通読する場合</span>
+      <span class="route">第1部から第6部まで順に読む（原則 → 着手 → 技術的実践 → 統合の流れ）</span>
+    </div>
+  </section>
+
+  <div class="section-label">全6部 ― クリックで各部へ</div>
+
+  <div class="part-grid">
+
+    <a class="part-card" style="--pc:#3a5a8c" href="part1.html">
+      <span class="pc-eyebrow">PART 1 ― 序章・第1〜4章</span>
+      <h3>DevOps と 3つの道</h3>
+      <p>DevOps が解決する課題、バリューストリームの考え方、そして本書の背骨となる「フロー・フィードバック・継続的な学習と実験」という3つの原則を概観する。</p>
+      <div class="chapters"><span>序章｜1</span> アジャイル・継続的デリバリーと3つの道 ／ <span>2</span> フロー ／ <span>3</span> フィードバック ／ <span>4</span> 学習と実験</div>
+    </a>
+
+    <a class="part-card" style="--pc:#2f7d6b" href="part2.html">
+      <span class="pc-eyebrow">PART 2 ― 第5〜8章</span>
+      <h3>どこから始めるか</h3>
+      <p>変革の最初の一歩。取り組むバリューストリームの選び方、現状の可視化、コンウェイの法則を踏まえた組織設計、運用の日常業務への統合。</p>
+      <div class="chapters"><span>5</span> バリューストリームの選択 ／ <span>6</span> 理解・可視化・展開 ／ <span>7</span> コンウェイの法則 ／ <span>8</span> 運用の統合</div>
+    </a>
+
+    <a class="part-card" style="--pc:#b06a2c" href="part3.html">
+      <span class="pc-eyebrow">PART 3 ― 第9〜13章</span>
+      <h3>第一の道：フローの技術的実践</h3>
+      <p>デプロイパイプラインの基盤、高速で信頼できる自動テスト、継続的インテグレーション、低リスクリリースの自動化とそれを支えるアーキテクチャ。</p>
+      <div class="chapters"><span>9</span> パイプライン基盤 ／ <span>10</span> 自動テスト ／ <span>11</span> CI ／ <span>12</span> 低リスクリリース ／ <span>13</span> アーキテクチャ</div>
+    </a>
+
+    <a class="part-card" style="--pc:#8c3a63" href="part4.html">
+      <span class="pc-eyebrow">PART 4 ― 第14〜18章</span>
+      <h3>第二の道：フィードバックの技術的実践</h3>
+      <p>テレメトリの構築と分析、安全なデプロイのためのフィードバック、仮説駆動開発とA/Bテスト、品質を高めるレビューと調整プロセス。</p>
+      <div class="chapters"><span>14</span> テレメトリ構築 ／ <span>15</span> 分析と予測 ／ <span>16</span> 安全なデプロイ ／ <span>17</span> 仮説駆動・A/B ／ <span>18</span> レビュー</div>
+    </a>
+
+    <a class="part-card" style="--pc:#5a6b1f" href="part5.html">
+      <span class="pc-eyebrow">PART 5 ― 第19〜21章</span>
+      <h3>第三の道：継続的な学習と実験の技術的実践</h3>
+      <p>日常業務への学習の組み込み、局所的な発見を全体の改善へ転換する仕組み、そして組織的な学習と改善のための時間の確保。</p>
+      <div class="chapters"><span>19</span> 学習の組み込み ／ <span>20</span> 局所→全体の改善 ／ <span>21</span> 学習・改善の時間確保</div>
+    </a>
+
+    <a class="part-card" style="--pc:#5a4a8c" href="part6.html">
+      <span class="pc-eyebrow">PART 6 ― 第22〜23章</span>
+      <h3>情報セキュリティ・変更管理・コンプライアンスの統合</h3>
+      <p>セキュリティを全員の日常業務に組み込み、デプロイパイプラインを保護する。コンプライアンスと変更管理を流れを止めずに両立させる。</p>
+      <div class="chapters"><span>22</span> 全員の情報セキュリティ ／ <span>23</span> パイプラインの保護</div>
+    </a>
+
+  </div>
+
+</main>
+
+<footer class="foot">
+  <p>The DevOps ハンドブック 要点まとめ</p>
+</footer>
+
+</body>
+</html>

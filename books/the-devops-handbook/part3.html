@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3部 フローの技術的実践 ― 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#b06a2c; --accent-soft:#f6ede1; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>The DevOps</b> ハンドブック ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第1部</a>
+      <a href="part2.html">第2部</a>
+      <a href="part4.html">第4部</a>
+      <a href="part5.html">第5部</a>
+      <a href="part6.html">第6部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART 3 ― 第9〜13章 ／ 第一の道</span>
+  <h1>第一の道：フローの技術的実践</h1>
+  <p class="lead">フローの原則を技術で実装する。オンデマンドな環境とデプロイパイプライン、高速で信頼できる自動テスト、継続的インテグレーション、低リスクリリースの自動化と、それを可能にする <span class="term">アーキテクチャ</span> を扱う。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>この部の章</h2>
+    <ol>
+      <li><a href="#ch9"><span class="ch-no">9</span><span>デプロイパイプラインの基盤を構築する</span></a></li>
+      <li><a href="#ch10"><span class="ch-no">10</span><span>高速で信頼性の高い自動テストを実現する</span></a></li>
+      <li><a href="#ch11"><span class="ch-no">11</span><span>継続的インテグレーションを実践する</span></a></li>
+      <li><a href="#ch12"><span class="ch-no">12</span><span>低リスクのリリースを自動化し実現する</span></a></li>
+      <li><a href="#ch13"><span class="ch-no">13</span><span>低リスクのリリースのためのアーキテクチャ設計</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第9章 ===== -->
+  <section class="chapter" id="ch9">
+    <div class="chapter-head"><span class="num">第9章</span><h2>デプロイパイプラインの基盤を構築する</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">🏗️</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>環境・コード・インフラの <mark>すべてをコード化してバージョン管理し</mark>、コミットから本番までを一本の自動経路にまとめる。これがフロー高速化の土台になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🖥️</span>オンデマンドで環境を作れるようにする</h3>
+      <p class="summary">環境待ちは <mark>開発のリードタイムを長期化させるボトルネック</mark> になる。環境構築を「ドキュメント」ではなく <span class="term">実行可能なコード</span> にする。</p>
+      <ul>
+        <li>開発・テスト・本番の各環境を、必要なときに自動化スクリプトで即座に再現する</li>
+        <li>セルフサービスで誰でも環境を入手でき、開発初期から本番同様の環境を利用できる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📦</span>単一の信頼できるリポジトリ</h3>
+      <p class="summary">コードだけでなく、設定・インフラ定義・DBスキーマまで <mark>すべてをバージョン管理する</mark>。システム全体の状態をいつでも再現できるようにする。</p>
+      <ul>
+        <li>管理対象は、アプリケーションコード、設定、インフラを定義するコード（IaC）、データベーススキーマと変更スクリプトである</li>
+        <li>変更履歴と監査証跡が残り、障害時に既知の正常な状態へ素早く戻せる</li>
+        <li>Dev と Ops が同じリポジトリを共有し、運用チームも環境構築手順をコミットすることで知識のサイロ化を防ぐ</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">♻️</span>インフラを再構築が容易な状態にする</h3>
+      <p class="summary"><mark>修復より再構築（rebuild over repair）</mark>。壊れたサーバは直さず作り直し、<span class="term">構成ドリフト</span> を蓄積させない。</p>
+      <div class="versus">
+        <div class="side b">
+          <h4>🩹 修復（repair）</h4>
+          <ul>
+            <li>壊れたサーバに手を加えて直す</li>
+            <li>変更が積み重なり構成ドリフトが蓄積する</li>
+            <li>スノーフレークサーバが生まれる</li>
+          </ul>
+        </div>
+        <div class="vs"><span>VS</span></div>
+        <div class="side a">
+          <h4>🔁 再構築（rebuild）</h4>
+          <ul>
+            <li>サーバを作り直して既知の状態に戻す</li>
+            <li>イミュータブルインフラ：一度デプロイしたサーバには手を加えない</li>
+            <li>変更は新しいイメージの再デプロイで行う</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout tip">
+        <span class="emoji">🐄</span>
+        <div><span class="ctitle">cattle not pets</span><p>サーバを個別に手なずける「ペット」として扱わず、番号で管理し交換可能な「家畜」として扱う。これが自動スケールや自動復旧の前提となる。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>本番同様の環境で動かす</h3>
+      <p class="summary">本番同様の環境での動作を <span class="term">完了の定義（Definition of Done）</span> に含め、<mark>「自分の環境では動く」を許容しない</mark>。</p>
+      <ul>
+        <li>開発の最初から本番に近い環境を使い、OS・ミドルウェア・設定を本番と揃える</li>
+        <li>環境差異を早期に解消し、デプロイ時の予期せぬ問題を未然に防ぐ</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛤️</span>デプロイパイプラインの確立</h3>
+      <p class="summary">コミットから本番までの経路を自動化し、<mark>すべての変更が同じ経路を通る</mark>ようにする。</p>
+      <div class="flow">
+        <div class="node"><div class="emoji">⌨️</div><div class="t">コミット</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">🔨</div><div class="t">ビルド</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">🧪</div><div class="t">テスト</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">🚀</div><div class="t">デプロイ</div></div>
+      </div>
+      <ul>
+        <li>ビルド・テスト・デプロイを一貫した流れにする</li>
+        <li>一度ビルドした成果物を各環境で使い回し、環境ごとの再ビルドによる差異を排除する（成果物リポジトリで管理する）</li>
+      </ul>
+    </div>
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">オンデマンド環境</span><span class="k">単一リポジトリ／IaC</span><span class="k">イミュータブルインフラ</span><span class="k">本番同様環境</span><span class="k">デプロイパイプライン</span></div>
+  </section>
+
+  <!-- ===== 第10章 ===== -->
+  <section class="chapter" id="ch10">
+    <div class="chapter-head"><span class="num">第10章</span><h2>高速で信頼性の高い自動テストを実現する</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">🧪</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>すべてのコミットで <mark>高速で信頼できる自動テスト</mark> を回し、欠陥を作り込んだ直後に検知する。品質は後工程の検査でなく <b>作り込み</b> で担保する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔁</span>継続的なビルド・テスト・統合</h3>
+      <p class="summary">すべてのコミットでビルドとテストを自動実行し、<mark>常にグリーンのビルドを維持する</mark>。</p>
+      <ul>
+        <li>統合を頻繁に行いコンフリクトを小さく保つ</li>
+        <li>問題を作り込んだ直後に検知し、修正コストが最小のうちに対処して、開発者へ即座に結果を返す</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">✅</span>高速で信頼できるテストスイート</h3>
+      <p class="summary"><span class="term">フレーキー（不安定）なテスト</span> はチームの無視を招く。<mark>失敗が常に本物の欠陥を意味する状態</mark>を保つ。</p>
+      <ul>
+        <li>テストをプロダクションコードと同等に扱い、重複や陳腐化したテストを整理する</li>
+        <li>失敗時に原因を特定しやすくする</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔺</span>テストピラミッド</h3>
+      <p class="summary">下層ほど数が多く高速。<mark>ユニットテストを土台に</mark>、上層の遅く脆いテストへの依存を抑える。</p>
+      <div class="steps">
+        <div class="step"><span class="badge">上</span><div><h4>統合テスト</h4><p>コンポーネント間の連携を検証する。最も少数で、遅く脆くなりがちな、過度な依存を避けるべき層。</p></div></div>
+        <div class="step"><span class="badge">中</span><div><h4>受け入れテスト</h4><p>機能が要求を満たすかをユーザ視点の振る舞いで確認する。ユニットより少なく中間層に位置する。</p></div></div>
+        <div class="step"><span class="badge">下</span><div><h4>ユニットテスト</h4><p>ピラミッドの最下層で数が最も多い。個々の関数・クラスを高速に検証し、依存をモック・スタブで切り離す。</p></div></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⬅️</span>エラーを早期に捕まえる（シフトレフト）</h3>
+      <p class="summary">テストを <span class="term">開発工程の前段へ移し</span>、後工程での欠陥発見を減らす。失敗を見える化して放置しない。</p>
+      <ul>
+        <li>品質を作り込みで担保し、後工程での欠陥発見を減らす</li>
+        <li>ビルド状態を常に可視化し、誰もが現在の品質状況を把握できるようにする</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚡</span>テストを高速に保つ</h3>
+      <p class="summary">並列化と不要な遅延の排除で <mark>フィードバックループを数分に収める</mark>。</p>
+      <ul>
+        <li>テストを並列実行し、複数環境・複数ワーカーで分散する</li>
+        <li>遅い統合テストへの依存を減らし、高速なユニットテストへ比重を移す（データベースや外部I/Oを最小化する）</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛑</span>デプロイパイプラインを守る</h3>
+      <p class="summary">パイプラインが壊れたら <mark>全員で止めて直す</mark>。赤いビルドの上に新たな変更を積まない。</p>
+      <ul>
+        <li>アンドンコードを引き、復旧を最優先タスクとする</li>
+        <li>トランクを常にデプロイ可能に保ち、品質を全員の責任とする</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>テスト駆動開発（TDD）</h3>
+      <p class="summary"><span class="term">RED→GREEN→REFACTOR</span> の反復で、テスト可能な設計が自然に生まれ、自動テストが副産物として蓄積する。</p>
+      <div class="flow">
+        <div class="node"><div class="emoji">🔴</div><div class="t">RED</div><div class="s">失敗するテストを<br>先に書く</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">🟢</div><div class="t">GREEN</div><div class="s">通す最小実装を<br>書く</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">🛠️</div><div class="t">REFACTOR</div><div class="s">設計を改善する</div></div>
+      </div>
+      <ul>
+        <li>自動テストスイートがリファクタリングの安全網になる</li>
+        <li>遅く脆い手動・統合テスト偏重を避け、自動化された低レベルテストを優先して、回帰テストの繰り返しを自動化する</li>
+      </ul>
+    </div>
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">継続的ビルド・テスト</span><span class="k">フレーキー排除</span><span class="k">テストピラミッド</span><span class="k">シフトレフト</span><span class="k">並列化</span><span class="k">TDD</span></div>
+  </section>
+
+  <!-- ===== 第11章 ===== -->
+  <section class="chapter" id="ch11">
+    <div class="chapter-head"><span class="num">第11章</span><h2>継続的インテグレーションを実践する</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">🔀</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>全員が1日に複数回トランクへ統合し、ブランチを短命に保つ。<mark>統合を日常的な小作業にすることで</mark>、マージ地獄を未然に防ぐ。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📥</span>小さなバッチ開発</h3>
+      <p class="summary"><mark>1日に複数回トランクへ統合し</mark>、変更を小さく保つことで統合の痛みを減らす。</p>
+      <ul>
+        <li>各統合で自動テストを実行する</li>
+        <li>小さなバッチの利点は、問題の切り分けが容易になること、フィードバックが速くなること、リスクと手戻りを最小化できることである</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔥</span>長命ブランチとマージ地獄</h3>
+      <p class="summary">ブランチが長く生きるほど乖離が広がり、<span class="term">マージ地獄（merge hell）</span> に陥る。統合コストが指数的に増える。</p>
+      <div class="steps escalate">
+        <div class="step"><span class="badge">1</span><div><h4>統合の先送り</h4><p>機能ブランチごとに孤立して開発する。ブランチが長く生きるほど乖離が広がり、負債が蓄積する。</p></div></div>
+        <div class="step"><span class="badge">2</span><div><h4>衝突の温床</h4><p>他者の変更が見えず、重複・衝突する。「動いているように見える」が統合できない状態になる。</p></div></div>
+        <div class="step"><span class="badge">3</span><div><h4>マージ地獄</h4><p>大量の変更を一度に統合する苦痛と、解決困難なコンフリクトが頻発し、統合作業に予測不能な時間がかかる。</p></div></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌳</span>トランクベース開発</h3>
+      <p class="summary">全員が <mark>短命なブランチで作業し1日以内にマージする</mark>。大きな機能はフィーチャートグルで隠す。</p>
+      <ul>
+        <li>メインラインを唯一の真実とし、統合を日常的な小作業にして、ブランチの寿命を最小化する</li>
+        <li><mark>CIはツールではなくプラクティス</mark>である。全員が頻繁にコミットを実践し、統合の責任を個人が持つ</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚦</span>トランクを常にデプロイ可能に保つ</h3>
+      <p class="summary">テストを通過した変更のみ取り込み、いつでも本番へ出せる状態を保つ。<mark>リリースを意思決定の問題に変える</mark>。</p>
+      <ul>
+        <li>ゲート付きコミットにより、コミット前にパイプラインで検証し、壊れた変更をトランクへ入れない</li>
+        <li>グリーンを壊したら即修正する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📊</span>CIの実践と効果</h3>
+      <p class="summary">自動ビルド・高速テスト・頻繁なコミットの3点が揃うことで、<mark>統合リスクが平準化される</mark>。</p>
+      <ul>
+        <li>実践のステップは、自動化されたビルドを整え、高速なテストスイートを用意し、全員が頻繁にコミットし統合することである</li>
+        <li>成果は、統合リスクの平準化と低減、リードタイムの短縮、高い開発生産性と品質の両立である</li>
+      </ul>
+    </div>
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">小さなバッチ</span><span class="k">マージ地獄</span><span class="k">トランクベース開発</span><span class="k">フィーチャートグル</span><span class="k">デプロイ可能性の維持</span></div>
+  </section>
+
+  <!-- ===== 第12章 ===== -->
+  <section class="chapter" id="ch12">
+    <div class="chapter-head"><span class="num">第12章</span><h2>低リスクのリリースを自動化し実現する</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">🚀</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>デプロイを自動化・セルフサービス化し、<mark>デプロイ（配置）とリリース（公開）を分離する</mark>。アーキテクチャとトグルのパターンでリリースのリスクを下げる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤖</span>デプロイプロセスの自動化</h3>
+      <p class="summary">手順書ベースのデプロイを <mark>コード化し、人為ミスとばらつきをなくす</mark>。再現可能で監査可能にする。</p>
+      <ul>
+        <li>すべての環境で同じ自動手順を使い、ビルド成果物を環境間で使い回す</li>
+        <li>ワンクリックまたはワンコマンドで実行し、デプロイを高頻度化する</li>
+        <li>頻繁なデプロイで一回あたりの変更を小さく保ち、障害時の切り分けを容易にする</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🙋</span>セルフサービスのデプロイ</h3>
+      <p class="summary">開発者が自らデプロイを実行でき、<mark>運用への依頼待ちをなくす</mark>。ただしガードレールで安全を担保する。</p>
+      <ul>
+        <li>運用への依頼待ちをなくし、リードタイムを大幅に短縮する</li>
+        <li>自動テストと承認ゲートで安全を担保し、誰がいつ何をデプロイしたかを記録する</li>
+        <li>失敗時に自動でロールバックする</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔓</span>デプロイとリリースの分離</h3>
+      <p class="summary">コードの配置（deploy）と機能の公開（release）を分け、<mark>技術的作業とビジネス判断を切り離す</mark>。</p>
+      <div class="versus">
+        <div class="side a">
+          <h4>🚚 デプロイ（deploy）</h4>
+          <ul>
+            <li>コードを本番に配置する技術的作業</li>
+            <li>いつでも実行できる</li>
+          </ul>
+        </div>
+        <div class="vs"><span>≠</span></div>
+        <div class="side b">
+          <h4>📣 リリース（release）</h4>
+          <ul>
+            <li>機能を公開するビジネス判断</li>
+            <li>好きなタイミングで公開できる</li>
+          </ul>
+        </div>
+      </div>
+      <ul>
+        <li>デプロイのリスクが下がり、リリースタイミングをマーケティングに合わせられる</li>
+        <li>段階的な公開やA/Bテストが可能になる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔵</span>アーキテクチャベースのリリースパターン</h3>
+      <p class="summary">環境の切り替えによってリスクを下げる。代表が <span class="term">ブルーグリーンデプロイ</span> と <span class="term">カナリアリリース</span> である。</p>
+      <div class="versus">
+        <div class="side a">
+          <h4>🔵🟢 ブルーグリーンデプロイ</h4>
+          <ul>
+            <li>本番と同等の2環境を用意する</li>
+            <li>新バージョンを待機側へデプロイする</li>
+            <li>ロードバランサで瞬時に切り替え・切り戻しする</li>
+          </ul>
+        </div>
+        <div class="vs"><span>と</span></div>
+        <div class="side b">
+          <h4>🐤 カナリアリリース</h4>
+          <ul>
+            <li>一部のサーバ・ユーザにだけ先行展開する</li>
+            <li>健全性を監視しながら徐々に広げる</li>
+            <li>問題があれば全展開前に止める</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎚️</span>フィーチャートグルベースのリリース</h3>
+      <p class="summary">設定で機能のオン・オフを切り替え、<mark>障害時に即座に無効化できる</mark>。ダークローンチで事前検証する。</p>
+      <ul>
+        <li>ダークローンチ：機能を隠したまま本番へデプロイし、裏で本番トラフィックに対し負荷やパフォーマンスを検証する</li>
+        <li>フィーチャートグル：設定で機能のオン・オフを切り替え、特定ユーザ層にだけ機能を開放し、障害時に即座に無効化する</li>
+        <li>小さなユーザ群から順に広げ、トグルで実験と本番リリースを統一し、不要になったトグルは後で削除する</li>
+      </ul>
+    </div>
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">デプロイ自動化</span><span class="k">セルフサービスデプロイ</span><span class="k">デプロイとリリースの分離</span><span class="k">ブルーグリーン／カナリア</span><span class="k">フィーチャートグル／ダークローンチ</span></div>
+  </section>
+
+  <!-- ===== 第13章 ===== -->
+  <section class="chapter" id="ch13">
+    <div class="chapter-head"><span class="num">第13章</span><h2>低リスクのリリースのためのアーキテクチャ設計</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">🧱</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>アーキテクチャは固定ではなく <mark>継続的に進化させる</mark>。モノリスを疎結合なサービスへ段階的に移行し、独立したデプロイで生産性と安全性を両立させる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌱</span>進化的アーキテクチャ</h3>
+      <p class="summary"><span class="term">進化的アーキテクチャ（evolutionary architecture）</span>。初期設計が永続するとは限らず、<mark>変化を前提に設計を更新し続ける</mark>。</p>
+      <ul>
+        <li>大規模な書き直しを避け、小さな安全な変更を積み重ねる</li>
+        <li>ビジネス継続を保ちながら段階的に移行する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌿</span>ストラングラーフィグ・パターン</h3>
+      <p class="summary"><span class="term">ストラングラーフィグ・パターン（strangler fig pattern）</span>。新機能を新サービスとして外側に作り、<mark>旧システムを徐々に「絞め殺す」</mark>。</p>
+      <ul>
+        <li>ビッグバン移行のリスクを避け、機能単位で切り出して検証する</li>
+        <li>いつでも切り戻せる経路を残す</li>
+        <li>旧システムへの呼び出しをAPIで包み、内部実装を隠蔽して置き換えの影響範囲を限定する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>モノリスからサービス指向へ</h3>
+      <p class="summary">巨大な単一塊は <mark>変更を遅くし失敗範囲を広げる</mark>。機能ごとに独立したサービスへ分割する。</p>
+      <div class="versus">
+        <div class="side b">
+          <h4>🪨 モノリス</h4>
+          <ul>
+            <li>巨大な単一塊が変更を遅くする</li>
+            <li>デプロイの単位が大きく失敗範囲が広い</li>
+            <li>チーム間の調整コストが高い</li>
+          </ul>
+        </div>
+        <div class="vs"><span>→</span></div>
+        <div class="side a">
+          <h4>🧩 サービス指向</h4>
+          <ul>
+            <li>サービス単位で開発・デプロイできる</li>
+            <li>境界づけられたコンテキストで責務を分ける</li>
+            <li>チームが所有権を持ち、調整なしにリリースできる</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout tip">
+        <span class="emoji">🍕</span>
+        <div><span class="ctitle">自律的なチーム</span><p>サービスごとにチームが所有権を持ち、他チームの調整なしにリリースできる。小さな2枚のピザチームで運営する。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔗</span>疎結合アーキテクチャの効果</h3>
+      <p class="summary">独立デプロイで <mark>生産性が上がり、障害の波及が抑えられ安全性が高まる</mark>。組織構造との整合が鍵になる。</p>
+      <ul>
+        <li>生産性：独立してデプロイでき待ち時間が減り、並行開発でスループットが上がり、変更の影響が局所化する</li>
+        <li>安全性：障害が他サービスへ波及しにくく、小さな単位でロールバックでき、実験と検証のリスクが下がる</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">📐</span>
+        <div><span class="ctitle">コンウェイの法則</span><p>コンウェイの法則を意識して設計し、組織構造とアーキテクチャを整合させる。疎結合が高い生産性と安全性を両立させる。</p></div>
+      </div>
+    </div>
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">進化的アーキテクチャ</span><span class="k">ストラングラーフィグ</span><span class="k">サービス指向</span><span class="k">疎結合</span><span class="k">コンウェイの法則</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part2.html"><span class="dir">← 前の部</span><span class="ttl">第2部 どこから始めるか</span></a>
+    <a class="next" href="part4.html"><span class="dir">次の部 →</span><span class="ttl">第4部 フィードバックの技術的実践</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>The DevOps ハンドブック 要点まとめ ／ 第3部</p></footer>
+
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第6部 情報セキュリティの統合 ― 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#5a4a8c; --accent-soft:#efebf7; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>The DevOps</b> ハンドブック ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第1部</a>
+      <a href="part2.html">第2部</a>
+      <a href="part3.html">第3部</a>
+      <a href="part4.html">第4部</a>
+      <a href="part5.html">第5部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART 6 ― 第22〜23章</span>
+  <h1>情報セキュリティ・変更管理・コンプライアンスの統合</h1>
+  <p class="lead">セキュリティとコンプライアンスを「最後の関門」ではなく日常業務の一部にする。<span class="term">InfoSec</span> を開発・運用の流れに組み込み、デプロイパイプライン自体を保護し、変更管理の負荷を下げながら統制を強化する。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>この部の章</h2>
+    <ol>
+      <li><a href="#ch22"><span class="ch-no">22</span><span>情報セキュリティを全員の日常業務にする</span></a></li>
+      <li><a href="#ch23"><span class="ch-no">23</span><span>デプロイパイプラインを保護する</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第22章 ===== -->
+  <section class="chapter" id="ch22">
+    <div class="chapter-head"><span class="num">第22章</span><h2>情報セキュリティを全員の日常業務にする</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">🔐</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>InfoSec を後追いの関門にせず、<mark>開発・運用の日常業務とデプロイパイプラインに統合する</mark>。セキュリティは専門部署だけでなく <b>全員の仕事</b> として、価値の流れ全体に組み込む。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤝</span>InfoSecを開発作業に統合する</h3>
+      <p class="summary">セキュリティを後追いの関門でなく、開発と同じリズムで関与させる。<mark>「全員の仕事」</mark>として位置づける。</p>
+      <ul>
+        <li>各イテレーションのデモにInfoSecを招き、セキュリティ視点を早期に反映する</li>
+        <li>設計段階からセキュリティ要件を組み込み、フィードバックを小さく頻繁に返す</li>
+        <li>開発・運用・InfoSecの壁を取り払い、大規模な手戻りを防ぐ</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🐞</span>InfoSecを欠陥追跡と事後検証に統合する</h3>
+      <p class="summary">セキュリティ問題を専用ツールに隔離せず、開発と同じバックログで可視化し <span class="term">通常の不具合</span> として扱う。</p>
+      <ul>
+        <li>脆弱性を通常の不具合と同様に扱い、修正サイクルに自然に組み込む（技術的負債として継続管理する）</li>
+        <li>優先順位付けを共通の基準で行う</li>
+        <li>非難なき事後検証にも参加し、セキュリティ起因の障害から学び再発防止策を組織全体で共有する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛤️</span>予防的セキュリティ管理を共有リポジトリ・共有サービスに組み込む</h3>
+      <p class="summary"><mark>最も簡単な道が最も安全な道になる</mark>よう設計する（<span class="term">黄金の道／paved road</span>）。安全な選択肢をデフォルトにする。</p>
+      <ul>
+        <li>検証済みのフレームワーク・設定や、暗号化・認証などの共通機能を共有リポジトリで再利用可能にする</li>
+        <li>ロギング・認証などをサービス化し、一元管理して改善を波及させる</li>
+        <li>開発者が自前実装する必要をなくし、標準化により監査も容易にする</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔎</span>InfoSecをデプロイパイプラインに統合する</h3>
+      <p class="summary">セキュリティ検査をパイプラインに組み込み、<mark>コミットごとに自動実行して合否判定する</mark>。段階的に異なる検査を重ねる。</p>
+      <div class="steps">
+        <div class="step">
+          <span class="badge">1</span>
+          <div><h4>静的解析（static analysis）</h4><p>ソースコードを実行せず脆弱性を検査し、セキュアコーディング違反を早期検出する。</p></div>
+        </div>
+        <div class="step">
+          <span class="badge">2</span>
+          <div><h4>依存ライブラリの脆弱性スキャン</h4><p>OWASP Dependency Check などで既知の脆弱性を検出し、危険なバージョンの混入を防ぐ。サードパーティ製コンポーネントを継続監視する。</p></div>
+        </div>
+        <div class="step">
+          <span class="badge">3</span>
+          <div><h4>動的解析・自動セキュリティテスト</h4><p>実行中アプリへ自動テストを行い、合否判定を自動化する。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛡️</span>アプリケーションと環境のセキュリティを確保する</h3>
+      <p class="summary">入力検証・認証・認可を継続テストし、環境を堅牢化して <span class="term">攻撃対象領域（attack surface）</span> を縮小する。</p>
+      <ul>
+        <li>セキュリティ単体テストを継続実行し、OWASP Top 10 などのリスクに対処する</li>
+        <li>本番・テスト環境を堅牢化（hardening）し、設定を標準化して逸脱を検出する</li>
+        <li>インフラのコード化でセキュリティ設定を再現し、環境間の差異と手作業の設定ミスを防ぐ</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📡</span>InfoSecを本番テレメトリに統合する</h3>
+      <p class="summary">セキュリティ指標を <mark>既存の監視基盤に統合</mark> し、攻撃を早期に検知する。</p>
+      <ul>
+        <li>認証失敗・権限昇格などをログ化し、不審なアクティビティを監視対象に加える</li>
+        <li>異常なトラフィックパターンを検出し、アラートとインシデント対応を連携して平均検知時間（MTTR）を短縮する</li>
+        <li>アプリにセキュリティ関連のテレメトリを埋め込み、防御の効果を継続的に評価する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏗️</span>デプロイパイプライン自体を保護する</h3>
+      <p class="summary">パイプラインは攻撃対象になる。<mark>ビルド・デプロイ基盤そのものを保護し</mark>、信頼できる成果物だけをデプロイする。</p>
+      <ul>
+        <li>認証情報・シークレットを安全に管理し、改ざんを防ぐアクセス制御を敷く</li>
+        <li>リポジトリへのアクセスを制御し、変更履歴で追跡可能性を確保し、不正なコード混入を検出する</li>
+        <li>パイプラインの整合性を検証し、ビルド成果物を署名・検証して信頼できるものだけをデプロイする</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">InfoSecの開発統合</span><span class="k">共通バックログ</span><span class="k">paved road</span><span class="k">静的／動的解析</span><span class="k">環境のhardening</span><span class="k">セキュリティテレメトリ</span><span class="k">パイプライン保護</span></div>
+  </section>
+
+  <!-- ===== 第23章 ===== -->
+  <section class="chapter" id="ch23">
+    <div class="chapter-head"><span class="num">第23章</span><h2>デプロイパイプラインを保護する</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">📋</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>変更管理とコンプライアンスを <mark>速度を落とさずに満たす</mark>。変更をリスクで分類して大半を事前承認済みの <b>標準変更</b> にし、職務分掌をピアレビューと自動化で代替し、監査証跡を自動生成する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">✅</span>セキュリティとコンプライアンスを変更承認プロセスに統合する</h3>
+      <p class="summary">セキュリティ要件を承認フローに組み込み、後付けの障壁にしない。<mark>スピードと統制を両立</mark>させる。</p>
+      <ul>
+        <li>変更の種類とリスクを分類し、過剰な承認による遅延を回避する</li>
+        <li>自動チェックで承認の前提条件を担保し、人手の判断を本当に必要な箇所に集中させる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗂️</span>変更を3種類に正しく仕分ける</h3>
+      <p class="summary">著者は <mark>過剰な統制を高リスク変更に限定する</mark>ことを説く。変更を3つに分類し、種類ごとに統制の重さを変える。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#5a6b1f">
+          <div class="icon-box">🟢</div>
+          <div>
+            <div class="wlabel">Standard change</div>
+            <h4>標準変更</h4>
+            <p>事前承認済みの低リスク変更。繰り返し行われ手順が確立している。<b>個別承認を不要にする</b>。</p>
+          </div>
+        </div>
+        <div class="way-row" style="--wc:#8c6a1f">
+          <div class="icon-box">🟡</div>
+          <div>
+            <div class="wlabel">Normal change</div>
+            <h4>通常変更</h4>
+            <p>標準変更に該当しない高リスク変更。<b>変更諮問委員会（CAB）</b>による審査とリスク評価を実施する。</p>
+          </div>
+        </div>
+        <div class="way-row" style="--wc:#8c3a3a">
+          <div class="icon-box">🔴</div>
+          <div>
+            <div class="wlabel">Emergency change</div>
+            <h4>緊急変更</h4>
+            <p>障害対応など即時を要する変更。<b>事後承認</b>のプロセスを用意し、復旧優先と統制を両立する。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🟢</span>大半の変更を標準変更（standard change）に再分類する</h3>
+      <p class="summary">事前承認済みの低リスク変更を「標準変更」とし、<mark>個別承認を不要にして承認の負荷を大幅に削減する</mark>。</p>
+      <ul>
+        <li>繰り返し行われ手順が確立した変更を標準変更とする</li>
+        <li>デプロイパイプライン経由の変更を標準変更とし、履歴データでリスクの低さを証明する</li>
+      </ul>
+      <div class="callout tip">
+        <span class="emoji">✅</span>
+        <div><span class="ctitle">標準変更の効果</span><p>変更のリードタイムが短縮し、承認待ち行列が解消する。多くの変更を摩擦なく実施できる。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚖️</span>職務分掌への依存を減らす</h3>
+      <p class="summary">厳格な <span class="term">職務分掌（separation of duties）</span> は引き継ぎと待ち時間を増やす。<mark>ピアレビューと自動化された統制で代替する</mark>。</p>
+      <div class="versus">
+        <div class="side b">
+          <h4>🚫 厳格な職務分掌</h4>
+          <ul>
+            <li>引き継ぎと待ち時間が増える</li>
+            <li>サイロ化と作業の摩擦を招く</li>
+            <li>統制の本来目的を見失いがち</li>
+          </ul>
+        </div>
+        <div class="vs"><span>→</span></div>
+        <div class="side a">
+          <h4>✅ ピアレビュー＋自動化</h4>
+          <ul>
+            <li>ペアレビューやプルリクエストで相互チェックする</li>
+            <li>単独承認に頼らない仕組みにする</li>
+            <li>パイプラインで統制を強制し、監査証跡を自動生成する</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📄</span>監査人・コンプライアンス向けの文書と証跡を確保する</h3>
+      <p class="summary">すべての変更を追跡可能にし、<span class="term">バージョン管理</span> を信頼できる記録源とする。<mark>監査を継続的なプロセスにする</mark>。</p>
+      <ul>
+        <li>コミット・承認・デプロイの記録を保持し、監査要求に即応できる状態を作る</li>
+        <li>統制が機能していることを証拠で示し、手作業の証跡収集を排除する</li>
+        <li>監査人を早期に巻き込み、自動化された統制を理解してもらう</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📊</span>監査とコンプライアンスを支えるテレメトリ</h3>
+      <p class="summary">統制の動作状況を常時監視し、<mark>逸脱を即座に検知する</mark>。テレメトリを監査の証拠として活用する。</p>
+      <ul>
+        <li>コンプライアンス状態をダッシュボード化し、逸脱をアラートする</li>
+        <li>必要な情報をオンデマンドで提供し、監査準備の負荷を削減する</li>
+        <li>想定外の変更やアクセスを検出し、統制のすり抜けを発見する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏆</span>コンプライアンスと高速デプロイを両立した事例</h3>
+      <p class="summary">手動承認を自動チェックに置き換え、<mark>監査要求を満たしつつ高速デプロイを実現する</mark>（Etsy・Salesforce など）。</p>
+      <ul>
+        <li>統制の目的に立ち返って再設計し、信頼と透明性に基づくプロセスにする</li>
+        <li>開発・運用・監査が協働する</li>
+      </ul>
+      <div class="callout tip">
+        <span class="emoji">✅</span>
+        <div><span class="ctitle">成果</span><p>変更失敗率の低下と監査適合が両立し、リードタイムが短縮する。統制が価値創出を阻害しない状態を実現する。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">承認プロセスへの統合</span><span class="k">標準変更</span><span class="k">通常／緊急変更</span><span class="k">職務分掌の削減</span><span class="k">監査証跡の自動化</span><span class="k">コンプライアンスと高速化の両立</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part5.html"><span class="dir">← 前の部</span><span class="ttl">第5部 継続的な学習と実験</span></a>
+    <a class="next" href="index.html"><span class="dir">目次へ →</span><span class="ttl">要点まとめトップ</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>The DevOps ハンドブック 要点まとめ ／ 第6部</p></footer>
+
+</body>
+</html>

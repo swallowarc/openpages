@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4部 フィードバックの技術的実践 ― 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#8c3a63; --accent-soft:#f6e8f0; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>The DevOps</b> ハンドブック ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第1部</a>
+      <a href="part2.html">第2部</a>
+      <a href="part3.html">第3部</a>
+      <a href="part5.html">第5部</a>
+      <a href="part6.html">第6部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART 4 ― 第14〜18章 ／ 第二の道</span>
+  <h1>第二の道：フィードバックの技術的実践</h1>
+  <p class="lead">右から左への速いフィードバックを技術で実装する。問題を見つける <span class="term">テレメトリ</span> の構築と分析、安全なデプロイのためのフィードバック、<span class="term">仮説駆動開発</span> とA/Bテスト、品質を高めるレビューと調整プロセスを扱う。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>この部の章</h2>
+    <ol>
+      <li><a href="#ch14"><span class="ch-no">14</span><span>問題の発見と解決を可能にするテレメトリを構築する</span></a></li>
+      <li><a href="#ch15"><span class="ch-no">15</span><span>テレメトリを分析して問題を予測し目標を達成する</span></a></li>
+      <li><a href="#ch16"><span class="ch-no">16</span><span>DevとOpsが安全にデプロイできるフィードバック</span></a></li>
+      <li><a href="#ch17"><span class="ch-no">17</span><span>仮説駆動開発とA/Bテストを日常業務に統合する</span></a></li>
+      <li><a href="#ch18"><span class="ch-no">18</span><span>品質を高めるレビューと調整プロセスを作る</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第14章 ===== -->
+  <section class="chapter" id="ch14">
+    <div class="chapter-head"><span class="num">第14章</span><h2>問題の発見と解決を可能にするテレメトリを構築する</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">📡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>システムの稼働状況を <mark>計装して観測可能にする</mark>。ログとメトリクスを一元化し、<b>誰もが自由に見られる</b>テレメトリを整えることが、問題発見と復旧の前提となる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗄️</span>集中型テレメトリ基盤を作る</h3>
+      <p class="summary"><span class="term">計装（instrumentation）</span> を通じて稼働状況を観測可能にする。計装から収集、可視化までを一連のパイプラインとして整える。</p>
+      <div class="flow">
+        <div class="node"><div class="emoji">🔌</div><div class="t">計装</div><div class="s">コードに計測点を<br>埋め込む</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">📥</div><div class="t">収集・集約</div><div class="s">ログとメトリクスを<br>一箇所に集める</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">📊</div><div class="t">可視化・検索</div><div class="s">ダッシュボードで<br>状態を見る</div></div>
+      </div>
+      <ul>
+        <li>ロギング基盤：ログを一箇所に集約し、収集・転送・保存・検索のパイプラインを整備する（ELK、Splunk など）</li>
+        <li>メトリクス収集基盤：時系列メトリクスを収集・保存し可視化する（StatsD、Graphite、Grafana など）</li>
+        <li>イベント・ログ・メトリクス・トレースを一元化する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📐</span>多階層のメトリクスを整備する</h3>
+      <p class="summary">アプリ・ビジネス・インフラの各層で計測し、<mark>システム挙動とビジネス成果を結びつける</mark>。</p>
+      <div class="metrics">
+        <div class="metric"><div class="big">🧩</div><div class="name">アプリケーションレベル</div><div class="dir">トランザクション数・応答時間・エラー率</div></div>
+        <div class="metric"><div class="big">💰</div><div class="name">ビジネスレベル</div><div class="dir">新規登録数・売上・コンバージョン率・ファネルの離脱率</div></div>
+        <div class="metric"><div class="big">🖥️</div><div class="name">インフラレベル</div><div class="dir">CPU・メモリ・ディスク・ネットワーク／DB・ミドルウェア</div></div>
+      </div>
+      <p style="font-size:14px;color:var(--ink-soft);margin:6px 0 0;">アプリケーションレベルの計測は、<b>開発者がコードに計装を埋め込む</b>ことで実現する。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📝</span>ログレベルを整備する</h3>
+      <p class="summary">本番でノイズを出さないログ設計と、検索・相関分析しやすい <span class="term">構造化ログ</span> を用意する。</p>
+      <ul>
+        <li>DEBUG／INFO／WARN／ERROR／FATAL を適切に区別し、本番で過剰なノイズを出さない</li>
+        <li>機械可読な形式（JSON 等）で出力し、検索・集計・相関分析を容易にする</li>
+        <li>チーム横断で共通のログ規約を定め、相関IDで一連の処理を追跡する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔓</span>テレメトリへのセルフサービスアクセス</h3>
+      <p class="summary">Dev・Ops・QA・ビジネスの誰もが、<mark>専門家への依頼を待たず</mark>自由に閲覧・調査できる状態にする。</p>
+      <ul>
+        <li>各自が必要なダッシュボードを作成・共有し、重要指標を共通の場で可視化する</li>
+        <li>検索とドリルダウンで原因に迫れ、過去データとの比較も容易にする</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🕳️</span>テレメトリの欠落を見つけて埋める</h3>
+      <p class="summary">障害時に「見えなかった」箇所を洗い出し、計装のカバレッジを段階的に広げる。</p>
+      <ul>
+        <li>観測すべき階層：ビジネス層、アプリケーション層、インフラ層、クライアント（ブラウザ・モバイル）層、デプロイパイプライン層</li>
+        <li>事後分析で計装の不足点を補い、新機能には計装をセットで実装する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔍</span>障害を切り分け、問題を不可視にしない文化</h3>
+      <p class="summary">推測でなくデータで意思決定し、<span class="term">MTTR</span> を短縮する。<mark>計測されないものは改善されない</mark>。</p>
+      <ul>
+        <li>メトリクスの相関や変化点とデプロイ・変更の突き合わせで障害箇所を特定する</li>
+        <li>データで仮説を素早く棄却・確認し、思い込みによる迷走を防ぐ</li>
+        <li>問題を隠さず可視化することを奨励し、テレメトリを学びの源泉として扱う</li>
+        <li>計装を後回しにせず、観測可能性を品質の一部とみなす</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">📚</span>
+        <div><span class="ctitle">なぜ透明性が要るのか</span><p>問題を隠す文化では情報共有が止まる。失敗を責めずに可視化することで、テレメトリが学びの源泉として機能する。</p></div>
+      </div>
+    </div>
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">集中型テレメトリ</span><span class="k">多階層メトリクス</span><span class="k">構造化ログ</span><span class="k">セルフサービス</span><span class="k">計装の充実</span><span class="k">MTTR短縮</span></div>
+  </section>
+
+  <!-- ===== 第15章 ===== -->
+  <section class="chapter" id="ch15">
+    <div class="chapter-head"><span class="num">第15章</span><h2>テレメトリを分析して問題を予測し目標を達成する</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">📈</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>テレメトリは <mark>集めるだけでなく分析する</mark>。基本統計量から異常検知へ進めるが、<b>運用データは正規分布に従わない</b>ことが多く、分布形状に依存しない手法が要る。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📊</span>平均と標準偏差で問題を検知する</h3>
+      <p class="summary">基本統計量でしきい値を設け、通常から逸脱した値を異常とみなす。ただし <span class="term">静的しきい値</span> には限界がある。</p>
+      <ul>
+        <li>平均（mean）で通常の挙動を、標準偏差（standard deviation）でばらつきを測る</li>
+        <li>平均から数σ離れた値を異常とする（3シグマルール）</li>
+        <li>固定値ではトレンド変化に追従できず、誤検知・見逃しが起きやすい</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚨</span>異常検知（anomaly detection）</h3>
+      <p class="summary">問題が顕在化する前に予兆を捉える。<mark>人手では追えない大量メトリクス</mark>を自動で監視する。</p>
+      <ul>
+        <li>過去データから正常範囲を学習し、逸脱を自動的にアラートする</li>
+        <li>障害発生を先回りして対処する、プロアクティブな運用につなげる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔔</span>ガウス分布を前提にすることの問題</h3>
+      <p class="summary">平均・標準偏差は <span class="term">正規分布</span> を暗黙に前提とするが、実際の運用データは正規分布に従わないことが多い。</p>
+      <div class="versus">
+        <div class="side b">
+          <h4>🔔 正規分布の仮定</h4>
+          <ul>
+            <li>ベル型カーブを想定した手法</li>
+            <li>平均・標準偏差でしきい値を引く</li>
+          </ul>
+        </div>
+        <div class="vs"><span>VS</span></div>
+        <div class="side a">
+          <h4>📉 実際の運用データ</h4>
+          <ul>
+            <li>裾の重い分布、多峰性、周期性を持つ</li>
+            <li>正規前提を適用すると誤検知が起こる</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout warn">
+        <span class="emoji">⚠️</span>
+        <div><span class="ctitle">誤った検知のリスク</span><p>非正規データに正規前提を適用すると、正常を異常と判定する、あるいはその逆が起こる。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧪</span>より高度な統計・異常検知手法</h3>
+      <p class="summary">ノイズの平滑化、周期性への対応、分布形状に依存しない手法で検知精度を高める。</p>
+      <ul>
+        <li>スムージング：移動平均などでノイズを平滑化し、短期的な揺らぎを除去してトレンドを見る</li>
+        <li>周期性への対応：曜日・時間帯の季節性を考慮し、ベースラインを時間帯ごとに調整する</li>
+        <li>非正規分布向けの手法（Kolmogorov-Smirnov 検定など）を採用する</li>
+        <li>フィルタリングで信号を抽出し、適切なモデルで予測精度を高める</li>
+      </ul>
+    </div>
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">平均・標準偏差</span><span class="k">異常検知</span><span class="k">3シグマ</span><span class="k">非正規分布の問題</span><span class="k">スムージング／周期性</span></div>
+  </section>
+
+  <!-- ===== 第16章 ===== -->
+  <section class="chapter" id="ch16">
+    <div class="chapter-head"><span class="num">第16章</span><h2>DevとOpsが安全にコードをデプロイできるようにするフィードバック</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">🛟</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>テレメトリでデプロイを安全にし、<mark>開発者を運用に巻き込む</mark>。本番の痛みを共有し、基準を満たしたチームへ <b>権限と責任を一致させて</b>段階的に委譲する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📡</span>テレメトリでデプロイを安全にする</h3>
+      <p class="summary">リリース直後にメトリクスを注視し、<mark>異常を検知したら自動で切り戻す</mark>。</p>
+      <ul>
+        <li>デプロイ時に想定外の変化を即座に検知する</li>
+        <li>異常を検知したら自動ロールバックで影響を最小化する</li>
+        <li>変更とメトリクス変化を相関づけ、問題のあるデプロイを特定しやすくする</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📟</span>開発者をオンコールに参加させる</h3>
+      <p class="summary">自分が書いたコードの運用に責任を持つ。<mark>本番障害の痛みを共有する</mark>ことが、運用しやすいコードを書く動機になる。</p>
+      <ul>
+        <li>開発者もオンコール・ページャー当番に加わる</li>
+        <li>共通の責任を持つことで Dev と Ops の壁が低くなり、フィードバックループが短くなる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">👀</span>開発者が下流を観察する</h3>
+      <p class="summary">実際のユーザー体験を開発者が直接見ることで、共感に基づく設計と改善が進む。</p>
+      <ul>
+        <li>顧客がどう操作するかを直接観察し、利用状況のテレメトリやサポートの声に触れる</li>
+        <li>下流の苦労を知ることでユーザー視点の機能改善につながる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎚️</span>開発者に本番運用を自己管理させる</h3>
+      <p class="summary">一定の基準を満たしたチームに段階的に権限を委譲し、<span class="term">デプロイの権限と運用責任を一致</span>させる。</p>
+      <ul>
+        <li>品質・運用力が基準に達したら権限を付与し、達しなければ支援を受ける</li>
+        <li>セルフサービス化を推進し、Ops への依存を減らす</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📋</span>本番リリース準備レビューとローンチガイダンス</h3>
+      <p class="summary">本番投入前に運用観点でレビューし、<mark>過去の障害から得た教訓をチェックリストとして還元する</mark>。</p>
+      <div class="steps">
+        <div class="step"><span class="badge">1</span><div><h4>本番リリース準備レビュー（production readiness review）</h4><p>本番投入前に運用観点でレビューし、監視・ロギング・フェイルオーバーを確認する。過去の障害の教訓を反映する。</p></div></div>
+        <div class="step"><span class="badge">2</span><div><h4>ローンチガイダンス</h4><p>段階的なリリース手順を示し、ドキュメントとランブックを用意して、Opsが安心して運用を引き受けられる状態にする。</p></div></div>
+        <div class="step"><span class="badge">3</span><div><h4>自己管理への移行</h4><p>ガイダンス遵守でチームの自律性を高め、集中管理から自己管理へ段階的に移行する。</p></div></div>
+      </div>
+    </div>
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">デプロイ時監視／自動ロールバック</span><span class="k">開発者のオンコール</span><span class="k">下流の観察</span><span class="k">運用の自己管理</span><span class="k">本番リリース準備レビュー</span></div>
+  </section>
+
+  <!-- ===== 第17章 ===== -->
+  <section class="chapter" id="ch17">
+    <div class="chapter-head"><span class="num">第17章</span><h2>仮説駆動開発とA/Bテストを日常業務に統合する</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">🔬</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>機能を「作る」のではなく <mark>「仮説を検証する」</mark>。本番でA/Bテストし、データで採否を決め、<b>使われない機能の構築というムダ</b>を減らす。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🅰️</span>A/Bテストの基礎</h3>
+      <p class="summary">2つの案を本番で比較し、<mark>データに基づいてどちらが優れるかを統計的に判定する</mark>。</p>
+      <div class="versus">
+        <div class="side a">
+          <h4>🅰️ 案A</h4>
+          <ul>
+            <li>現行または比較対象の案</li>
+            <li>コンバージョンなどの指標で評価</li>
+          </ul>
+        </div>
+        <div class="vs"><span>VS</span></div>
+        <div class="side b">
+          <h4>🅱️ 案B</h4>
+          <ul>
+            <li>新しく試す案</li>
+            <li>データに基づき採否を決定</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:14px;color:var(--ink-soft);margin:6px 0 0;">テストの対象は、機能（feature）・リリース（release）方法・インフラ（infrastructure）構成である。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚩</span>A/Bテストを開発とリリースに統合する</h3>
+      <p class="summary">新機能はA/Bテスト前提で設計し、<span class="term">フィーチャーフラグ</span> で切り替えながら段階的に展開する。</p>
+      <ul>
+        <li>段階的ロールアウトと組み合わせ、効果を見ながら展開範囲を広げる</li>
+        <li>実験を日常業務の一部とし、仮説検証のサイクルを高速に回す</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔄</span>仮説駆動開発（hypothesis-driven development）</h3>
+      <p class="summary">「この変更がこの成果を生む」と仮説化し、本番で検証する。<mark>構築するだけでなく学ぶことを目的にする</mark>。</p>
+      <div class="flow">
+        <div class="node"><div class="emoji">💭</div><div class="t">仮説の立案</div><div class="s">期待する結果を<br>事前に定義</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">🛠️</div><div class="t">実装</div><div class="s">最小限の機能で<br>本番に出す</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">📊</div><div class="t">計測・検証</div><div class="s">本番で仮説を<br>検証する</div></div>
+        <div class="arrow">→</div>
+        <div class="node"><div class="emoji">🧭</div><div class="t">学習・pivot</div><div class="s">結果に応じて<br>方向を修正</div></div>
+      </div>
+      <p style="font-size:14px;color:var(--ink-soft);margin:6px 0 0;">失敗した仮説からも知見を得る。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">✂️</span>望まれない機能の構築労力を最小化する</h3>
+      <p class="summary">ユーザーが使わない機能の開発はムダである。<span class="term">MVP</span> で小さく試し、証拠に基づいて優先順位を決める。</p>
+      <ul>
+        <li>最小限の機能で仮説を確かめ、大規模投資の前にリスクを下げる</li>
+        <li>思い込みではなくデータが示す価値の高い機能に注力する</li>
+      </ul>
+    </div>
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">A/Bテスト</span><span class="k">フィーチャーフラグ</span><span class="k">仮説駆動開発</span><span class="k">pivot</span><span class="k">MVP</span></div>
+  </section>
+
+  <!-- ===== 第18章 ===== -->
+  <section class="chapter" id="ch18">
+    <div class="chapter-head"><span class="num">第18章</span><h2>現在の業務の品質を高めるレビューと調整プロセスを作る</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">🔁</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>重厚な変更承認は <mark>リードタイムを伸ばし品質を上げない</mark>。統制ではなく <b>ピアレビュー・ペアプログラミング・自動化</b>で品質を担保し、変更を恐れない文化を作る。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚫</span>変更承認プロセスの危険性</h3>
+      <p class="summary">重厚な承認はリードタイムを伸ばし変更をバッチ化する。<mark>承認を増やしても品質は上がらない</mark>。</p>
+      <ul>
+        <li>承認待ちでリードタイムが伸び、変更がバッチ化して大きくなる</li>
+        <li>承認を増やすとかえって失敗率が高まることがある</li>
+        <li>実装から遠い人による、文脈を持たない判断が品質を下げる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚖️</span>過度な変更統制 vs 自律と軽量な調整</h3>
+      <p class="summary">官僚的手続きは現場の足かせになり、<mark>統制を強めるほど成果が悪化する傾向</mark>がある。重厚な承認でなく、軽量な調整と疎結合で衝突を回避する。</p>
+      <div class="versus">
+        <div class="side b">
+          <h4>🛑 過度な変更統制</h4>
+          <ul>
+            <li>官僚的手続きが現場の足かせになる</li>
+            <li>小さな変更にも過大な手間がかかる</li>
+            <li>改善が承認の壁で止まり学習が遅れる</li>
+          </ul>
+        </div>
+        <div class="vs"><span>VS</span></div>
+        <div class="side a">
+          <h4>✅ 自律＋軽量な調整</h4>
+          <ul>
+            <li>変更を可視化し競合や衝突を事前に把握</li>
+            <li>疎結合アーキテクチャで独立してデプロイ</li>
+            <li>必要最小限の調整で過剰なゲートを設けない</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">👥</span>変更のピアレビューとペアプログラミング</h3>
+      <p class="summary">遠い承認者でなく <mark>同僚が変更を確認する</mark>。小さな変更を頻繁にレビューし、書きながら同時に確認する。</p>
+      <ul>
+        <li>ピアレビュー：コードレビューで品質を担保し、知識共有と早期の欠陥発見を行う</li>
+        <li>プルリクエストを通じて変更内容を議論し、レビューを開発フローに統合する</li>
+        <li>小さなバッチでレビューの質と速度を両立する</li>
+        <li>ペアプログラミング：書きながら同時にレビューして欠陥をその場で防ぎ、知識を伝播して属人化を緩和する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛡️</span>変更を恐れない文化と官僚的プロセスの削減</h3>
+      <p class="summary">自動テストと監視の安全網のもと、<mark>高頻度・低リスクの変更を日常化</mark>し、CABへの依存を減らす。</p>
+      <ul>
+        <li>小さく安全に失敗できる環境を作り、心理的安全性を高める</li>
+        <li>変更を日常化してリスクを分散し、大規模変更による大事故を避ける</li>
+        <li>変更諮問委員会（CAB）の関与を最小化し、ピアレビューと自動化で代替する</li>
+        <li>統制ではなく信頼と透明性で品質を担保し、フローを妨げないガバナンスを設計する</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜ統制を弱めて品質が保てるのか</span><p>自動テストと監視が安全網となり、変更を小さく頻繁にすることでリスクが分散する。承認の壁よりも、ピアレビューと自動化のほうが品質を担保する。</p></div>
+      </div>
+    </div>
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">承認プロセスの危険性</span><span class="k">過度な統制の弊害</span><span class="k">ピアレビュー／PR</span><span class="k">ペアプログラミング</span><span class="k">CAB依存の削減</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part3.html"><span class="dir">← 前の部</span><span class="ttl">第3部 フローの技術的実践</span></a>
+    <a class="next" href="part5.html"><span class="dir">次の部 →</span><span class="ttl">第5部 継続的な学習と実験</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>The DevOps ハンドブック 要点まとめ ／ 第4部</p></footer>
+
+</body>
+</html>
