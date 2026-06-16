@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第Ⅱ部 フローを機能させるチームトポロジー ― 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#1f7a6b; --accent-soft:#e3f1ee; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>チームトポロジー</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第Ⅰ部</a>
+      <a href="part2.html">第Ⅱ部</a>
+      <a href="part3.html">第Ⅲ部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART Ⅱ ― 第4〜6章</span>
+  <h1>フローを機能させるチームトポロジー</h1>
+  <p class="lead">万能なチーム構成はないという前提から、典型的なアンチパターンを避け、組織に置くチームを4つの基本タイプに集約する。そのうえで、認知負荷とフローを基準にチームの責任境界を引く方法を示す。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch4"><span class="ch-no">4</span><span>静的なチームトポロジー</span></a></li>
+      <li><a href="#ch5"><span class="ch-no">5</span><span>4つの基本的なチームタイプ</span></a></li>
+      <li><a href="#ch6"><span class="ch-no">6</span><span>チームファーストな境界を決める</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第4章 ===== -->
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="num">第4章</span><h2>静的なチームトポロジー</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>あらゆる組織に効く唯一のチーム構成は存在しない。<mark>組織の規模・成熟度・技術的な状況に応じて構成を選ぶ</mark>べきであり、よくある<mark>アンチパターンを避ける</mark>ことから始める。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚫</span>避けるべきチーム編成のアンチパターン</h3>
+      <p class="summary">著者は、機能別に細かく分けた組織や、その場しのぎで生まれた構成が、フローを妨げると指摘する。職能でチームを割ると、価値を届けるたびに多くのチームをまたぐ必要が生じる。</p>
+      <ul>
+        <li>職能別サイロ：開発・テスト・運用などを分け、引き継ぎのたびに待ちが発生する。</li>
+        <li>名ばかりのDevOpsチーム：開発と運用の間に新たなチームを挟むだけでは、サイロをもう一つ増やすことになる。</li>
+        <li>場当たりのチーム設計：意図せず生まれた構成が、変更のたびに過剰な調整を強いる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌡️</span>状況に応じて構成を選ぶ</h3>
+      <p class="summary">どのチーム構成が適切かは、組織の規模・技術スタックの成熟度・変更の頻度などで変わる。<span class="term">構成は固定の正解ではなく、状況に応じた選択</span>として扱う。</p>
+      <div class="callout tip">
+        <span class="emoji">✅</span>
+        <div><span class="ctitle">読み解きの補助</span><p>この章は、後続の4タイプ・3モードを導入する前提として、「自組織に合う構成を選ぶ」という構えを示す位置づけにある。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">アンチパターン</span><span class="k">職能別サイロ</span><span class="k">組織の成熟度</span><span class="k">DevOpsチーム</span></div>
+  </section>
+
+  <!-- ===== 第5章 ===== -->
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="num">第5章</span><h2>4つの基本的なチームタイプ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>組織に必要なチームは<mark>4つの基本タイプ</mark>に集約できる。中心は価値を届ける<mark>ストリームアラインドチーム</mark>で、残る3タイプはその認知負荷を下げて支える役割を担う。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>4つのチームタイプ</h3>
+      <p class="summary">著者は、組織に存在すべきチームを次の4つに限定する。多くのチームをこの4タイプのいずれかに当てはめることで、組織構造を単純化できると主張する。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#1f7a6b">
+          <div class="icon-box">🌊</div>
+          <div>
+            <div class="wlabel">ストリームアラインドチーム</div>
+            <h4>価値の流れに沿って届ける</h4>
+            <p>特定の事業領域や顧客に向けた価値の流れを、端から端まで担当する中心的なチーム。組織の大半はこのタイプであるべき。</p>
+          </div>
+        </div>
+        <div class="way-row" style="--wc:#3a5a9c">
+          <div class="icon-box">🏗️</div>
+          <div>
+            <div class="wlabel">プラットフォームチーム</div>
+            <h4>内部サービスで負荷を下げる</h4>
+            <p>ストリームアラインドチームが使う内部サービスや基盤を提供し、その認知負荷を下げる。自らの提供物をプロダクトとして扱う。</p>
+          </div>
+        </div>
+        <div class="way-row" style="--wc:#b5852a">
+          <div class="icon-box">🧑‍🏫</div>
+          <div>
+            <div class="wlabel">イネイブリングチーム</div>
+            <h4>不足する能力の獲得を助ける</h4>
+            <p>特定分野の専門知識を持ち、他チームが新しい技術や手法を身につけるのを一時的に支援する。恒久的な依存は作らない。</p>
+          </div>
+        </div>
+        <div class="way-row" style="--wc:#6b3a8c">
+          <div class="icon-box">🧪</div>
+          <div>
+            <div class="wlabel">コンプリケイテッドサブシステムチーム</div>
+            <h4>高度な専門領域を引き受ける</h4>
+            <p>特別な専門知識を要する複雑な部分を担当し、その難しさを他チームから切り離す。必要な場合にのみ置く。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>ストリームアラインドを中心に据える</h3>
+      <p class="summary">4タイプは対等ではない。<span class="term">残り3タイプは、ストリームアラインドチームが価値の流れに集中できるよう支える</span>位置づけにある。多くの既存のチームは、この4タイプのいずれかへ整理できる。</p>
+      <ul>
+        <li>支援的な3タイプの目的は、ストリームアラインドチームの認知負荷を下げることにある。</li>
+        <li>チームの種類を限定することで、チーム間の関係も整理しやすくなる。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🧠</span>
+        <div><span class="ctitle">なぜ4タイプに絞るのか</span><p>チームの種類を増やすほど、誰が何に責任を持つかが曖昧になり、やり取りも複雑になる。4タイプに集約することで、責任と関係の設計が単純になる。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ストリームアラインド</span><span class="k">プラットフォーム</span><span class="k">イネイブリング</span><span class="k">コンプリケイテッドサブシステム</span></div>
+  </section>
+
+  <!-- ===== 第6章 ===== -->
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="num">第6章</span><h2>チームファーストな境界を決める</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ソフトウェアとチームの責任境界は、<mark>認知負荷とフローを基準に引く</mark>。分割の切れ目（フラクチャープレーン）を意識し、<mark>チームが無理なく所有できる単位</mark>に分ける。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">✂️</span>分割の切れ目（フラクチャープレーン）で分ける</h3>
+      <p class="summary">著者は、ソフトウェアを技術レイヤーではなく、自然に分割できる切れ目で分けるべきだと主張する。最も基本的な切れ目はビジネスドメインである。</p>
+      <ul>
+        <li>ビジネスドメインの境界は、チームが独立して価値を届けられる単位になりやすい。</li>
+        <li>規制・リスク・変更頻度・技術など、他の切れ目で分けたほうがよい場合もある。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚖️</span>認知負荷に収まる境界を引く</h3>
+      <p class="summary">境界を決める基準は、担当範囲が<span class="term">チームの認知負荷に収まるか</span>である。フロー（価値が滞りなく流れること）を妨げない範囲で、チームが所有できる大きさに区切る。</p>
+      <div class="versus">
+        <div class="side a">
+          <h4>📐 技術レイヤーで分ける</h4>
+          <ul>
+            <li>フロントエンド・バックエンド・DBなど層で割る</li>
+            <li>一つの価値を届けるのに多くのチームをまたぐ</li>
+            <li>引き継ぎと調整が増え、フローが滞る</li>
+          </ul>
+        </div>
+        <div class="vs"><span>VS</span></div>
+        <div class="side b">
+          <h4>🌊 価値の流れで分ける</h4>
+          <ul>
+            <li>ビジネスドメインなどの切れ目で割る</li>
+            <li>一つのチームが端から端まで届けられる</li>
+            <li>認知負荷に収まり、独立して進められる</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout warn">
+        <span class="emoji">⚠️</span>
+        <div><span class="ctitle">境界を誤ると起きること</span><p>切れ目を無視して分けると、チームをまたぐ調整が増え、認知負荷が膨らむ。境界はチームが所有しきれる範囲に引かなければ、フローはかえって悪化する。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">フラクチャープレーン</span><span class="k">ビジネスドメイン境界</span><span class="k">認知負荷</span><span class="k">フロー</span><span class="k">チームの所有</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part1.html"><span class="dir">← 前</span><span class="ttl">第Ⅰ部 デリバリーの手段としてのチーム</span></a>
+    <a class="next" href="part3.html"><span class="dir">次 →</span><span class="ttl">第Ⅲ部 チームインタラクションを進化させる</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>チームトポロジー 要点まとめ</p></footer>
+
+</body>
+</html>

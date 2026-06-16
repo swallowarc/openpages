@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>チームトポロジー ― 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a5a9c; --accent-soft:#e7ecf6; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>チームトポロジー</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第Ⅰ部</a>
+      <a href="part2.html">第Ⅱ部</a>
+      <a href="part3.html">第Ⅲ部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">READING NOTES</span>
+  <h1>チームトポロジー<br>要点まとめ</h1>
+  <p class="lead">本書全3部9章の要点を、本の論理構造に沿ってまとめた読書ノートである。各部のページで、章ごとの著者の主張と簡潔な解説を確認できる。</p>
+</header>
+
+<main>
+
+  <!-- ===== 書誌情報 ===== -->
+  <section class="bibliography">
+    <p class="title">チームトポロジー ― 価値あるソフトウェアをすばやく届ける適応型組織設計<br><span style="font-size:13px;font-weight:400;color:var(--ink-faint);">原題：Team Topologies: Organizing Business and Technology Teams for Fast Flow</span></p>
+    <dl>
+      <dt>著者</dt><dd>マシュー・スケルトン, マニュエル・パイス</dd>
+      <dt>訳者</dt><dd>原田 騎郎, 永瀬 美穂, 吉羽 龍太郎</dd>
+      <dt>出版社</dt><dd>日本能率協会マネジメントセンター（JMAM）</dd>
+      <dt>発行年</dt><dd>2021年</dd>
+    </dl>
+  </section>
+
+  <!-- ===== 本書の全体像 ===== -->
+  <section class="book-overview">
+    <h2>本書の全体像</h2>
+    <p>本書は、ソフトウェアを速く安定して届けるための鍵を「組織構造の設計」に置く。出発点は、システムの構造は組織の伝達構造を写し取るというコンウェイの法則である。そこから、望むアーキテクチャを得るためにチーム編成を先に設計する「逆コンウェイ戦略」、チームが扱える認知負荷を超えさせないという制約、そして組織を構成する単位としての「チームファースト」の考え方を導く。後半では、組織に置くチームを<span class="term">ストリームアラインド・プラットフォーム・イネイブリング・コンプリケイテッドサブシステム</span>の4タイプに集約し、チーム間の関わりを<span class="term">コラボレーション・X-as-a-Service・ファシリテーション</span>の3つのインタラクションモードに整理する。最後に、これらを固定せず状況に応じて進化させ続ける運用モデルを提示する。第Ⅰ部で前提と原則、第Ⅱ部でチームの配置、第Ⅲ部でチーム間の関わりと進化を論じる。</p>
+  </section>
+
+  <!-- ===== ターゲット読者 ===== -->
+  <section class="book-overview">
+    <h2>この本がターゲットとする読者</h2>
+    <p>ソフトウェアデリバリーの速さに組織の構造が効いていると気づき、チームの分け方と関わり方をどう設計するかを探している読者を想定している。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
+    <div class="persona-grid">
+      <div class="persona">
+        <span class="emoji">🧭</span>
+        <h3>エンジニアリングマネージャー</h3>
+        <p>個人の配置ではなく、長続きするチームを単位に組織を設計する枠組みと語彙を得る。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🏗️</span>
+        <h3>アーキテクト・テックリード</h3>
+        <p>望むアーキテクチャから逆算してチーム境界を引く、逆コンウェイ戦略の具体的な指針を得る。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🧩</span>
+        <h3>プラットフォーム・基盤担当</h3>
+        <p>自チームを「内部向けのプロダクト」として運営し、他チームの認知負荷を下げる位置づけを得る。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">📐</span>
+        <h3>組織設計・アジャイル推進者</h3>
+        <p>チーム構造を一度きりでなく、組織的センシングで継続的に進化させる運用の考え方を得る。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== おすすめの読み進め方（AIによる分析・本書外） ===== -->
+  <section class="ai-analysis">
+    <div class="ai-badge"><span class="emoji">🤖</span>AIによる分析 ― 本書の記述ではなく、内容に基づく独自提案</div>
+    <h2>おすすめの読み進め方</h2>
+    <p>本書は第Ⅰ部で原則、第Ⅱ部でチームの配置、第Ⅲ部でチーム間の関わりと進化へと積み上がる構成のため、原則として部の順に読むと理解しやすい。立場ごとに重点を変える読み方を以下に示す。</p>
+    <div class="path-row">
+      <span class="who">全体を体系的に理解したい人</span>
+      <span class="route"><b>第Ⅰ部（1〜3章）</b> → 第Ⅱ部 → 第Ⅲ部（部の順）</span>
+    </div>
+    <div class="path-row">
+      <span class="who">まず4タイプ・3モードを掴みたい人</span>
+      <span class="route">第Ⅰ部（2章） → <b>第Ⅱ部（5章）</b> → <b>第Ⅲ部（7章）</b></span>
+    </div>
+    <div class="path-row">
+      <span class="who">チーム境界の引き方を知りたい人</span>
+      <span class="route">第Ⅰ部（3章） → <b>第Ⅱ部（5〜6章）</b></span>
+    </div>
+    <div class="path-row">
+      <span class="who">組織を変える立場の人</span>
+      <span class="route">第Ⅰ部（1〜2章） → 第Ⅱ部（4章） → <b>第Ⅲ部（8〜9章）</b></span>
+    </div>
+  </section>
+
+  <!-- ===== 各部へのカードナビ ===== -->
+  <div class="section-label">構成 ― クリックで各部のページへ</div>
+  <div class="part-grid">
+    <a class="part-card" style="--pc:#3a5a9c" href="part1.html">
+      <span class="pc-eyebrow">PART Ⅰ ― 第1〜3章</span>
+      <h3>デリバリーの手段としてのチーム</h3>
+      <p>組織図の限界、コンウェイの法則、チームを基本単位とする思考という、本書の前提と原則を示す。</p>
+      <div class="chapters"><span>1</span> 組織図の問題 ／ <span>2</span> コンウェイの法則が重要な理由 ／ <span>3</span> チームファースト思考</div>
+    </a>
+    <a class="part-card" style="--pc:#1f7a6b" href="part2.html">
+      <span class="pc-eyebrow">PART Ⅱ ― 第4〜6章</span>
+      <h3>フローを機能させるチームトポロジー</h3>
+      <p>アンチパターンを避け、4つのチームタイプでチームを配置し、認知負荷とフローで境界を決める方法を扱う。</p>
+      <div class="chapters"><span>4</span> 静的なチームトポロジー ／ <span>5</span> 4つの基本的なチームタイプ ／ <span>6</span> チームファーストな境界を決める</div>
+    </a>
+    <a class="part-card" style="--pc:#6b3a8c" href="part3.html">
+      <span class="pc-eyebrow">PART Ⅲ ― 第7〜9章</span>
+      <h3>チームインタラクションを進化させる</h3>
+      <p>3つのインタラクションモード、組織的センシングによる構造の進化、次世代の運用モデルを扱う。</p>
+      <div class="chapters"><span>7</span> チームインタラクションモード ／ <span>8</span> 組織的センシングでチーム構造を進化させる ／ <span>9</span> 次世代デジタル運用モデル</div>
+    </a>
+  </div>
+
+</main>
+
+<footer class="foot"><p>チームトポロジー 要点まとめ</p></footer>
+
+</body>
+</html>
