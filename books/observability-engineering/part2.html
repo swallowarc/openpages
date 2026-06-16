@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第Ⅱ部 オブザーバビリティの基礎 ― 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#1f7a6b; --accent-soft:#e6f4f0; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>オブザーバビリティ・エンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第Ⅰ部</a>
+      <a href="part2.html">第Ⅱ部</a>
+      <a href="part3.html">第Ⅲ部</a>
+      <a href="part4.html">第Ⅳ部</a>
+      <a href="part5.html">第Ⅴ部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART Ⅱ ― 第5〜9章</span>
+  <h1>オブザーバビリティの基礎</h1>
+  <p class="lead">オブザーバビリティを支える技術的な構成要素を扱う。任意の幅を持つ構造化イベントを起点に、トレース、OpenTelemetry による計装、イベント解析へと進み、モニタリングとの併用のあり方を整理する。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch5"><span class="ch-no">5</span><span>構造化イベントはオブザーバビリティの構成要素である</span></a></li>
+      <li><a href="#ch6"><span class="ch-no">6</span><span>イベントをトレースにつなぐ</span></a></li>
+      <li><a href="#ch7"><span class="ch-no">7</span><span>OpenTelemetryを使った計装</span></a></li>
+      <li><a href="#ch8"><span class="ch-no">8</span><span>オブザーバビリティを実現するためのイベント解析</span></a></li>
+      <li><a href="#ch9"><span class="ch-no">9</span><span>オブザーバビリティとモニタリングの関係</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第5章 ===== -->
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="num">第5章</span><h2>構造化イベントはオブザーバビリティの構成要素である</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>オブザーバビリティの基本データ単位は <mark>任意の幅を持つ構造化イベント</mark> である。リクエスト1件の文脈を、後から任意に問い合わせられる形で1つのイベントにまとめて記録する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧱</span>任意の幅を持つ構造化イベント</h3>
+      <p class="summary">構造化イベントとは、1つの作業単位（典型的には1リクエスト）について、関連する文脈をすべて含むキーと値の集合である。フィールドは必要に応じていくらでも追加できる。</p>
+      <ul>
+        <li>ユーザID、エンドポイント、所要時間、ステータス、依存先の応答時間など、文脈を1件に集約する。</li>
+        <li>高カーディナリティな値（ユーザID やリクエストID など、取りうる値が膨大な属性）を含められることが重要である。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📉</span>メトリクスでは粒度が失われる</h3>
+      <p class="summary">メトリクスは値を事前に集計するため、個々のリクエストの文脈が捨てられる。著者は、集計後のメトリクスからは特定の利用者や条件に絞った調査ができないと指摘する。</p>
+      <div class="versus">
+        <div class="side a">
+          <h4>📊 メトリクス</h4>
+          <ul>
+            <li>あらかじめ集計された数値</li>
+            <li>個々の文脈・高カーディナリティ属性が失われる</li>
+            <li>「誰の」「どの条件で」を後から問えない</li>
+          </ul>
+        </div>
+        <div class="vs"><span>VS</span></div>
+        <div class="side b">
+          <h4>🧱 構造化イベント</h4>
+          <ul>
+            <li>リクエスト単位の生の文脈を保持する</li>
+            <li>任意の属性で後から切り分けられる</li>
+            <li>未知の問いに答える土台になる</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">構造化イベント</span><span class="k">任意の幅</span><span class="k">高カーディナリティ</span><span class="k">メトリクスの限界</span></div>
+  </section>
+
+  <!-- ===== 第6章 ===== -->
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="num">第6章</span><h2>イベントをトレースにつなぐ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>個々のイベントを <mark>トレースとしてつなぐ</mark> ことで、分散システムを横断する1リクエストの経路と因果関係を追える。トレースは関連づけられたイベントの集まりである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔗</span>トレースはイベントの連なりである</h3>
+      <p class="summary">分散トレースは、1つのリクエストが複数のサービスを通過する各区間を <span class="term">スパン</span> として記録し、それらを共通の識別子で関連づけたものである。各スパンは構造化イベントとして表せる。</p>
+      <ul>
+        <li>トレースID で1リクエストに属するスパンをまとめ、親子関係で呼び出しの構造を表す。</li>
+        <li>どの区間に時間がかかったか、どこで失敗したかを経路上で特定できる。</li>
+      </ul>
+      <div class="flow">
+        <div class="node">フロントエンド</div>
+        <div class="arrow">→</div>
+        <div class="node">API サービス</div>
+        <div class="arrow">→</div>
+        <div class="node">データベース</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧬</span>トレースとイベントは別物ではない</h3>
+      <p class="summary">著者は、トレースを構造化イベントの上に成り立つ概念として説明する。スパンに文脈を広く持たせれば、トレースの各区間そのものが解析対象のイベントになる。</p>
+      <div class="callout tip">
+        <span class="emoji">✅</span>
+        <div><span class="ctitle">読み解きの補助</span><p>「トレースを別のデータ型として導入する」のではなく、「イベントを関連づけるとトレースになる」と捉えると、第5章とのつながりが理解しやすい。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">分散トレース</span><span class="k">スパン</span><span class="k">トレースID</span><span class="k">因果関係</span></div>
+  </section>
+
+  <!-- ===== 第7章 ===== -->
+  <section class="chapter" id="ch7">
+    <div class="chapter-head"><span class="num">第7章</span><h2>OpenTelemetryを使った計装</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>テレメトリーの計装は、<mark>ベンダー中立な OpenTelemetry</mark> で行うべきである。特定の監視製品に縛られず、計装をいったん行えば送り先を切り替えられる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔌</span>ベンダーロックインを避ける計装</h3>
+      <p class="summary">OpenTelemetry はテレメトリーの生成・収集を標準化するオープンソースの枠組みである。著者は、これにより計装コードをツールから独立させられると主張する。</p>
+      <ul>
+        <li>一度計装すれば、バックエンド（解析・保存先）を変更しても計装をやり直さずに済む。</li>
+        <li>トレース・メトリクス・ログを共通の仕組みで扱える。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">✍️</span>意味のある文脈を計装で付与する</h3>
+      <p class="summary">計装では、後から問いたくなる属性をイベントに付けておくことが鍵になる。自動計装で土台を作り、手動計装でドメイン固有の文脈を加える。</p>
+      <div class="callout why">
+        <span class="emoji">🧠</span>
+        <div><span class="ctitle">なぜ計装が重要か</span><p>解析できるのは記録した文脈の範囲に限られる。未知の問いに答えるには、リクエスト処理の中で意味のある属性を広く付与しておく必要がある。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">OpenTelemetry</span><span class="k">計装</span><span class="k">ベンダー中立</span><span class="k">自動計装</span><span class="k">手動計装</span></div>
+  </section>
+
+  <!-- ===== 第8章 ===== -->
+  <section class="chapter" id="ch8">
+    <div class="chapter-head"><span class="num">第8章</span><h2>オブザーバビリティを実現するためのイベント解析</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>収集したイベントを <mark>任意の属性で絞り込み・比較する</mark> ことで未知の問題を解析する。全体から異常を探し、データに導かれて原因へ近づく反復が中心となる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔬</span>コア解析ループ</h3>
+      <p class="summary">著者は、解析を <span class="term">中核となる反復（コア解析ループ）</span> として示す。異常を見つけ、それが集中する集合をデータで特定し、さらに問いを立てて絞り込む。</p>
+      <div class="steps">
+        <div class="step">
+          <span class="badge">1</span>
+          <div><h4>異常を見つける</h4><p>全体の振る舞いの中で、どこが想定と違うかを把握する。</p></div>
+        </div>
+        <div class="step">
+          <span class="badge">2</span>
+          <div><h4>差を生む属性を探す</h4><p>遅い／失敗するイベントの集合に共通する属性を、正常な集合と比較して見つける。</p></div>
+        </div>
+        <div class="step">
+          <span class="badge">3</span>
+          <div><h4>絞り込んで反復する</h4><p>その属性で対象を絞り、次の異常を問う。原因に到達するまで繰り返す。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧮</span>高カーディナリティ・高次元データが鍵</h3>
+      <p class="summary">任意の属性で切り分けられることが、未知の問題を説明する前提になる。属性の種類（次元）が多く、各属性が取りうる値（カーディナリティ）が大きいほど、絞り込みの解像度が上がる。</p>
+      <ul>
+        <li>「特定のユーザ・特定のバージョン・特定の地域」のような細かい組み合わせで異常を切り出せる。</li>
+        <li>事前に集計されていないため、想定していなかった切り口でも調べられる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">コア解析ループ</span><span class="k">高次元データ</span><span class="k">絞り込み</span><span class="k">比較分析</span></div>
+  </section>
+
+  <!-- ===== 第9章 ===== -->
+  <section class="chapter" id="ch9">
+    <div class="chapter-head"><span class="num">第9章</span><h2>オブザーバビリティとモニタリングの関係</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>オブザーバビリティとモニタリングは <mark>排他ではなく併用する</mark>。システムの性質に応じて使い分け、インフラ層はモニタリング、アプリケーション層はオブザーバビリティが向く。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>対象に応じた使い分け</h3>
+      <p class="summary">著者は、両者を対立させるのではなく、観測対象の性質で選ぶことを勧める。状態が安定し既知のしきい値で十分な対象と、振る舞いが多様で未知の問いが必要な対象とで適する手段が異なる。</p>
+      <div class="versus">
+        <div class="side a">
+          <h4>📟 モニタリングが向く</h4>
+          <ul>
+            <li>インフラやシステムの低レベルな状態</li>
+            <li>既知の閾値で十分に判断できる対象</li>
+          </ul>
+        </div>
+        <div class="vs"><span>VS</span></div>
+        <div class="side b">
+          <h4>🔬 オブザーバビリティが向く</h4>
+          <ul>
+            <li>アプリケーションの多様な振る舞い</li>
+            <li>未知の問いを投げる必要がある対象</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout tip">
+        <span class="emoji">✅</span>
+        <div><span class="ctitle">両立の指針</span><p>既存のモニタリングを捨てる必要はない。役割の違いを理解し、それぞれが得意な領域で使うことが現実的な運用になる。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">モニタリングとの併用</span><span class="k">インフラ監視</span><span class="k">使い分け</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part1.html"><span class="dir">← 前</span><span class="ttl">第Ⅰ部 オブザーバビリティへの道</span></a>
+    <a class="next" href="part3.html"><span class="dir">次 →</span><span class="ttl">第Ⅲ部 チームのためのオブザーバビリティ</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>オブザーバビリティ・エンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>

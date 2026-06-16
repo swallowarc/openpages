@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第Ⅲ部 チームのためのオブザーバビリティ ― 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#8c5a3a; --accent-soft:#f4ece6; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>オブザーバビリティ・エンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第Ⅰ部</a>
+      <a href="part2.html">第Ⅱ部</a>
+      <a href="part3.html">第Ⅲ部</a>
+      <a href="part4.html">第Ⅳ部</a>
+      <a href="part5.html">第Ⅴ部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART Ⅲ ― 第10〜14章</span>
+  <h1>チームのためのオブザーバビリティ</h1>
+  <p class="lead">オブザーバビリティをチームの実践として根づかせる方法を扱う。導入の進め方、オブザーバビリティ駆動開発、SLO による信頼性の運用とアラート、そしてソフトウェアサプライチェーンへの適用を論じる。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch10"><span class="ch-no">10</span><span>オブザーバビリティへの取り組みをチームへ適用する</span></a></li>
+      <li><a href="#ch11"><span class="ch-no">11</span><span>オブザーバビリティ駆動開発</span></a></li>
+      <li><a href="#ch12"><span class="ch-no">12</span><span>サービスレベル目標の信頼性向上への活用</span></a></li>
+      <li><a href="#ch13"><span class="ch-no">13</span><span>SLOベースのアラートへの対応とデバッグ</span></a></li>
+      <li><a href="#ch14"><span class="ch-no">14</span><span>オブザーバビリティとソフトウェアサプライチェーン</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第10章 ===== -->
+  <section class="chapter" id="ch10">
+    <div class="chapter-head"><span class="num">第10章</span><h2>オブザーバビリティへの取り組みをチームへ適用する</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>オブザーバビリティの導入は <mark>既存の痛みを起点に始める</mark>。号令で一斉に変えるのではなく、価値が分かりやすい場所から実践し、成果で広げる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🩹</span>痛みのある場所から着手する</h3>
+      <p class="summary">著者は、最も調査に苦労している領域や、繰り返し障害が起きる箇所から計装と解析を始めることを勧める。早い段階で具体的な効果を示すことが定着につながる。</p>
+      <ul>
+        <li>全システムを一度に変えようとせず、効果の見えやすい範囲を選ぶ。</li>
+        <li>実際の調査がどれだけ速くなったかを、チーム内で共有する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">👥</span>ツール導入ではなく実践の定着</h3>
+      <p class="summary">オブザーバビリティはツールを買えば手に入るものではなく、<span class="term">日々の調査の進め方</span> を変えることだと位置づける。チームの習慣として根づかせることが目的になる。</p>
+      <div class="callout why">
+        <span class="emoji">🧠</span>
+        <div><span class="ctitle">なぜ実践が要るか</span><p>計装されたデータがあっても、それを使って問いを立てる習慣がなければ価値は出ない。導入は人とプロセスの変化を伴う。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">導入</span><span class="k">スモールスタート</span><span class="k">実践の定着</span></div>
+  </section>
+
+  <!-- ===== 第11章 ===== -->
+  <section class="chapter" id="ch11">
+    <div class="chapter-head"><span class="num">第11章</span><h2>オブザーバビリティ駆動開発</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>オブザーバビリティ駆動開発とは、<mark>計装を開発と同時に行い、本番での挙動を前提にコードを書く</mark>進め方である。観測性をテストと同様に開発工程に組み込む。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⌨️</span>計装をコードと一緒に書く</h3>
+      <p class="summary">機能を実装するときに、その機能が本番でどう振る舞うかを後から問えるよう、計装を同時に書く。観測できないコードは完成とみなさない、という考え方である。</p>
+      <ul>
+        <li>「本番で何を確認したいか」を実装時に決めて、属性として埋め込む。</li>
+        <li>リリース後、実際の挙動を観測して期待と照合する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚀</span>本番を一級の対象として扱う</h3>
+      <p class="summary">著者は、開発者がローカルやステージングだけでなく <span class="term">本番の挙動を直接観測する</span> ことを重視する。本番は避けるべき領域ではなく、理解すべき対象である。</p>
+      <div class="callout tip">
+        <span class="emoji">✅</span>
+        <div><span class="ctitle">テスト駆動開発との対比</span><p>テストが「リリース前の正しさ」を確かめるのに対し、オブザーバビリティ駆動開発は「リリース後の実際の振る舞い」を確かめることを開発の一部に含める。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">オブザーバビリティ駆動開発</span><span class="k">計装の習慣化</span><span class="k">本番の観測</span></div>
+  </section>
+
+  <!-- ===== 第12章 ===== -->
+  <section class="chapter" id="ch12">
+    <div class="chapter-head"><span class="num">第12章</span><h2>サービスレベル目標の信頼性向上への活用</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SLO（サービスレベル目標）は、<mark>固定閾値アラートより信頼性を適切に表現する</mark>。利用者の体験に基づいて目標を定め、エラーバジェットで許容範囲を管理する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>利用者体験を基準にする</h3>
+      <p class="summary">SLO は、システムが「十分に良い」状態を利用者の体験に基づいて定義する。CPU 使用率のような内部指標の閾値ではなく、リクエストの成否や速さといった結果で信頼性を測る。</p>
+      <ul>
+        <li>SLI（サービスレベル指標）で「良いリクエストの割合」などを定義する。</li>
+        <li>SLO はその目標値で、達成すべき水準を表す。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔋</span>エラーバジェットで許容を管理する</h3>
+      <p class="summary">SLO の裏返しとして <span class="term">エラーバジェット</span> が定まる。完璧を目指すのではなく、目標を下回らない範囲で失敗を許容し、その残量で運用判断を行う。</p>
+      <div class="callout why">
+        <span class="emoji">🧠</span>
+        <div><span class="ctitle">なぜ固定閾値より良いか</span><p>個別指標の閾値アラートは、利用者に影響のない誤報を多発させがちである。SLO は利用者影響に直結するため、本当に対応すべき劣化に集中できる。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">SLO</span><span class="k">SLI</span><span class="k">エラーバジェット</span><span class="k">信頼性</span></div>
+  </section>
+
+  <!-- ===== 第13章 ===== -->
+  <section class="chapter" id="ch13">
+    <div class="chapter-head"><span class="num">第13章</span><h2>SLOベースのアラートへの対応とデバッグ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SLO に基づくアラートは <mark>エラーバジェットの消費速度（バーンレート）</mark> で出す。アラートを受けたら、オブザーバビリティで原因をその場で調査する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔥</span>バーンレートでアラートする</h3>
+      <p class="summary">エラーバジェットをどれだけ速く消費しているかに応じてアラートを出す。急速に消費しているときは即時対応、緩やかなときは余裕を持った対応とする。</p>
+      <div class="metrics">
+        <div class="metric"><div class="big up">⬆</div><div class="name">バーンレートが高い</div><div class="dir">即時対応</div></div>
+        <div class="metric"><div class="big down">⬇</div><div class="name">バーンレートが低い</div><div class="dir">余裕を持つ</div></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔬</span>アラートからオブザーバビリティで掘り下げる</h3>
+      <p class="summary">SLO アラートは「利用者影響が出ている」ことを知らせるが、原因までは示さない。そこから先は <span class="term">イベント解析</span> によって、どの集合で劣化が起きているかを絞り込む。</p>
+      <div class="callout tip">
+        <span class="emoji">✅</span>
+        <div><span class="ctitle">第8章との接続</span><p>アラートで「影響の発生」を捉え、コア解析ループ（第8章）で「原因」へ到達する。検知と調査を役割分担させる。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">バーンレート</span><span class="k">SLOアラート</span><span class="k">エラーバジェット消費</span><span class="k">調査</span></div>
+  </section>
+
+  <!-- ===== 第14章 ===== -->
+  <section class="chapter" id="ch14">
+    <div class="chapter-head"><span class="num">第14章</span><h2>オブザーバビリティとソフトウェアサプライチェーン</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>オブザーバビリティは本番サービスだけでなく、<mark>ビルドやデプロイのソフトウェアサプライチェーンにも適用すべき</mark>である。CI/CD のパイプライン自体を観測対象とする。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏭</span>パイプラインを観測対象にする</h3>
+      <p class="summary">この章は、ソフトウェアを届けるまでの工程（ビルド・テスト・デプロイ）にもオブザーバビリティの考え方を持ち込む事例として書かれている。遅さや失敗の原因を、本番と同じ手法で調査できる。</p>
+      <ul>
+        <li>ビルドやテストの各ステップをイベントとして記録し、どこが遅いか・不安定かを切り分ける。</li>
+        <li>開発者の生産性に影響するパイプラインの問題を、勘ではなくデータで特定する。</li>
+      </ul>
+      <div class="callout tip">
+        <span class="emoji">✅</span>
+        <div><span class="ctitle">適用範囲の拡張</span><p>オブザーバビリティの原則は本番システムに限らない。複雑で時間のかかる工程であれば、サプライチェーンにも同じ手法が有効になる。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ソフトウェアサプライチェーン</span><span class="k">CI/CD</span><span class="k">パイプラインの観測</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part2.html"><span class="dir">← 前</span><span class="ttl">第Ⅱ部 オブザーバビリティの基礎</span></a>
+    <a class="next" href="part4.html"><span class="dir">次 →</span><span class="ttl">第Ⅳ部 大規模なオブザーバビリティ</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>オブザーバビリティ・エンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>
