@@ -5,7 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>オブザーバビリティ・エンジニアリング ― 要点まとめ</title>
 <link rel="stylesheet" href="style.css">
-<style>:root{ --accent:#1f6f8c; --accent-soft:#e6f1f4; }</style>
+<style>
+  :root{ --accent:#1f6f8c; --accent-soft:#e6f1f4; }
+  .overview-figure {
+    margin: 24px 0 8px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .overview-figure img { display: block; width: 100%; height: auto; }
+  .overview-figure figcaption {
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    text-align: center;
+    padding: 10px 16px;
+    border-top: 1px solid var(--line-soft);
+  }
+</style>
 </head>
 <body>
 
@@ -30,6 +48,12 @@
 </header>
 
 <main>
+
+  <!-- ===== 全体像（手描きまとめ図・AIで生成） ===== -->
+  <figure class="overview-figure">
+    <img src="overview.png" alt="オブザーバビリティ・エンジニアリング 要点まとめ ― オブザーバビリティの定義・モニタリングとの対比・全5部の手描き概要図">
+    <figcaption>本書の全体像を1枚にまとめた図（AIで生成）</figcaption>
+  </figure>
 
   <!-- ===== 書誌情報 ===== -->
   <section class="bibliography">
