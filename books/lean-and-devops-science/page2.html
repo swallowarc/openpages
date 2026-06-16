@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技術とプロセスのプラクティス ― LeanとDevOpsの科学 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#2f7d6b; --accent-soft:#e9f4ef; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>LeanとDevOpsの科学</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="page1.html">計測と文化</a>
+      <a href="page2.html">技術プラクティス</a>
+      <a href="page3.html">人と組織</a>
+      <a href="page4.html">調査方法</a>
+      <a href="page5.html">改善の実際</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PAGE 2 ― 第1部② 第4〜8章</span>
+  <h1>技術とプロセスのプラクティス</h1>
+  <p class="lead">継続的デリバリ、疎結合アーキテクチャ、情報セキュリティの統合、リーンな管理とリーンな製品開発。これらはいずれもソフトウェアデリバリのパフォーマンスを高めるケイパビリティであると示す。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="このページの章">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch4"><span class="ch-no">4</span><span>技術的プラクティス―継続的デリバリの基本原則と効果</span></a></li>
+      <li><a href="#ch5"><span class="ch-no">5</span><span>アーキテクチャのキーポイント</span></a></li>
+      <li><a href="#ch6"><span class="ch-no">6</span><span>デリバリライフサイクルに情報セキュリティを組み込む</span></a></li>
+      <li><a href="#ch7"><span class="ch-no">7</span><span>ソフトウェア管理のプラクティス</span></a></li>
+      <li><a href="#ch8"><span class="ch-no">8</span><span>製品開発のプラクティス</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第4章 ===== -->
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="num">第4章</span><h2>技術的プラクティス―継続的デリバリの基本原則と効果</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p><mark>継続的デリバリ</mark>を支える諸プラクティスは、デリバリのパフォーマンスと組織文化を高め、デプロイ負荷とバーンアウトを下げる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧱</span>継続的デリバリを支えるプラクティス</h3>
+      <p class="summary">著者らは、<span class="term">継続的デリバリ</span>を実現するための具体的なケイパビリティを挙げ、それらがパフォーマンスを予測すると示す。</p>
+      <ul>
+        <li><b>包括的なバージョン管理</b>：アプリケーションコードだけでなく、システム構成やアプリの設定もバージョン管理する。</li>
+        <li><b>デプロイの自動化</b>と<b>継続的インテグレーション（CI）</b>。</li>
+        <li><b>トランクベース開発</b>：長命なブランチを避け、短命なブランチで頻繁に統合する。</li>
+        <li><b>テストの自動化</b>と<b>テストデータの管理</b>。</li>
+        <li><b>セキュリティのシフトレフト</b>：セキュリティを開発の早い段階に組み込む。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>継続的デリバリの基本原則</h3>
+      <p class="summary">これらのプラクティスは、次の基本原則に支えられている。</p>
+    </div>
+
+    <div class="steps">
+      <div class="step"><span class="badge">1</span><div><h4>品質を作り込む</h4><p>問題を後工程に流さず、その場で検知して直す。</p></div></div>
+      <div class="step"><span class="badge">2</span><div><h4>小さなバッチで作業する</h4><p>大きな作業を小さく分割し、頻繁に届ける。</p></div></div>
+      <div class="step"><span class="badge">3</span><div><h4>繰り返し作業はコンピュータに任せる</h4><p>人は問題解決に集中し、定型作業は自動化する。</p></div></div>
+      <div class="step"><span class="badge">4</span><div><h4>絶え間ない改善を追求する</h4><p>現状を固定せず、継続的に改善し続ける。</p></div></div>
+      <div class="step"><span class="badge">5</span><div><h4>全員が責任を持つ</h4><p>デリバリの成果に対して関係者全員が責任を負う。</p></div></div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">✅</span>継続的デリバリがもたらす効果</h3>
+      <p class="summary">調査の結果、継続的デリバリの実践は次の効果と結びついていた。</p>
+      <ul>
+        <li>デリバリのパフォーマンスと組織文化が向上する。</li>
+        <li><b>デプロイ負荷とバーンアウトが軽減</b>される。</li>
+        <li>チームが自分たちの仕事に誇りを持てるようになる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">継続的デリバリ</span><span class="k">バージョン管理</span><span class="k">トランクベース開発</span><span class="k">テスト自動化</span><span class="k">CI</span>
+    </div>
+  </section>
+
+  <!-- ===== 第5章 ===== -->
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="num">第5章</span><h2>アーキテクチャのキーポイント</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>パフォーマンスを左右するのは技術スタックの種類ではなく、チームが他チームに依存せず変更・デプロイできる<mark>疎結合のアーキテクチャ</mark>である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>テスト容易性とデプロイ容易性が鍵</h3>
+      <p class="summary">著者らは、アーキテクチャの良し悪しを決める要素として<span class="term">テスト容易性</span>と<span class="term">デプロイ容易性</span>を挙げる。</p>
+      <ul>
+        <li>統合環境を必要とせずに大半のテストができること。</li>
+        <li>他チームと調整せずに、自チームのサービスを独立してデプロイ・リリースできること。</li>
+        <li>こうした<b>疎結合のアーキテクチャ</b>を持つチームほど、デリバリのパフォーマンスが高い。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛠️</span>ツールはチーム自身が選べることが重要</h3>
+      <p class="summary">どの言語やツールを使うかそのものより、チームの裁量が成果に効くと示す。</p>
+      <ul>
+        <li>チームが<b>自分たちでツールを選べる</b>ことが、パフォーマンスとよい結果に結びつく。</li>
+        <li>疎結合の設計により、組織の規模が大きくなってもデプロイ頻度を維持できる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">疎結合アーキテクチャ</span><span class="k">テスト容易性</span><span class="k">デプロイ容易性</span><span class="k">チームの裁量</span>
+    </div>
+  </section>
+
+  <!-- ===== 第6章 ===== -->
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="num">第6章</span><h2>デリバリライフサイクルに情報セキュリティを組み込む</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>情報セキュリティを開発の<mark>上流から組み込む</mark>と、セキュリティ対応の負担が減り、デリバリのパフォーマンスも向上する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔐</span>セキュリティをデリバリプロセスに統合する</h3>
+      <p class="summary">著者らは、セキュリティを開発の最終工程に置くのではなく、ライフサイクル全体に組み込むべきだと主張する。</p>
+      <ul>
+        <li>セキュリティのレビューや検討を<b>設計・開発の早い段階</b>から行う。</li>
+        <li>情報セキュリティの専門家が、開発者の日常の作業を支援する形で関与する。</li>
+        <li>セキュリティのテストや確認を<b>自動化</b>し、デリバリの流れに組み込む。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📉</span>上流への統合がもたらす効果</h3>
+      <p class="summary">セキュリティを上流に組み込んだチームは、次の点で優れていた。</p>
+      <ul>
+        <li>セキュリティ問題の修正に費やす時間が少ない。</li>
+        <li>継続的デリバリの実践が、セキュリティの作り込みを後押しする。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">シフトレフト</span><span class="k">セキュリティの統合</span><span class="k">セキュリティ自動化</span>
+    </div>
+  </section>
+
+  <!-- ===== 第7章 ===== -->
+  <section class="chapter" id="ch7">
+    <div class="chapter-head"><span class="num">第7章</span><h2>ソフトウェア管理のプラクティス</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p><mark>リーンな管理プラクティス</mark>がパフォーマンスを高める。一方、重量級の変更承認プロセスは速度を下げ、安定性も改善しない。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📊</span>リーンな管理プラクティス</h3>
+      <p class="summary">著者らは、次のリーンな管理のケイパビリティがパフォーマンスと結びつくと示す。</p>
+      <ul>
+        <li><b>WIP（仕掛り作業）の制限</b>。</li>
+        <li>作業と業務指標の<b>可視化</b>（ダッシュボードなどで誰もが見られる状態にする）。</li>
+        <li>業務指標を使ったフィードバックにより、日々の意思決定を支える。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚦</span>重量級の変更承認はパフォーマンスを下げる</h3>
+      <p class="summary">変更承認の方式について、著者らは明確な主張を述べる。</p>
+      <ul>
+        <li>外部の承認組織（変更諮問委員会など）による<b>重量級の承認</b>は、リードタイムを延ばし、デプロイ頻度を下げる。</li>
+        <li>それでいて<b>安定性は改善しない</b>。</li>
+        <li>チーム内の<b>ピアレビュー</b>のような軽量な承認の方が、速度と安定性の両立に寄与する。</li>
+      </ul>
+    </div>
+
+    <div class="versus">
+      <div class="side a">
+        <h4>重量級の変更承認</h4>
+        <ul>
+          <li>外部委員会による承認</li>
+          <li>リードタイムが延びる</li>
+          <li>デプロイ頻度が下がる</li>
+          <li>安定性は改善しない</li>
+        </ul>
+      </div>
+      <div class="vs"><span>vs</span></div>
+      <div class="side b">
+        <h4>軽量な承認（ピアレビュー）</h4>
+        <ul>
+          <li>チーム内で継続的にレビュー</li>
+          <li>速度を保てる</li>
+          <li>デプロイ頻度を維持できる</li>
+          <li>安定性とも両立する</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">リーン管理</span><span class="k">WIP制限</span><span class="k">可視化</span><span class="k">変更承認プロセス</span>
+    </div>
+  </section>
+
+  <!-- ===== 第8章 ===== -->
+  <section class="chapter" id="ch8">
+    <div class="chapter-head"><span class="num">第8章</span><h2>製品開発のプラクティス</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p><mark>リーンな製品開発</mark>のプラクティスは、デリバリのパフォーマンスと組織文化を高め、バーンアウトを減らす。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔁</span>リーンな製品開発のプラクティス</h3>
+      <p class="summary">著者らは、製品開発の進め方にもパフォーマンスを左右するケイパビリティがあると示す。</p>
+      <ul>
+        <li>作業を<b>小さなバッチ</b>に分割し、機能を分解して頻繁に届ける。</li>
+        <li>顧客からの<b>フィードバックを収集し、製品開発に取り込む</b>。</li>
+        <li>作業の流れ（バリューストリーム）をチームが把握できるようにする。</li>
+        <li>チームに<b>実験する裁量</b>を与え、許可を待たずに仕様を変えて試せるようにする。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌱</span>リーンな製品開発の効果</h3>
+      <p class="summary">これらのプラクティスは次の効果と結びつく。</p>
+      <ul>
+        <li>デリバリのパフォーマンスと組織文化が向上する。</li>
+        <li>バーンアウトが軽減される。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">リーン製品開発</span><span class="k">小さなバッチ</span><span class="k">顧客フィードバック</span><span class="k">チームの実験裁量</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="page1.html"><span class="dir">← 前</span><span class="ttl">計測と文化</span></a>
+    <a class="next" href="page3.html"><span class="dir">次 →</span><span class="ttl">人と組織</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>LeanとDevOpsの科学 要点まとめ</p></footer>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>計測と文化 ― LeanとDevOpsの科学 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>LeanとDevOpsの科学</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="page1.html">計測と文化</a>
+      <a href="page2.html">技術プラクティス</a>
+      <a href="page3.html">人と組織</a>
+      <a href="page4.html">調査方法</a>
+      <a href="page5.html">改善の実際</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PAGE 1 ― 第1部① 第1〜3章</span>
+  <h1>計測と文化</h1>
+  <p class="lead">変革の焦点を「成熟度」から「ケイパビリティ」へ移す。ソフトウェアデリバリのパフォーマンスを4つの指標で定義し、それが組織全体の成果と結びつくこと、そして組織文化がパフォーマンスを予測することを示す。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="このページの章">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch1"><span class="ch-no">1</span><span>業務を加速させるということ</span></a></li>
+      <li><a href="#ch2"><span class="ch-no">2</span><span>開発組織のパフォーマンスを計測</span></a></li>
+      <li><a href="#ch3"><span class="ch-no">3</span><span>組織文化のモデル化と測定、改善の方法</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第1章 ===== -->
+  <section class="chapter" id="ch1">
+    <div class="chapter-head"><span class="num">第1章</span><h2>業務を加速させるということ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>組織変革の焦点は、固定的な「成熟度」ではなく、継続的に高められる<mark>ケイパビリティ（能力）</mark>に置くべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>成熟度モデルではなくケイパビリティモデルを使う</h3>
+      <p class="summary">著者らは、よく使われる<span class="term">成熟度モデル</span>には限界があり、改善は<span class="term">ケイパビリティモデル</span>で捉えるべきだと主張する。</p>
+      <ul>
+        <li>成熟度モデルは「ある状態に到達したら完了」とみなしがちで、到達後に改善が止まる。</li>
+        <li>成熟度モデルは組織やチームの状況の違いを無視し、一律のゴールを当てはめる。</li>
+        <li>ケイパビリティモデルは結果に直結し、状況に応じて伸ばすべき能力が変わる。終わりがなく、継続的な向上を促す。</li>
+      </ul>
+    </div>
+
+    <div class="versus">
+      <div class="side a">
+        <h4>成熟度モデル</h4>
+        <ul>
+          <li>到達すべき段階を定義する</li>
+          <li>到達したら「完了」とみなす</li>
+          <li>状況によらず一律のゴール</li>
+          <li>静的で、改善が止まりやすい</li>
+        </ul>
+      </div>
+      <div class="vs"><span>vs</span></div>
+      <div class="side b">
+        <h4>ケイパビリティモデル</h4>
+        <ul>
+          <li>伸ばすべき能力に注目する</li>
+          <li>継続的な向上を前提とする</li>
+          <li>状況に応じて重点が変わる</li>
+          <li>成果（パフォーマンス）に直結する</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📈</span>DevOpsの採用には測定可能な価値がある</h3>
+      <p class="summary">DevOpsの実践は、根拠の乏しい流行ではなく、パフォーマンスの向上として測定できる価値を持つというのが本書全体の前提である。</p>
+      <ul>
+        <li>本書の主張は、4年間の大規模調査と統計分析という<b>エビデンス</b>に基づく。</li>
+        <li>変革のカギとなるのは、組織が身につけられる具体的なケイパビリティである。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">ケイパビリティ</span><span class="k">成熟度モデル</span><span class="k">エビデンスに基づく変革</span>
+    </div>
+  </section>
+
+  <!-- ===== 第2章 ===== -->
+  <section class="chapter" id="ch2">
+    <div class="chapter-head"><span class="num">第2章</span><h2>開発組織のパフォーマンスを計測</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ソフトウェアデリバリのパフォーマンスは<mark>4つの指標</mark>で測れ、スピードと安定性は両立する。そしてこのパフォーマンスは組織全体の成果を予測する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚠️</span>従来の測定手法には問題がある</h3>
+      <p class="summary">著者らは、これまで一般的だった生産性の測り方には欠陥があると指摘する。</p>
+      <ul>
+        <li>コード行数などの<b>アウトプット量</b>で測ると、不要なコードを増やすことを助長する。</li>
+        <li>個人やチーム単位の局所的な指標は、全体の成果につながらず、対立や局所最適を生む。</li>
+        <li>望ましい尺度は、<b>アウトプットではなく成果（アウトカム）に注目し、チーム横断のグローバルな目標</b>を捉えるものである。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📐</span>デリバリのパフォーマンスを測る4つの指標</h3>
+      <p class="summary">本書はソフトウェアデリバリのパフォーマンスを、スピード2つ・安定性2つの<span class="term">4指標</span>で定義する。</p>
+      <ul>
+        <li><b>デプロイの頻度</b>：本番環境へリリースする頻度（スピード）。</li>
+        <li><b>変更のリードタイム</b>：コミットから本番稼働までの時間（スピード）。</li>
+        <li><b>サービス復旧時間（MTTR）</b>：障害から回復するまでの時間（安定性）。</li>
+        <li><b>変更失敗率</b>：本番への変更が障害や修正対応を招く割合（安定性）。</li>
+      </ul>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><div class="big up">▲</div><div class="name">デプロイの頻度</div><div class="dir up">高いほど良い</div></div>
+      <div class="metric"><div class="big down">▼</div><div class="name">変更のリードタイム</div><div class="dir down">短いほど良い</div></div>
+      <div class="metric"><div class="big down">▼</div><div class="name">MTTR</div><div class="dir down">短いほど良い</div></div>
+      <div class="metric"><div class="big down">▼</div><div class="name">変更失敗率</div><div class="dir down">低いほど良い</div></div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔗</span>スピードと安定性は両立し、組織の成果を予測する</h3>
+      <p class="summary">調査データのクラスタ分析から、回答組織はハイ・ミドル・ローのパフォーマンス群に分かれた。</p>
+      <ul>
+        <li><b>スピードと安定性はトレードオフではない。</b>ハイパフォーマーは4指標すべてで優れ、両方を同時に達成している。</li>
+        <li>デリバリのパフォーマンスが高い組織は、<b>収益性・市場シェア・生産性</b>といった組織全体の業績でも優れる。</li>
+        <li>営利・非営利を問わず、組織が掲げる目標（顧客満足、品質、目標達成など）の実現度も高い。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🧮</span>
+        <div><span class="ctitle">なぜ言えるのか</span><p>この結論は相関の観察にとどまらず、後半の第2部で示す調査設計・統計手法によって裏づけられている。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">4つの指標</span><span class="k">デプロイ頻度</span><span class="k">リードタイム</span><span class="k">MTTR</span><span class="k">変更失敗率</span><span class="k">スピードと安定性</span>
+    </div>
+  </section>
+
+  <!-- ===== 第3章 ===== -->
+  <section class="chapter" id="ch3">
+    <div class="chapter-head"><span class="num">第3章</span><h2>組織文化のモデル化と測定、改善の方法</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>情報の流れがよい<mark>創出的（generative）な文化</mark>が高いパフォーマンスを予測する。文化は測定でき、技術的プラクティスによって改善できる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏛️</span>Westrumの組織文化モデル</h3>
+      <p class="summary">著者らは、社会学者ロン・ウェストラムの<span class="term">組織文化の類型論</span>を用いて、文化を3つの型に分類する。型を分けるのは「情報がどう扱われるか」である。</p>
+      <ul>
+        <li><b>病理的（権力志向）</b>：情報が握り込まれ、責任のなすり合いが起きる。</li>
+        <li><b>官僚的（規則志向）</b>：部門と規則が優先され、情報は縦割りで流れる。</li>
+        <li><b>創出的（パフォーマンス志向）</b>：使命の達成のために情報が積極的に共有され、協力が促される。</li>
+      </ul>
+    </div>
+
+    <div class="ways-map">
+      <div class="way-row" style="--wc:#b03a4c">
+        <div class="icon-box">🚫</div>
+        <div>
+          <span class="wlabel">Pathological</span>
+          <h4>病理的（権力志向）</h4>
+          <p>情報を握り込み、失敗は処罰の対象になる。新しい挑戦は抑え込まれる。</p>
+        </div>
+      </div>
+      <div class="way-row" style="--wc:#b06a2c">
+        <div class="icon-box">📋</div>
+        <div>
+          <span class="wlabel">Bureaucratic</span>
+          <h4>官僚的（規則志向）</h4>
+          <p>規則と部門の縄張りが優先される。情報は縦割りの経路でしか流れない。</p>
+        </div>
+      </div>
+      <div class="way-row" style="--wc:#2f7d6b">
+        <div class="icon-box">🤝</div>
+        <div>
+          <span class="wlabel">Generative</span>
+          <h4>創出的（パフォーマンス志向）</h4>
+          <p>使命達成のために情報が共有され、失敗は学びの機会として扱われる。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔄</span>文化は測定でき、プラクティスで改善できる</h3>
+      <p class="summary">著者らは、文化を測定可能な対象として扱い、改善の手段も示す。</p>
+      <ul>
+        <li>創出的な文化は、ソフトウェアデリバリのパフォーマンスと組織の成果を<b>予測する</b>。</li>
+        <li>文化はアンケートによって<b>測定できる</b>（測定可能な構成概念として扱える）。</li>
+        <li>文化は「変えられないもの」ではなく、<b>継続的デリバリやリーンの実践を導入することで改善できる</b>。プラクティスと文化は相互に高め合う。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">Westrumモデル</span><span class="k">創出的文化</span><span class="k">情報の流れ</span><span class="k">文化の測定</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="index.html"><span class="dir">← 目次</span><span class="ttl">全体目次へ</span></a>
+    <a class="next" href="page2.html"><span class="dir">次 →</span><span class="ttl">技術とプロセスのプラクティス</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>LeanとDevOpsの科学 要点まとめ</p></footer>
+
+</body>
+</html>

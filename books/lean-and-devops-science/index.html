@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeanとDevOpsの科学 ― 要点まとめ</title>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>LeanとDevOpsの科学</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="page1.html">計測と文化</a>
+      <a href="page2.html">技術プラクティス</a>
+      <a href="page3.html">人と組織</a>
+      <a href="page4.html">調査方法</a>
+      <a href="page5.html">改善の実際</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">READING NOTES</span>
+  <h1>LeanとDevOpsの科学<br>テクノロジーの戦略的活用が組織変革を加速する</h1>
+  <p class="lead">本書は、ソフトウェアデリバリの能力が組織の業績を左右するという仮説を、4年にわたる大規模調査と統計分析で検証した研究書である。本まとめは全3部17章の要点を、内容のまとまりに沿って5ページに整理した読書ノートである。</p>
+</header>
+
+<main>
+
+  <section class="bibliography">
+    <p class="title">LeanとDevOpsの科学［Accelerate］ テクノロジーの戦略的活用が組織変革を加速する<br><span style="font-size:13px;font-weight:400;color:var(--ink-faint);">原題：Accelerate: The Science of Lean Software and DevOps</span></p>
+    <dl>
+      <dt>著者</dt><dd>ニコール・フォースグレン、ジェズ・ハンブル、ジーン・キム</dd>
+      <dt>訳者</dt><dd>武舎広幸、武舎るみ</dd>
+      <dt>出版社</dt><dd>インプレス</dd>
+      <dt>発行年</dt><dd>2018年</dd>
+    </dl>
+  </section>
+
+  <section class="book-overview">
+    <h2>本書の全体像</h2>
+    <p>本書の主張は、ソフトウェアの<b>デリバリ能力は組織の業績を予測する</b>という点にある。著者らは、デリバリのパフォーマンスを4つの指標で定義し、それが収益性・生産性・市場シェアといった組織全体の成果と統計的に結びつくことを示した。</p>
+    <p>このパフォーマンスを高める要因は、特定のツールや「成熟度」ではなく、組織が継続的に身につけられる<b>ケイパビリティ（能力）</b>である。技術的プラクティス、リーンな管理・製品開発、組織文化、リーダーシップの4領域に整理された24のケイパビリティが、パフォーマンスの向上を駆動する。</p>
+    <p>デリバリのパフォーマンスは、次の4指標で測られる。スピードと安定性はトレードオフではなく、ハイパフォーマーは両方で優れる。</p>
+
+    <div class="three-ways">
+      <div class="way">
+        <span class="tag">SPEED</span>
+        <h3>デプロイの頻度</h3>
+        <p>コードを本番環境へリリースする頻度。高いほど小さな変更を頻繁に届けている。</p>
+      </div>
+      <div class="way">
+        <span class="tag">SPEED</span>
+        <h3>変更のリードタイム</h3>
+        <p>コードのコミットから本番稼働までに要する時間。短いほど速い。</p>
+      </div>
+      <div class="way">
+        <span class="tag">STABILITY</span>
+        <h3>サービス復旧時間（MTTR）</h3>
+        <p>サービス障害から回復するまでの時間。短いほど安定している。</p>
+      </div>
+      <div class="way">
+        <span class="tag">STABILITY</span>
+        <h3>変更失敗率</h3>
+        <p>本番への変更が障害や修正対応を招く割合。低いほど安定している。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="book-overview">
+    <h2>この本がターゲットとする読者</h2>
+    <p>本書は、DevOpsやリーンの実践を「組織のパフォーマンス改善」という観点から、統計的エビデンスに基づいて理解したい層を主な対象とする。経験則や事例だけでなく、何が成果を生むのかを根拠とともに知りたい読者に向く。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
+    <div class="persona-grid">
+      <div class="persona">
+        <span class="emoji">🧭</span>
+        <h3>エンジニアリングリーダー</h3>
+        <p>チームのパフォーマンスを測り、何に投資すれば成果が上がるかを根拠を持って判断したい。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">👩‍💻</span>
+        <h3>開発者・運用／SRE</h3>
+        <p>継続的デリバリやアーキテクチャの選択が、なぜパフォーマンスに効くのかを理解したい。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">📊</span>
+        <h3>経営層・変革推進担当</h3>
+        <p>技術投資と事業成果の関係を、データに基づいて経営判断に結びつけたい。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🔬</span>
+        <h3>調査・分析に関心のある層</h3>
+        <p>主張を支える調査設計・統計・計量心理学の手法まで踏み込んで確かめたい。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-analysis">
+    <div class="ai-badge"><span class="emoji">🤖</span>AIによる分析 ― 本書の記述ではなく、内容に基づく独自提案</div>
+    <h2>おすすめの読み進め方</h2>
+    <p>本書は前半（第1部）に主要な結論が集中し、後半（第2部）はその結論を支える調査手法に充てられている。まず第1部で「何が分かったか」を押さえ、調査の信頼性を確かめたい場合に第2部へ進むと、関心に応じて効率よく読める。</p>
+    <div class="path-row">
+      <span class="who">まず全員</span>
+      <span class="route"><b>計測と文化（第1〜3章）</b> ― 4つの指標と、文化が成果を予測するという土台を最初に押さえる</span>
+    </div>
+    <div class="path-row">
+      <span class="who">開発者・SRE</span>
+      <span class="route">計測と文化 → <b>技術プラクティス（第4〜8章）</b> ― 継続的デリバリとアーキテクチャを重点的に</span>
+    </div>
+    <div class="path-row">
+      <span class="who">リーダー・マネージャー</span>
+      <span class="route">計測と文化 → <b>人と組織（第9〜11章）</b> → <b>改善の実際（第16〜17章）</b></span>
+    </div>
+    <div class="path-row">
+      <span class="who">経営層・変革推進</span>
+      <span class="route">計測と文化（特に第2章） → <b>改善の実際（第16章 ING事例）</b> → 人と組織</span>
+    </div>
+    <div class="path-row">
+      <span class="who">調査の妥当性を確かめたい</span>
+      <span class="route">計測と文化 → <b>調査方法（第12〜15章）</b> で統計・計量心理学の裏づけを読む</span>
+    </div>
+    <div class="path-row">
+      <span class="who">通読する場合</span>
+      <span class="route">第1ページから第5ページまで順に読む（結論 → 手法 → 実践の流れ）</span>
+    </div>
+  </section>
+
+  <div class="section-label">全5ページ ― クリックで各ページへ</div>
+
+  <div class="part-grid">
+
+    <a class="part-card" style="--pc:#3a5a8c" href="page1.html">
+      <span class="pc-eyebrow">PAGE 1 ― 第1〜3章（第1部①）</span>
+      <h3>計測と文化</h3>
+      <p>変革の焦点を「成熟度」から「ケイパビリティ」へ移す。デリバリのパフォーマンスを4指標で測り、組織文化が成果を予測することを示す。</p>
+      <div class="chapters"><span>1</span> 業務を加速させるということ ／ <span>2</span> 開発組織のパフォーマンスを計測 ／ <span>3</span> 組織文化のモデル化と測定、改善の方法</div>
+    </a>
+
+    <a class="part-card" style="--pc:#2f7d6b" href="page2.html">
+      <span class="pc-eyebrow">PAGE 2 ― 第4〜8章（第1部②）</span>
+      <h3>技術とプロセスのプラクティス</h3>
+      <p>継続的デリバリ、疎結合アーキテクチャ、セキュリティの統合、リーンな管理と製品開発が、いずれもパフォーマンスを高める要因であることを示す。</p>
+      <div class="chapters"><span>4</span> 継続的デリバリ ／ <span>5</span> アーキテクチャ ／ <span>6</span> 情報セキュリティの統合 ／ <span>7</span> ソフトウェア管理のプラクティス ／ <span>8</span> 製品開発のプラクティス</div>
+    </a>
+
+    <a class="part-card" style="--pc:#b06a2c" href="page3.html">
+      <span class="pc-eyebrow">PAGE 3 ― 第9〜11章（第1部③）</span>
+      <h3>人と組織</h3>
+      <p>持続可能な働き方とバーンアウトの軽減、従業員満足度、変革型リーダーシップが、パフォーマンスとどう関係するかを示す。</p>
+      <div class="chapters"><span>9</span> 作業を持続可能にする ／ <span>10</span> 従業員の満足度とコミットメント ／ <span>11</span> 変革型リーダーシップ</div>
+    </a>
+
+    <a class="part-card" style="--pc:#5a4a8c" href="page4.html">
+      <span class="pc-eyebrow">PAGE 4 ― 第12〜15章（第2部）</span>
+      <h3>調査・分析方法</h3>
+      <p>本書の結論を支える調査設計を示す。統計学的背景、計量心理学、アンケート調査の妥当性、データ収集の方法によって結論の信頼性を担保する。</p>
+      <div class="chapters"><span>12</span> 統計学的背景 ／ <span>13</span> 計量心理学入門 ／ <span>14</span> アンケート調査を採用する理由 ／ <span>15</span> データの収集方法</div>
+    </a>
+
+    <a class="part-card" style="--pc:#8c3a63" href="page5.html">
+      <span class="pc-eyebrow">PAGE 5 ― 第16〜17章（第3部）</span>
+      <h3>改善努力の実際</h3>
+      <p>ING銀行の事例を通じて、ハイパフォーマンスを実現するリーダーシップとマネジメントの実際を示し、調査結果を総括する。</p>
+      <div class="chapters"><span>16</span> ハイパフォーマンスを実現するリーダーシップとマネジメント ／ <span>17</span> おわりに</div>
+    </a>
+
+  </div>
+
+</main>
+
+<footer class="foot">
+  <p>LeanとDevOpsの科学 要点まとめ</p>
+</footer>
+
+</body>
+</html>
