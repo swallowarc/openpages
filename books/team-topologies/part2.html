@@ -5,7 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>第Ⅱ部 フローを機能させるチームトポロジー ― 要点まとめ</title>
 <link rel="stylesheet" href="style.css">
-<style>:root{ --accent:#1f7a6b; --accent-soft:#e3f1ee; }</style>
+<style>
+  :root{ --accent:#1f7a6b; --accent-soft:#e3f1ee; }
+  .tt-figure{ margin:22px 0 6px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card); box-shadow:var(--shadow); padding:20px 18px 10px; }
+  .tt-figure figcaption{ font-size:12.5px; color:var(--ink-faint); text-align:center; padding:10px 4px 0; }
+  .tt-figure text{ font-family:inherit; }
+  .tt-shapes{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  @media(max-width:640px){ .tt-shapes{ grid-template-columns:repeat(2,1fr); } }
+  .tt-shape{ text-align:center; }
+  .tt-shape svg{ width:100%; height:auto; max-height:108px; }
+  .tt-shape h4{ margin:8px 0 2px; font-size:13.5px; }
+  .tt-shape p{ margin:0; font-size:11.5px; color:var(--ink-faint); line-height:1.55; }
+  .tt-rel svg{ width:100%; height:auto; }
+  .tt-legend{ display:flex; gap:22px; justify-content:center; flex-wrap:wrap; font-size:11.5px; color:var(--ink-faint); padding-top:4px; }
+  .tt-legend span{ display:inline-flex; align-items:center; gap:8px; }
+  .tt-legend i{ display:inline-block; }
+  .tt-legend i.solid{ width:30px; height:0; border-top:2.5px solid #777; }
+  .tt-legend i.hatch{ width:22px; height:13px; border:1px solid #999; background:repeating-linear-gradient(45deg, #8a6420 0 2px, transparent 2px 6px); }
+</style>
 </head>
 <body>
 
@@ -87,7 +104,43 @@
 
     <div class="topic">
       <h3 class="ic"><span class="emoji">🧭</span>4つのチームタイプ</h3>
-      <p class="summary">著者は、組織に存在すべきチームを次の4つに限定する。多くのチームをこの4タイプのいずれかに当てはめることで、組織構造を単純化できると主張する。</p>
+      <p class="summary">著者は、組織に存在すべきチームを次の4つに限定する。多くのチームをこの4タイプのいずれかに当てはめることで、組織構造を単純化できると主張する。各タイプは記法上、異なる形で区別される。</p>
+
+      <figure class="tt-figure">
+        <div class="tt-shapes">
+          <div class="tt-shape">
+            <svg viewBox="0 0 160 110" role="img" aria-label="横長の角丸長方形">
+              <rect x="12" y="42" width="136" height="34" rx="17" fill="#1f7a6b" fill-opacity="0.14" stroke="#1f7a6b" stroke-width="2.5"/>
+            </svg>
+            <h4>ストリームアラインド</h4>
+            <p>横長の角丸長方形。価値の流れを端から端まで担う。</p>
+          </div>
+          <div class="tt-shape">
+            <svg viewBox="0 0 160 110" role="img" aria-label="幅広の土台状の長方形">
+              <rect x="10" y="40" width="140" height="40" rx="7" fill="#3a5a9c" fill-opacity="0.14" stroke="#3a5a9c" stroke-width="2.5"/>
+              <line x1="24" y1="60" x2="136" y2="60" stroke="#3a5a9c" stroke-width="1.5" stroke-opacity="0.45"/>
+            </svg>
+            <h4>プラットフォーム</h4>
+            <p>幅広の土台。内部サービスを提供し負荷を下げる。</p>
+          </div>
+          <div class="tt-shape">
+            <svg viewBox="0 0 160 110" role="img" aria-label="縦向きの角丸長方形">
+              <rect x="58" y="12" width="44" height="86" rx="16" fill="#b5852a" fill-opacity="0.16" stroke="#b5852a" stroke-width="2.5"/>
+            </svg>
+            <h4>イネイブリング</h4>
+            <p>縦向きの長方形。能力獲得を一時的に支援する。</p>
+          </div>
+          <div class="tt-shape">
+            <svg viewBox="0 0 160 110" role="img" aria-label="八角形">
+              <polygon points="68,18 92,18 116,42 116,68 92,92 68,92 44,68 44,42" fill="#6b3a8c" fill-opacity="0.14" stroke="#6b3a8c" stroke-width="2.5"/>
+            </svg>
+            <h4>コンプリケイテッド<br>サブシステム</h4>
+            <p>八角形。高度な専門知識を要する部分を引き受ける。</p>
+          </div>
+        </div>
+        <figcaption>4つのチームタイプの記法 ― 形で区別する（配色は識別用であり原書由来ではない）</figcaption>
+      </figure>
+
       <div class="ways-map">
         <div class="way-row" style="--wc:#1f7a6b">
           <div class="icon-box">🌊</div>
@@ -127,6 +180,56 @@
     <div class="topic">
       <h3 class="ic"><span class="emoji">🎯</span>ストリームアラインドを中心に据える</h3>
       <p class="summary">4タイプは対等ではない。<span class="term">残り3タイプは、ストリームアラインドチームが価値の流れに集中できるよう支える</span>位置づけにある。多くの既存のチームは、この4タイプのいずれかへ整理できる。</p>
+
+      <figure class="tt-figure tt-rel">
+        <svg viewBox="0 0 760 470" role="img" aria-label="4つのチームタイプの関係 ― プラットフォームを土台に、ストリームアラインドを中心へ据え、イネイブリングが支援し、コンプリケイテッドサブシステムが提供する構図">
+          <defs>
+            <marker id="ttRelFlow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#999"/></marker>
+            <marker id="ttRelBlue" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#3a5a9c"/></marker>
+            <marker id="ttRelPurple" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#6b3a8c"/></marker>
+            <pattern id="ttRelHatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#8a6420" stroke-width="2"/></pattern>
+          </defs>
+
+          <!-- 変更のフロー -->
+          <text x="370" y="26" text-anchor="middle" font-size="11.5" fill="#888">変更のフロー</text>
+          <line x1="50" y1="36" x2="688" y2="36" stroke="#aaa" stroke-width="2" marker-end="url(#ttRelFlow)"/>
+
+          <!-- 提供・支援の線（ボックスより背面に描く） -->
+          <line x1="130" y1="364" x2="130" y2="104" stroke="#3a5a9c" stroke-width="2.5" marker-end="url(#ttRelBlue)"/>
+          <line x1="380" y1="364" x2="380" y2="104" stroke="#3a5a9c" stroke-width="2.5" marker-end="url(#ttRelBlue)"/>
+          <line x1="560" y1="364" x2="560" y2="104" stroke="#3a5a9c" stroke-width="2.5" marker-end="url(#ttRelBlue)"/>
+          <line x1="630" y1="158" x2="630" y2="104" stroke="#6b3a8c" stroke-width="2.5" marker-end="url(#ttRelPurple)"/>
+
+          <!-- プラットフォーム（土台） -->
+          <rect x="44" y="364" width="672" height="72" rx="10" fill="#3a5a9c" fill-opacity="0.13" stroke="#3a5a9c" stroke-width="2.5"/>
+          <line x1="66" y1="392" x2="694" y2="392" stroke="#3a5a9c" stroke-width="1.5" stroke-opacity="0.4"/>
+          <text x="380" y="406" text-anchor="middle" font-size="13" fill="#2f4a82" font-weight="600">プラットフォーム</text>
+
+          <!-- ストリームアラインド（中心） -->
+          <rect x="50" y="54" width="160" height="48" rx="24" fill="#1f7a6b" fill-opacity="0.15" stroke="#1f7a6b" stroke-width="2.5"/>
+          <rect x="300" y="54" width="160" height="48" rx="24" fill="#1f7a6b" fill-opacity="0.15" stroke="#1f7a6b" stroke-width="2.5"/>
+          <rect x="550" y="54" width="160" height="48" rx="24" fill="#1f7a6b" fill-opacity="0.15" stroke="#1f7a6b" stroke-width="2.5"/>
+          <text x="130" y="83" text-anchor="middle" font-size="11.5" fill="#175c50">ストリームアラインド</text>
+          <text x="380" y="83" text-anchor="middle" font-size="11.5" fill="#175c50">ストリームアラインド</text>
+          <text x="630" y="83" text-anchor="middle" font-size="11.5" fill="#175c50">ストリームアラインド</text>
+
+          <!-- コンプリケイテッドサブシステム -->
+          <polygon points="614,158 646,158 672,184 672,216 646,242 614,242 588,216 588,184" fill="#6b3a8c" fill-opacity="0.14" stroke="#6b3a8c" stroke-width="2.5"/>
+          <text x="630" y="266" text-anchor="middle" font-size="10.5" fill="#54306f">コンプリケイテッド</text>
+          <text x="630" y="280" text-anchor="middle" font-size="10.5" fill="#54306f">サブシステム</text>
+
+          <!-- イネイブリング（ストリームアラインドと重なりコラボレーション） -->
+          <rect x="140" y="78" width="64" height="134" rx="14" fill="#b5852a" fill-opacity="0.16" stroke="#b5852a" stroke-width="2.5"/>
+          <rect x="140" y="78" width="64" height="24" fill="url(#ttRelHatch)"/>
+          <text x="172" y="232" text-anchor="middle" font-size="10.5" fill="#8a6420">イネイブリング</text>
+        </svg>
+        <div class="tt-legend">
+          <span><i class="solid"></i>実線：X-as-a-Service（サービスを提供・利用）</span>
+          <span><i class="hatch"></i>重なり：コラボレーション（密に協働）</span>
+        </div>
+        <figcaption>4つのチームタイプの関係 ― プラットフォームが土台となって各ストリームアラインドチームを支え、コンプリケイテッドサブシステムは特定のチームへ提供し、イネイブリングはストリームアラインドチームと重なってコラボレーションで接する（配色は識別用であり原書由来ではない）</figcaption>
+      </figure>
+
       <ul>
         <li>支援的な3タイプの目的は、ストリームアラインドチームの認知負荷を下げることにある。</li>
         <li>チームの種類を限定することで、チーム間の関係も整理しやすくなる。</li>

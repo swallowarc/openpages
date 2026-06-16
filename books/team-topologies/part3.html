@@ -5,7 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>第Ⅲ部 チームインタラクションを進化させる ― 要点まとめ</title>
 <link rel="stylesheet" href="style.css">
-<style>:root{ --accent:#6b3a8c; --accent-soft:#efe7f5; }</style>
+<style>
+  :root{ --accent:#6b3a8c; --accent-soft:#efe7f5; }
+  .tt-figure{ margin:22px 0 6px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card); box-shadow:var(--shadow); padding:20px 18px 10px; }
+  .tt-figure figcaption{ font-size:12.5px; color:var(--ink-faint); text-align:center; padding:10px 4px 0; }
+  .tt-figure text{ font-family:inherit; }
+  .tt-modes{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media(max-width:720px){ .tt-modes{ grid-template-columns:1fr; } }
+  .tt-mode{ text-align:center; }
+  .tt-mode svg{ width:100%; height:auto; max-height:120px; }
+  .tt-mode h4{ margin:8px 0 2px; font-size:13.5px; }
+  .tt-mode p{ margin:0; font-size:11.5px; color:var(--ink-faint); line-height:1.55; }
+</style>
 </head>
 <body>
 
@@ -52,7 +63,62 @@
 
     <div class="topic">
       <h3 class="ic"><span class="emoji">🔀</span>3つのインタラクションモード</h3>
-      <p class="summary">著者は、チーム間のやり取りを次の3つに限定する。どのチームとどのモードで関わるかを定めることで、無秩序な連携を避けられる。</p>
+      <p class="summary">著者は、チーム間のやり取りを次の3つに限定する。どのチームとどのモードで関わるかを定めることで、無秩序な連携を避けられる。各モードは記法上、重なり・実線・破線で区別される。</p>
+
+      <figure class="tt-figure">
+        <div class="tt-modes">
+          <div class="tt-mode">
+            <svg viewBox="0 0 240 120" role="img" aria-label="2チームが重なる協働">
+              <defs>
+                <pattern id="ttHatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <line x1="0" y1="0" x2="0" y2="7" stroke="#6b3a8c" stroke-width="2"/>
+                </pattern>
+              </defs>
+              <rect x="22" y="38" width="118" height="50" rx="12" fill="#6b3a8c" fill-opacity="0.10" stroke="#6b3a8c" stroke-width="2.5"/>
+              <rect x="100" y="38" width="118" height="50" rx="12" fill="#6b3a8c" fill-opacity="0.10" stroke="#6b3a8c" stroke-width="2.5"/>
+              <rect x="100" y="40" width="40" height="46" fill="url(#ttHatch)"/>
+              <text x="61" y="67" text-anchor="middle" font-size="12" fill="#555">チームA</text>
+              <text x="179" y="67" text-anchor="middle" font-size="12" fill="#555">チームB</text>
+            </svg>
+            <h4>コラボレーション</h4>
+            <p>2チームが重なって密に協働する。発見は速いが認知負荷は高い。</p>
+          </div>
+          <div class="tt-mode">
+            <svg viewBox="0 0 240 120" role="img" aria-label="サービスとして提供する">
+              <defs>
+                <marker id="ttArrTeal" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#1f7a6b"/>
+                </marker>
+              </defs>
+              <rect x="14" y="38" width="86" height="50" rx="12" fill="#1f7a6b" fill-opacity="0.10" stroke="#1f7a6b" stroke-width="2.5"/>
+              <rect x="140" y="38" width="86" height="50" rx="12" fill="#1f7a6b" fill-opacity="0.10" stroke="#1f7a6b" stroke-width="2.5"/>
+              <line x1="100" y1="63" x2="133" y2="63" stroke="#1f7a6b" stroke-width="2.5" marker-end="url(#ttArrTeal)"/>
+              <text x="57" y="67" text-anchor="middle" font-size="12" fill="#555">利用側</text>
+              <text x="183" y="67" text-anchor="middle" font-size="12" fill="#555">提供側</text>
+            </svg>
+            <h4>X-as-a-Service</h4>
+            <p>境界を持つサービスとして提供・利用する。やり取りは最小限。</p>
+          </div>
+          <div class="tt-mode">
+            <svg viewBox="0 0 240 120" role="img" aria-label="破線で接する支援">
+              <defs>
+                <marker id="ttArrGold" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#b5852a"/>
+                </marker>
+              </defs>
+              <rect x="14" y="38" width="86" height="50" rx="12" fill="#b5852a" fill-opacity="0.12" stroke="#b5852a" stroke-width="2.5"/>
+              <rect x="140" y="38" width="86" height="50" rx="12" fill="#b5852a" fill-opacity="0.12" stroke="#b5852a" stroke-width="2.5"/>
+              <line x1="100" y1="63" x2="138" y2="63" stroke="#b5852a" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#ttArrGold)"/>
+              <text x="57" y="67" text-anchor="middle" font-size="12" fill="#555">支援側</text>
+              <text x="183" y="67" text-anchor="middle" font-size="12" fill="#555">受け手</text>
+            </svg>
+            <h4>ファシリテーション</h4>
+            <p>破線で接し、学習や改善を一時的に手助けする。</p>
+          </div>
+        </div>
+        <figcaption>3つのインタラクションモードの記法 ― 重なり・実線・破線で区別する（配色は識別用であり原書由来ではない）</figcaption>
+      </figure>
+
       <div class="ways-map">
         <div class="way-row" style="--wc:#6b3a8c">
           <div class="icon-box">🤝</div>
