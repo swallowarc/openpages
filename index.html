@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>openpages ― AI生成まとめ集</title>
+<style>
+  :root { --fg:#222; --muted:#667; --line:#e2e2e2; --accent:#2d6cdf; --bg:#fafafa; --card:#fff; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    margin: 0; padding: 40px 20px; line-height: 1.6;
+    color: var(--fg); background: var(--bg);
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  header h1 { margin: 0 0 4px; font-size: 1.7rem; }
+  header p.lead { margin: 0 0 8px; color: var(--muted); }
+  .note {
+    background: #fff8e1; border: 1px solid #f0d98a; border-left: 5px solid #e0a800;
+    border-radius: 6px; padding: 10px 14px; margin: 16px 0 28px;
+    font-size: 0.9rem; color: #5a4b00;
+  }
+  section { margin: 28px 0; }
+  section > h2 {
+    font-size: 1.15rem; margin: 0 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid var(--line);
+  }
+  ul.links { list-style: none; margin: 0; padding: 0; }
+  ul.links li { margin: 0 0 10px; }
+  a.card {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px 16px; transition: border-color .15s, box-shadow .15s;
+  }
+  a.card:hover { border-color: var(--accent); box-shadow: 0 2px 8px rgba(45,108,223,.12); }
+  a.card .name { font-weight: 600; color: var(--accent); }
+  a.card .path { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
+    font-size: 0.8rem; color: var(--muted); }
+  code { background: #eee; padding: 1px 5px; border-radius: 4px; font-size: 0.85em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>openpages ― AI生成まとめ集</h1>
+  <p class="lead">各まとめページへのリンク一覧</p>
+</header>
+<div class="note">
+  ⚠️ このサイトのページは AI によって生成された要約・まとめです。原典と内容が一致しない可能性があります。参考用途に留めてください。
+</div>
+<section>
+<h2>📚 書籍の要点まとめ</h2>
+<ul class="links">
+<li><a class="card" href="books/lean-and-devops-science/index.html"><span class="name">LeanとDevOpsの科学 ― 要点まとめ</span><span class="path">books/lean-and-devops-science/index.html</span></a></li>
+<li><a class="card" href="books/observability-engineering/index.html"><span class="name">オブザーバビリティ・エンジニアリング ― 要点まとめ</span><span class="path">books/observability-engineering/index.html</span></a></li>
+<li><a class="card" href="books/team-topologies/index.html"><span class="name">チームトポロジー ― 要点まとめ</span><span class="path">books/team-topologies/index.html</span></a></li>
+<li><a class="card" href="books/the-devops-handbook/index.html"><span class="name">THE DEVOPS ハンドブック ― 要点まとめ</span><span class="path">books/the-devops-handbook/index.html</span></a></li>
+</ul>
+</section>
+<section>
+<h2>🔧 DevOps 資料</h2>
+<ul class="links">
+<li><a class="card" href="devops/index.html"><span class="name">DevOps成熟度モデル（CALMSベース）</span><span class="path">devops/index.html</span></a></li>
+<li><a class="card" href="devops/dora/index.html"><span class="name">DORAレポートで辿るDevOpsの変遷 2017–2025</span><span class="path">devops/dora/index.html</span></a></li>
+</ul>
+</section>
+<footer>
+  この index.html は <code>make index</code> により自動生成されています。直接編集しないでください。
+</footer>
+</div>
+</body>
+</html>
