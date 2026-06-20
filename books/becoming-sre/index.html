@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SREをはじめよう ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a6ea5; --accent-soft:#eef3f9; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SREをはじめよう</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第Ⅰ部</a>
+      <a href="part2.html">第Ⅱ部</a>
+      <a href="part3.html">第Ⅲ部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">READING NOTES</span>
+  <h1>SREをはじめよう</h1>
+  <p class="lead">個人と組織が信頼性をどう獲得していくかを、SREの「考え方」を軸に解き明かす一冊である。本要約は全18章・3部構成の主張を、著者の論拠・前提・筋道まで含めて部ごとに整理したものである。</p>
+</header>
+
+<main>
+
+  <!-- ===== ご利用前の注意（固定文） ===== -->
+  <aside class="about-notice">
+    <span class="emoji">⚠️</span>
+    <div>
+      <span class="ctitle">ご利用前の注意</span>
+      <p>このまとめは、AIエージェントによる本書のWebリサーチの結果から生成したものです。書籍本文そのものから作成したものではないため、内容が書籍と一致していない可能性があり、また本書の内容を網羅したものでもありません。読む前に全体像のイメージをつかむため、または読了後に内容を見直す際の参考資料として、読書のサポート用にご活用ください。</p>
+    </div>
+  </aside>
+
+  <!-- ===== 書誌情報 ===== -->
+  <section class="bibliography">
+    <p class="title">SREをはじめよう ― 個人と組織による信頼性獲得への第一歩／原題：Becoming SRE: First Steps Toward Reliability for You and Your Organization</p>
+    <dl>
+      <dt>著者</dt><dd>David N. Blank-Edelman</dd>
+      <dt>訳者</dt><dd>山口 能迪</dd>
+      <dt>出版社</dt><dd>オライリー・ジャパン</dd>
+      <dt>発行年</dt><dd>2024年10月8日（原書 2024年）</dd>
+      <dt>ページ数</dt><dd>320ページ</dd>
+      <dt>ISBN</dt><dd>978-4-8144-0090-4</dd>
+    </dl>
+  </section>
+
+  <!-- ===== 本の全体像 ===== -->
+  <section class="book-overview">
+    <h2>本書の全体像</h2>
+    <p>本書は、SRE（サイトリライアビリティエンジニアリング）を「手順書やベストプラクティス集」としてではなく、信頼性に向き合うための<mark>考え方（mindset）と文化</mark>として理解させることを狙う。著者が一貫して置く軸は、SREとは「信頼性(reliability)」を「適切(appropriate)」なレベルで「継続可能(sustainable)」な形で保つ営みだという定義である。</p>
+    <p>構成は3部に分かれる。第Ⅰ部はSREとは何か・どのような心構えと文化が必要かという土台を据える。第Ⅱ部は、個人がSREになるための準備・移行・働き方・トイル・失敗からの学習を扱う。第Ⅲ部は、組織がSREを導入・定着・拡大させるための要因・モデル・段階を扱う。個人の視点と組織の視点の両方から「はじめの一歩」を示す点が本書の構造である。</p>
+  </section>
+
+  <!-- ===== ターゲット読者 ===== -->
+  <section class="book-overview">
+    <h2>この本がターゲットとする読者</h2>
+    <p>SREという役割・実践をこれから始めようとする個人と、組織にSREを導入・育成しようとする立場の双方を想定読者とする。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
+    <div class="persona-grid">
+      <div class="persona">
+        <span class="emoji">🧑‍💻</span>
+        <h3>SREを目指す個人</h3>
+        <p>開発・インフラ運用・学生などの出発点からSREへ移ろうとする層。必要な基礎・準備・働き方の像を得る。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🧭</span>
+        <h3>導入を担うリーダー・管理職</h3>
+        <p>組織にSREを根付かせたい層。成功要因・失敗パターン・統合モデル・拡大段階の指針を得る。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🔧</span>
+        <h3>既存の運用者・隣接職</h3>
+        <p>システム管理・サポートなどからの転向を考える層。SREの考え方と既存役割との違いを整理できる。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">📚</span>
+        <h3>輪読で学ぶチーム</h3>
+        <p>本書と対話しながら考えることが推奨されており、組織内の輪読で共通言語をつくる用途に向く。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== おすすめの読み進め方（AI分析・本書外） ===== -->
+  <section class="ai-analysis">
+    <div class="ai-badge"><span class="emoji">🤖</span>AIによる分析 ― 本書の記述ではなく、内容に基づく独自提案</div>
+    <h2>おすすめの読み進め方</h2>
+    <p>本書は第Ⅰ部（考え方の土台）→第Ⅱ部（個人）→第Ⅲ部（組織）の順で積み上がる構成である。立場によって重点の置き方を変えると、はじめの一歩につなげやすい。</p>
+    <div class="path-row">
+      <span class="who">これからSREになりたい個人</span>
+      <span class="route"><b>第Ⅰ部</b>で考え方をつかみ、<b>第Ⅱ部</b>（5〜10章）を中心に準備・移行・働き方を読む。</span>
+    </div>
+    <div class="path-row">
+      <span class="who">導入を進めるリーダー</span>
+      <span class="route"><b>第Ⅰ部</b>で共通言語をつくり、<b>第Ⅲ部</b>（11・12・14・16章）で成功要因・失敗・階層・段階を押さえる。</span>
+    </div>
+    <div class="path-row">
+      <span class="who">すでに運用に携わる人</span>
+      <span class="route"><b>2章（心構え）</b>と<b>9章（トイル）・10章（失敗からの学習）</b>から入り、既存の実務と接続する。</span>
+    </div>
+    <div class="path-row">
+      <span class="who">輪読チーム</span>
+      <span class="route">各部を区切りに議論する。<b>1章の定義</b>と<b>11章の組織的要因</b>を共通の問いとして持ち寄る。</span>
+    </div>
+  </section>
+
+  <!-- ===== 各部カード ===== -->
+  <div class="section-label">構成 ― クリックで各ページへ</div>
+  <div class="part-grid">
+    <a class="part-card" style="--pc:#3a6ea5" href="part1.html">
+      <span class="pc-eyebrow">PART Ⅰ ― 第1〜4章</span>
+      <h3>SRE入門</h3>
+      <p>SREとは何か（信頼性・適切・継続可能）、SREとDevOpsの関係、心構え、文化、提唱。実践の前提となる土台を据える。</p>
+      <div class="chapters"><span>1</span> はじめに ／ <span>2</span> SREの心構え ／ <span>3</span> SREの文化 ／ <span>4</span> SREについて語る</div>
+    </a>
+    <a class="part-card" style="--pc:#2f8f6b" href="part2.html">
+      <span class="pc-eyebrow">PART Ⅱ ― 第5〜10章</span>
+      <h3>個人がSREをはじめるには</h3>
+      <p>準備すべき基礎、出発点別の移行、採用、SREの一日、トイルとの関係、失敗からの学習。個人がSREになる道筋を示す。</p>
+      <div class="chapters"><span>5</span> 準備 ／ <span>6</span> …からSREになる ／ <span>7</span> 採用のヒント ／ <span>8</span> ある一日 ／ <span>9</span> トイル ／ <span>10</span> 失敗から学習する</div>
+    </a>
+    <a class="part-card" style="--pc:#b06a2c" href="part3.html">
+      <span class="pc-eyebrow">PART Ⅲ ― 第11〜18章</span>
+      <h3>組織がSREをはじめるには</h3>
+      <p>成功要因と失敗、ビジネス視点、Dickersonの信頼性階層、組み込みモデル、進化段階、拡大の段階。組織への定着を扱う。</p>
+      <div class="chapters"><span>11</span> 組織的要因 ／ <span>12</span> 失敗の仕方 ／ <span>13</span> ビジネス視点 ／ <span>14</span> Dickerson階層 ／ <span>15</span> 組み込み ／ <span>16</span> 進化段階 ／ <span>17</span> 成長 ／ <span>18</span> おわりに</div>
+    </a>
+  </div>
+
+</main>
+
+<footer class="foot"><p>SREをはじめよう 要点まとめ</p></footer>
+
+</body>
+</html>

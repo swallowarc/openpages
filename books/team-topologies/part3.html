@@ -3,20 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>第Ⅲ部 チームインタラクションを進化させる ― 要点まとめ</title>
+<title>第III部 チームインタラクションを進化させる ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
-<style>
-  :root{ --accent:#6b3a8c; --accent-soft:#efe7f5; }
-  .tt-figure{ margin:22px 0 6px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card); box-shadow:var(--shadow); padding:20px 18px 10px; }
-  .tt-figure figcaption{ font-size:12.5px; color:var(--ink-faint); text-align:center; padding:10px 4px 0; }
-  .tt-figure text{ font-family:inherit; }
-  .tt-modes{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-  @media(max-width:720px){ .tt-modes{ grid-template-columns:1fr; } }
-  .tt-mode{ text-align:center; }
-  .tt-mode svg{ width:100%; height:auto; max-height:120px; }
-  .tt-mode h4{ margin:8px 0 2px; font-size:13.5px; }
-  .tt-mode p{ margin:0; font-size:11.5px; color:var(--ink-faint); line-height:1.55; }
-</style>
+<style>:root{ --accent:#8a5fb0; --accent-soft:#f1ebf6; }</style>
 </head>
 <body>
 
@@ -25,17 +16,17 @@
     <a class="brand" href="index.html"><b>チームトポロジー</b> ― 要点まとめ</a>
     <div class="nav-links">
       <a class="home" href="index.html">目次</a>
-      <a href="part1.html">第Ⅰ部</a>
-      <a href="part2.html">第Ⅱ部</a>
-      <a href="part3.html">第Ⅲ部</a>
+      <a href="part1.html">第I部</a>
+      <a href="part2.html">第II部</a>
+      <a href="part3.html">第III部</a>
     </div>
   </div>
 </nav>
 
 <header class="hero">
-  <span class="eyebrow">PART Ⅲ ― 第7〜9章</span>
+  <span class="eyebrow">PART III ― 第7〜9章</span>
   <h1>チームインタラクションを進化させる</h1>
-  <p class="lead">チーム間の関わりを3つのインタラクションモードに整理し、目的に応じて意図的に選ぶ方法を示す。そのうえで、構造を固定せず状況の変化を感知して進化させる運用へと議論を進め、4タイプ・3モードを統合した次世代の運用モデルを提示する。</p>
+  <p class="lead">チーム間の関わり方を3つのモードに整理する。さらに、固定した構造ではなく、組織的センシングによって構造を継続的に進化させることで、イノベーションと高速なデリバリーを両立させる。</p>
 </header>
 
 <main>
@@ -44,8 +35,8 @@
     <h2>このページの章</h2>
     <ol>
       <li><a href="#ch7"><span class="ch-no">7</span><span>チームインタラクションモード</span></a></li>
-      <li><a href="#ch8"><span class="ch-no">8</span><span>組織的センシングでチーム構造を進化させる</span></a></li>
-      <li><a href="#ch9"><span class="ch-no">9</span><span>次世代デジタル運用モデル</span></a></li>
+      <li><a href="#ch8"><span class="ch-no">8</span><span>組織的センシングで構造を進化させる</span></a></li>
+      <li><a href="#ch9"><span class="ch-no">9</span><span>結論 ― 次世代のデジタル運用モデル</span></a></li>
     </ol>
   </nav>
 
@@ -57,106 +48,41 @@
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>チーム間の関わりは<mark>3つのインタラクションモード</mark>に整理できる。すべてのチームと密に連携するのではなく、<mark>目的に応じてモードを意図的に選ぶ</mark>べきである。</p>
+        <p>チーム間の関わり方は3モードに整理できる。どのモードを使うかを明示することで、曖昧な依存を減らす。常時ではなく断続的なコラボレーションがよい結果を生む。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🔀</span>3つのインタラクションモード</h3>
-      <p class="summary">著者は、チーム間のやり取りを次の3つに限定する。どのチームとどのモードで関わるかを定めることで、無秩序な連携を避けられる。各モードは記法上、重なり・実線・破線で区別される。</p>
-
-      <figure class="tt-figure">
-        <div class="tt-modes">
-          <div class="tt-mode">
-            <svg viewBox="0 0 240 120" role="img" aria-label="2チームが重なる協働">
-              <defs>
-                <pattern id="ttHatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <line x1="0" y1="0" x2="0" y2="7" stroke="#6b3a8c" stroke-width="2"/>
-                </pattern>
-              </defs>
-              <rect x="22" y="38" width="118" height="50" rx="12" fill="#6b3a8c" fill-opacity="0.10" stroke="#6b3a8c" stroke-width="2.5"/>
-              <rect x="100" y="38" width="118" height="50" rx="12" fill="#6b3a8c" fill-opacity="0.10" stroke="#6b3a8c" stroke-width="2.5"/>
-              <rect x="100" y="40" width="40" height="46" fill="url(#ttHatch)"/>
-              <text x="61" y="67" text-anchor="middle" font-size="12" fill="#555">チームA</text>
-              <text x="179" y="67" text-anchor="middle" font-size="12" fill="#555">チームB</text>
-            </svg>
-            <h4>コラボレーション</h4>
-            <p>2チームが重なって密に協働する。発見は速いが認知負荷は高い。</p>
-          </div>
-          <div class="tt-mode">
-            <svg viewBox="0 0 240 120" role="img" aria-label="サービスとして提供する">
-              <defs>
-                <marker id="ttArrTeal" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L6,3 L0,6 Z" fill="#1f7a6b"/>
-                </marker>
-              </defs>
-              <rect x="14" y="38" width="86" height="50" rx="12" fill="#1f7a6b" fill-opacity="0.10" stroke="#1f7a6b" stroke-width="2.5"/>
-              <rect x="140" y="38" width="86" height="50" rx="12" fill="#1f7a6b" fill-opacity="0.10" stroke="#1f7a6b" stroke-width="2.5"/>
-              <line x1="100" y1="63" x2="133" y2="63" stroke="#1f7a6b" stroke-width="2.5" marker-end="url(#ttArrTeal)"/>
-              <text x="57" y="67" text-anchor="middle" font-size="12" fill="#555">利用側</text>
-              <text x="183" y="67" text-anchor="middle" font-size="12" fill="#555">提供側</text>
-            </svg>
-            <h4>X-as-a-Service</h4>
-            <p>境界を持つサービスとして提供・利用する。やり取りは最小限。</p>
-          </div>
-          <div class="tt-mode">
-            <svg viewBox="0 0 240 120" role="img" aria-label="破線で接する支援">
-              <defs>
-                <marker id="ttArrGold" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L6,3 L0,6 Z" fill="#b5852a"/>
-                </marker>
-              </defs>
-              <rect x="14" y="38" width="86" height="50" rx="12" fill="#b5852a" fill-opacity="0.12" stroke="#b5852a" stroke-width="2.5"/>
-              <rect x="140" y="38" width="86" height="50" rx="12" fill="#b5852a" fill-opacity="0.12" stroke="#b5852a" stroke-width="2.5"/>
-              <line x1="100" y1="63" x2="138" y2="63" stroke="#b5852a" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#ttArrGold)"/>
-              <text x="57" y="67" text-anchor="middle" font-size="12" fill="#555">支援側</text>
-              <text x="183" y="67" text-anchor="middle" font-size="12" fill="#555">受け手</text>
-            </svg>
-            <h4>ファシリテーション</h4>
-            <p>破線で接し、学習や改善を一時的に手助けする。</p>
-          </div>
-        </div>
-        <figcaption>3つのインタラクションモードの記法 ― 重なり・実線・破線で区別する（配色は識別用であり原書由来ではない）</figcaption>
-      </figure>
-
+      <h3 class="ic"><span class="emoji">🔀</span>関わり方は3つのモードに整理できる</h3>
+      <p class="summary">チーム間の相互作用は<span class="term">コラボレーション</span>・<span class="term">X-as-a-Service</span>・<span class="term">ファシリテーション</span>の3つに分けられる。どのチームがどのモードで関わるかを明示する。</p>
+      <p>著者の論拠は、関わり方が曖昧だと、何を期待してよいか分からず不要な調整が生じる点にある。3モードに分けて宣言すれば、相手に何を求め、どこまで踏み込むかが共有され、依存の性質が明確になる。各モードは時間をかけてチームの習慣として定着していく。</p>
       <div class="ways-map">
-        <div class="way-row" style="--wc:#6b3a8c">
+        <div class="way-row" style="--wc:#b06a2c">
           <div class="icon-box">🤝</div>
-          <div>
-            <div class="wlabel">コラボレーション</div>
-            <h4>密に協働して探索する</h4>
-            <p>2つのチームが一定期間、密に協力して新しい領域を探る。発見は速いが認知負荷は高く、境界は曖昧になる。期間を区切って使う。</p>
-          </div>
+          <div><div class="wlabel">COLLABORATION</div><h4>コラボレーション</h4><p>密に協働して新しい領域を探索・発見する。学びは大きいが調整コストが高く、責任の境界が曖昧になる。</p></div>
         </div>
-        <div class="way-row" style="--wc:#1f7a6b">
-          <div class="icon-box">📦</div>
-          <div>
-            <div class="wlabel">X-as-a-Service</div>
-            <h4>サービスとして提供・利用する</h4>
-            <p>一方が他方へ、明確な境界を持つサービスを提供する。やり取りは最小限で済み、認知負荷を抑えられる。安定した提供に向く。</p>
-          </div>
+        <div class="way-row" style="--wc:#2f7d77">
+          <div class="icon-box">📡</div>
+          <div><div class="wlabel">X-AS-A-SERVICE</div><h4>X-as-a-Service</h4><p>一方が提供し他方が利用する。安定したインターフェースで責任が明確になり、調整は最小限で済む。</p></div>
         </div>
-        <div class="way-row" style="--wc:#b5852a">
+        <div class="way-row" style="--wc:#3a73a8">
           <div class="icon-box">🧑‍🏫</div>
-          <div>
-            <div class="wlabel">ファシリテーション</div>
-            <h4>学習や改善を手助けする</h4>
-            <p>一方が他方の障害を取り除き、新しい能力の獲得を支援する。主にイネイブリングチームが用い、一時的な関わりにとどめる。</p>
-          </div>
+          <div><div class="wlabel">FACILITATING</div><h4>ファシリテーション</h4><p>一方が他方の学習や障害除去を助ける。イネイブリングチームが主に用いる。</p></div>
         </div>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🎚️</span>モードを意図的に選び、必要なものだけ残す</h3>
-      <p class="summary">著者は、チームが何にでも協働するのではなく、<span class="term">必要なインタラクションだけを意図的に選ぶ</span>べきだと主張する。チームタイプごとに、主に用いるモードの組み合わせがある。</p>
+      <h3 class="ic"><span class="emoji">⏳</span>コラボレーションは断続的に使う</h3>
+      <p class="summary">コラボレーションは探索の段階で有効だが、コストが高いため常時続けるべきではない。発見が済めばX-as-a-Serviceへ移すのが望ましい。</p>
+      <p>著者は、常時のコラボレーションは責任の境界を曖昧にし、両チームの認知負荷を高めると指摘する。新しい領域を探る初期には密な協働が要るが、低レベルの詳細を一方が引き受けられる段階になれば、安定したサービス提供の関係に切り替える。断続的なコラボレーションのほうがよい結果を生む、という主張はここに根拠を持つ。</p>
       <ul>
-        <li>探索が要る局面ではコラボレーション、安定提供にはX-as-a-Serviceが向く。</li>
-        <li>常時の密な連携は認知負荷を上げるため、必要な範囲に限る。</li>
+        <li>探索・発見の段階に限ってコラボレーションを使う。</li>
+        <li>発見が済んだら、所有を分けてX-as-a-Serviceへ移行する。</li>
       </ul>
       <div class="callout why">
-        <span class="emoji">🧠</span>
-        <div><span class="ctitle">なぜモードを定めるのか</span><p>すべてのチームと密に連携すると、認知負荷とコミュニケーションの経路が増えてフローが滞る。関わり方をモードとして明示することで、必要なやり取りだけに絞れる。</p></div>
+        <span class="emoji">🧩</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>密な協働は学びと引き換えに認知負荷と曖昧さを増やす。ゆえに必要な期間に限り、終わったら関係を切り替える。</p></div>
       </div>
     </div>
 
@@ -166,98 +92,92 @@
 
   <!-- ===== 第8章 ===== -->
   <section class="chapter" id="ch8">
-    <div class="chapter-head"><span class="num">第8章</span><h2>組織的センシングでチーム構造を進化させる</h2></div>
+    <div class="chapter-head"><span class="num">第8章</span><h2>組織的センシングで構造を進化させる</h2></div>
 
     <div class="in-a-nutshell">
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>チーム構造とインタラクションは一度決めて終わりではない。<mark>状況の変化を感知し、トポロジーを継続的に進化させる</mark>べきである。組織はそれ自体が環境を感じ取るセンサーになる。</p>
+        <p>組織設計で最も重要なのは固定した構造ではなく、適応的に構造を変え続けることである。変化の兆候を感知（センシング）し、トポロジーとインタラクションを進化させる。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">📡</span>組織は環境を感じ取るセンサーである</h3>
-      <p class="summary">著者は、チームが現場で得る情報をもとに、組織が状況を感知して適応すべきだと主張する。チーム構造は固定された設計ではなく、変化に応じて組み替える対象である。</p>
+      <h3 class="ic"><span class="emoji">🌱</span>構造は固定せず進化させる</h3>
+      <p class="summary">最適なチーム構造は一度決めれば終わりではない。状況の変化に応じて、トポロジーとインタラクションモードを意図的に変えていく。</p>
+      <p>著者は、組織設計の本質は静的な正解を見つけることではなく、変化に応じて編成を更新し続ける能力にあると主張する。市場・技術・チームの成熟度はつねに動くため、ある時点で最適な構造もやがて合わなくなる。ゆえに構造は仮説として扱い、進化の対象とみなす。</p>
       <ul>
-        <li>チームが感じ取った負荷や摩擦の変化が、構造を見直す合図になる。</li>
-        <li>インタラクションモードも、局面が変われば切り替える。</li>
+        <li>チーム構造は固定の正解ではなく、見直し続ける対象である。</li>
+        <li>トポロジーとインタラクションモードを状況に応じて切り替える。</li>
       </ul>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🔄</span>トポロジーを変化させる引き金</h3>
-      <p class="summary">著者は、チーム構成を変えるべきタイミングがあると述べる。<span class="term">特定の状況の変化が、トポロジーを進化させる引き金になる</span>。</p>
-      <div class="steps">
-        <div class="step">
-          <span class="badge">1</span>
-          <div><h4>ソフトウェアが大きくなりすぎる</h4><p>一つのチームが扱う範囲が認知負荷を超え始めたら、分割を検討する。</p></div>
-        </div>
-        <div class="step">
-          <span class="badge">2</span>
-          <div><h4>デリバリーの速度が落ちる</h4><p>リリースの間隔が延びるなど、フローの停滞が現れたら構造を見直す。</p></div>
-        </div>
-        <div class="step">
-          <span class="badge">3</span>
-          <div><h4>新しい技術や市場に対応する</h4><p>大きな技術変化や事業の転換に合わせ、チームと関わり方を組み替える。</p></div>
-        </div>
-      </div>
-      <div class="callout tip">
-        <span class="emoji">✅</span>
-        <div><span class="ctitle">読み解きの補助</span><p>コラボレーションで探索し、固まったらX-as-a-Serviceへ移すように、インタラクションモードも時間とともに移り変わるものとして扱う。</p></div>
-      </div>
+      <h3 class="ic"><span class="emoji">📍</span>変化の兆候を感知して引き金にする</h3>
+      <p class="summary">構造を変える判断は勘ではなく、観察可能な兆候に基づく。システムの肥大、作業の滞留、専門分化の出現、デリバリーの鈍化などが引き金になる。</p>
+      <p>著者は、運用や日々の作業から得られる信号を組織設計に活かすべきだと説く。設計が運用を一方的に決めるのではなく、運用が設計に情報を返す関係である。これにより、問題が深刻化する前に構造変更の必要を捉えられる。</p>
+      <ul>
+        <li>システムが大きくなりすぎた、バックログが滞留する、などを兆候とする。</li>
+        <li>運用が設計に情報を与え、設計が運用に従うのではない。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">✅</span>コラボレーションには正当化を求める</h3>
+      <p class="summary">チーム間のコラボレーションは便益とコストの両方を持つため、続けるには理由が要る。理由のない常時コラボレーションは見直す。</p>
+      <p>著者は、コラボレーションが認知負荷と曖昧さのコストを伴う以上、それを続けるには探索などの明確な目的が必要だとする。目的が果たされたら、より調整の少ないモードへ移す。これは第7章の「断続的に使う」という主張を、進化の運用に落とし込んだものである。</p>
+      <ul>
+        <li>コラボレーションの継続には、探索などの明確な目的を求める。</li>
+        <li>目的を終えたら、調整コストの低いモードへ移行する。</li>
+      </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">組織的センシング</span><span class="k">トポロジーの進化</span><span class="k">適応</span><span class="k">変化の引き金</span></div>
+    <div class="keywords"><span class="k">組織的センシング</span><span class="k">進化</span><span class="k">適応</span><span class="k">変化の兆候</span></div>
   </section>
 
   <!-- ===== 第9章 ===== -->
   <section class="chapter" id="ch9">
-    <div class="chapter-head"><span class="num">第9章</span><h2>次世代デジタル運用モデル</h2></div>
+    <div class="chapter-head"><span class="num">第9章</span><h2>結論 ― 次世代のデジタル運用モデル</h2></div>
 
     <div class="in-a-nutshell">
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>4つのチームタイプ・3つのインタラクションモード・認知負荷・逆コンウェイ戦略を組み合わせ、<mark>速いフローと適応性を両立する運用モデル</mark>として統合する。これが本書の到達点である。</p>
+        <p>チームトポロジーは単体では機能しない。健全な文化・エンジニアリング実践・予算・事業の明確さと併せて初めて効く。導入は段階を踏んで進める。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🧱</span>本書の要素を一つの運用モデルに統合する</h3>
-      <p class="summary">著者は、これまで論じた概念を組み合わせると、組織を運用するための一貫したモデルになると主張する。個別の手法ではなく、相互に支え合う仕組みとして機能する。</p>
-      <div class="flow">
-        <div class="node">4つのチームタイプ</div>
-        <div class="arrow">+</div>
-        <div class="node">3つのインタラクションモード</div>
-        <div class="arrow">+</div>
-        <div class="node">認知負荷と逆コンウェイ</div>
-        <div class="arrow">→</div>
-        <div class="node">適応する運用モデル</div>
-      </div>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🚀</span>速いフローと継続的な適応を両立する</h3>
-      <p class="summary">統合された運用モデルの狙いは、<span class="term">価値を速く届けながら、変化に応じて組織を進化させ続ける</span>ことにある。チームトポロジーは、一度きりの組織変更ではなく継続的な運用の枠組みである。</p>
+      <h3 class="ic"><span class="emoji">🧩</span>4タイプ・3モードは補完要素とともに機能する</h3>
+      <p class="summary">本書の枠組みは、それ単独で成果を生むのではなく、組織の他の要素と組み合わさって初めて働く。</p>
+      <p>著者は、構造を整えても、心理的安全性のある文化、確かなエンジニアリング実践、適切な予算モデル、事業上の目的の明確さが欠けていれば成果に結びつかないと述べる。チームトポロジーは万能の解ではなく、これらの土台の上で機能する設計言語だ、という立場で本書を締めくくる。</p>
       <ul>
-        <li>チームの認知負荷を抑えることが、速く安定したデリバリーの土台になる。</li>
-        <li>構造と関わり方を継続して見直すことで、組織は環境の変化に適応し続ける。</li>
+        <li>健全な文化と心理的安全性が前提になる。</li>
+        <li>エンジニアリング実践・予算モデル・事業の明確さが伴う必要がある。</li>
       </ul>
-      <div class="callout why">
-        <span class="emoji">🧠</span>
-        <div><span class="ctitle">なぜ「次世代」運用モデルか</span><p>固定的な組織図に基づく運用ではなく、チームを単位に構造とインタラクションを進化させ続ける点に、本書が提示する運用モデルの新しさがある。</p></div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🪜</span>導入は段階を踏んで進める</h3>
+      <p class="summary">チームトポロジーの導入は、一度の大改編ではなく段階的に進める。チームの必要性の評価から始め、価値の流れの特定、最小限のプラットフォームの確立、能力ギャップの解消、インタラクションモードの実践へと進む。</p>
+      <p>著者は、構造を一気に変えるのではなく、流れと認知負荷の観点から段階的に手を入れることを勧める。まず何が必要かを見極め、価値の流れを特定し、それを支える最小限の基盤を用意し、足りない能力を補い、最後に関わり方を習慣として根づかせる、という順序を示す。</p>
+      <div class="steps">
+        <div class="step"><span class="badge">1</span><div><h4>チームの必要性を評価する</h4><p>現状のチームと負荷を把握する。</p></div></div>
+        <div class="step"><span class="badge">2</span><div><h4>価値の流れを特定する</h4><p>顧客に価値が届く経路を明らかにする。</p></div></div>
+        <div class="step"><span class="badge">3</span><div><h4>最小限のプラットフォームを確立する</h4><p>流れを支える基盤を最小限から用意する。</p></div></div>
+        <div class="step"><span class="badge">4</span><div><h4>能力のギャップを埋める</h4><p>不足する技能をイネイブリングで補う。</p></div></div>
+        <div class="step"><span class="badge">5</span><div><h4>インタラクションモードを実践する</h4><p>3モードを習慣として定着させる。</p></div></div>
       </div>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">運用モデル</span><span class="k">適応型組織</span><span class="k">速いフロー</span><span class="k">統合</span></div>
+    <div class="keywords"><span class="k">デジタル運用モデル</span><span class="k">補完要素</span><span class="k">段階的導入</span><span class="k">心理的安全性</span></div>
   </section>
 
   <nav class="pager">
-    <a class="prev" href="part2.html"><span class="dir">← 前</span><span class="ttl">第Ⅱ部 フローを機能させるチームトポロジー</span></a>
-    <a class="next" href="index.html"><span class="dir">目次 →</span><span class="ttl">目次へ戻る</span></a>
+    <a class="prev" href="part2.html"><span class="dir">← 前</span><span class="ttl">第II部 フローを機能させるチームトポロジー</span></a>
+    <a class="next" href="index.html"><span class="dir">目次 →</span><span class="ttl">トップへ戻る</span></a>
   </nav>
 
 </main>

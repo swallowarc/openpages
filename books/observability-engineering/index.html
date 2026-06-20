@@ -4,26 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>オブザーバビリティ・エンジニアリング ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
-<style>
-  :root{ --accent:#1f6f8c; --accent-soft:#e6f1f4; }
-  .overview-figure {
-    margin: 24px 0 8px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: var(--card);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-  .overview-figure img { display: block; width: 100%; height: auto; }
-  .overview-figure figcaption {
-    font-size: 12.5px;
-    color: var(--ink-faint);
-    text-align: center;
-    padding: 10px 16px;
-    border-top: 1px solid var(--line-soft);
-  }
-</style>
+<style>:root{ --accent:#2b7a8c; --accent-soft:#e9f3f5; }</style>
 </head>
 <body>
 
@@ -43,12 +27,13 @@
 
 <header class="hero">
   <span class="eyebrow">READING NOTES</span>
-  <h1>オブザーバビリティ・エンジニアリング<br>要点まとめ</h1>
-  <p class="lead">本書全5部22章の要点を、本の論理構造に沿ってまとめた読書ノートである。各部のページで、章ごとの著者の主張と簡潔な解説を確認できる。</p>
+  <h1>オブザーバビリティ・エンジニアリング</h1>
+  <p class="lead">分散システムの「未知の未知」に答えるための性質として、オブザーバビリティを定義し直す一冊である。本要約は全22章・5部構成の主張を、著者の論拠・前提・筋道まで含めて部ごとに整理したものである。</p>
 </header>
 
 <main>
-<!-- ===== ご利用前の注意（固定文・文言は変更しない／index 冒頭に必ず置く） ===== -->
+
+  <!-- ===== ご利用前の注意（固定文） ===== -->
   <aside class="about-notice">
     <span class="emoji">⚠️</span>
     <div>
@@ -57,116 +42,113 @@
     </div>
   </aside>
 
-  <!-- ===== 全体像（手描きまとめ図・AIで生成） ===== -->
-  <figure class="overview-figure">
-    <img src="overview.png" alt="オブザーバビリティ・エンジニアリング 要点まとめ ― オブザーバビリティの定義・モニタリングとの対比・全5部の手描き概要図">
-    <figcaption>本書の全体像を1枚にまとめた図（AIで生成）</figcaption>
-  </figure>
-
   <!-- ===== 書誌情報 ===== -->
   <section class="bibliography">
-    <p class="title">オブザーバビリティ・エンジニアリング<br><span style="font-size:13px;font-weight:400;color:var(--ink-faint);">原題：Observability Engineering: Achieving Production Excellence</span></p>
+    <p class="title">オブザーバビリティ・エンジニアリング／原題：Observability Engineering: Achieving Production Excellence</p>
     <dl>
-      <dt>著者</dt><dd>Charity Majors, Liz Fong-Jones, George Miranda</dd>
-      <dt>訳者</dt><dd>大谷 和紀, 山口 能迪</dd>
-      <dt>出版社</dt><dd>オライリー・ジャパン</dd>
-      <dt>発行年</dt><dd>2023年</dd>
+      <dt>著者</dt><dd>Charity Majors、Liz Fong-Jones、George Miranda</dd>
+      <dt>訳者</dt><dd>大谷 和紀、山口 能迪</dd>
+      <dt>出版社</dt><dd>オライリー・ジャパン（発行元：オーム社）</dd>
+      <dt>発行年</dt><dd>2023年1月27日（原書 2022年）</dd>
+      <dt>ISBN</dt><dd>978-4-8144-0012-6</dd>
     </dl>
   </section>
 
-  <!-- ===== 本書の全体像 ===== -->
+  <!-- ===== 本の全体像 ===== -->
   <section class="book-overview">
     <h2>本書の全体像</h2>
-    <p>本書は、オブザーバビリティを「システムの内部状態を、その外部出力（テレメトリー）から、コードを変更せず任意の質問で説明できる能力」と定義する。従来のモニタリングは、あらかじめ想定した障害（既知の未知）の検知に向くが、分散システムで生じる予期しない問題（未知の未知）の調査には向かない。本書はその限界を出発点に、オブザーバビリティの基礎となるデータ構造（任意の幅を持つ構造化イベント、トレース、OpenTelemetry による計装）、チームへの導入と SLO の活用、大規模運用でのデータストア・サンプリング・パイプライン、そして組織文化への展開までを、第Ⅰ部から第Ⅴ部にかけて段階的に論じる。</p>
+    <p>本書はオブザーバビリティを、ツールの名前としてではなく<mark>システムの性質</mark>として定義する。外部に出力されるテレメトリーから、システムの内部状態を、事前に予測していなかった任意の問いに対しても説明できるとき、そのシステムはオブザーバビリティを備えているとする。著者が一貫して置く対比は、既知の障害パターンを監視するモニタリング（<span class="term">既知の未知</span>）と、未知の障害を探索的に調べられるオブザーバビリティ（<span class="term">未知の未知</span>）である。</p>
+    <p>構成は5部に分かれる。第Ⅰ部はオブザーバビリティの定義とモニタリングとの違いという土台を据える。第Ⅱ部は構造化イベント・トレース・OpenTelemetry計装・探索的解析という技術的な構成要素を扱う。第Ⅲ部はチームでの実践（オブザーバビリティ駆動開発・SLO）を扱う。第Ⅳ部は大規模化に伴うコスト・データストア・サンプリング・パイプラインを扱う。第Ⅴ部はオブザーバビリティを組織文化として拡大する道筋を扱う。技術・チーム・組織の3層で、性質としてのオブザーバビリティを成立させる点が本書の構造である。</p>
+
+    <figure class="book-figure">
+      <img src="overview.png" alt="オブザーバビリティ・エンジニアリングの全体像。オブザーバビリティとは何か、モニタリングとの対比、全5部の構成を手描き風にまとめた図。">
+      <figcaption>本書の骨格（オブザーバビリティの定義／モニタリングとの対比／全5部22章の構成）を一枚にまとめた図。手描き風の体裁と配色は要約サイト用に作成したもので、原書由来ではない。</figcaption>
+    </figure>
   </section>
 
   <!-- ===== ターゲット読者 ===== -->
   <section class="book-overview">
     <h2>この本がターゲットとする読者</h2>
-    <p>本番環境の分散システムを開発・運用し、モニタリングの限界に直面しているエンジニアと、その導入を組織で検討する立場の読者を想定している。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
+    <p>分散システム・マイクロサービス・クラウドネイティブ環境を運用するエンジニアと、その導入や費用対効果を判断する立場の双方を想定読者とする。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
     <div class="persona-grid">
       <div class="persona">
         <span class="emoji">🛠️</span>
-        <h3>ソフトウェアエンジニア</h3>
-        <p>本番の挙動を前提にコードを書き、計装とデバッグを自分の責務として扱う方法を得る。</p>
+        <h3>運用に携わるエンジニア・SRE</h3>
+        <p>メトリクス・ログ・モニタリングの経験はあるが、再現困難な障害の調査に限界を感じている層。探索的に内部状態を問う方法を得る。</p>
       </div>
       <div class="persona">
-        <span class="emoji">🔧</span>
-        <h3>SRE・運用エンジニア</h3>
-        <p>モニタリング中心の運用から、未知の問題を調査できる手段への移行と SLO 運用の指針を得る。</p>
+        <span class="emoji">👩‍💻</span>
+        <h3>アプリケーション開発者</h3>
+        <p>自分の書いたコードが本番でどう振る舞うかを知りたい層。計装とオブザーバビリティ駆動開発の考え方を得る。</p>
       </div>
       <div class="persona">
-        <span class="emoji">🏗️</span>
-        <h3>プラットフォームエンジニア</h3>
-        <p>大規模なテレメトリーをデータストア・サンプリング・パイプラインで扱う設計判断の材料を得る。</p>
+        <span class="emoji">🧭</span>
+        <h3>テックリード・アーキテクト</h3>
+        <p>チームに計装文化やSLOを根付かせたい層。実践の進め方と信頼性運用の指針を得る。</p>
       </div>
       <div class="persona">
-        <span class="emoji">📋</span>
-        <h3>テックリード・管理職</h3>
-        <p>導入のビジネス事例、関係者の巻き込み、成熟度モデルによる現在地の把握を得る。</p>
+        <span class="emoji">📊</span>
+        <h3>導入を判断するマネージャー</h3>
+        <p>作るか買うか・コスト・組織への浸透を判断する立場。ビジネス事例と成熟度モデルの観点を得る。</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== おすすめの読み進め方（AIによる分析・本書外） ===== -->
+  <!-- ===== おすすめの読み進め方（AI分析・本書外） ===== -->
   <section class="ai-analysis">
     <div class="ai-badge"><span class="emoji">🤖</span>AIによる分析 ― 本書の記述ではなく、内容に基づく独自提案</div>
     <h2>おすすめの読み進め方</h2>
-    <p>本書は第Ⅰ部で概念、第Ⅱ部で技術的基礎、第Ⅲ部以降で組織への展開へと積み上がる構成のため、原則として部の順に読むと理解しやすい。立場ごとに重点を変える読み方を以下に示す。</p>
+    <p>本書は第Ⅰ部（定義）→第Ⅱ部（技術）→第Ⅲ部（チーム）→第Ⅳ部（大規模化）→第Ⅴ部（文化）の順で積み上がる。立場によって重点を変えると、自分の関心につなげやすい。</p>
     <div class="path-row">
-      <span class="who">概念から理解したい人</span>
-      <span class="route"><b>第Ⅰ部（1〜4章）</b> → 第Ⅱ部 → 必要に応じ後続</span>
+      <span class="who">概念をまずつかみたい人</span>
+      <span class="route"><b>第Ⅰ部</b>の特に第1〜2章で定義とモニタリングとの違いを押さえ、必要に応じて<b>第Ⅴ部</b>の第22章の展望に飛ぶ。</span>
     </div>
     <div class="path-row">
-      <span class="who">手を動かす実務エンジニア</span>
-      <span class="route">第Ⅰ部（1〜2章） → <b>第Ⅱ部（5〜8章）</b> → <b>第Ⅲ部（11章）</b></span>
+      <span class="who">実装・計装に取り組む人</span>
+      <span class="route"><b>第Ⅱ部</b>を中心に、特に第5〜8章の構造化イベント・トレース・OpenTelemetry・解析を読む。</span>
     </div>
     <div class="path-row">
-      <span class="who">SLO・信頼性の担当者</span>
-      <span class="route">第Ⅰ部（2章） → <b>第Ⅲ部（12〜13章）</b> → 第Ⅱ部（補強）</span>
+      <span class="who">信頼性運用を担う人</span>
+      <span class="route"><b>第Ⅲ部</b>の第11〜13章でオブザーバビリティ駆動開発とSLOを読み、実務に接続する。</span>
     </div>
     <div class="path-row">
-      <span class="who">大規模基盤の設計者</span>
-      <span class="route">第Ⅱ部（5〜8章） → <b>第Ⅳ部（15〜18章）</b></span>
-    </div>
-    <div class="path-row">
-      <span class="who">導入を進める立場</span>
-      <span class="route">第Ⅰ部（1〜2章） → <b>第Ⅴ部（19〜22章）</b> → 第Ⅲ部（10章）</span>
+      <span class="who">導入を判断するマネージャー</span>
+      <span class="route"><b>第Ⅳ部</b>の第15章（作るか買うか）と<b>第Ⅴ部</b>の第19・21章でコストと成熟度を押さえる。</span>
     </div>
   </section>
 
-  <!-- ===== 各部へのカードナビ ===== -->
-  <div class="section-label">構成 ― クリックで各部のページへ</div>
+  <!-- ===== 各部カード ===== -->
+  <div class="section-label">構成 ― クリックで各ページへ</div>
   <div class="part-grid">
-    <a class="part-card" style="--pc:#1f6f8c" href="part1.html">
+    <a class="part-card" style="--pc:#2b7a8c" href="part1.html">
       <span class="pc-eyebrow">PART Ⅰ ― 第1〜4章</span>
       <h3>オブザーバビリティへの道</h3>
-      <p>オブザーバビリティの定義と、モニタリングとの違いを示す。なぜ今これが必要かを論じる。</p>
-      <div class="chapters"><span>1</span> オブザーバビリティとは？ ／ <span>2</span> デバッグ方法の違い ／ <span>3</span> スケーリングからの教訓 ／ <span>4</span> DevOps・SRE・クラウドネイティブとの関連</div>
+      <p>オブザーバビリティの定義、モニタリングとのデバッグ方法の違い、スケーリングの教訓、DevOps・SRE・クラウドネイティブとの関連。実践の前提となる土台を据える。</p>
+      <div class="chapters"><span>1</span> オブザーバビリティとは？ ／ <span>2</span> デバッグ方法の違い ／ <span>3</span> スケーリングの教訓 ／ <span>4</span> DevOps・SREとの関連</div>
     </a>
-    <a class="part-card" style="--pc:#1f7a6b" href="part2.html">
+    <a class="part-card" style="--pc:#3a5a9c" href="part2.html">
       <span class="pc-eyebrow">PART Ⅱ ― 第5〜9章</span>
       <h3>オブザーバビリティの基礎</h3>
-      <p>構造化イベント、トレース、OpenTelemetry による計装、イベント解析という技術的構成要素を扱う。</p>
-      <div class="chapters"><span>5</span> 構造化イベント ／ <span>6</span> イベントをトレースに ／ <span>7</span> OpenTelemetry ／ <span>8</span> イベント解析 ／ <span>9</span> モニタリングとの関係</div>
+      <p>構造化イベント、トレース、OpenTelemetryによる計装、イベント解析、モニタリングとの関係。オブザーバビリティを支える技術的な構成要素を扱う。</p>
+      <div class="chapters"><span>5</span> 構造化イベント ／ <span>6</span> トレース ／ <span>7</span> OpenTelemetry計装 ／ <span>8</span> イベント解析 ／ <span>9</span> モニタリングとの関係</div>
     </a>
-    <a class="part-card" style="--pc:#8c5a3a" href="part3.html">
+    <a class="part-card" style="--pc:#9a4f8c" href="part3.html">
       <span class="pc-eyebrow">PART Ⅲ ― 第10〜14章</span>
       <h3>チームのためのオブザーバビリティ</h3>
-      <p>チームへの導入、オブザーバビリティ駆動開発、SLO とアラート、サプライチェーンへの適用を扱う。</p>
-      <div class="chapters"><span>10</span> チームへの適用 ／ <span>11</span> 駆動開発 ／ <span>12</span> SLO ／ <span>13</span> SLOベースのアラート ／ <span>14</span> ソフトウェアサプライチェーン</div>
+      <p>チームへの適用、オブザーバビリティ駆動開発、SLOによる信頼性、SLOベースのアラート対応、ソフトウェアサプライチェーン。組織的な実践を扱う。</p>
+      <div class="chapters"><span>10</span> チームへの適用 ／ <span>11</span> 駆動開発 ／ <span>12</span> SLOの活用 ／ <span>13</span> SLOアラート対応 ／ <span>14</span> サプライチェーン</div>
     </a>
-    <a class="part-card" style="--pc:#6b3a8c" href="part4.html">
+    <a class="part-card" style="--pc:#b06a2c" href="part4.html">
       <span class="pc-eyebrow">PART Ⅳ ― 第15〜18章</span>
       <h3>大規模なオブザーバビリティ</h3>
-      <p>作るか買うかの判断、データストア、サンプリング、テレメトリーパイプラインという規模の課題を扱う。</p>
+      <p>作るか買うかと投資収益性、効率的なデータストア、サンプリング戦略、テレメトリーパイプライン。大規模化に伴うコストと精度の両立を扱う。</p>
       <div class="chapters"><span>15</span> 作るか買うか ／ <span>16</span> データストア ／ <span>17</span> サンプリング ／ <span>18</span> パイプライン</div>
     </a>
-    <a class="part-card" style="--pc:#8c3a63" href="part5.html">
+    <a class="part-card" style="--pc:#2f8f5c" href="part5.html">
       <span class="pc-eyebrow">PART Ⅴ ― 第19〜22章</span>
       <h3>オブザーバビリティの文化を拡大する</h3>
-      <p>ビジネス事例、関係者との協力、成熟度モデル、そして次の一歩という組織文化への展開を扱う。</p>
-      <div class="chapters"><span>19</span> ビジネス事例 ／ <span>20</span> 利害関係者と協力者 ／ <span>21</span> 成熟度モデル ／ <span>22</span> ここからどこへ</div>
+      <p>ビジネス事例、利害関係者と協力者、成熟度モデル、ここからどこへ。オブザーバビリティを組織文化として定着・拡大させる道筋を扱う。</p>
+      <div class="chapters"><span>19</span> ビジネス事例 ／ <span>20</span> 利害関係者 ／ <span>21</span> 成熟度モデル ／ <span>22</span> ここからどこへ</div>
     </a>
   </div>
 

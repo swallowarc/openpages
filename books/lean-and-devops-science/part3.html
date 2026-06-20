@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リーン管理・製品開発・人・リーダーシップ ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#8a5a9c; --accent-soft:#f2ecf5; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>LeanとDevOpsの科学</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第1部①</a>
+      <a href="part2.html">第1部②</a>
+      <a href="part3.html">第1部③</a>
+      <a href="part4.html">第2部</a>
+      <a href="part5.html">第3部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART 1 ― 第7〜11章</span>
+  <h1>リーン管理・製品開発・人・リーダーシップ</h1>
+  <p class="lead">管理と製品開発のプラクティス、燃え尽きと従業員満足度、変革型リーダーシップの役割を扱う。技術だけでなく、管理・人・リーダーがデリバリと組織の成果に効くという主張を整理する。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch7"><span class="ch-no">7</span><span>ソフトウェア管理のプラクティス</span></a></li>
+      <li><a href="#ch8"><span class="ch-no">8</span><span>製品開発のプラクティス</span></a></li>
+      <li><a href="#ch9"><span class="ch-no">9</span><span>作業を持続可能にする（デプロイ負荷とバーンアウトの軽減）</span></a></li>
+      <li><a href="#ch10"><span class="ch-no">10</span><span>従業員の満足度、アイデンティティ、コミットメント</span></a></li>
+      <li><a href="#ch11"><span class="ch-no">11</span><span>変革型リーダーシップとマネジメントの役割</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第7章 ===== -->
+  <section class="chapter" id="ch7">
+    <div class="chapter-head"><span class="num">第7章</span><h2>ソフトウェア管理のプラクティス</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>仕掛り（WIP）の制限・作業の可視化・本番監視データの日常的な活用・軽量な変更承認が、デリバリと組織の成果を高め、燃え尽きを減らす。重い外部承認は有効ではない。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📊</span>リーン管理の4要素がデリバリ業績を押し上げる</h3>
+      <p class="summary">著者はリーン管理として、WIPの制限、作業と品質の可視化、本番監視データの活用、軽量な変更承認を挙げ、これらがデリバリ業績に効くと示す。</p>
+      <p>論拠は、これらの管理プラクティスとデリバリ・組織の成果との関連を測った分析である。WIPを制限すると流れの滞りが見え、可視化により問題が早く共有される。本番の監視データを日々の意思決定に使うことで、推測ではなく事実に基づいて手を打てる。著者の筋道は、これらが「流れを速く保ちつつ問題を早く捉える」ことを支え、結果としてデリバリ業績と組織業績を高め、燃え尽きを減らす、というものである。</p>
+      <ul>
+        <li>WIP（仕掛り作業）を制限し、流れの滞りを見えるようにする。</li>
+        <li>作業の状況と品質の指標をチームに見える形で掲示する。</li>
+        <li>本番環境の監視データを、日々の意思決定に活用する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔍</span>重い外部承認はデリバリを速くも安全にもしない</h3>
+      <p class="summary">変更承認委員会（CAB）のような外部の重い承認プロセスは、デリバリを遅くする一方で安定性を高めず、軽量なピアレビューのほうが有効だと著者は主張する。</p>
+      <p>著者の論拠は、承認方式と4指標の関連を測った分析である。外部の重い承認はリードタイムを延ばし、デプロイ頻度を下げる一方で、変更失敗率の改善には結びつかなかった。これに対し、開発チーム内のピアレビューと自動化された監査可能なパイプラインを用いる方式は、速度を保ちながら統制を効かせられる。著者の筋道は、変更の良し悪しを最もよく判断できるのは外部の委員会ではなく、変更に近いチームである、という点にある。</p>
+      <ul>
+        <li>外部の重い承認はリードタイムを延ばし、デプロイ頻度を下げる。</li>
+        <li>外部承認は変更失敗率の低下には結びつかなかった。</li>
+        <li>ピアレビューと自動化された監査可能なパイプラインが、統制と速度を両立する。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>CAB（Change Advisory Board）は、変更を事前審査する委員会を指す運用管理上の用語。本文が想定する「外部の重い承認」の代表例として補う。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">WIPの制限</span>
+      <span class="k">可視化</span>
+      <span class="k">監視データの活用</span>
+      <span class="k">軽量な変更承認</span>
+      <span class="k">ピアレビュー</span>
+    </div>
+  </section>
+
+  <!-- ===== 第8章 ===== -->
+  <section class="chapter" id="ch8">
+    <div class="chapter-head"><span class="num">第8章</span><h2>製品開発のプラクティス</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>小さなバッチでの開発、業務から顧客までの流れの可視化、顧客フィードバックの取り込み、チームによる実験の自由が、デリバリ業績を高める。技術・管理・製品開発は好循環をつくる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧪</span>リーンな製品開発の4要素</h3>
+      <p class="summary">著者は、機能を小さく分割して開発すること、業務から顧客までの仕事の流れを可視化すること、顧客フィードバックを集めて取り込むこと、チームが裁量で実験できることを、製品開発のケイパビリティとして挙げる。</p>
+      <p>論拠は、これらの製品開発プラクティスとデリバリ業績の関連を測った分析である。機能を小さく分けると、早く出して反応を見られるため、無駄な作りこみを避けられる。仕事の流れを可視化すると、価値が顧客に届くまでの滞りが見える。顧客フィードバックを設計に反映し、チームが承認を待たずに仕様を調整できると、学習の速度が上がる。著者の筋道は、これらが第4章の技術的プラクティス・第7章のリーン管理と結びつき、相互に強化し合う点にある。</p>
+      <ul>
+        <li>機能を小さなバッチに分割し、早く出して反応を確かめる。</li>
+        <li>業務から顧客に至る仕事の流れを可視化する。</li>
+        <li>顧客からのフィードバックを集め、設計に取り込む。</li>
+        <li>チームが承認を待たずに仕様を変更・実験できる裁量を持つ。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">♻️</span>技術・管理・製品開発は好循環を生む</h3>
+      <p class="summary">高いデリバリ能力はリーンな製品開発を後押しし、それがさらにデリバリ能力を高めるという好循環が働くと著者は主張する。</p>
+      <p>著者の筋道は、相互の関連を測った分析に基づく。小さなバッチで安全に頻繁に出せる技術基盤（第4章）があるほど、製品の実験と顧客フィードバックの取り込みが回りやすい。逆にリーンな製品開発が進むほど、小さく出すことが常態化し技術基盤の利用も進む。前提は、これらが独立した施策ではなく、互いに支え合う関係にあるという見方である。</p>
+      <ul>
+        <li>デリバリ能力の高さがリーンな製品開発を支える。</li>
+        <li>リーンな製品開発がさらにデリバリ能力を引き上げる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">小さなバッチ</span>
+      <span class="k">仕事の流れの可視化</span>
+      <span class="k">顧客フィードバック</span>
+      <span class="k">チームの実験裁量</span>
+      <span class="k">好循環</span>
+    </div>
+  </section>
+
+  <!-- ===== 第9章 ===== -->
+  <section class="chapter" id="ch9">
+    <div class="chapter-head"><span class="num">第9章</span><h2>作業を持続可能にする（デプロイ負荷とバーンアウトの軽減）</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>デプロイの苦痛は燃え尽きにつながる。技術的・リーン的なプラクティスでデプロイを日常的で低リスクな作業にすると、苦痛と燃え尽きが減る。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔥</span>デプロイの苦痛が燃え尽きを生む</h3>
+      <p class="summary">デプロイに伴う不安・時間外作業・手戻り（デプロイの苦痛）が大きいほど、燃え尽きや組織への否定的な感情が強まると著者は示す。</p>
+      <p>論拠は、デプロイの苦痛の度合いと燃え尽き・文化との関連を測った分析である。デプロイが恐れの対象であるほど、関係者の負荷が高く、燃え尽きが進む。著者の筋道は、苦痛の根が技術と工程にある以上、対処も技術と工程で行えるという点にある。前提として、燃え尽きは個人の資質ではなく、作業のあり方によって生じる組織的な問題と捉える。</p>
+      <ul>
+        <li>デプロイの苦痛は、燃え尽きや組織への否定的態度と結びつく。</li>
+        <li>燃え尽きは個人の問題ではなく、作業設計の問題として扱える。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌱</span>プラクティスがデプロイを低リスクな日常作業に変える</h3>
+      <p class="summary">継続的デリバリやリーン管理などのプラクティスは、デプロイの苦痛を減らし、作業を持続可能にすると著者は主張する。</p>
+      <p>著者の筋道は前章までと連続する。自動化・小さなバッチ・疎結合（第4〜5章）が、デプロイを稀で大きく危険なイベントから、頻繁で小さく低リスクな作業へ変える。デプロイの苦痛が下がれば、燃え尽きも下がる。論拠は、これらのプラクティスの度合いとデプロイの苦痛・燃え尽きの関連を測った分析である。技術的改善が人の持続可能性に波及する、という第4章の主張をこの章はさらに裏づける。</p>
+      <ul>
+        <li>自動化と小さなバッチが、デプロイを頻繁で低リスクな作業に変える。</li>
+        <li>デプロイの苦痛の低下が、燃え尽きの低下につながる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">デプロイの苦痛</span>
+      <span class="k">バーンアウト（燃え尽き）</span>
+      <span class="k">持続可能な作業</span>
+      <span class="k">自動化</span>
+    </div>
+  </section>
+
+  <!-- ===== 第10章 ===== -->
+  <section class="chapter" id="ch10">
+    <div class="chapter-head"><span class="num">第10章</span><h2>従業員の満足度、アイデンティティ、コミットメント</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>高パフォーマーの組織では、従業員が自分の組織を「働く場所として勧めたい」と考える度合い（eNPS）が高い。多様性は成果に効くが、包摂（インクルージョン）が前提になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🙌</span>高いデリバリ業績は従業員の推奨度（eNPS）と結びつく</h3>
+      <p class="summary">デリバリのパフォーマンスが高い組織ほど、従業員が自分の組織やチームを他人に勧めたいと考える度合いが高いと著者は示す。</p>
+      <p>論拠は、従業員推奨度（eNPS）とデリバリ業績の関連を測った分析である。著者の筋道は、組織への同一視（アイデンティティ）と関与（コミットメント）が、より良い成果を生む方向に働く、という点にある。前提として、組織と従業員の利益は相反するものではなく、デリバリ能力を高める投資は成果と満足度の双方を引き上げうると位置づける。</p>
+      <ul>
+        <li>高パフォーマーの従業員は、組織・チームを勧めたいと考える度合いが高い。</li>
+        <li>組織への同一視と関与が、成果と結びつく。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>eNPS（従業員ネット・プロモーター・スコア）は、「自分の組織を働く場所として勧めたいか」を尺度化した指標。本文が用いる従業員推奨度の指標名として補う。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌐</span>多様性は成果に効くが、包摂が前提になる</h3>
+      <p class="summary">チームの多様性は成果に良い影響を与えうるが、それが効くには包摂（インクルージョン）が伴っていなければならないと著者は主張する。</p>
+      <p>著者の筋道は、多様性を「人員構成の数字」だけで捉えるのは不十分という点にある。多様なメンバーがいても、意見が尊重され貢献できる環境（包摂）がなければ成果に結びつかない。前提は、多様性と包摂は別の概念であり、両方がそろって初めて効果を持つという見方である。</p>
+      <ul>
+        <li>多様性は成果に良い影響を与えうる。</li>
+        <li>多様性が効くには、包摂（意見が尊重され貢献できる環境）が必要である。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">従業員推奨度（eNPS）</span>
+      <span class="k">アイデンティティ</span>
+      <span class="k">コミットメント</span>
+      <span class="k">多様性と包摂</span>
+    </div>
+  </section>
+
+  <!-- ===== 第11章 ===== -->
+  <section class="chapter" id="ch11">
+    <div class="chapter-head"><span class="num">第11章</span><h2>変革型リーダーシップとマネジメントの役割</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>変革型リーダーシップは5つの特性で測れ、デリバリ業績と結びつく。ただしリーダーは高い成果を直接つくれるわけではなく、チームを支援することで可能にする。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⭐</span>変革型リーダーシップは5つの特性で測る</h3>
+      <p class="summary">著者は変革型リーダーシップを、ビジョン・鼓舞するコミュニケーション・知的刺激・支援的リーダーシップ・個人への承認の5特性で測定する。</p>
+      <p>この5特性を採る筋道は、変革型リーダーシップが既存の研究で確立した構成概念であり、アンケートで測定できる点にある。論拠として、変革型リーダーシップの度合いが高いチームほど、デリバリ業績が高い傾向が示される。前提は、リーダーシップが「個人の資質の評判」ではなく、行動として測れる対象だという見方である。</p>
+      <figure style="margin:20px 0;">
+        <div class="ways-map">
+          <div class="way-row" style="--wc:#8a5a9c"><div class="icon-box">🔭</div><div><span class="wlabel">VISION</span><h4>ビジョン</h4><p>チームが目指す先を明確に描く。</p></div></div>
+          <div class="way-row" style="--wc:#8a5a9c"><div class="icon-box">📣</div><div><span class="wlabel">COMMUNICATION</span><h4>鼓舞するコミュニケーション</h4><p>意義を伝え、前向きに動機づける。</p></div></div>
+          <div class="way-row" style="--wc:#8a5a9c"><div class="icon-box">💭</div><div><span class="wlabel">STIMULATION</span><h4>知的刺激</h4><p>既存のやり方を問い直すよう促す。</p></div></div>
+          <div class="way-row" style="--wc:#8a5a9c"><div class="icon-box">🤲</div><div><span class="wlabel">SUPPORT</span><h4>支援的リーダーシップ</h4><p>メンバーの必要と関心に配慮する。</p></div></div>
+          <div class="way-row" style="--wc:#8a5a9c"><div class="icon-box">🏅</div><div><span class="wlabel">RECOGNITION</span><h4>個人への承認</h4><p>貢献を認め、称える。</p></div></div>
+        </div>
+        <figcaption style="font-size:12px;color:var(--ink-faint);margin-top:8px;">5特性は本書による変革型リーダーシップの構成要素。配色・アイコンは識別用であり原書由来ではない。</figcaption>
+      </figure>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧱</span>リーダーは成果を直接つくれず、支援によって可能にする</h3>
+      <p class="summary">変革型リーダーシップはデリバリ能力を支えるが、リーダーシップだけで高い成果が生まれるわけではないと著者は主張する。</p>
+      <p>著者の筋道は、リーダーシップが「土台を整える要因」であって「成果そのもの」ではないという点にある。論拠として、変革型リーダーシップが高くてもデリバリ業績が伴わない場合があることが示される。前提は、高い成果には技術・プロセス・管理のケイパビリティ（第4〜8章）が同時に必要であり、リーダーの役割はそれらをチームが獲得できるよう支援することだ、という見方である。リーダーシップは必要だが、それだけでは十分でないと結論づける。</p>
+      <ul>
+        <li>変革型リーダーシップはデリバリ能力を支える要因である。</li>
+        <li>リーダーシップが高くても、能力が伴わなければ成果は出ない。</li>
+        <li>リーダーの役割は、チームがケイパビリティを獲得するのを支援することである。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">変革型リーダーシップ</span>
+      <span class="k">5つの特性</span>
+      <span class="k">支援的リーダーシップ</span>
+      <span class="k">必要だが十分でない</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part2.html"><span class="dir">← 前</span><span class="ttl">文化・技術・アーキテクチャ・セキュリティ</span></a>
+    <a class="next" href="part4.html"><span class="dir">次 →</span><span class="ttl">調査・分析方法</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>LeanとDevOpsの科学［Accelerate］ 要点まとめ</p></footer>
+
+</body>
+</html>

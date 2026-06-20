@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第I部 SREの導入 ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SREの探求</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第I部</a>
+      <a href="part2.html">第II部</a>
+      <a href="part3.html">第III部</a>
+      <a href="part4.html">第IV部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART I ― 第1〜13章</span>
+  <h1>SREの導入</h1>
+  <p class="lead">規模も文化も異なる各社が、SRE をどう組織に持ち込んだかを扱う部である。統制と文脈、採用、専任チームの有無、大企業の構造的障壁、DevOps との関係などを、各社の実例に即して論じる。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch1"><span class="ch-no">1</span><span>SREにおけるコンテキストとコントロール</span></a></li>
+      <li><a href="#ch2"><span class="ch-no">2</span><span>サイトリライアビリティエンジニアの面接</span></a></li>
+      <li><a href="#ch3"><span class="ch-no">3</span><span>なるほど、SREチームを作りたいのですね</span></a></li>
+      <li><a href="#ch4"><span class="ch-no">4</span><span>インシデントのメトリクスを用いたSREの大規模な改善</span></a></li>
+      <li><a href="#ch5"><span class="ch-no">5</span><span>サードパーティとの協力を円滑に進める重要性</span></a></li>
+      <li><a href="#ch6"><span class="ch-no">6</span><span>専任SREチームなしでSREの原則を適用する方法</span></a></li>
+      <li><a href="#ch7"><span class="ch-no">7</span><span>SREのいないSRE：Spotifyのケーススタディ</span></a></li>
+      <li><a href="#ch8"><span class="ch-no">8</span><span>大企業におけるSREの導入</span></a></li>
+      <li><a href="#ch9"><span class="ch-no">9</span><span>25ページでシステム管理者からSREへ</span></a></li>
+      <li><a href="#ch10"><span class="ch-no">10</span><span>大企業でSRE導入の道を開く方法</span></a></li>
+      <li><a href="#ch11"><span class="ch-no">11</span><span>DevOpsの幅広い実践現場で活用されているSREのパターン</span></a></li>
+      <li><a href="#ch12"><span class="ch-no">12</span><span>DevOpsとSRE：コミュニティからの声</span></a></li>
+      <li><a href="#ch13"><span class="ch-no">13</span><span>Facebookにおけるプロダクションエンジニアリング</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第1章 ===== -->
+  <section class="chapter" id="ch1">
+    <div class="chapter-head"><span class="num">第1章</span><h2>SREにおけるコンテキストとコントロール</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>運用は、目標未達を罰する<span class="term">統制（control）</span>より、判断の根拠を共有する<span class="term">文脈（context）</span>を中心に据えるべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>文脈を共有し、自律的な改善を促す</h3>
+      <p class="summary">control は目標を外したチームに本番デプロイ権限の制限などの懲罰的措置を課す運用である。これに対し context は、判断に必要な情報を渡してチーム自身に改善させる運用を指す。著者は条件が許す限り後者を選ぶべきだとする。</p>
+      <p>著者は context を「ある要求や主張の背後にある根拠を、相手がよりよく理解できるようにする追加の関連情報」と定義する。この定義から、十分な情報を得たエンジニアは強制されなくてもより良い判断を下す、という前提が導かれる。Netflix ではマイクロサービス単位の可用性スコアカード（推移する可用性・目標値・下流依存の可用性）をチームに共有し、必要なときに協働して改善する運用をとっている。control 型の懲罰的措置をこれに対置し、文脈共有のほうが優れると結論づける。</p>
+      <ul>
+        <li>context の中心は「根拠を理解させる情報」であり、命令や罰ではない。</li>
+        <li>Netflix はスコアカードを共有し、目標未達時も協働で改善する立場をとる。</li>
+        <li>文脈駆動を支えるのはインフラ設計（イミュータブルなデプロイ、ガードレール）である。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">❓</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>適切な情報があればエンジニアは良い判断を下す、という前提に立てば、自律的改善のほうが懲罰より持続的に可用性を高めるからである。ただし著者はこれを、組織が一定の失敗を許容でき、チームに協働の成熟がある場合の条件付きの主張として述べている。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">コンテキスト</span><span class="k">コントロール</span><span class="k">可用性スコアカード</span><span class="k">Netflix</span><span class="k">自律性</span></div>
+  </section>
+
+  <!-- ===== 第2章 ===== -->
+  <section class="chapter" id="ch2">
+    <div class="chapter-head"><span class="num">第2章</span><h2>サイトリライアビリティエンジニアの面接</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>プロジェクトの成否は技術ではなく適切な人材の採用で決まり、構造化された採用ファネルが面接官のバイアスを抑える。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>技術より人材、評価は標準化する</h3>
+      <p class="summary">著者は「技術は適切な人材なしには何の役にも立たない」とし、採用の質を SRE 組織の成否の中心に据える。そのうえで、選考段階ごとに異なる能力を診断する構造化ファネルと、標準化された評価基準を置くことを主張する。</p>
+      <p>論拠は AOL・Google・YouTube・Dropbox での自身の採用経験である。採用は候補者・リクルーター・採用マネージャの最低3者で構成され、電話スクリーン・オンサイト・テイクホーム課題といった各段階がそれぞれ別の能力を測る。標準化と「ブラインドな履歴書レビュー」はバイアスを下げる手段として位置づけられる。前提には、標準化が組織の文脈を越えて採用品質を高め、SRE には従来のソフトウェアエンジニアと異なる評価軸が要る、という考えがある。</p>
+      <ul>
+        <li>採用は最低3者（候補者・リクルーター・採用マネージャ）で構成される。</li>
+        <li>選考段階ごとに測る能力を変え、標準化した基準で評価する。</li>
+        <li>ブラインドな履歴書レビューなどでバイアスを低減する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">採用</span><span class="k">面接ファネル</span><span class="k">バイアス低減</span><span class="k">標準化</span><span class="k">Dropbox</span></div>
+  </section>
+
+  <!-- ===== 第3章 ===== -->
+  <section class="chapter" id="ch3">
+    <div class="chapter-head"><span class="num">第3章</span><h2>なるほど、SREチームを作りたいのですね</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SRE を導入する前に「なぜ望むのか」という真の動機と、組織の文化的な準備が整っているかを問うべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤔</span>動機を見極め、文化の準備を問う</h3>
+      <p class="summary">著者は SRE 導入の動機を、流行への追随・障害への事後反応・戦略的投資といった類型で整理する。既存チームに「SRE」というラベルを貼るだけでは失敗し、SRE はラベルや用語の採用を超えた組織的コミットメントを要すると主張する。</p>
+      <p>この主張は、2014年以降に Google Cloud で100人を超えるリーダーと関わり、成功例と苦戦例を観察した経験を論拠とする。著者は「組織が工学的問題に感情で反応するなら、その組織は SRE の準備ができていない」と述べ、データ駆動で非難しない（blameless）文化を前提条件に置く。さらに成功には複数年の組織的投資、開発チームの運用への参加、経営層による SLO とエラーバジェットの支持が要るとし、100%未満の信頼性目標を受け入れて革新や速度とバランスさせることを条件に挙げる。</p>
+      <ul>
+        <li>導入動機を類型化し、それぞれの機会と落とし穴を見極める。</li>
+        <li>工学的問題に感情で反応する組織は、まだ SRE の準備ができていない。</li>
+        <li>成功には複数年の投資と経営層によるエラーバジェットの支持が要る。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">導入動機</span><span class="k">組織的コミットメント</span><span class="k">blameless</span><span class="k">エラーバジェット</span><span class="k">Google</span></div>
+  </section>
+
+  <!-- ===== 第4章 ===== -->
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="num">第4章</span><h2>インシデントのメトリクスを用いたSREの大規模な改善</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>信頼性投資は測定された指標でデータ駆動に優先順位付けし、修復負債を通常の開発プロセスに組み込むべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📊</span>障害を段階分解して測る</h3>
+      <p class="summary">著者は「測定しなければ改善できない」という原則を掲げ、曖昧な「全体の信頼性」を、動かせるサブ指標に落とし込むことを主張する。障害のライフサイクルを段階に分解し、各段階を時間指標として測る。</p>
+      <p>規模が拡大すると「どの領域にどれだけ投資して信頼性を保つか」の議論が避けられなくなる。著者は Azure を規模・成長・多様性のケーススタディとし、障害を検知までの時間（TTD）・対応着手までの時間（TTE）・修復までの時間（TTF）に分解し、その合計を緩和までの時間（TTM）として捉える枠組みを示す。これにより、漠然とした信頼性が個別に改善できる指標へと変わる。さらに取りこぼした修復項目を「修復負債」として追跡し、標準の開発プロセスに組み込むことで、負債は安定でも信頼性が改善しないサービスを可視化できたとする。</p>
+      <ul>
+        <li>障害を TTD・TTE・TTF に分解し、合計を TTM として測る。</li>
+        <li>自動検知は良い TTD の必要条件だが十分条件ではない。</li>
+        <li>修復負債を追跡し、通常のエンジニアリング工程に統合する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">インシデント指標</span><span class="k">TTD/TTE/TTF/TTM</span><span class="k">修復負債</span><span class="k">好循環</span><span class="k">Azure</span></div>
+  </section>
+
+  <!-- ===== 第5章 ===== -->
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="num">第5章</span><h2>サードパーティとの協力を円滑に進める重要性</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>外部ベンダー依存もサイトを落としうる重大リスクであり、社内と同じ SRE の規律を外部にも適用すべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔌</span>外部依存にもSRE規律を対称に適用する</h3>
+      <p class="summary">著者は DNS・CDN・APM・ストレージ・決済・メール・SSO/2FA・ログなど外部依存先を網羅し、適切に実装されなければそのいずれもがサイトを落としうると指摘する。ベンダーを「ブラックボックス」と諦めず、社内 SRE と同じ規律を適用すべきだと主張する。</p>
+      <p>導出は単一障害点の論理に立つ。外部依存はどれも障害の起点になりうるため、現状のベンダー管理が不十分なら、社内で使う SRE の規律をそのまま外部に対称適用できる、と考える。そのうえで Build か Buy かの判断を「重要度」と「ステークホルダー」の組み合わせで構造化し、重要度の判定を最初の一歩とする。ベンダー評価軸として、カスタマーサポート・価格・スケーラビリティ・柔軟性・ロードマップ・実績・実環境での検証を挙げる。</p>
+      <ul>
+        <li>外部依存先はいずれも単一障害点になりうる。</li>
+        <li>Build/Buy は重要度とステークホルダーの組み合わせで構造化して決める。</li>
+        <li>評価軸はサポート・価格・拡張性・柔軟性・ロードマップ・実績など多面的。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">サードパーティ</span><span class="k">単一障害点</span><span class="k">Build/Buy</span><span class="k">ベンダー評価</span></div>
+  </section>
+
+  <!-- ===== 第6章 ===== -->
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="num">第6章</span><h2>専任SREチームなしでSREの原則を適用する方法</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>少人数で多数のサービスを運用する中規模組織では、専任チームを置けなくても「精神としてのSRE」で持続可能な運用を実現できる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚖️</span>運用を全員の仕事に再配置する</h3>
+      <p class="summary">著者は、比較的少数のエンジニアが多様で多数の機能を開発・運用する中規模組織では、教科書どおりの SRE が適合しないとする。専任 SRE を持たなくても、原則の集合としての SRE は実践できると主張する。</p>
+      <p>SoundCloud はモノリスからマイクロサービスへ段階的に移行し、数百のサービスを少人数で運用してきた。元 Google SRE を雇ったが「教科書どおりの SRE」では機能しなかったという経験が起点になる。標準型のチーム構成はオンコールローテーションに必要な最小人数を満たせないため、著者は SRE を「チーム構造」ではなく「原則の集合」と捉え直す。具体的には、運用の自動化、適正な人数のオンコール、運用作業を50%未満に厳格に保つこと、メトリクスを至るところに置くこと、機能と安定性の自己調整である。「真の DevOps」では分離した dev/ops チームも役割も存在せず、運用責任は各エンジニアが負うとする。</p>
+      <ul>
+        <li>少人数×多サービスでは教科書型のチーム編成が成立しない。</li>
+        <li>運用作業を50%未満に保つことが持続性の鍵になる。</li>
+        <li>運用責任を全エンジニアの機能の一部に再配置する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">中規模組織</span><span class="k">50%ルール</span><span class="k">SRE in spirit</span><span class="k">SoundCloud</span><span class="k">真のDevOps</span></div>
+  </section>
+
+  <!-- ===== 第7章 ===== -->
+  <section class="chapter" id="ch7">
+    <div class="chapter-head"><span class="num">第7章</span><h2>SREのいないSRE：Spotifyのケーススタディ</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>Spotify は中央集権的な専任SREチームを持たないが、すべての活動にSRE原則を適用する能力でスケールしてきた。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎵</span>運用責任を開発チームへ移譲する</h3>
+      <p class="summary">著者らは、Spotify には中央 SRE チームも SRE 専任チームも存在しないが、その時々のスケールに耐えてこられたのは原則をあらゆる活動に適用する能力によると述べる。この体制は最初から設計されたのではなく、スケーリングの痛みを通じて段階的に到達したものだと位置づける。</p>
+      <p>歴史的経路がこの主張を支える。ユーザー急増でピーク時の障害が多発し、100万ユーザー規模になっても手作業でデプロイしていた時期を経て、「システム所有者」「コアサービスの定義」「ゴールキーパー」といった役割を導入し、続く「Ops-in-Squads」期にデプロイや DNS を自動化して権限を開発チームへ移譲した。前提として、各 Squad が機能やユーザー体験を端から端まで所有し、インフラチームがセルフサービス型のインフラ製品を提供することが要る。一方で、横断的（cross-cutting）な関心事は中央の視点からしか扱えない領域として残るとも述べる。</p>
+      <ul>
+        <li>中央SREを持たず、運用責任を自律的な開発チーム（Squad）が所有する。</li>
+        <li>体制は設計の産物ではなく、スケーリングの痛みを通じて段階的に到達した。</li>
+        <li>横断的な関心事には、中央の視点でしか扱えない領域が残る。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">Spotify</span><span class="k">Ops-in-Squads</span><span class="k">セルフサービス</span><span class="k">権限移譲</span><span class="k">横断的関心事</span></div>
+  </section>
+
+  <!-- ===== 第8章 ===== -->
+  <section class="chapter" id="ch8">
+    <div class="chapter-head"><span class="num">第8章</span><h2>大企業におけるSREの導入</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SaaSスタートアップ流のSREはそのまま伝統的大企業に持ち込めず、マトリクス型の組織構造が新パラダイムの障害になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏛️</span>高頻度リリースが既存の組織枠組みと衝突する</h3>
+      <p class="summary">著者の組織 Agilent Technologies は1930年代に遡るシリコンバレーの歴史を持つ。著者は、機能とプロダクトラインに二重で報告するマトリクス型の構造は、柔軟である一方で新しいパラダイムの導入を難しくすると指摘する。本章は SRE が必要だと理解しつつ実装方法に悩むマネージャー向けの実装ガイドだと位置づける。</p>
+      <p>論拠は、ハードウェア企業だった同社が SaaS を提供し始め、CI/CD で週2回ほどの高頻度リリースを行うようになったという変化である。高頻度リリースには従来とは別の運用モデルが必要で、伝統的な組織の枠組みやプロセスには収まらない。ここから、伝統的 IT・運用・サポートや品質・プロダクトエンジニアリングが互いに協調して動く必要があり、思考様式を組織横断で変えなければならない、という筋道が導かれる。</p>
+      <ul>
+        <li>マトリクス型構造は柔軟だが、新パラダイム導入の障害にもなる。</li>
+        <li>SaaS の高頻度リリースは従来の運用モデル・組織プロセスに収まらない。</li>
+        <li>本章はSRE導入の実装に悩むマネージャー向けのガイドである。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">大企業</span><span class="k">マトリクス型組織</span><span class="k">SaaS移行</span><span class="k">CI/CD</span><span class="k">Agilent</span></div>
+  </section>
+
+  <!-- ===== 第9章 ===== -->
+  <section class="chapter" id="ch9">
+    <div class="chapter-head"><span class="num">第9章</span><h2>25ページでシステム管理者からSREへ</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREとシステム管理者を分ける根本特性は「視点」であり、SREは望ましい状態をビジネスニーズの観点で定義する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">👁️</span>同じデータでも視点が変われば結論が変わる</h3>
+      <p class="summary">著者は SRE を「多様な企業が大規模システムを効率的かつコスト効率よく運用・支援するための実践の集合」と定義する。そのうえで、SRE と従来のシステム管理者を分ける根本特性は「視点（point of view）」だと主張する。</p>
+      <p>システム管理者の視点はシステムがエラーを出さず過負荷にならないことに置かれるのに対し、SRE はシステムの望ましい状態をビジネスニーズの観点で定義する。著者は、同じメトリクスでも視点が違えば正反対の結論に至ると論じる。システム管理者には数ミリ秒のレイテンシ増加は大量のエラーに比べて重要に見えないかもしれないが、SRE にとっては「エラーが起きても、エンドユーザーに影響がなければサービスは健全」となる。技術的な完璧さよりユーザー影響というビジネス指標を測ることが重要だ、という導出である。</p>
+      <ul>
+        <li>SRE は望ましいシステム状態をビジネスニーズの観点で定義する。</li>
+        <li>同一のメトリクスでも、視点が違えば健全性の判断は逆になりうる。</li>
+        <li>判断基準は技術的完璧さよりエンドユーザーへの影響を優先する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">視点</span><span class="k">ビジネスニーズ</span><span class="k">ユーザー影響</span><span class="k">SysAdminからSREへ</span></div>
+  </section>
+
+  <!-- ===== 第10章 ===== -->
+  <section class="chapter" id="ch10">
+    <div class="chapter-head"><span class="num">第10章</span><h2>大企業でSRE導入の道を開く方法</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>大企業には固有の構造的障壁があるが、ツール・スキル・組織のワークフローを同時に変革すれば SRE へ移行できる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⛰️</span>3つの層を同時に変革する</h3>
+      <p class="summary">著者は、エンタープライズには小規模組織には存在しない構造的障壁があり、それが SRE 導入を阻むとする。それでも、障壁を特定して体系的に除去すれば移行は達成できると主張する。</p>
+      <p>本章は、大企業の運用組織の変革を支援するなかで得た知見の集成だと位置づけられる。著者は変革対象を、ツール（変更は実行しやすい）・スキル（育成は困難だが達成可能）・組織のワークフロー（最も難しい）の3層で整理する。これらを同時並行で変えなければ導入は成功しないとし、最難関である組織ワークフローの変革に焦点を当てて「道を開く」道筋を示す。すでに変革に着手した企業の知見が、他社の指針になるという前提に立つ。</p>
+      <ul>
+        <li>大企業の運用モデルは SRE のアプローチと根本的に異なる。</li>
+        <li>ツール・スキル・組織を同時に変革しないと導入は成功しない。</li>
+        <li>最難関は組織のワークフロー変革であり、そこに焦点を当てる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">構造的障壁</span><span class="k">ツール・スキル・組織</span><span class="k">ワークフロー変革</span></div>
+  </section>
+
+  <!-- ===== 第11章 ===== -->
+  <section class="chapter" id="ch11">
+    <div class="chapter-head"><span class="num">第11章</span><h2>DevOpsの幅広い実践現場で活用されているSREのパターン</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>DevOpsが当たり前に使うパターンの多くはGoogleのSREで先駆けて生まれており、SREとDevOpsは相補的である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔗</span>DevOpsの定番パターンの系譜をSREに遡る</h3>
+      <p class="summary">本章は『The DevOps Handbook』からの編集抜粋である。著者は SRE と DevOps を相互排他ではなく相補的なものとし、現代の DevOps で当たり前に使われるパターンの多くが Google の SRE で先駆けて生まれたと述べる。</p>
+      <p>論拠として、Ben Treynor Sloss の「SRE とは、ソフトウェアエンジニアが運用組織を作ったときに起こることだ」という定義を引く。『The DevOps Handbook』の執筆調査で、多くのパターンが Google SRE 起源だと観察したという。本章は具体例として、Google における自動テストの誕生、ローンチ・引き継ぎの準備レビュー、共有ソースコードリポジトリの3パターンを挙げる。SRE を工学としての運用と定義したうえで、DevOps が好むパターンの系譜を SRE に遡らせ、両者は相補的だと結論づける。</p>
+      <ul>
+        <li>SRE は「ソフトウェアエンジニアが運用組織を作ったときに起こること」。</li>
+        <li>自動テスト・準備レビュー・共有リポジトリなどが SRE 由来として挙がる。</li>
+        <li>SRE と DevOps は対立せず相補的に働く。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">DevOps</span><span class="k">SREパターン</span><span class="k">自動テスト</span><span class="k">Gene Kim</span><span class="k">相補性</span></div>
+  </section>
+
+  <!-- ===== 第12章 ===== -->
+  <section class="chapter" id="ch12">
+    <div class="chapter-head"><span class="num">第12章</span><h2>DevOpsとSRE：コミュニティからの声</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>DevOpsとSREの関係は決着のついていない問いであり、確定的な答えより多様な現場の声が有益である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗣️</span>未決の問いに、現場の声を並べる</h3>
+      <p class="summary">本章は編者が企画・編集したコミュニティ寄稿の集成であり、単一著者の論考ではない。著者は DevOps と SRE の関係を「決着のついていない問い」と捉え、確定的な結論を出さず、多様な視点を並べることを選ぶ。</p>
+      <p>方法は、専門家にウェブサイトで2段落の回答を募り、世界各国から寄せられた多数の寄稿を集めるというものである。回答は「ごく軽く校正しただけ」で生の声を保って掲載される。クラウドソースされた現場の声のほうが、専門家による一方的な断定よりも、進化中の業界論争に対する洞察を与える、という前提に立つ。両者の類似と相違、組織内で共存可能かという開かれた問いを設定し、ニュアンスと不一致をそのまま可視化する。</p>
+      <ul>
+        <li>DevOpsとSREの関係を、唯一の答えのない問いとして扱う。</li>
+        <li>世界各国の寄稿を、ほぼ無編集で並列に提示する。</li>
+        <li>確定的結論より、視点の多様性と不一致の可視化を重視する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">コミュニティ</span><span class="k">クラウドソース</span><span class="k">DevOps対SRE</span><span class="k">未決の問い</span></div>
+  </section>
+
+  <!-- ===== 第13章 ===== -->
+  <section class="chapter" id="ch13">
+    <div class="chapter-head"><span class="num">第13章</span><h2>Facebookにおけるプロダクションエンジニアリング</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>運用上の問題はソフトウェアで解決すべきであり、ソフトウェアを作るエンジニアこそ本番で運用する最適な人材である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛠️</span>サイロを崩し、作り手に運用を持たせる</h3>
+      <p class="summary">本章は Pedro Canahuati への編者のインタビューである。著者は、運用上の問題はソフトウェアで解決すべきであり、ソフトウェアを実際に作るエンジニアこそ本番でそれを運用する最適な人材だと主張する。開発・QA・リリース・運用を別チームに分ける従来の慣行は、問題のあるハンドオフを生むとする。</p>
+      <p>歴史的前提として、初期のソフト開発では開発者が自分のコードのデバッグも、さらにハードウェア問題までも自ら扱っていた。リモートシステムや大規模データセンターの登場で開発・QA・デプロイ・運用が分離したが、著者はその分業が機能する条件を「QA と運用が十分な技術力を持ち、コミュニケーション経路が健全であること」とする。その条件が崩れると本番修正が滞り、責任が元の開発者へ跳ね返る。境界を崩してソフトウェアエンジニアに運用責任を持たせる Facebook の Production Engineering モデルが、サイロ由来の非効率を解消する、という筋道である。</p>
+      <ul>
+        <li>運用上の問題はソフトウェアで解決し、作り手が運用する。</li>
+        <li>分業は、技術力とコミュニケーションが健全なうちしか機能しない。</li>
+        <li>境界を崩すことでハンドオフ由来の非効率を取り除く。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">Facebook</span><span class="k">プロダクションエンジニアリング</span><span class="k">ハンドオフ</span><span class="k">サイロ解消</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="index.html"><span class="dir">← 目次</span><span class="ttl">要点まとめトップ</span></a>
+    <a class="next" href="part2.html"><span class="dir">次 →</span><span class="ttl">第II部 SREの周辺領域</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>SREの探求 要点まとめ</p></footer>
+
+</body>
+</html>

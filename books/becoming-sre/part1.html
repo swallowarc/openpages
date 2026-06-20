@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第Ⅰ部 SRE入門 ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a6ea5; --accent-soft:#eef3f9; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SREをはじめよう</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第Ⅰ部</a>
+      <a href="part2.html">第Ⅱ部</a>
+      <a href="part3.html">第Ⅲ部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART Ⅰ ― 第1〜4章</span>
+  <h1>SRE入門</h1>
+  <p class="lead">SREとは何かを定義し、その心構えと文化、そして組織への提唱までを扱う。著者はSREを技法の集合より先に「信頼性に向き合う考え方」として据え、以降の個人・組織の議論の土台を置く。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch1"><span class="ch-no">1</span><span>はじめに</span></a></li>
+      <li><a href="#ch2"><span class="ch-no">2</span><span>SREの心構え</span></a></li>
+      <li><a href="#ch3"><span class="ch-no">3</span><span>SREの文化</span></a></li>
+      <li><a href="#ch4"><span class="ch-no">4</span><span>SREについて語る（提唱）</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第1章 ===== -->
+  <section class="chapter" id="ch1">
+    <div class="chapter-head"><span class="num">第1章</span><h2>はじめに</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREとは「信頼性」を「適切」なレベルで「継続可能」な形で保つ営みであり、DevOpsと対立する概念ではない。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📐</span>SREの定義 ― 信頼性・適切・継続可能</h3>
+      <p class="summary">SREの核心は、システムの<span class="term">信頼性(reliability)</span>を<span class="term">適切(appropriate)</span>なレベルで、<span class="term">継続可能(sustainable)</span>な形で維持することにある。</p>
+      <p>著者がこの三語を一体で定義に据えるのは、信頼性を「高ければ高いほどよい」ものとして扱わないためである。信頼性は顧客やビジネスにとって意味のある水準（適切）が先に決まり、その水準を担う仕組みは人や組織が無理なく回し続けられる（継続可能）ものでなければならない、という筋道で語られる。三語のどれかが欠けると、過剰な信頼性追求や燃え尽きにつながると位置づける。</p>
+      <ul>
+        <li>信頼性は目的そのものでなく、適切な水準を満たす手段として捉える。</li>
+        <li>「継続可能」は人・運用の持続性を含み、短期的な力技と区別される。</li>
+        <li>訳者も、この意識の有無でシステムの見方が大きく変わると述べている。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>信頼性に上限の概念（適切）と持続性の概念（継続可能）を組み込むことで、SREは「常に100%を目指す活動」ではないと定義づけられる。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤝</span>SREとDevOpsの関係 ― 3つの捉え方</h3>
+      <p class="summary">SREとDevOpsは互いに排他的ではなく、著者は両者の関係を3つの見方で説明する。</p>
+      <p>この整理を置く前提には、「SREとDevOpsはどちらが正しいか」という対立図式が現場で生まれやすい、という問題意識がある。著者は両者を競合させず、着目している対象（注意の方向）が違うだけだと示すことで、片方を選ぶ議論を回避する。具体的には、SREをDevOpsの一実装と見る見方、DevOpsがデリバリに向ける関心をSREは信頼性に向けているという対応、そして本質は<span class="term">注意の方向(direction of attention)</span>の違いだという見方を重ねる。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#3a6ea5"><b>実装の一つ</b>：SREはDevOpsの考え方を具体化する実装の一形態である。</div>
+        <div class="way-row" style="--wc:#2f8f6b"><b>対象の対応</b>：DevOpsがデリバリに向ける関心と同じ位置に、SREは信頼性を置く。</div>
+        <div class="way-row" style="--wc:#b06a2c"><b>注意の方向</b>：両者の違いは本質的に、どこへ注意を向けるかの差である。</div>
+      </div>
+      <ul>
+        <li>3つは排他ではなく、同じ関係を別角度から述べたものとして提示される。</li>
+        <li>対立構図ではなく、関心の置きどころの違いとして理解する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📜</span>SREの起源</h3>
+      <p class="summary">SREはGoogleでの実践を起点に広まった営みであり、本書はその出自を踏まえつつ、より一般的な文脈での実践を扱う。</p>
+      <p>著者が起源に触れるのは、SREを特定企業の固有手法に閉じず、組織一般に適用できる考え方として提示するためである。訳者も、本書が『SREの探求』と異なりGoogle以外の組織を含む一般的な文脈を扱う点を特徴として挙げている。</p>
+      <ul>
+        <li>起源の理解は、後続の章で語られる原則の背景づけとして置かれる。</li>
+        <li>特定の組織構成を前提とせず、適用可能性を広く捉える方針を示す。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">信頼性</span><span class="k">適切</span><span class="k">継続可能</span><span class="k">DevOps</span><span class="k">注意の方向</span></div>
+  </section>
+
+  <!-- ===== 第2章 ===== -->
+  <section class="chapter" id="ch2">
+    <div class="chapter-head"><span class="num">第2章</span><h2>SREの心構え</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREを成り立たせるのは特定のツールより先に「心構え（mindset）」であり、それは複数の習慣的な視点から成る。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔭</span>システム全体を俯瞰する視点</h3>
+      <p class="summary">個別の部品でなく、システム全体を一段引いて見る視点を保つことを心構えの中心に置く。</p>
+      <p>著者がこの視点を最初に挙げるのは、信頼性の問題が単一コンポーネントでなく要素間の相互作用から生じるという前提に立つためである。視野を局所に閉じると、原因を一点に帰着させて全体の構造的な要因を見落とす、という筋道で俯瞰の必要性が示される。</p>
+      <ul>
+        <li>注目を一点に絞らず、構成要素のつながりとして捉える。</li>
+        <li>後の障害対応・学習の議論（10章）にもこの視点が引き継がれる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔁</span>フィードバックループの構築と育成</h3>
+      <p class="summary">良いフィードバックループを作り、育てることをSREの中核的な習慣とする。</p>
+      <p>この主張の前提は、信頼性が一度の設定で固定されるものではなく、観測→学習→改善の循環で継続的に保たれるという見方にある。だからこそ著者は、ループを「作る」だけでなく「育てる」と表現し、循環が組織に根づくまで手を入れ続ける必要を示す。フィードバックループは第Ⅲ部の組み込み（15章）でも再び中心概念として現れる。</p>
+      <ul>
+        <li>一度きりの改善でなく、循環を回し続けることを重視する。</li>
+        <li>データに基づく循環として、後続の組織的議論につながる。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>信頼性は「継続可能」に保つものと定義されている（1章）以上、それを支える仕組みも継続的な循環であるべき、という整合した筋道になる。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>顧客への焦点</h3>
+      <p class="summary">信頼性を技術指標だけで測らず、顧客にとっての意味を起点に考える。</p>
+      <p>1章の「適切なレベル」の判断は、何が適切かを誰が決めるかという問いを伴う。著者はその基準を顧客に置き、技術的に高い数値が必ずしも顧客の体験に資するとは限らないという前提から、顧客視点を心構えに含める。</p>
+      <ul>
+        <li>「適切」の判断基準を顧客側に置く。</li>
+        <li>内部指標の最適化が目的化することを避ける。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">👥</span>人とモノへの関係</h3>
+      <p class="summary">SREの仕事は技術的対象（モノ）だけでなく、他者（人）との関係の上に成り立つ。</p>
+      <p>著者が関係性を心構えに含めるのは、信頼性が単独の技術者でなく複数の役割の協働で実現されるという前提に立つためである。技術力だけでは組織の中で信頼性を動かせない、という筋道で、人との関係づくりが能力の一部として位置づけられる。</p>
+      <ul>
+        <li>技術的対象と人的関係の両方を仕事の射程に含める。</li>
+        <li>協働の重要性は第Ⅲ部の組織的要因にも接続する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧯</span>失敗・エラーとの向き合い方</h3>
+      <p class="summary">失敗を避けるべき例外でなく、システムに内在し学習の材料となるものとして扱う。</p>
+      <p>この姿勢の前提は、十分に複雑なシステムでは失敗を完全には排除できないという認識である。失敗を異常事態として隠すのでなく、そこから学ぶ対象として扱う構えが、第Ⅱ部の「失敗から学習する」（10章）の土台になる。</p>
+      <ul>
+        <li>失敗を根絶対象でなく学習資源として位置づける。</li>
+        <li>この構えが事後レビューやレジリエンス工学の前提になる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">心構え</span><span class="k">システム視点</span><span class="k">フィードバックループ</span><span class="k">顧客</span><span class="k">失敗からの学習</span></div>
+  </section>
+
+  <!-- ===== 第3章 ===== -->
+  <section class="chapter" id="ch3">
+    <div class="chapter-head"><span class="num">第3章</span><h2>SREの文化</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREは個人の技能だけでは成立せず、それを支える文化を意図的に組み立てる必要がある。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌱</span>SREを支える文化の必要性</h3>
+      <p class="summary">心構えを個人の中だけに留めず、組織の文化として支える必要があると説く。</p>
+      <p>前章までの心構えは個人の姿勢だが、著者はそれが個人の努力だけでは続かないという前提を置く。フィードバックループや失敗からの学習といった習慣は、周囲がそれを許し促す環境がなければ定着しない、という筋道で、文化を支持基盤として位置づける。</p>
+      <ul>
+        <li>心構え（個人）と文化（環境）を別の層として扱う。</li>
+        <li>支持的な文化がなければ習慣は持続しないとする。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛠️</span>文化は手段にも梃子にもなる</h3>
+      <p class="summary">文化は単なる雰囲気ではなく、目的に向けて働きかけられる手段であり梃子でもある。</p>
+      <p>著者が文化を「乗り物（vehicle）」かつ「梃子（lever）」と捉えるのは、文化を所与の前提でなく設計・操作の対象とみなすためである。望む状態へ運ぶ媒体としても、変化を増幅する梃子としても使えるという見方が、後述の「逆算」の議論につながる。</p>
+      <ul>
+        <li>文化を受動的な所与でなく能動的に扱う対象とする。</li>
+        <li>変化を運ぶ・増幅するという二つの働きを区別する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>欲しいSRE像から文化を逆算する</h3>
+      <p class="summary">どんなSREであってほしいかを先に定め、そこから必要な文化を組み立てる。</p>
+      <p>この順序を勧める前提は、文化を一般論として整えても望む実践に結びつくとは限らない、という認識である。先に「SREに何をしてほしいか／何であってほしいか」を決め、それを実現する文化を逆算するという筋道で、目的と文化づくりを連結させる。出発点が分からない場合の育て方にも触れる。</p>
+      <ul>
+        <li>あるべきSRE像（目的）を先に置く。</li>
+        <li>その実現条件として必要な文化を特定する。</li>
+        <li>萌芽段階の文化を育て続ける姿勢を示す。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">文化</span><span class="k">梃子</span><span class="k">逆算</span><span class="k">育成</span></div>
+  </section>
+
+  <!-- ===== 第4章 ===== -->
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="num">第4章</span><h2>SREについて語る（SREの提唱）</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREの価値を組織に伝える「物語」を、聞き手に合わせて持つことが、経験の早い段階から重要になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📣</span>提唱がなぜ・いつ重要か</h3>
+      <p class="summary">SREの提唱は熟達してから行うものではなく、早い段階から重要になると説く。</p>
+      <p>著者がこの主張を置く前提は、SREが組織の理解と支持を得て初めて機能するという見方である。理解が乏しいままでは適切な信頼性水準も協働も得られないため、自分の経験が浅くても価値を語り始める必要がある、という筋道で提唱を位置づける。</p>
+      <ul>
+        <li>提唱を上級者だけの活動と限定しない。</li>
+        <li>適切なタイミングを見極めることも含めて扱う。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗣️</span>聞き手に合わせた物語を用意する</h3>
+      <p class="summary">伝える相手と物語(story)を噛み合わせ、相手に応じた語り口を準備する。</p>
+      <p>同じ内容でも相手によって響く語り方が異なるという前提から、著者は「物語と聞き手を揃える」ことを勧める。複数の物語の型や、他者の物語・補助的な物語を使い分ける一方、物語が抱える難しさにも触れ、伝え方を一律にしないよう促す。</p>
+      <ul>
+        <li>聞き手に合わせて物語の型を選ぶ。</li>
+        <li>自分の物語だけでなく他者の物語も活用する。</li>
+        <li>物語が抱える限界・難しさも認識する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">提唱</span><span class="k">物語</span><span class="k">聞き手</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="index.html"><span class="dir">← 目次</span><span class="ttl">トップへ</span></a>
+    <a class="next" href="part2.html"><span class="dir">次 →</span><span class="ttl">第Ⅱ部 個人がSREをはじめるには</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>SREをはじめよう 要点まとめ</p></footer>
+
+</body>
+</html>

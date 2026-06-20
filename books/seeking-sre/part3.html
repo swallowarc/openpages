@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第III部 SREのベストプラクティスと技術 ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#9a6b2f; --accent-soft:#f5efe4; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SREの探求</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第I部</a>
+      <a href="part2.html">第II部</a>
+      <a href="part3.html">第III部</a>
+      <a href="part4.html">第IV部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART III ― 第19〜26章</span>
+  <h1>SREのベストプラクティスと技術</h1>
+  <p class="lead">運用の実務と技術を扱う部である。ドキュメント、能動的学習、SLO、成功の文化、アンチパターン、イミュータブルなインフラ、スクリプタブルなロードバランサー、サービスメッシュを論じる。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch19"><span class="ch-no">19</span><span>ドキュメント作成業務の改善</span></a></li>
+      <li><a href="#ch20"><span class="ch-no">20</span><span>アクティブなティーチングとラーニング</span></a></li>
+      <li><a href="#ch21"><span class="ch-no">21</span><span>サービスレベル目標の技法と科学</span></a></li>
+      <li><a href="#ch22"><span class="ch-no">22</span><span>成功の文化としてのSRE</span></a></li>
+      <li><a href="#ch23"><span class="ch-no">23</span><span>SREのアンチパターン</span></a></li>
+      <li><a href="#ch24"><span class="ch-no">24</span><span>イミュータブルなインフラストラクチャとSRE</span></a></li>
+      <li><a href="#ch25"><span class="ch-no">25</span><span>スクリプタブルロードバランサー</span></a></li>
+      <li><a href="#ch26"><span class="ch-no">26</span><span>サービスメッシュはマイクロサービスの世話人か</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第19章 ===== -->
+  <section class="chapter" id="ch19">
+    <div class="chapter-head"><span class="num">第19章</span><h2>ドキュメント作成業務の改善</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ドキュメントの不良は開発速度・品質・信頼性を直接損なうので、ドキュメント作成をエンジニアリングワークフローに統合すべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📄</span>ドキュメントを雑用から外し、ワークフローへ統合する</h3>
+      <p class="summary">著者らは、欠落・不完全・陳腐化・不正確なドキュメントが業界全体の課題であり、開発速度・ソフトウェア品質・サービス信頼性を直接損なうとする。SRE 特有の制約として、限られた開発予算のなかでドキュメント作成が他作業と競合し後回しにされやすいと指摘する。</p>
+      <p>論拠として、開発者調査でドキュメントが課題の上位に挙がること、ドキュメント品質が仕事の不満と相関するという研究、そして Google が専門のテクニカルライティング組織を持つ事実を挙げる。さらにドキュメント作業が評価・昇進で認知されにくく、それがエンジニアの取り組みを妨げるという認知のギャップを問題化する。ここから、テクニカルライティングの専門性をワークフローに統合し、ドキュメント作業を正当に評価する組織的・文化的な解決が必要だ、という筋道を示す。</p>
+      <ul>
+        <li>ドキュメント不良は開発速度・品質・信頼性を直接損なう。</li>
+        <li>SREでは限られた開発予算の中で作成が後回しにされやすい。</li>
+        <li>評価・昇進での認知不足がエンジニアの取り組みを妨げる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ドキュメンテーション</span><span class="k">ワークフロー統合</span><span class="k">テクニカルライティング</span><span class="k">Google</span></div>
+  </section>
+
+  <!-- ===== 第20章 ===== -->
+  <section class="chapter" id="ch20">
+    <div class="chapter-head"><span class="num">第20章</span><h2>アクティブなティーチングとラーニング</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>受動的指導ではインシデント対応を十分に備えられず、能動的・ゲーム化された学習が低リスクで意思決定スキルを訓練する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎲</span>本番リスクなしで意思決定を訓練する</h3>
+      <p class="summary">著者は、能動的学習がとくにインシデント管理スキルの習得で受動的指導より優れると主張する。SRE は OS 内部・ネットワーク・監視・トラブルシュート・デバッグ・インシデント管理・ソフトウェア工学など多領域にまたがるジェネラリストかつエキスパートであり、継続的な学習が要る。</p>
+      <p>論拠として、本番リスクなしでインシデント対応を教える「Incident Manager」というカードゲームの導入を挙げる。ゲームが学習に有効な理由として、楽しさ・恐怖のない集中・社会的な関与・即時のフィードバックと得点システムを示す。従来の受動的手法ではチームを実際の本番インシデントに十分備えさせられないため、ゲーム化した学習が高ストレスの状況を平常化し、低リスクで意思決定スキルを訓練できる、という導出である。前提には、技術スキルがシミュレーションから本番へ転移すること、エンゲージメントが定着と習熟を高めることがある。</p>
+      <ul>
+        <li>SREは多領域にまたがり、継続的学習が必要である。</li>
+        <li>受動的手法では本番インシデントに十分備えられない。</li>
+        <li>ゲーム化した学習が低リスクで意思決定スキルを訓練する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">能動的学習</span><span class="k">ゲーミフィケーション</span><span class="k">インシデント管理</span><span class="k">Incident Manager</span></div>
+  </section>
+
+  <!-- ===== 第21章 ===== -->
+  <section class="chapter" id="ch21">
+    <div class="chapter-head"><span class="num">第21章</span><h2>サービスレベル目標の技法と科学</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SLOがなければ信頼性業務の効果は判断できず、可用性は平均やパーセンタイルでなく分布（ヒストグラム）で捉えるべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>SLOとSLAを分け、期待値を明確にする</h3>
+      <p class="summary">著者は、SLO を SRE の成功測定に不可欠とし、明確な目標がなければ信頼性業務が効果的かどうか判断できないとする。SLO と SLA は目的が異なり、「SLA とは、2者以上が合意した SLO にすぎない」と整理する。</p>
+      <p>出発点は「誰も期待値に合意していなければ、期待に応えることも超えることもできない」という必要性である。著者は SLO を内部目標、SLA を複数当事者間の外部合意と区別し、定義の質がアライメントを生むか、絶望と法的責任を生むかを分けると論じる。可用性・時間量・トランザクションの測定論を経て評価手法へ進み、構成のしかたが成否を決めると示す。</p>
+      <ul>
+        <li>SLOは信頼性業務の効果を判断するために不可欠である。</li>
+        <li>SLAは2者以上が合意したSLOであり、内部目標とは目的が異なる。</li>
+        <li>SLO/SLAの構成のしかたがアライメントか法的責任かを分ける。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📈</span>平均では誤解する。分布で測る</h3>
+      <p class="summary">著者は、可用性やレイテンシの測定で平均やパーセンタイルが誤解を招きうるとし、分布をヒストグラムで捉えることを推奨する。</p>
+      <p>論拠は、平均が分布の偏りや裾を覆い隠し、パーセンタイルだけでは分布の形を再現できないという測定上の性質である。レイテンシの分布をヒストグラムで保持すれば、後から任意のパーセンタイルを導けるうえ、分布の形そのものを評価できる。ここから、測定方法自体が SLO の妥当性を左右するという結論につなげる。</p>
+      <div class="versus">
+        <div class="side a"><h4>平均・単一パーセンタイル</h4><p>分布の偏りや裾を覆い隠し、形を再現できない。</p></div>
+        <div class="vs">対</div>
+        <div class="side b"><h4>ヒストグラム（分布）</h4><p>分布の形を保持し、任意のパーセンタイルを後から導ける。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">SLO</span><span class="k">SLA</span><span class="k">ヒストグラム</span><span class="k">パーセンタイル</span><span class="k">可用性測定</span></div>
+  </section>
+
+  <!-- ===== 第22章 ===== -->
+  <section class="chapter" id="ch22">
+    <div class="chapter-head"><span class="num">第22章</span><h2>成功の文化としてのSRE</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREは「失敗の予防」に焦点を当てるときより、「ビジネスの成功」に焦点を当てるときに最も価値が高い。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌱</span>失敗予防から成功の達成へ、視点を転換する</h3>
+      <p class="summary">著者は、SRE が失敗の予防・緩和に焦点を当てるときより、ビジネスの成功の達成に焦点を当てるときに最も生産的で価値が高いと主張する。SRE が本来の効果を発揮するのは、サービスをエンドツーエンドで最適化することを許す支援的な文化、とくに非難しない文化のなかだけだとする。</p>
+      <p>論拠として、部分を見ることから全体を見ること、現在に反応することから未来を創ることへ、という組織学習の考えを引く。機能開発者はサービスの廃棄計画を見落とし、後でコストの高い問題を生むが、SRE が設計から廃棄まで全ライフサイクルに関与すれば、可観測性・信頼性・回復力を最初から作り込める。さらに SLO を固定の約束にすべきでない理由として、目標を見直す明確なメカニズムがないと、恣意的な目標へのチームの賛同を得にくい点を挙げる。失敗回避は反応的で部分最適に陥りやすいため、成功という全体目標に能動的に動くべきだ、という筋道である。</p>
+      <ul>
+        <li>失敗回避は反応的で部分最適に陥りやすい。</li>
+        <li>設計から廃棄まで全ライフサイクルに関与して作り込む。</li>
+        <li>非難しない学習文化のなかでこそSREは効果を発揮する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">成功の文化</span><span class="k">全ライフサイクル</span><span class="k">blameless</span><span class="k">心理的安全性</span><span class="k">LinkedIn</span></div>
+  </section>
+
+  <!-- ===== 第23章 ===== -->
+  <section class="chapter" id="ch23">
+    <div class="chapter-head"><span class="num">第23章</span><h2>SREのアンチパターン</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ベストプラクティスを並べるより、「やってはいけない」アンチパターンを体系化するほうが、しばしば容易かつ効果的である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚫</span>失敗のカタログで「魅力的な誤謬」を見抜く</h3>
+      <p class="summary">著者は、ベストプラクティスを列挙するより、やってはいけない失敗モードを体系化するほうが容易かつ効果的なことが多いとする。アンチパターンを「魅力的な誤謬」、すなわち一時的にはうまくいくが最終的に持続的成功をもたらさない戦略と定義する。</p>
+      <p>論拠は認知科学的なものである。人間の脳は脅威回避のために作られ、過去に見た失敗モードに似たものを見つけ出すのが得意だとする。だからこそ、失敗の物語は記憶に残り学習効率が高い。さらにアンチパターンは単発の逸話ではなく、複数の組織で繰り返し観察される再発性の問題である。短期的には機能してしまうため明示的にカタログ化しないと回避できない、という筋道で、複数組織にまたがる多数の具体的アンチパターンを名前付きで列挙する。</p>
+      <ul>
+        <li>人間は過去に見た失敗モードを認識するのが得意である。</li>
+        <li>アンチパターンは短期的に機能するため見抜きにくい。</li>
+        <li>複数組織で再発するパターンを名前付きでカタログ化する。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>本章はもとになった USENIX SREcon/LISA の講演「Persistent SRE Antipatterns」と対応し、画面を見つめ続ける運用、根本原因を人的ミスに帰すこと、ポケベルの押し付けなど多数のアンチパターンを扱う。個々のアンチパターンの解決策の細部は、本要約の出典では確認できていない。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">アンチパターン</span><span class="k">魅力的な誤謬</span><span class="k">失敗モード</span><span class="k">再発性</span></div>
+  </section>
+
+  <!-- ===== 第24章 ===== -->
+  <section class="chapter" id="ch24">
+    <div class="chapter-head"><span class="num">第24章</span><h2>イミュータブルなインフラストラクチャとSRE</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>イメージを更新せず置き換えるイミュータブルなインフラにすることで、運用負荷を減らし水平スケーリングを単純にできる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧱</span>インスタンス間の差異をなくす</h3>
+      <p class="summary">著者は、ビルドしたイメージを更新せず、新しいイメージへ置き換えるだけにするイミュータブルなインフラによって、大規模本番環境の運用負荷を減らせると主張する。全インスタンスが同一になるため、水平スケーリングが単純かつ予測可能になるとする。</p>
+      <p>ビルドは小さなベースイメージから始め、その上に自分のソフトウェアをインストールし、リリースごとに完全に再ビルドする。これにより、デプロイ後に構成管理ツールで状態を変更し続ける必要がなくなる。SRE の中核ミッション（大規模 web 運用のスケーラビリティ・信頼性・性能の推進）から出発し、インスタンス間の差異という変数を排除すべきだと考える。差異を生むのはデプロイ後のインプレース変更であるため、イメージを不変化して置き換え方式にする。結果として一貫性・水平スケーラビリティ・運用負荷の削減が得られる、という筋道である。</p>
+      <ul>
+        <li>イメージは更新せず、新イメージへ置き換える。</li>
+        <li>全インスタンスが同一になり、水平スケーリングが単純になる。</li>
+        <li>デプロイ後のインプレース変更を排除し、運用負荷を減らす。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">イミュータブルインフラ</span><span class="k">置き換え方式</span><span class="k">水平スケーリング</span><span class="k">トイル削減</span></div>
+  </section>
+
+  <!-- ===== 第25章 ===== -->
+  <section class="chapter" id="ch25">
+    <div class="chapter-head"><span class="num">第25章</span><h2>スクリプタブルロードバランサー</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>スクリプタブルなロードバランサーは、従来は大企業にしか届かなかった高度なリクエスト処理を、あらゆる規模の組織で可能にする。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔀</span>ロジックをアプリでなくインフラのエッジに置く</h3>
+      <p class="summary">著者は、ロードバランサー層でのカスタムロジック自体は新しくないが、それをあらゆる規模の組織で実現できることが新しく、ゲームチェンジになりうると主張する。時間・資金・人員が不足するチームでも、スクリプタブルなロードバランサーでスケーラビリティ課題をエレガントに解決できるとする。</p>
+      <p>実装は Nginx と LuaJIT などで、Lua によりリクエスト・レスポンスの処理フローを改変する。これにより、アプリ自体を変更せずインフラ層に「サービスレベルのミドルウェア」を置け、信頼性エンジニアがアプリの上で透過的に動くロジックを所有できる。著者は Shopify の例として、シャードを意識して正しい upstream へプロキシするルーティング層、フラッシュセール対策のキューイング層、フルページキャッシュ、レイヤ7の DDoS 緩和を挙げる。ビジネスやルーティングのロジックをアプリでなくインフラのエッジに寄せるほうが、アプリの複雑性を下げ運用のレバレッジを高める、という導出である。</p>
+      <ul>
+        <li>LB層でのカスタムロジックを任意規模の組織で実装できる。</li>
+        <li>アプリを変えずインフラ層に透過的なロジックを置ける。</li>
+        <li>シャード対応ルーティングやキューイングなどをエッジで実現する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">スクリプタブルLB</span><span class="k">Lua</span><span class="k">エッジのロジック</span><span class="k">Shopify</span></div>
+  </section>
+
+  <!-- ===== 第26章 ===== -->
+  <section class="chapter" id="ch26">
+    <div class="chapter-head"><span class="num">第26章</span><h2>サービスメッシュはマイクロサービスの世話人か</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>マイクロサービスの運用複雑性はネットワーキングと可観測性に集約され、サービスメッシュがそれをアプリから抽象化して解決する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🕸️</span>関心事をサイドカープロキシに切り出す</h3>
+      <p class="summary">著者は、マイクロサービスが開発のアジリティを生む一方で、多くの組織が過小評価する運用上の複雑性を導入すると指摘する。その問題は本質的にネットワーキングと可観測性の2領域に集約され、サービスメッシュがこれらをアプリから抽象化して透過的に解決すると主張する。</p>
+      <p>論拠は Lyft の本番経験である。複数の言語・フレームワーク、バックエンドごとに不統一なプロトコル、メトリクス・トレーシング・ロギングの欠如、リトライ・サーキットブレイク・レート制限・タイムアウトといった耐障害機能の不備が問題の具体的原因として挙がる。大手インターネット企業は分散アーキテクチャを実用化するのに数百人年を投じてきたとし、難問であることを示す。解決策として、サイドカープロキシ（Envoy）を各サービスと同居させ、サービスディスカバリ・耐障害性・トレーシングを透過的に処理する。コントロールプレーンとデータプレーンを分離することで、レガシーと新しいサービスを同時に支える。各チームがネットワーキングを個別実装するのは重複と浪費であるため、共通化すべきだ、という筋道である。</p>
+      <ul>
+        <li>運用複雑性はネットワーキングと可観測性に集約される。</li>
+        <li>サイドカープロキシで関心事をアプリから分離・共通化する。</li>
+        <li>コントロール/データプレーンの分離で混在環境に対応する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">サービスメッシュ</span><span class="k">サイドカープロキシ</span><span class="k">Envoy</span><span class="k">可観測性</span><span class="k">Lyft</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part2.html"><span class="dir">← 前</span><span class="ttl">第II部 SREの周辺領域</span></a>
+    <a class="next" href="part4.html"><span class="dir">次 →</span><span class="ttl">第IV部 SREの人間的側面</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>SREの探求 要点まとめ</p></footer>
+
+</body>
+</html>

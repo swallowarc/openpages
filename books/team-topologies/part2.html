@@ -3,26 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>第Ⅱ部 フローを機能させるチームトポロジー ― 要点まとめ</title>
+<title>第II部 フローを機能させるチームトポロジー ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
-<style>
-  :root{ --accent:#1f7a6b; --accent-soft:#e3f1ee; }
-  .tt-figure{ margin:22px 0 6px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card); box-shadow:var(--shadow); padding:20px 18px 10px; }
-  .tt-figure figcaption{ font-size:12.5px; color:var(--ink-faint); text-align:center; padding:10px 4px 0; }
-  .tt-figure text{ font-family:inherit; }
-  .tt-shapes{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-  @media(max-width:640px){ .tt-shapes{ grid-template-columns:repeat(2,1fr); } }
-  .tt-shape{ text-align:center; }
-  .tt-shape svg{ width:100%; height:auto; max-height:108px; }
-  .tt-shape h4{ margin:8px 0 2px; font-size:13.5px; }
-  .tt-shape p{ margin:0; font-size:11.5px; color:var(--ink-faint); line-height:1.55; }
-  .tt-rel svg{ width:100%; height:auto; }
-  .tt-legend{ display:flex; gap:22px; justify-content:center; flex-wrap:wrap; font-size:11.5px; color:var(--ink-faint); padding-top:4px; }
-  .tt-legend span{ display:inline-flex; align-items:center; gap:8px; }
-  .tt-legend i{ display:inline-block; }
-  .tt-legend i.solid{ width:30px; height:0; border-top:2.5px solid #777; }
-  .tt-legend i.hatch{ width:22px; height:13px; border:1px solid #999; background:repeating-linear-gradient(45deg, #8a6420 0 2px, transparent 2px 6px); }
-</style>
+<style>:root{ --accent:#2f7d77; --accent-soft:#e8f3f1; }</style>
 </head>
 <body>
 
@@ -31,17 +16,17 @@
     <a class="brand" href="index.html"><b>チームトポロジー</b> ― 要点まとめ</a>
     <div class="nav-links">
       <a class="home" href="index.html">目次</a>
-      <a href="part1.html">第Ⅰ部</a>
-      <a href="part2.html">第Ⅱ部</a>
-      <a href="part3.html">第Ⅲ部</a>
+      <a href="part1.html">第I部</a>
+      <a href="part2.html">第II部</a>
+      <a href="part3.html">第III部</a>
     </div>
   </div>
 </nav>
 
 <header class="hero">
-  <span class="eyebrow">PART Ⅱ ― 第4〜6章</span>
+  <span class="eyebrow">PART II ― 第4〜6章</span>
   <h1>フローを機能させるチームトポロジー</h1>
-  <p class="lead">万能なチーム構成はないという前提から、典型的なアンチパターンを避け、組織に置くチームを4つの基本タイプに集約する。そのうえで、認知負荷とフローを基準にチームの責任境界を引く方法を示す。</p>
+  <p class="lead">効果的な組織に必要なチームは4タイプに収れんする。そのうえで、システムを認知負荷に収まる自然な境界（フラクチャープレーン）で分割し、チームの自律性とフローを高める。</p>
 </header>
 
 <main>
@@ -50,7 +35,7 @@
     <h2>このページの章</h2>
     <ol>
       <li><a href="#ch4"><span class="ch-no">4</span><span>静的なチームトポロジー</span></a></li>
-      <li><a href="#ch5"><span class="ch-no">5</span><span>4つの基本的なチームタイプ</span></a></li>
+      <li><a href="#ch5"><span class="ch-no">5</span><span>4つの基本的なチームトポロジー</span></a></li>
       <li><a href="#ch6"><span class="ch-no">6</span><span>チームファーストな境界を決める</span></a></li>
     </ol>
   </nav>
@@ -63,185 +48,106 @@
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>あらゆる組織に効く唯一のチーム構成は存在しない。<mark>組織の規模・成熟度・技術的な状況に応じて構成を選ぶ</mark>べきであり、よくある<mark>アンチパターンを避ける</mark>ことから始める。</p>
+        <p>チームは活動や専門ではなく業務ドメインを軸に編成し、コンセプトから稼働までのフローを最適化する。トポロジーの良し悪しは、チーム規模・成熟度・支援環境と切り離せない。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🚫</span>避けるべきチーム編成のアンチパターン</h3>
-      <p class="summary">著者は、機能別に細かく分けた組織や、その場しのぎで生まれた構成が、フローを妨げると指摘する。職能でチームを割ると、価値を届けるたびに多くのチームをまたぐ必要が生じる。</p>
+      <h3 class="ic"><span class="emoji">🧱</span>活動ではなくドメインでチームを分ける</h3>
+      <p class="summary">機能・工程（設計、開発、テスト、運用など）でチームを分けると、引き継ぎが増えてフローが滞る。業務ドメインを軸に分けるべきである。</p>
+      <p>著者の論拠は、工程で分けると一つの価値が複数チームを横断し、つなぎ目ごとに待ちと情報損失が発生する点にある。ドメインで分ければ、一つのチームがコンセプトから稼働まで担えるため、引き継ぎが減り流れが速くなる。よってチームの切り方は、職能ではなく価値の流れに沿わせる。</p>
       <ul>
-        <li>職能別サイロ：開発・テスト・運用などを分け、引き継ぎのたびに待ちが発生する。</li>
-        <li>名ばかりのDevOpsチーム：開発と運用の間に新たなチームを挟むだけでは、サイロをもう一つ増やすことになる。</li>
-        <li>場当たりのチーム設計：意図せず生まれた構成が、変更のたびに過剰な調整を強いる。</li>
+        <li>工程別の分割は、チーム間の引き継ぎとボトルネックを増やす。</li>
+        <li>ドメイン別の分割は、価値の流れに沿い引き継ぎを最小化する。</li>
       </ul>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🌡️</span>状況に応じて構成を選ぶ</h3>
-      <p class="summary">どのチーム構成が適切かは、組織の規模・技術スタックの成熟度・変更の頻度などで変わる。<span class="term">構成は固定の正解ではなく、状況に応じた選択</span>として扱う。</p>
-      <div class="callout tip">
-        <span class="emoji">✅</span>
-        <div><span class="ctitle">読み解きの補助</span><p>この章は、後続の4タイプ・3モードを導入する前提として、「自組織に合う構成を選ぶ」という構えを示す位置づけにある。</p></div>
-      </div>
+      <h3 class="ic"><span class="emoji">⚠️</span>トポロジーには適用条件がある</h3>
+      <p class="summary">DevOpsの文脈で知られる既存のチーム構成パターンには、うまく機能するものと反パターンがあり、どれが有効かは状況に依存する。</p>
+      <p>著者は、特定のトポロジーが常に正しいとは主張しない。同じ構成でも、チームの規模・エンジニアリングの成熟度・支援する環境（自動化や基盤）が伴わなければ機能しないからだ。ゆえに「型を当てはめる」のではなく、自組織の前提条件に照らして選ぶべきだという筋道を立てる。これは第5章の4タイプを、文脈なしの万能解として使わせないための布石でもある。</p>
+      <ul>
+        <li>有効なトポロジーは、組織の成熟度と支援環境に左右される。</li>
+        <li>うまくいくパターンと反パターンを、自組織の文脈で見極める。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔗</span>チーム間の依存関係を可視化する</h3>
+      <p class="summary">フローを妨げるのはチーム間の依存である。知識・タスク・リソースの依存を追跡し、流れを止める依存を減らす。</p>
+      <p>著者は、依存があるほど待ちが生じ、デリバリーが遅くなると説く。そこで、どのチームが何に依存しているかを可視化し、ボトルネックになっている依存を特定して解消の対象にする。依存の削減は、後章の境界設計とインタラクションモードの選択に直結する。</p>
+      <ul>
+        <li>依存は知識・タスク・リソースなどの種類に分けて把握する。</li>
+        <li>フローを止める依存を、優先的に解消の対象にする。</li>
+      </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">アンチパターン</span><span class="k">職能別サイロ</span><span class="k">組織の成熟度</span><span class="k">DevOpsチーム</span></div>
+    <div class="keywords"><span class="k">業務ドメイン</span><span class="k">フロー</span><span class="k">DevOpsトポロジー</span><span class="k">依存関係</span><span class="k">反パターン</span></div>
   </section>
 
   <!-- ===== 第5章 ===== -->
   <section class="chapter" id="ch5">
-    <div class="chapter-head"><span class="num">第5章</span><h2>4つの基本的なチームタイプ</h2></div>
+    <div class="chapter-head"><span class="num">第5章</span><h2>4つの基本的なチームトポロジー</h2></div>
 
     <div class="in-a-nutshell">
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>組織に必要なチームは<mark>4つの基本タイプ</mark>に集約できる。中心は価値を届ける<mark>ストリームアラインドチーム</mark>で、残る3タイプはその認知負荷を下げて支える役割を担う。</p>
+        <p>効果的な組織に必要なチームは4タイプに収れんする。中心はストリームアラインドチームで、残る3タイプはその流れを支えるために存在する。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🧭</span>4つのチームタイプ</h3>
-      <p class="summary">著者は、組織に存在すべきチームを次の4つに限定する。多くのチームをこの4タイプのいずれかに当てはめることで、組織構造を単純化できると主張する。各タイプは記法上、異なる形で区別される。</p>
-
-      <figure class="tt-figure">
-        <div class="tt-shapes">
-          <div class="tt-shape">
-            <svg viewBox="0 0 160 110" role="img" aria-label="横長の角丸長方形">
-              <rect x="12" y="42" width="136" height="34" rx="17" fill="#1f7a6b" fill-opacity="0.14" stroke="#1f7a6b" stroke-width="2.5"/>
-            </svg>
-            <h4>ストリームアラインド</h4>
-            <p>横長の角丸長方形。価値の流れを端から端まで担う。</p>
-          </div>
-          <div class="tt-shape">
-            <svg viewBox="0 0 160 110" role="img" aria-label="幅広の土台状の長方形">
-              <rect x="10" y="40" width="140" height="40" rx="7" fill="#3a5a9c" fill-opacity="0.14" stroke="#3a5a9c" stroke-width="2.5"/>
-              <line x1="24" y1="60" x2="136" y2="60" stroke="#3a5a9c" stroke-width="1.5" stroke-opacity="0.45"/>
-            </svg>
-            <h4>プラットフォーム</h4>
-            <p>幅広の土台。内部サービスを提供し負荷を下げる。</p>
-          </div>
-          <div class="tt-shape">
-            <svg viewBox="0 0 160 110" role="img" aria-label="縦向きの角丸長方形">
-              <rect x="58" y="12" width="44" height="86" rx="16" fill="#b5852a" fill-opacity="0.16" stroke="#b5852a" stroke-width="2.5"/>
-            </svg>
-            <h4>イネイブリング</h4>
-            <p>縦向きの長方形。能力獲得を一時的に支援する。</p>
-          </div>
-          <div class="tt-shape">
-            <svg viewBox="0 0 160 110" role="img" aria-label="八角形">
-              <polygon points="68,18 92,18 116,42 116,68 92,92 68,92 44,68 44,42" fill="#6b3a8c" fill-opacity="0.14" stroke="#6b3a8c" stroke-width="2.5"/>
-            </svg>
-            <h4>コンプリケイテッド<br>サブシステム</h4>
-            <p>八角形。高度な専門知識を要する部分を引き受ける。</p>
-          </div>
-        </div>
-        <figcaption>4つのチームタイプの記法 ― 形で区別する（配色は識別用であり原書由来ではない）</figcaption>
-      </figure>
-
+      <h3 class="ic"><span class="emoji">🧩</span>必要なチームは4タイプに収れんする</h3>
+      <p class="summary">著者は、効果的な組織に必要なチームは次の4タイプの組み合わせで足りると主張する。種類を絞ることで、各チームの役割と他チームへの期待が明確になる。</p>
+      <p>論拠は、チームの種類が増えるほど役割と境界が曖昧になり、認知負荷と調整コストが上がる点にある。4タイプに限定すれば、各チームの目的・責任・他チームとの関わり方が共通言語として共有でき、組織全体で一貫した設計判断ができる。これが本書の中核の構成要素である。</p>
       <div class="ways-map">
-        <div class="way-row" style="--wc:#1f7a6b">
+        <div class="way-row" style="--wc:#2f7d77">
           <div class="icon-box">🌊</div>
-          <div>
-            <div class="wlabel">ストリームアラインドチーム</div>
-            <h4>価値の流れに沿って届ける</h4>
-            <p>特定の事業領域や顧客に向けた価値の流れを、端から端まで担当する中心的なチーム。組織の大半はこのタイプであるべき。</p>
-          </div>
+          <div><div class="wlabel">STREAM-ALIGNED</div><h4>ストリームアラインドチーム</h4><p>単一の価値の流れに沿って、コンセプトから稼働までを担う。組織の主役で、引き継ぎを最小化する。</p></div>
         </div>
-        <div class="way-row" style="--wc:#3a5a9c">
-          <div class="icon-box">🏗️</div>
-          <div>
-            <div class="wlabel">プラットフォームチーム</div>
-            <h4>内部サービスで負荷を下げる</h4>
-            <p>ストリームアラインドチームが使う内部サービスや基盤を提供し、その認知負荷を下げる。自らの提供物をプロダクトとして扱う。</p>
-          </div>
-        </div>
-        <div class="way-row" style="--wc:#b5852a">
+        <div class="way-row" style="--wc:#3a73a8">
           <div class="icon-box">🧑‍🏫</div>
-          <div>
-            <div class="wlabel">イネイブリングチーム</div>
-            <h4>不足する能力の獲得を助ける</h4>
-            <p>特定分野の専門知識を持ち、他チームが新しい技術や手法を身につけるのを一時的に支援する。恒久的な依存は作らない。</p>
-          </div>
+          <div><div class="wlabel">ENABLING</div><h4>イネイブリングチーム</h4><p>他チームの能力獲得を助ける。自らはソフトウェアを作らず、不足する技能や知識のギャップを埋める。</p></div>
         </div>
-        <div class="way-row" style="--wc:#6b3a8c">
-          <div class="icon-box">🧪</div>
-          <div>
-            <div class="wlabel">コンプリケイテッドサブシステムチーム</div>
-            <h4>高度な専門領域を引き受ける</h4>
-            <p>特別な専門知識を要する複雑な部分を担当し、その難しさを他チームから切り離す。必要な場合にのみ置く。</p>
-          </div>
+        <div class="way-row" style="--wc:#b06a2c">
+          <div class="icon-box">⚙️</div>
+          <div><div class="wlabel">COMPLICATED-SUBSYSTEM</div><h4>複雑なサブシステムチーム</h4><p>高度な専門知識を要する部分を引き受け、他チームの認知負荷を下げる。</p></div>
+        </div>
+        <div class="way-row" style="--wc:#8a5fb0">
+          <div class="icon-box">🏗️</div>
+          <div><div class="wlabel">PLATFORM</div><h4>プラットフォームチーム</h4><p>共通基盤をセルフサービスで提供し、ストリームアラインドチームが自律的に速く動けるようにする。</p></div>
         </div>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🎯</span>ストリームアラインドを中心に据える</h3>
-      <p class="summary">4タイプは対等ではない。<span class="term">残り3タイプは、ストリームアラインドチームが価値の流れに集中できるよう支える</span>位置づけにある。多くの既存のチームは、この4タイプのいずれかへ整理できる。</p>
-
-      <figure class="tt-figure tt-rel">
-        <svg viewBox="0 0 760 470" role="img" aria-label="4つのチームタイプの関係 ― プラットフォームを土台に、ストリームアラインドを中心へ据え、イネイブリングが支援し、コンプリケイテッドサブシステムが提供する構図">
-          <defs>
-            <marker id="ttRelFlow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#999"/></marker>
-            <marker id="ttRelBlue" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#3a5a9c"/></marker>
-            <marker id="ttRelPurple" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#6b3a8c"/></marker>
-            <pattern id="ttRelHatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#8a6420" stroke-width="2"/></pattern>
-          </defs>
-
-          <!-- 変更のフロー -->
-          <text x="370" y="26" text-anchor="middle" font-size="11.5" fill="#888">変更のフロー</text>
-          <line x1="50" y1="36" x2="688" y2="36" stroke="#aaa" stroke-width="2" marker-end="url(#ttRelFlow)"/>
-
-          <!-- 提供・支援の線（ボックスより背面に描く） -->
-          <line x1="130" y1="364" x2="130" y2="104" stroke="#3a5a9c" stroke-width="2.5" marker-end="url(#ttRelBlue)"/>
-          <line x1="380" y1="364" x2="380" y2="104" stroke="#3a5a9c" stroke-width="2.5" marker-end="url(#ttRelBlue)"/>
-          <line x1="560" y1="364" x2="560" y2="104" stroke="#3a5a9c" stroke-width="2.5" marker-end="url(#ttRelBlue)"/>
-          <line x1="630" y1="158" x2="630" y2="104" stroke="#6b3a8c" stroke-width="2.5" marker-end="url(#ttRelPurple)"/>
-
-          <!-- プラットフォーム（土台） -->
-          <rect x="44" y="364" width="672" height="72" rx="10" fill="#3a5a9c" fill-opacity="0.13" stroke="#3a5a9c" stroke-width="2.5"/>
-          <line x1="66" y1="392" x2="694" y2="392" stroke="#3a5a9c" stroke-width="1.5" stroke-opacity="0.4"/>
-          <text x="380" y="406" text-anchor="middle" font-size="13" fill="#2f4a82" font-weight="600">プラットフォーム</text>
-
-          <!-- ストリームアラインド（中心） -->
-          <rect x="50" y="54" width="160" height="48" rx="24" fill="#1f7a6b" fill-opacity="0.15" stroke="#1f7a6b" stroke-width="2.5"/>
-          <rect x="300" y="54" width="160" height="48" rx="24" fill="#1f7a6b" fill-opacity="0.15" stroke="#1f7a6b" stroke-width="2.5"/>
-          <rect x="550" y="54" width="160" height="48" rx="24" fill="#1f7a6b" fill-opacity="0.15" stroke="#1f7a6b" stroke-width="2.5"/>
-          <text x="130" y="83" text-anchor="middle" font-size="11.5" fill="#175c50">ストリームアラインド</text>
-          <text x="380" y="83" text-anchor="middle" font-size="11.5" fill="#175c50">ストリームアラインド</text>
-          <text x="630" y="83" text-anchor="middle" font-size="11.5" fill="#175c50">ストリームアラインド</text>
-
-          <!-- コンプリケイテッドサブシステム -->
-          <polygon points="614,158 646,158 672,184 672,216 646,242 614,242 588,216 588,184" fill="#6b3a8c" fill-opacity="0.14" stroke="#6b3a8c" stroke-width="2.5"/>
-          <text x="630" y="266" text-anchor="middle" font-size="10.5" fill="#54306f">コンプリケイテッド</text>
-          <text x="630" y="280" text-anchor="middle" font-size="10.5" fill="#54306f">サブシステム</text>
-
-          <!-- イネイブリング（ストリームアラインドと重なりコラボレーション） -->
-          <rect x="140" y="78" width="64" height="134" rx="14" fill="#b5852a" fill-opacity="0.16" stroke="#b5852a" stroke-width="2.5"/>
-          <rect x="140" y="78" width="64" height="24" fill="url(#ttRelHatch)"/>
-          <text x="172" y="232" text-anchor="middle" font-size="10.5" fill="#8a6420">イネイブリング</text>
-        </svg>
-        <div class="tt-legend">
-          <span><i class="solid"></i>実線：X-as-a-Service（サービスを提供・利用）</span>
-          <span><i class="hatch"></i>重なり：コラボレーション（密に協働）</span>
-        </div>
-        <figcaption>4つのチームタイプの関係 ― プラットフォームが土台となって各ストリームアラインドチームを支え、コンプリケイテッドサブシステムは特定のチームへ提供し、イネイブリングはストリームアラインドチームと重なってコラボレーションで接する（配色は識別用であり原書由来ではない）</figcaption>
-      </figure>
-
+      <h3 class="ic"><span class="emoji">🌊</span>ストリームアラインドチームを主役に据える</h3>
+      <p class="summary">ストリームアラインドチームは単一の価値の流れに責任を持ち、組織の大半を占めるべき存在である。残る3タイプはこのチームを支えるために存在する。</p>
+      <p>著者は、価値が顧客に届く流れに沿ったチームこそが成果を生む中心だとする。他の3タイプは、それ自体が目的ではなく、ストリームアラインドチームの認知負荷を下げ、流れを速めるための支援役として位置づけられる。著者はストリームアラインドチームの比率を高く保つことを勧め、支援タイプを過剰に増やさないようにする。</p>
       <ul>
-        <li>支援的な3タイプの目的は、ストリームアラインドチームの認知負荷を下げることにある。</li>
-        <li>チームの種類を限定することで、チーム間の関係も整理しやすくなる。</li>
+        <li>組織のチームの多くをストリームアラインドチームにする。</li>
+        <li>支援3タイプは、ストリームの流れを助ける目的に限って置く。</li>
       </ul>
       <div class="callout why">
-        <span class="emoji">🧠</span>
-        <div><span class="ctitle">なぜ4タイプに絞るのか</span><p>チームの種類を増やすほど、誰が何に責任を持つかが曖昧になり、やり取りも複雑になる。4タイプに集約することで、責任と関係の設計が単純になる。</p></div>
+        <span class="emoji">🧩</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>価値は流れとして生まれる。ゆえに流れに沿ったチームを中心に置き、他は流れを速める役に徹するのが合理的になる。</p></div>
       </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏗️</span>プラットフォームはサービスとして提供する</h3>
+      <p class="summary">プラットフォームチームは、利用側が自分で使えるセルフサービスとして基盤を提供する。提供範囲は「最も薄く生存可能なプラットフォーム」にとどめる。</p>
+      <p>著者は、プラットフォームの目的を、ストリームアラインドチームの課題外在的負荷を肩代わりすることに置く。基盤を作り込みすぎるとプラットフォーム自体が複雑化し、利用側に新たな学習負荷を課してしまう。そこで、価値を出すのに必要な最小限に絞る<span class="term">最も薄く生存可能なプラットフォーム</span>（TVP）という考え方を示す。</p>
+      <ul>
+        <li>プラットフォームは命令ではなくセルフサービスで利用される。</li>
+        <li>提供範囲は、利用側の負荷を本当に減らす最小限にとどめる。</li>
+      </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">ストリームアラインド</span><span class="k">プラットフォーム</span><span class="k">イネイブリング</span><span class="k">コンプリケイテッドサブシステム</span></div>
+    <div class="keywords"><span class="k">ストリームアラインド</span><span class="k">イネイブリング</span><span class="k">複雑なサブシステム</span><span class="k">プラットフォーム</span><span class="k">TVP</span></div>
   </section>
 
   <!-- ===== 第6章 ===== -->
@@ -252,54 +158,43 @@
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>ソフトウェアとチームの責任境界は、<mark>認知負荷とフローを基準に引く</mark>。分割の切れ目（フラクチャープレーン）を意識し、<mark>チームが無理なく所有できる単位</mark>に分ける。</p>
+        <p>システムは自然な「割れ目（フラクチャープレーン）」で分割する。境界の良し悪しは、それがチームの認知負荷に収まり、自律性を高めるかで判断する。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">✂️</span>分割の切れ目（フラクチャープレーン）で分ける</h3>
-      <p class="summary">著者は、ソフトウェアを技術レイヤーではなく、自然に分割できる切れ目で分けるべきだと主張する。最も基本的な切れ目はビジネスドメインである。</p>
+      <h3 class="ic"><span class="emoji">🪓</span>自然な割れ目で分割する</h3>
+      <p class="summary">システムを分けるときは、無理な切れ目ではなく、もともと存在する自然な境界＝<span class="term">フラクチャープレーン</span>に沿わせる。</p>
+      <p>著者は、業務ドメインの違い、規制・コンプライアンスの境目、変更の頻度（カデンス）の違い、地理・タイムゾーンの違いなどが、分割に適した自然な割れ目になると説明する。これらの線に沿って分ければ、結合の弱い箇所で切れるため、分割後のチームが互いに干渉せず自律して動ける。逆に割れ目を無視した分割は、強く結合した部分を断ち切り、調整コストを増やす。</p>
       <ul>
-        <li>ビジネスドメインの境界は、チームが独立して価値を届けられる単位になりやすい。</li>
-        <li>規制・リスク・変更頻度・技術など、他の切れ目で分けたほうがよい場合もある。</li>
+        <li>業務ドメイン：価値や責任の自然な区切り。</li>
+        <li>規制・コンプライアンス：監査や規制要件の境目。</li>
+        <li>変更頻度（カデンス）：更新の速さが異なる部分。</li>
+        <li>地理・タイムゾーン：チームの所在地による分かれ目。</li>
       </ul>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">⚖️</span>認知負荷に収まる境界を引く</h3>
-      <p class="summary">境界を決める基準は、担当範囲が<span class="term">チームの認知負荷に収まるか</span>である。フロー（価値が滞りなく流れること）を妨げない範囲で、チームが所有できる大きさに区切る。</p>
-      <div class="versus">
-        <div class="side a">
-          <h4>📐 技術レイヤーで分ける</h4>
-          <ul>
-            <li>フロントエンド・バックエンド・DBなど層で割る</li>
-            <li>一つの価値を届けるのに多くのチームをまたぐ</li>
-            <li>引き継ぎと調整が増え、フローが滞る</li>
-          </ul>
-        </div>
-        <div class="vs"><span>VS</span></div>
-        <div class="side b">
-          <h4>🌊 価値の流れで分ける</h4>
-          <ul>
-            <li>ビジネスドメインなどの切れ目で割る</li>
-            <li>一つのチームが端から端まで届けられる</li>
-            <li>認知負荷に収まり、独立して進められる</li>
-          </ul>
-        </div>
-      </div>
-      <div class="callout warn">
-        <span class="emoji">⚠️</span>
-        <div><span class="ctitle">境界を誤ると起きること</span><p>切れ目を無視して分けると、チームをまたぐ調整が増え、認知負荷が膨らむ。境界はチームが所有しきれる範囲に引かなければ、フローはかえって悪化する。</p></div>
+      <h3 class="ic"><span class="emoji">🧠</span>境界の基準は認知負荷と自律性</h3>
+      <p class="summary">良い境界とは、分割後の各チームが自分の担当を認知負荷の範囲内で完結でき、他チームに頼らず動ける境界である。</p>
+      <p>著者は、アーキテクチャ上の変更案を「それがより自律的なチームを生むか」で評価せよと述べる。境界が認知負荷を超えれば、チームは担当を抱えきれず品質と速度を落とす。ゆえに境界設計は技術的な分割であると同時に、チームが背負える負荷の設計でもある、という第3章の認知負荷論とつながる。</p>
+      <ul>
+        <li>分割案は「より自律的なチームを生むか」でテストする。</li>
+        <li>各チームの担当が、認知負荷の上限に収まるよう境界を引く。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🧩</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>境界が認知負荷を超えると流れが滞る。ゆえに技術的な切り方は、チームが背負える負荷を基準に決める。</p></div>
       </div>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">フラクチャープレーン</span><span class="k">ビジネスドメイン境界</span><span class="k">認知負荷</span><span class="k">フロー</span><span class="k">チームの所有</span></div>
+    <div class="keywords"><span class="k">フラクチャープレーン</span><span class="k">境界</span><span class="k">自律性</span><span class="k">カデンス</span><span class="k">認知負荷</span></div>
   </section>
 
   <nav class="pager">
-    <a class="prev" href="part1.html"><span class="dir">← 前</span><span class="ttl">第Ⅰ部 デリバリーの手段としてのチーム</span></a>
-    <a class="next" href="part3.html"><span class="dir">次 →</span><span class="ttl">第Ⅲ部 チームインタラクションを進化させる</span></a>
+    <a class="prev" href="part1.html"><span class="dir">← 前</span><span class="ttl">第I部 デリバリーの手段としてのチーム</span></a>
+    <a class="next" href="part3.html"><span class="dir">次 →</span><span class="ttl">第III部 チームインタラクションを進化させる</span></a>
   </nav>
 
 </main>

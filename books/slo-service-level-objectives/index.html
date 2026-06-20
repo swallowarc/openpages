@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLO サービスレベル目標 ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#1f6f8b; --accent-soft:#e7f1f4; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SLO サービスレベル目標</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第I部</a>
+      <a href="part2.html">第II部</a>
+      <a href="part3.html">第III部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">READING NOTES</span>
+  <h1>SLO サービスレベル目標</h1>
+  <p class="lead">SLI・SLO・エラーバジェットを「定義し、計測し、運用し、組織に定着させる」ための実践ガイド。本まとめは全17章を3部構成に沿って整理し、各論点について著者の論拠・前提・筋道まで展開する詳細モードでまとめたものである。</p>
+</header>
+
+<main>
+
+  <!-- ===== ご利用前の注意（固定文・文言は変更しない） ===== -->
+  <aside class="about-notice">
+    <span class="emoji">⚠️</span>
+    <div>
+      <span class="ctitle">ご利用前の注意</span>
+      <p>このまとめは、AIエージェントによる本書のWebリサーチの結果から生成したものです。書籍本文そのものから作成したものではないため、内容が書籍と一致していない可能性があり、また本書の内容を網羅したものでもありません。読む前に全体像のイメージをつかむため、または読了後に内容を見直す際の参考資料として、読書のサポート用にご活用ください。</p>
+    </div>
+  </aside>
+
+  <!-- ===== 書誌情報 ===== -->
+  <section class="bibliography">
+    <p class="title">SLO サービスレベル目標 ―SLI、SLO、エラーバジェット導入の実践ガイド／原題：Implementing Service Level Objectives</p>
+    <dl>
+      <dt>著者</dt><dd>Alex Hidalgo</dd>
+      <dt>訳者</dt><dd>監訳：山口能迪 ／ 訳：山口能迪、成田昇司</dd>
+      <dt>出版社</dt><dd>オライリー・ジャパン</dd>
+      <dt>発行年</dt><dd>2023年7月（432ページ／ISBN 978-4-8144-0034-8）</dd>
+    </dl>
+  </section>
+
+  <!-- ===== 本の全体像 ===== -->
+  <section class="book-overview">
+    <h2>本書の全体像</h2>
+    <p>本書は、信頼性を「感覚」ではなく「数値で扱える対象」に変えるための枠組みを示す。中核は<span class="term">信頼性スタック</span>であり、サービスレベル指標（SLI）の上にサービスレベル目標（SLO）が乗り、100%とSLOの差としてエラーバジェットが定まる、という三層の積み上げで構成される。著者は、あらゆるサービスは100%の信頼性を達成できず、また達成する必要もないと述べ、ユーザーが満足する水準を目標に置き、その目標と実測の差を意思決定に使うことを主張する。</p>
+    <p>構成は三部からなる。第I部はSLI・SLO・エラーバジェットという基本概念を定義し（開発）、第II部はそれを現実のシステム・計測・確率統計に落とし込み（実装）、第III部はSLOを単発の施策でなく継続する組織文化として定着させる方法を扱う（文化）。著者は一貫して、SLOは技術的成果物であると同時に組織的な合意形成のプロセスである、という立場を取る。</p>
+  </section>
+
+  <!-- ===== ターゲット読者 ===== -->
+  <section class="book-overview">
+    <h2>この本がターゲットとする読者</h2>
+    <p>信頼性を実務として扱うエンジニアと、その意思決定に関わる役割を想定読者とする。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
+    <div class="persona-grid">
+      <div class="persona">
+        <span class="emoji">🛠️</span>
+        <h3>SRE・プラットフォームエンジニア</h3>
+        <p>SLOの存在は知っているが、自組織でSLI/SLO/エラーバジェットを定義・計測・運用する具体手段を求める層。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">💻</span>
+        <h3>サービス担当の開発者</h3>
+        <p>自分のサービスの信頼性をユーザー視点の指標に翻訳し、リリース判断に結び付けたい層。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">📊</span>
+        <h3>エンジニアリングマネージャー</h3>
+        <p>信頼性と開発速度のトレードオフを、感覚でなくデータで関係者と合意したい層。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">📐</span>
+        <h3>数値で信頼性を扱いたい実務者</h3>
+        <p>確率・統計を使ってSLO目標値の妥当性を検証する意欲のある層。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== おすすめの読み進め方（AIによる分析・本書外） ===== -->
+  <section class="ai-analysis">
+    <div class="ai-badge"><span class="emoji">🤖</span>AIによる分析 ― 本書の記述ではなく、内容に基づく独自提案</div>
+    <h2>おすすめの読み進め方</h2>
+    <p>本書は、第I部を順に読んで概念の土台を作り、第II部・第III部は自分の課題に近い順で読む構成を想定している。本まとめでもまず第I部を通読し、その後は立場に応じて読む順序を選ぶことを提案する。</p>
+    <div class="path-row">
+      <span class="who">これからSLOを始める</span>
+      <span class="route"><b>第I部（1〜5章）</b>で概念を固める → <b>第II部の6章（同意の獲得）・12章（実例）</b>で導入の道筋をつかむ</span>
+    </div>
+    <div class="path-row">
+      <span class="who">計測・アラートを作りたい</span>
+      <span class="route">第I部で定義を確認 → <b>第II部（7・8・9章）</b>の計測・アラート・確率統計を重点的に</span>
+    </div>
+    <div class="path-row">
+      <span class="who">組織に定着させたい</span>
+      <span class="route">第I部・6章を押さえる → <b>第III部（13〜17章）</b>の文化・進化・提唱・レポートへ</span>
+    </div>
+  </section>
+
+  <!-- ===== 各ページへのカードナビ ===== -->
+  <div class="section-label">構成 ― クリックで各ページへ</div>
+  <div class="part-grid">
+    <a class="part-card" style="--pc:#1f6f8b" href="part1.html">
+      <span class="pc-eyebrow">PART I ― 第1〜5章</span>
+      <h3>SLOの開発</h3>
+      <p>信頼性スタック、ユーザー視点のSLI、100%を目標にしないSLO、エラーバジェットという基本概念を定義する。</p>
+      <div class="chapters"><span>1</span> 信頼性スタック ／ <span>2</span> 信頼性についての考え方 ／ <span>3</span> 意味のあるSLIの開発 ／ <span>4</span> 適切なSLOの選択 ／ <span>5</span> エラーバジェットの使い方</div>
+    </a>
+    <a class="part-card" style="--pc:#b5651d" href="part2.html">
+      <span class="pc-eyebrow">PART II ― 第6〜12章</span>
+      <h3>SLOの実装</h3>
+      <p>同意の獲得から始め、計測・アラート・確率統計・アーキテクチャ・データ信頼性を経て、一気通貫の実例に至る。</p>
+      <div class="chapters"><span>6</span> 同意の獲得 ／ <span>7</span> SLIとSLOの計測 ／ <span>8</span> 監視とアラート ／ <span>9</span> 確率と統計 ／ <span>10</span> アーキテクチャ ／ <span>11</span> データの信頼性 ／ <span>12</span> 適切に機能した例</div>
+    </a>
+    <a class="part-card" style="--pc:#5b7d3a" href="part3.html">
+      <span class="pc-eyebrow">PART III ― 第13〜17章</span>
+      <h3>SLOの文化</h3>
+      <p>SLOを継続プロセスとして反復・進化させ、発見可能・理解可能にし、社内で提唱し、信頼性をレポートする。</p>
+      <div class="chapters"><span>13</span> SLO文化の構築 ／ <span>14</span> SLOの進化 ／ <span>15</span> 発見可能で理解可能なSLO ／ <span>16</span> SLOの提唱 ／ <span>17</span> 信頼性のレポート</div>
+    </a>
+  </div>
+
+</main>
+
+<footer class="foot"><p>SLO サービスレベル目標 要点まとめ</p></footer>
+
+</body>
+</html>

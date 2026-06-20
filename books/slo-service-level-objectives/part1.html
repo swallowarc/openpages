@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第I部 SLOの開発 ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#1f6f8b; --accent-soft:#e7f1f4; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SLO サービスレベル目標</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第I部</a>
+      <a href="part2.html">第II部</a>
+      <a href="part3.html">第III部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART I ― 第1〜5章</span>
+  <h1>SLOの開発</h1>
+  <p class="lead">信頼性を数値で扱うための基本概念を定義する部である。SLI・SLO・エラーバジェットという三層の積み上げ（信頼性スタック）を導入し、100%を目標に置かないという立場と、その目標をユーザー視点で決める方法を示す。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch1"><span class="ch-no">1</span><span>信頼性スタック</span></a></li>
+      <li><a href="#ch2"><span class="ch-no">2</span><span>信頼性についての考え方</span></a></li>
+      <li><a href="#ch3"><span class="ch-no">3</span><span>意味のあるサービスレベル指標の開発</span></a></li>
+      <li><a href="#ch4"><span class="ch-no">4</span><span>適切なサービスレベル目標の選択</span></a></li>
+      <li><a href="#ch5"><span class="ch-no">5</span><span>エラーバジェットの使い方</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第1章 ===== -->
+  <section class="chapter" id="ch1">
+    <div class="chapter-head"><span class="num">第1章</span><h2>信頼性スタック</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>信頼性は、SLI・SLO・エラーバジェットという三層を下から積み上げて初めて扱える。各層は下の層を前提に成り立つ。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧱</span>信頼性は三層のスタックとして積み上がる</h3>
+      <p class="summary"><span class="term">信頼性スタック</span>は、SLI（指標）の上にSLO（目標）が乗り、SLOと100%の差としてエラーバジェット（許容できる失敗の量）が定まる三層構造である。</p>
+      <p>著者がこの順序を置くのは、各層が下層を前提にしているからである。何を信頼性とみなすかを測る指標（SLI）がなければ、達成すべき水準（SLO）を数値で置くことはできない。そしてSLOという目標が決まって初めて、その目標が許す失敗の量（エラーバジェット）を差分として計算できる。つまり上の層は下の層が定義されない限り意味を持たない、という積み上げの関係になっている。</p>
+      <ul>
+        <li><b>SLI（指標）</b>＝サービスの挙動を測る測定値。スタックの土台。</li>
+        <li><b>SLO（目標）</b>＝SLIが満たすべき目標水準。指標の上に乗る。</li>
+        <li><b>エラーバジェット</b>＝100%とSLOの差。許容できる不信頼の量。</li>
+      </ul>
+
+      <figure style="margin:20px 0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;">
+        <svg viewBox="0 0 460 210" role="img" aria-label="信頼性スタックの三層構造" style="width:100%;height:auto;max-width:460px;display:block;margin:0 auto;">
+          <rect x="80" y="20" width="300" height="44" rx="6" fill="var(--accent-soft)" stroke="var(--accent)"/>
+          <text x="230" y="47" text-anchor="middle" font-size="15" fill="var(--ink)">エラーバジェット（100% − SLO）</text>
+          <rect x="80" y="74" width="300" height="44" rx="6" fill="var(--card)" stroke="var(--accent)"/>
+          <text x="230" y="101" text-anchor="middle" font-size="15" fill="var(--ink)">SLO（目標）</text>
+          <rect x="80" y="128" width="300" height="44" rx="6" fill="var(--card)" stroke="var(--accent)"/>
+          <text x="230" y="155" text-anchor="middle" font-size="15" fill="var(--ink)">SLI（指標）＝土台</text>
+          <text x="46" y="100" text-anchor="middle" font-size="12" fill="var(--ink-faint)" transform="rotate(-90 46 100)">積み上げ ↑</text>
+        </svg>
+        <figcaption style="font-size:12px;color:var(--ink-faint);margin-top:8px;text-align:center;">信頼性スタックの三層。下層が上層の前提になる（三層構造は本書による。配色・配置は識別用であり原書由来ではない）。</figcaption>
+      </figure>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>サービスとは何か、なぜ信頼性が最も重要な機能なのか</h3>
+      <p class="summary">ユーザーが存在し、何かを期待して使うものはすべてサービスである。そして信頼性は、サービスが持つどの機能よりも重要な機能だと著者は位置づける。</p>
+      <p>その根拠は、信頼できないサービスでは他のどの機能も価値を届けられない、という点にある。新機能や高速さがあっても、ユーザーがアクセスできなければそれらは使われない。ゆえに信頼性はオプションではなく前提条件であり、最初に扱うべき機能だと導かれる。</p>
+      <ul>
+        <li>サービスは大規模なシステムだけでなく、内部の小さなコンポーネントも含む。</li>
+        <li>信頼性は「あれば良い」属性ではなく、他機能が機能するための土台。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔁</span>SLOはデータであり、プロジェクトでなくプロセスである</h3>
+      <p class="summary">SLOは到達したら終わる目標物ではない。SLOは判断材料となるデータであり、繰り返し見直し続ける継続的なプロセスとして扱う。</p>
+      <p>この主張の前提は、サービスもユーザーの期待も時間とともに変わる、という認識である。一度決めた目標が永続的に正しいことはないため、SLI・SLO・バジェットのすべてを反復して更新する対象とみなす。著者が「すべてを反復せよ」と述べるのはこのためである。</p>
+      <ul>
+        <li>SLOは命令でも契約でもなく、意思決定に使う<b>データ</b>。</li>
+        <li>完了する「プロジェクト」ではなく、回し続ける「プロセス」。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">信頼性スタック</span><span class="k">SLI</span><span class="k">SLO</span><span class="k">エラーバジェット</span><span class="k">サービス</span></div>
+  </section>
+
+  <!-- ===== 第2章 ===== -->
+  <section class="chapter" id="ch2">
+    <div class="chapter-head"><span class="num">第2章</span><h2>信頼性についての考え方</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>100%は正しい信頼性目標ではない。目標はユーザーが満足する水準に置くべきで、過剰な信頼性はかえって害になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚫</span>100%は誤った目標である</h3>
+      <p class="summary">どんなサービスも100%の信頼性を達成できず、また達成する必要もない。100%を目標に掲げること自体が誤りだと著者は主張する。</p>
+      <p>論拠は二つある。第一に、到達不能だという技術的事実である。サービスは依存先・ネットワーク・ユーザー側の端末など自分で制御できない要素に囲まれており、どこかで必ず失敗が起きる。第二に、知覚の問題である。ユーザーは経路上のどこかで生じる障害を含めてサービスを体験するため、サーバ側が100%でも体験は100%にならない。したがって到達不能な100%を基準にするのではなく、ユーザーが満足する現実的な水準を基準に置くべきだ、という筋道になる。</p>
+      <ul>
+        <li>制御できない依存先がある以上、100%は構造的に到達不能。</li>
+        <li>ユーザーは経路全体を体験するため、サーバ側の完璧さは体験の完璧さを意味しない。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>信頼性の基準を「システムの内部状態」ではなく「ユーザーの知覚」に置くから、到達不能で知覚もされない100%は目標として不適切になる。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚖️</span>信頼性は高すぎても問題になる</h3>
+      <p class="summary">信頼性は低すぎても高すぎても望ましくない。ちょうどよい水準が存在し、それを超える信頼性は資源を浪費する。</p>
+      <p>過剰な信頼性が問題になる理由は二つ示される。一つは、信頼性を1段階上げるたびにコストが急増し、ユーザーが知覚しない差のために資源を使うことになる点。もう一つは、提供側が常に完璧だと、利用側がその完璧さを暗黙の前提にして設計してしまい、わずかな低下にも耐えられない依存関係が生まれる点である。ゆえに目標は「できる限り高く」ではなく「ユーザーが満足する範囲で十分」に置く。</p>
+      <ul>
+        <li>信頼性向上のコストは水準が上がるほど急に増える。</li>
+        <li>過剰な可用性は、利用側に過剰な依存を生む。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">100%は不要</span><span class="k">ユーザーの知覚</span><span class="k">ちょうどよい信頼性</span><span class="k">コスト</span></div>
+  </section>
+
+  <!-- ===== 第3章 ===== -->
+  <section class="chapter" id="ch3">
+    <div class="chapter-head"><span class="num">第3章</span><h2>意味のあるサービスレベル指標の開発</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SLIは、ユーザーが体験する事象を数えて作る。「有効なイベントのうち良いイベントの割合」がSLIの基本形である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">👤</span>SLIはユーザー視点で定義する</h3>
+      <p class="summary">良いSLIは、CPU使用率のような内部メトリクスではなく、ユーザーが実際に体験する事象から作る。基本形は「良いイベント ÷ 有効なイベント × 100」である。</p>
+      <p>著者がこの形を採るのは、内部指標が必ずしもユーザー体験と相関しないからである。CPUが高くても応答が速ければユーザーは困らず、CPUが低くてもエラーが返れば体験は悪い。そこで「成功した（良い）リクエスト」を「対象となる（有効な）リクエスト」で割る比率を指標とし、ユーザーが感じる成否を直接数える。これにより指標がユーザー体験を代表するようになる、という筋道である。</p>
+      <ul>
+        <li>分子＝良いイベント（期待どおりに処理された事象）。</li>
+        <li>分母＝有効なイベント（指標の対象とすべき事象）。</li>
+        <li>内部リソース指標は、ユーザー体験を表すとは限らない。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>「良いイベント／有効なイベント」という比率の形は、Google のSRE関連文献でも共通して使われる定式化である。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>SLIは数を絞り、意味のあるものに限る</h3>
+      <p class="summary">指標は多ければよいわけではない。ユーザーにとって意味のある少数のSLIに絞る。</p>
+      <p>前提は、すべてを計測すると重要な信号がノイズに埋もれる、という認識である。ユーザーの体験を代表する少数の指標に絞れば、その悪化がそのまま「ユーザーが困っている」ことを意味し、目標やアラートの根拠として使える。多数の内部指標を並べるより、代表性の高い少数を選ぶ方が判断に役立つ、と導かれる。</p>
+      <ul>
+        <li>計測対象は網羅でなく代表性で選ぶ。</li>
+        <li>SLIはこの後のSLO・エラーバジェットの土台になるため、質が全体を左右する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">SLI</span><span class="k">良いイベント／有効なイベント</span><span class="k">ユーザー視点</span><span class="k">指標の代表性</span></div>
+  </section>
+
+  <!-- ===== 第4章 ===== -->
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="num">第4章</span><h2>適切なサービスレベル目標の選択</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SLOは100%未満の現実的な目標であり、過去の実測やユーザーの満足境界を根拠に決める。「9」を増やすほど代償は大きくなる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📈</span>SLOは過去の実測とユーザー満足から決める</h3>
+      <p class="summary">SLOの目標値は願望で決めるのではなく、過去のSLI実測値と、ユーザーが満足する境界を手がかりに選ぶ。</p>
+      <p>その理由は、達成可能性と妥当性の両方を満たす必要があるからである。過去の実測を見れば、現実に到達できる水準が分かる。ユーザーの満足境界を見れば、どこまで下げると不満が出るかが分かる。この二つに挟まれた範囲に目標を置けば、達成可能でかつユーザーを満足させるSLOになる、という筋道である。著者は、まず実測の分布を見てから目標を引く順序を勧める。</p>
+      <ul>
+        <li>到達可能性は過去のSLI実測値で確認する。</li>
+        <li>妥当性はユーザーが満足する境界で確認する。</li>
+        <li>目標は「達成できる」かつ「ユーザーが満足する」範囲に置く。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">9️⃣</span>「9」の問題 ― 信頼性を上げるほど代償が増える</h3>
+      <p class="summary">99.9%から99.99%へと「9」を一つ増やすたびに、必要な労力とコストは急激に増える。むやみに9を増やすべきではない。</p>
+      <p>論拠は、許される失敗量が桁で縮むことにある。9が増えるごとに許容ダウンタイムは一桁小さくなる一方、それを実現する設計・運用の難度と費用は不釣り合いに大きくなる。しかもその差はユーザーにほとんど知覚されない。よって、9を増やす判断は「ユーザーがその差を必要とするか」を基準に行うべきで、技術的に可能だからという理由で増やすのは誤りだ、と導かれる。</p>
+      <ul>
+        <li>9を一つ増やすと許容される失敗量は一桁縮む。</li>
+        <li>実現コストは線形に増えず、急に重くなる。</li>
+        <li>差はユーザーに知覚されないことが多い。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">SLO目標値</span><span class="k">過去データ</span><span class="k">9の問題</span><span class="k">満足境界</span></div>
+  </section>
+
+  <!-- ===== 第5章 ===== -->
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="num">第5章</span><h2>エラーバジェットの使い方</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>エラーバジェットは「100% − SLO」で求める許容失敗量であり、信頼性と開発速度のトレードオフをデータで判断するために使う。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧮</span>エラーバジェットの定義</h3>
+      <p class="summary">エラーバジェットは、SLOが許容する失敗の量である。SLOが99.9%なら、残り0.1%が使ってよい失敗の枠になる。</p>
+      <p>この量を明示的に扱う意味は、信頼性の余力を可視化できる点にある。目標を100%にしないと決めた時点で、許される失敗の量が必ず存在する。その量を予算として数えれば、「あとどれだけ失敗してよいか」が数値で分かり、判断の基準になる。バジェットはSLOの裏側を別の角度から見たものだ、という関係になっている。</p>
+      <ul>
+        <li>エラーバジェット＝100% − SLO。</li>
+        <li>SLOが決まれば、バジェットは自動的に定まる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤝</span>バジェットは意思決定をデータに置き換える</h3>
+      <p class="summary">エラーバジェットの主目的は、信頼性と変更速度のトレードオフを、立場や声の大きさでなくデータで決められるようにすることである。</p>
+      <p>背景には、信頼性チームと開発チームの対立がしばしば感情や力関係で決着する、という問題意識がある。バジェットが残っているうちは新機能の投入や実験に余力を回し、バジェットを使い切ったら信頼性の回復を優先する——この単純な規則を共有すれば、「いつリスクを取ってよいか」の判断が共通の数値に基づくものになる。これにより、両者の議論を客観的な基準の上に置ける、という筋道である。</p>
+      <ul>
+        <li>バジェットに余裕がある→変更・実験に充ててよい。</li>
+        <li>バジェットを使い切った→信頼性の回復を優先する。</li>
+        <li>判断の根拠が「数値」になり、関係者が同じ基準で合意できる。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>信頼性と速度はトレードオフであり、両立できない以上、どちらを優先するかを毎回決める必要がある。その判断基準を共通の数値（残りバジェット）にすることが、バジェットの存在意義である。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">エラーバジェット</span><span class="k">100%−SLO</span><span class="k">トレードオフ</span><span class="k">データ駆動の意思決定</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="index.html"><span class="dir">← 目次</span><span class="ttl">トップへ</span></a>
+    <a class="next" href="part2.html"><span class="dir">次 →</span><span class="ttl">第II部 SLOの実装</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>SLO サービスレベル目標 要点まとめ</p></footer>
+
+</body>
+</html>

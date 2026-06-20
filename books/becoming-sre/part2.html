@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第Ⅱ部 個人がSREをはじめるには ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#2f8f6b; --accent-soft:#eaf5f0; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SREをはじめよう</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第Ⅰ部</a>
+      <a href="part2.html">第Ⅱ部</a>
+      <a href="part3.html">第Ⅲ部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART Ⅱ ― 第5〜10章</span>
+  <h1>個人がSREをはじめるには</h1>
+  <p class="lead">個人がSREになるための準備、出発点別の移行、採用、日々の働き方、トイルとの関係、失敗からの学習を扱う。第Ⅰ部の心構えを、個人のキャリアと実務に落とし込む。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch5"><span class="ch-no">5</span><span>SREになるための準備</span></a></li>
+      <li><a href="#ch6"><span class="ch-no">6</span><span>…からSREになる</span></a></li>
+      <li><a href="#ch7"><span class="ch-no">7</span><span>採用されるためのヒント</span></a></li>
+      <li><a href="#ch8"><span class="ch-no">8</span><span>SREのある一日</span></a></li>
+      <li><a href="#ch9"><span class="ch-no">9</span><span>トイルとの関係を築く</span></a></li>
+      <li><a href="#ch10"><span class="ch-no">10</span><span>失敗から学習する</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第5章 ===== -->
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="num">第5章</span><h2>SREになるための準備</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREになるのに特定の資格は前提でなく、基礎となる知識・能力を幅広く備えることが準備になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚪</span>コーディングやCS学位は必須でない</h3>
+      <p class="summary">SREになるためにコーディング能力やコンピュータサイエンスの学位が必須条件だとは限らないと示す。</p>
+      <p>著者がこの問いを冒頭に置くのは、入口の要件を過大に見積もって挑戦をためらう層を想定しているためである。これらは有用ではあっても唯一の入口ではなく、複数の出発点からSREに至れるという筋道で、6章の出発点別アドバイスへの導入になる。</p>
+      <ul>
+        <li>必須要件ではなく有用な要素として位置づける。</li>
+        <li>入口を一つに限定しない姿勢を示す。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧱</span>備えるべき基礎の広がり</h3>
+      <p class="summary">単一・分散システムとその障害モード、統計とデータ可視化、ストーリーテリング、良き人であること、を基礎として挙げる。</p>
+      <p>基礎の範囲が技術にとどまらない前提には、SREの仕事が「俯瞰」「フィードバックループ」「人との関係」（第Ⅰ部）に支えられるという見方がある。システムと障害の理解は信頼性の土台、統計と可視化はデータに基づく判断の土台、ストーリーテリングは提唱（4章）の土台、人としての在り方は協働の土台、という形でそれぞれが心構えに対応づけられる。</p>
+      <ul>
+        <li>単一/分散システムと、その障害モードの理解。</li>
+        <li>統計とデータ可視化（観測と判断の基礎）。</li>
+        <li>ストーリーテリング（伝える力）。</li>
+        <li>良き人であること（協働の基礎）。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">➕</span>発展的な領域</h3>
+      <p class="summary">基礎の先に、発展的に学べる領域を挙げる。</p>
+      <p>これらを「発展（ボーナス）」として基礎と区別するのは、入口の必須要件ではないと明確にするためである。準備段階で全てを備える必要はなく、土台の上に段階的に広げられるという筋道で提示される。</p>
+      <ul>
+        <li>NALSD（非抽象的な大規模システム設計）。</li>
+        <li>レジリエンス工学、カオス工学、性能工学。</li>
+        <li>機械学習・人工知能。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>NALSD（Non-Abstract Large System Design）は、大規模システムを具体的な数値・容量に落として設計する考え方を指す用語である。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">基礎</span><span class="k">障害モード</span><span class="k">統計</span><span class="k">NALSD</span><span class="k">レジリエンス工学</span></div>
+  </section>
+
+  <!-- ===== 第6章 ===== -->
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="num">第6章</span><h2>…からSREになる</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREへの移行は出発点ごとに道筋が異なり、現在の役割に応じたアドバイスが有効になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>出発点別の移行アドバイス</h3>
+      <p class="summary">学生、開発者、システム管理者、非技術職など、出発点別に移行の道筋を示す。</p>
+      <p>出発点で分けて論じる前提は、すでに持っている知識・経験が立場ごとに違い、補うべきものも異なるという認識である。一律の手順でなく、それぞれの強みを活かし不足を補う形で移行を設計する、という筋道で各立場へのアドバイスが構成される。すでにSREに近い仕事をしている可能性にも触れる。</p>
+      <ul>
+        <li>学生・開発者・システム管理者・非技術職などを区別する。</li>
+        <li>各立場の既存の強みを起点にする。</li>
+        <li>技術職・非技術職の双方からの移行を扱う。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📈</span>進捗を追って継続する</h3>
+      <p class="summary">移行の進み具合を自分で追跡し、継続することを勧める。</p>
+      <p>移行が一度の決断でなく時間をかけた過程である以上、進捗を可視化して続ける仕掛けが必要になる、という筋道で進捗追跡を勧める。</p>
+      <ul>
+        <li>移行を継続的な過程として扱う。</li>
+        <li>進捗の追跡を継続の支えにする。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">移行</span><span class="k">出発点</span><span class="k">進捗追跡</span></div>
+  </section>
+
+  <!-- ===== 第7章 ===== -->
+  <section class="chapter" id="ch7">
+    <div class="chapter-head"><span class="num">第7章</span><h2>SREとして採用されるためのヒント</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>採用の場では、求人票を読み解き、面接に備え、こちらからも適切に問うことが重要になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔍</span>求人票を読み解く</h3>
+      <p class="summary">求人票の記述を吟味し、その役割が実際に何を指すかを見極める。</p>
+      <p>同じ「SRE」という肩書きでも組織によって実態が異なるという前提から、著者は求人票の精読を勧める。第Ⅲ部で扱う「肩書きの付け替え」などの失敗パターン（12章）を踏まえると、名称だけで判断せず実態を読み取る必要がある、という筋道になる。</p>
+      <ul>
+        <li>肩書きと実態が一致しない場合がある。</li>
+        <li>記述から実際の業務内容を推し量る。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗨️</span>面接に備え、こちらからも問う</h3>
+      <p class="summary">面接の準備に加え、応募者の側から問うべきことを持って臨む。</p>
+      <p>採用を双方向の見極めと捉える前提から、著者は質問する側に回ることも重視する。組織のSREの実態（求人票だけでは分からない点）を面接で確かめることが、入った後のミスマッチを避ける筋道になる。</p>
+      <ul>
+        <li>面接の準備を整える。</li>
+        <li>応募者の側から組織のSRE実態を確認する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">求人票</span><span class="k">面接</span><span class="k">見極め</span></div>
+  </section>
+
+  <!-- ===== 第8章 ===== -->
+  <section class="chapter" id="ch8">
+    <div class="chapter-head"><span class="num">第8章</span><h2>SREのある一日</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREの一日は単一の作業でなく複数の「モード」から成り、その間のバランスが働き方の鍵になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗂️</span>一日を構成する複数のモード</h3>
+      <p class="summary">SREの一日は、インシデント対応や構築、計画、協働、回復など複数のモードを行き来する。</p>
+      <p>モードという捉え方を置く前提は、SREの仕事を「障害対応係」のような単一像で語ると実態を取り違える、という認識である。実際には性質の異なる作業が併存し、それぞれが別の集中の仕方を要する、という筋道で、一日を複数モードの集合として描く。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#c0392b"><b>インシデント/障害対応</b>：進行中の障害に対応するモード。</div>
+        <div class="way-row" style="--wc:#2f8f6b"><b>事後学習</b>：インシデント後に学ぶモード。</div>
+        <div class="way-row" style="--wc:#3a6ea5"><b>構築/プロジェクト/学習</b>：作る・学ぶモード。</div>
+        <div class="way-row" style="--wc:#8e6fb0"><b>アーキテクチャ</b>：設計に向き合うモード。</div>
+        <div class="way-row" style="--wc:#b06a2c"><b>マネジメント/計画</b>：管理・計画のモード。</div>
+        <div class="way-row" style="--wc:#2c8c8c"><b>協働</b>：他者と進めるモード。</div>
+        <div class="way-row" style="--wc:#7a8c2c"><b>回復/セルフケア</b>：休息と自己回復のモード。</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚖️</span>モード間のバランス</h3>
+      <p class="summary">どれか一つのモードに偏らず、バランスを取ることを良い一日の条件とする。</p>
+      <p>回復・セルフケアをモードの一つに数える点に、著者の前提が表れる。信頼性は「継続可能」に保つもの（1章）であり、それを担う人自身も持続可能でなければならない、という筋道で、対応一辺倒でなくバランスを取ることが勧められる。</p>
+      <ul>
+        <li>障害対応だけに偏らないようにする。</li>
+        <li>回復・セルフケアを働き方の一部として位置づける。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">モード</span><span class="k">バランス</span><span class="k">セルフケア</span><span class="k">オンコール</span></div>
+  </section>
+
+  <!-- ===== 第9章 ===== -->
+  <section class="chapter" id="ch9">
+    <div class="chapter-head"><span class="num">第9章</span><h2>トイルとの関係を築く</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>トイルを精密に定義し、誰のどのトイルかを見極めたうえで、段階的に削減していく関係を築く。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📖</span>トイルを精密に定義する</h3>
+      <p class="summary">トイルを曖昧な「面倒な作業」でなく、より精密に定義したうえで扱う。</p>
+      <p>定義から入る前提は、対象が曖昧なままでは削減の優先順位も効果測定もできない、という認識である。何がトイルで何がそうでないかを切り分けることが、後続の削減策を意味あるものにする筋道になる。</p>
+      <ul>
+        <li>「面倒な作業」一般と区別して定義する。</li>
+        <li>定義の精度が削減判断の前提になる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🙋</span>誰のトイルか／なぜ気にするか</h3>
+      <p class="summary">トイルを「誰のトイルか」という視点で捉え、SREがそれを気にする理由を示す。</p>
+      <p>主語を問う前提には、トイルが立場によって見え方が変わるという認識がある。SREがトイルを問題視するのは、それが信頼性を継続可能に保つ余力を奪い、価値ある仕事の時間を圧迫するからだ、という筋道で理由づけられる。</p>
+      <ul>
+        <li>トイルの主体を明確にして扱う。</li>
+        <li>継続可能性を損なう要因として問題視する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔄</span>初期と確立期で動態が変わる</h3>
+      <p class="summary">トイルの現れ方と対処は、SREの初期段階と確立段階とで異なる。</p>
+      <p>段階で分ける前提は、組織のSREの成熟度によってトイルの量・種類・削減余地が変わる、という見方である。初期に有効な対処と、確立後に必要となる中〜上級の削減策を区別することで、一律でない対処を促す。</p>
+      <div class="versus">
+        <div class="side a"><h4>初期(Early)</h4><p>立ち上げ期に生じるトイル。まず定義と可視化、基本的な削減が課題になる。</p></div>
+        <div class="vs">VS</div>
+        <div class="side b"><h4>確立期(Established)</h4><p>定着後のトイル。中〜上級の削減策が課題になる。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛠️</span>トイルへの対処</h3>
+      <p class="summary">トイルに対し、基本的な削減から中〜上級の削減まで段階的に取り組む。</p>
+      <p>段階的に示す前提は、すべてのトイルを一度に無くせるわけではない、という現実認識である。まず扱いやすいものから減らし、難度の高いものは中〜上級の手法に進む、という筋道で削減を継続的な営みとして位置づける。</p>
+      <ul>
+        <li>基本的な削減から着手する。</li>
+        <li>中〜上級のトイル削減へ段階的に進む。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">トイル</span><span class="k">定義</span><span class="k">削減</span><span class="k">初期と確立期</span></div>
+  </section>
+
+  <!-- ===== 第10章 ===== -->
+  <section class="chapter" id="ch10">
+    <div class="chapter-head"><span class="num">第10章</span><h2>失敗から学習する</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>失敗は学習の機会であり、事後レビューやレジリエンス工学・カオス工学を通じて学びに変える。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">💬</span>失敗について語る</h3>
+      <p class="summary">失敗を隠すのでなく、語れるものとして扱うことを学習の前提に置く。</p>
+      <p>2章の「失敗との向き合い方」を受け、著者は失敗を語れる状態が学習の出発点だとする。失敗を非難の対象にすると情報が出てこなくなり学べない、という筋道で、語ることを学習の条件として位置づける。</p>
+      <ul>
+        <li>失敗を非難でなく学習の材料として扱う。</li>
+        <li>語れる状態が事後レビューの前提になる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📝</span>事後レビュー ― 基本・プロセス・罠</h3>
+      <p class="summary">事後レビュー(postincident review)を、基本・進め方・陥りやすい罠の観点から整理する。</p>
+      <p>基本から罠までを分けて扱う前提は、事後レビューが形だけ実施されると学びにつながらない、という認識である。何のために行うか（基本）、どう進めるか（プロセス）に加え、よくある失敗（罠）を示すことで、形骸化を避ける筋道を提供する。</p>
+      <ul>
+        <li>事後レビューの基本的な目的を押さえる。</li>
+        <li>進め方（プロセス）を具体化する。</li>
+        <li>陥りやすい罠を避ける。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>事後レビュー（ポストインシデントレビュー）は、障害の後にその経緯と要因を振り返り学びを得る活動を指す。ポストモーテムとも呼ばれる。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧪</span>レジリエンス工学・カオス工学による学習</h3>
+      <p class="summary">起きた失敗の振り返りに加え、レジリエンス工学やカオス工学を通じても失敗から学ぶ。</p>
+      <p>事後レビューが起きた失敗を扱うのに対し、これらは失敗への耐性や、意図的に負荷・障害を与えての学習を扱う。学習の経路を事後だけに限定しないことで、失敗からの学びを継続的・能動的なものに広げる、という筋道になる。</p>
+      <ul>
+        <li>レジリエンス工学を通じた学習。</li>
+        <li>カオス工学を通じた学習。</li>
+        <li>失敗からの学習を次の一歩につなげる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">失敗からの学習</span><span class="k">事後レビュー</span><span class="k">レジリエンス工学</span><span class="k">カオス工学</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part1.html"><span class="dir">← 前</span><span class="ttl">第Ⅰ部 SRE入門</span></a>
+    <a class="next" href="part3.html"><span class="dir">次 →</span><span class="ttl">第Ⅲ部 組織がSREをはじめるには</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>SREをはじめよう 要点まとめ</p></footer>
+
+</body>
+</html>

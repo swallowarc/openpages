@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第II部 SREの周辺領域 ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#2e7d6b; --accent-soft:#e8f3f0; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SREの探求</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第I部</a>
+      <a href="part2.html">第II部</a>
+      <a href="part3.html">第III部</a>
+      <a href="part4.html">第IV部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART II ― 第14〜18章</span>
+  <h1>SREの周辺領域</h1>
+  <p class="lead">信頼性に隣接する専門領域への入口を集めた部である。カオスエンジニアリング、プライバシー、データベース、データ耐久性、機械学習を、それぞれの分野の入門として概観する。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch14"><span class="ch-no">14</span><span>初めにカオスありき</span></a></li>
+      <li><a href="#ch15"><span class="ch-no">15</span><span>信頼性とプライバシーが交わるところ</span></a></li>
+      <li><a href="#ch16"><span class="ch-no">16</span><span>データベースリライアビリティエンジニアリング</span></a></li>
+      <li><a href="#ch17"><span class="ch-no">17</span><span>データ耐久性のエンジニアリング</span></a></li>
+      <li><a href="#ch18"><span class="ch-no">18</span><span>SREのための機械学習入門</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第14章 ===== -->
+  <section class="chapter" id="ch14">
+    <div class="chapter-head"><span class="num">第14章</span><h2>初めにカオスありき</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>従来のテスト中心の手法は複雑な分散システムには不十分であり、カオスエンジニアリングで「確信」をエンジニアリングする必要がある。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌪️</span>予防では複雑系を捉えきれない</h3>
+      <p class="summary">著者はカオスエンジニアリングを、複雑な分散システムで可用性を最適化するために設計された、Netflix 生まれの新しい規律と定義する。テスト・TDD・コードレビュー・アジャイルのフィードバックループは依然重要だが、現代の複雑なシステムをエンジニアリングするには十分ではないと主張する。</p>
+      <p>論拠は、ソフトウェアが不可避的に複雑性を増し、予防中心の従来手法ではエラーや障害を防ぎきれなくなるという観察である。本章には「複雑性の経済的要因」という節があり、複雑性の不可避性を経済の観点から論じる。ここから、予防的テストでは複雑系の創発的な挙動を捉えられないため、本番に近い環境で実験し、システムが乱調に耐えられるという確信を構築する規律が必要だ、という筋道が導かれる。著者は「確信を持つことができ、しかもそれをエンジニアリングできる」と述べ、原則の形式化（Formalization）と発展的原則（Advanced Principles）を扱う。</p>
+      <ul>
+        <li>カオスエンジニアリングは可用性最適化のための規律である。</li>
+        <li>従来のベストプラクティスは重要だが、複雑系には十分ではない。</li>
+        <li>本番に近い環境での実験により、確信をエンジニアリングする。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>著者 Casey Rosenthal はカオスエンジニアリングの原則（定常状態の仮説、現実世界の事象の変動、本番での実験、継続的な自動化、影響範囲の最小化）の提唱者として知られる。これらの原則の文言が本章に逐語で列挙されているかは、本要約の出典では確認できていない。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">カオスエンジニアリング</span><span class="k">複雑系</span><span class="k">本番での実験</span><span class="k">可用性</span><span class="k">Netflix</span></div>
+  </section>
+
+  <!-- ===== 第15章 ===== -->
+  <section class="chapter" id="ch15">
+    <div class="chapter-head"><span class="num">第15章</span><h2>信頼性とプライバシーが交わるところ</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>プライバシー侵害は不可逆であるため信頼性と同格に重要であり、SREが培った手法をプライバシーエンジニアリングに転用できる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔐</span>不可逆だからこそ信頼性と並べて扱う</h3>
+      <p class="summary">著者らは、プライバシーエンジニアリングを若い分野であり、業界各社が公の議論に慎重で、活発に議論される SRE/DevOps に比べてまだ可視化・成熟していないとする。そのうえで、ユーザーデータを扱うほぼすべての組織にとってプライバシーは信頼性と同等に重要だと主張する。</p>
+      <p>根拠は、信頼性の障害は多くの場合復旧できるのに対し、プライベートデータの取り扱いミスは通常やり直しがきかない、という非対称性である。この非対称性ゆえに、SRE が確立してきた手法をプライバシーにも並行して適用できると論じる。共通アプローチとして、トイルの削減、効率的で意図的な問題解決、関係構築、エヴァンジェリズムによる早期介入と教育を挙げる。一方で、両分野の間にはニュアンス・差異・トレードオフも存在するとする。</p>
+      <ul>
+        <li>プライバシー侵害は不可逆であり、信頼性と同格に扱うべきである。</li>
+        <li>トイル削減・関係管理・布教による早期教育などSRE手法を転用する。</li>
+        <li>両分野には差異とトレードオフも残る。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">プライバシーエンジニアリング</span><span class="k">不可逆性</span><span class="k">トイル削減</span><span class="k">早期介入</span><span class="k">Google</span></div>
+  </section>
+
+  <!-- ===== 第16章 ===== -->
+  <section class="chapter" id="ch16">
+    <div class="chapter-head"><span class="num">第16章</span><h2>データベースリライアビリティエンジニアリング</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>サイロ化したDBA実務を脱し、データベースを特別扱いせずSRE原則を適用すべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗄️</span>DBAのサイロを解き、信頼性エンジニアリングへ</h3>
+      <p class="summary">著者は DBRE を SRE のサブセットとして、特化型でサイロ化した DBA 実務から、横断的で統合された信頼性エンジニアリングへの進化と位置づける。データベース層はリスク許容度が最も低い層であり、それゆえ信頼性の文化による成長機会が最も大きい層の一つだと主張する。</p>
+      <p>論拠は、ツール・ハードウェア・言語・コミュニケーションが分野ごとに分断された旧来の DBA モデルが、大規模化に耐えられないという点である。「従来 DBA はサイロとスノーフレークを作る仕事だった」とし、代わりに「データを守る」「スケールのためのセルフサービス」「データベースは特別ではない」という指導原則を据える。回復可能性・継続的デリバリ・教育と協働を柱に、コードやシステムと同様に SRE 原則を適用する、という導出である。</p>
+      <ul>
+        <li>旧来のサイロ化したDBAモデルは大規模化に耐えられない。</li>
+        <li>データ層はリスク許容度が最も低く、改善機会が最も大きい。</li>
+        <li>「データを守る」「セルフサービス」「特別扱いしない」を原則に据える。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">DBRE</span><span class="k">脱サイロ</span><span class="k">セルフサービス</span><span class="k">回復可能性</span></div>
+  </section>
+
+  <!-- ===== 第17章 ===== -->
+  <section class="chapter" id="ch17">
+    <div class="chapter-head"><span class="num">第17章</span><h2>データ耐久性のエンジニアリング</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>可用性と耐久性は別物であり、データ喪失は致命的なので、破滅的障害を待たず早期に耐久性へ投資すべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">💾</span>ダウンタイムは復旧できても、データ喪失は生き残れない</h3>
+      <p class="summary">著者は、信頼性は多面的でありその重要な一面が耐久性（データの喪失や破損を避けること）だとする。耐久性は可用性とは本質的に別物であり、同等の優先度に値すると主張する。</p>
+      <p>論拠は「ほとんどの企業は一定期間のダウンタイムには耐えられるが、ユーザーデータの相当部分を失って生き残れる企業はほとんどない」という非対称性である。可用性障害は復旧できるが、データ喪失は事業継続を脅かす。ここから、企業は破滅的な障害から学ぶのではなく、早期に耐久性の専門性へ投資し、現実世界の脅威とそれにどうエンジニアリングで対処するかを理解すべきだ、という結論が導かれる。レプリケーションを耐久性の基礎インフラとし、バックアップはプライマリ系から論理的・物理的に分離して連鎖障害を防ぐ保護機能として位置づける。</p>
+      <ul>
+        <li>耐久性は可用性とは別個の関心事であり、同等の優先度に値する。</li>
+        <li>ダウンタイムは復旧可能だが、データ喪失は事業継続を脅かす。</li>
+        <li>レプリケーションを基礎に、分離されたバックアップで連鎖障害を防ぐ。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">データ耐久性</span><span class="k">可用性との区別</span><span class="k">レプリケーション</span><span class="k">バックアップ分離</span><span class="k">Dropbox</span></div>
+  </section>
+
+  <!-- ===== 第18章 ===== -->
+  <section class="chapter" id="ch18">
+    <div class="chapter-head"><span class="num">第18章</span><h2>SREのための機械学習入門</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>機械学習はトイルの自動化と障害の予測を可能にし、運用を事後対応から予測へと移行させる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤖</span>履歴データから学び、事後対応を予測へ変える</h3>
+      <p class="summary">著者は、機械学習を SRE に適用すべきだとする。反復的でトイルを生む作業を自動化でき、かつ障害が起きる前に予測できるからである。これにより運用を事後分析から予測へ移行できると主張する。</p>
+      <p>論拠は、SRE が本質的にソフトウェアエンジニアリングの原則を運用に適用するものであり、機械学習はその延長としてトイルの自動化と予測能力をもたらす、という位置づけである。過去の結果を人が手作業で分析して未来を予測する代わりに、システム自身が何が起ころうとしているかを事前に知らせるようにする。本章は機械学習やニューラルネットワークの基礎（学習とは何か、チェスから囲碁への深化、なぜ今か）から、実践（利用可能なデータ種別、主要ライブラリ、実例、成功事例）までを入門として扱う。前提として、SRE を運用へのソフトウェアエンジニアリング適用と捉えること、過去データが予測の学習材料として利用可能であることを置く。予測できる問題を自動化することで、より革新的な作業に時間を割けるという機会費用の議論につなげる。</p>
+      <ul>
+        <li>機械学習はトイルの自動化と障害の予測を可能にする。</li>
+        <li>履歴データから学習し、運用を事後対応から予測へ移す。</li>
+        <li>予測可能な問題の自動化で、革新的な作業に時間を割けるようになる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">機械学習</span><span class="k">トイル自動化</span><span class="k">予測的運用</span><span class="k">ニューラルネットワーク</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part1.html"><span class="dir">← 前</span><span class="ttl">第I部 SREの導入</span></a>
+    <a class="next" href="part3.html"><span class="dir">次 →</span><span class="ttl">第III部 ベストプラクティスと技術</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>SREの探求 要点まとめ</p></footer>
+
+</body>
+</html>

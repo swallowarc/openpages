@@ -3,286 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>第5部 継続的な学習と実験 ― 要点まとめ</title>
+<title>第5部 学習と実験の技術的実践 ― 要点まとめ</title>
 <link rel="stylesheet" href="style.css">
-<style>:root{ --accent:#5a6b1f; --accent-soft:#eef2e0; }</style>
+<style>:root{ --accent:#5a6b1f; --accent-soft:#eef1e3; }</style>
 </head>
 <body>
 
 <nav class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="index.html"><b>The DevOps</b> ハンドブック ― 要点まとめ</a>
+    <a class="brand" href="index.html"><b>THE DEVOPS</b> ハンドブック ― 要点まとめ</a>
     <div class="nav-links">
       <a class="home" href="index.html">目次</a>
       <a href="part1.html">第1部</a>
       <a href="part2.html">第2部</a>
       <a href="part3.html">第3部</a>
       <a href="part4.html">第4部</a>
+      <a href="part5.html">第5部</a>
       <a href="part6.html">第6部</a>
     </div>
   </div>
 </nav>
 
 <header class="hero">
-  <span class="eyebrow">PART 5 ― 第19〜21章 ／ 第三の道</span>
+  <span class="eyebrow">PART 5 ― 第19〜21章</span>
   <h1>第三の道：継続的な学習と実験の技術的実践</h1>
-  <p class="lead">学習と実験を組織の日常に根付かせる。失敗を学びに変える <span class="term">公正な文化</span> と非難なき事後検証、局所的な発見を全体の改善へ転換する仕組み、そして <span class="term">学習と改善のための時間</span> をどう確保するかを扱う。</p>
+  <p class="lead">第5部は学習を組織に根づかせる技術と仕組みを扱う。<mark>非難なき事後検証</mark>で日常から学び、局所の発見を再利用可能な形にして全体へ広げ、改善と学習のための時間を意図的に確保する。</p>
 </header>
 
 <main>
 
   <nav class="toc" aria-label="この部の目次">
-    <h2>この部の章</h2>
+    <h2>このページの章</h2>
     <ol>
-      <li><a href="#ch19"><span class="ch-no">19</span><span>日常業務に学習を組み込み注入する</span></a></li>
-      <li><a href="#ch20"><span class="ch-no">20</span><span>局所的な発見を全体的な改善に変える</span></a></li>
-      <li><a href="#ch21"><span class="ch-no">21</span><span>組織的な学習と改善のための時間を確保する</span></a></li>
+      <li><a href="#ch19"><span class="ch-no">19</span><span>日常業務に学習を組み込む</span></a></li>
+      <li><a href="#ch20"><span class="ch-no">20</span><span>局所の発見を全体の改善に変える</span></a></li>
+      <li><a href="#ch21"><span class="ch-no">21</span><span>学習と改善のための時間を確保する</span></a></li>
     </ol>
   </nav>
 
   <!-- ===== 第19章 ===== -->
   <section class="chapter" id="ch19">
-    <div class="chapter-head"><span class="num">第19章</span><h2>日常業務に学習を組み込み注入する</h2></div>
+    <div class="chapter-head"><span class="num">第19章</span><h2>日常業務に学習を組み込む</h2></div>
 
     <div class="in-a-nutshell">
-      <span class="emoji">🤲</span>
+      <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>失敗を <mark>個人の責任ではなくシステムの問題</mark> として扱う公正な文化を築く。その上で非難なき事後検証と制御された失敗の注入により、<b>失敗を学習へ変える</b>仕組みを日常業務に組み込む。</p>
+        <p>事故を個人の責任にせず、非難なき事後検証で原因を学ぶ。あえて障害を起こす訓練も使い、学習を日常業務の一部にする。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🤝</span>公正な文化（just culture）の確立</h3>
-      <p class="summary">失敗を個人の責任に帰す文化は問題を隠蔽する。<mark>「誰が間違えたか」ではなく「何が起きたか」を問う</mark>。これは <span class="term">学習する組織</span> の前提条件である。</p>
-      <div class="versus">
-        <div class="side b">
-          <h4>🙈 非難の文化</h4>
-          <ul>
-            <li>失敗を個人の責任に帰す</li>
-            <li>罰や見せしめが情報の流れを止める</li>
-            <li>問題が隠蔽される</li>
-          </ul>
-        </div>
-        <div class="vs"><span>VS</span></div>
-        <div class="side a">
-          <h4>🤝 公正な文化</h4>
-          <ul>
-            <li>人ではなくシステムと設計の問題として扱う</li>
-            <li>報告を奨励し、安心して失敗を共有できる</li>
-            <li>隠蔽より情報開示が報われる仕組み</li>
-          </ul>
-        </div>
-      </div>
+      <h3 class="ic"><span class="emoji">📝</span>非難なき事後検証を行う</h3>
+      <p class="summary">事故の後、個人を責めずに原因と経緯を率直に振り返り、再発を防ぐ知識を作る。</p>
+      <p>著者は、個人を罰する事後対応は情報を隠させ学習を妨げると述べる。人は責められると事実を伏せるため、組織は本当の原因を学べない。非難をせず、事故を起こした仕組みの欠陥に焦点を当てることで、率直な報告と深い原因究明が可能になる。これは第三の道の安全な文化を、事故対応の場で具体化したものである。</p>
+      <ul>
+        <li>事故を起こした個人ではなく、仕組みの欠陥に焦点を当てる。</li>
+        <li>振り返りの結果を広く共有し、組織全体の学習にする。</li>
+      </ul>
       <div class="callout why">
-        <span class="emoji">🛡️</span>
-        <div><span class="ctitle">心理的安全性が支える</span><p>心理的安全性があれば、<span class="term">弱いシグナル</span> を率直に共有できる。隠蔽より情報開示が報われる仕組みが、学習する組織の土台になる。</p></div>
+        <span class="emoji">🧭</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>罰を伴えば事実は隠される。安全に語れて初めて、本当の原因が表に出て学習が成立する。</p></div>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🔍</span>非難なき事後検証（blameless post-mortem）</h3>
-      <p class="summary">インシデント解決後できるだけ早く関係者を集め、タイムラインを再構築する。<mark>後知恵バイアスを排除する</mark>。</p>
-      <div class="steps">
-        <div class="step"><span class="badge">1</span><div><h4>記憶が新鮮なうちに開催する</h4><p>インシデント解決後できるだけ早く、関係者全員を集める。ファシリテーターが中立的に進行する。</p></div></div>
-        <div class="step"><span class="badge">2</span><div><h4>タイムラインを再構築する</h4><p>何が起きたかを時系列で合意形成する。「〜すべきだった」という反事実的・非難的表現を避け、当時持っていた情報に基づいて判断を評価する。</p></div></div>
-        <div class="step"><span class="badge">3</span><div><h4>対策を洗い出して割り当てる</h4><p>改善アクションを洗い出し、担当を割り当てる。後知恵バイアス（hindsight bias）を排除する。</p></div></div>
-      </div>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">📢</span>事後検証の広い共有と公開</h3>
-      <p class="summary"><span class="term">post-mortem</span> を全社が閲覧できる場所に公開し、<mark>同じ失敗の再発を組織全体で防ぐ</mark>。暗黙知を形式知に変換する。</p>
+      <h3 class="ic"><span class="emoji">🎮</span>あえて障害を起こして鍛える</h3>
+      <p class="summary">意図的に障害を発生させる訓練で、弱点を平時に見つけ、対応能力を高める。</p>
+      <p>著者は、障害は避けられない以上、平時に備えて鍛えるべきだと述べる。計画的に故障を注入する演習を行えば、システムと対応プロセスの弱点を実害の小さい状況で発見でき、回復力を継続的に高められる。これは第三の道の「回復力を高める実験を注入する」を、日常の訓練として実装したものである。</p>
       <ul>
-        <li>直接関与していないチームも教訓を得られるようにする</li>
-        <li>失敗事例の共有が組織の集合知になる</li>
+        <li>計画的な障害注入で、弱点を実害の小さい場で見つける。</li>
+        <li>訓練で得た知見を、システムと手順の改善に反映する。</li>
       </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">📡</span>インシデント許容度を下げて弱いシグナルを見つける</h3>
-      <p class="summary">重大事故になる前の小さな異常を捉える。<span class="term">高信頼性組織（HRO）</span> の発想に倣う。</p>
-      <ul>
-        <li>弱い失敗シグナル（weak failure signals）への感度を高める</li>
-        <li>複雑性に対する敬意と警戒を持ち、小さな逸脱を見逃さない</li>
-        <li>許容度を意図的に下げて学習機会を増やす</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🎲</span>失敗の再定義と計算されたリスクテイク</h3>
-      <p class="summary">失敗は <mark>学習の不可避な副産物</mark> である。計算されたリスクを取る人を称え、イノベーションを促進する。</p>
-      <ul>
-        <li>失敗から学べば組織は強くなるという失敗観の転換</li>
-        <li>計算されたリスク（calculated risk）を取る人を称える</li>
-        <li>失敗を罰せず、安全な実験を日常業務に組み込む</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">💥</span>制御された失敗の注入</h3>
-      <p class="summary">計画的に障害を起こし、<mark>平常時に弱点を見つけて対処する</mark>。障害を例外ではなく前提として設計する。</p>
-      <div class="steps">
-        <div class="step"><span class="badge">1</span><div><h4>game day（ゲームデー）</h4><p>計画的に障害シナリオを実行する演習。復旧手順とチームの対応力を検証し、想定外の依存関係や脆弱性を発見する。</p></div></div>
-        <div class="step"><span class="badge">2</span><div><h4>chaos engineering（カオスエンジニアリング）</h4><p>本番環境に意図的に障害を注入する（例：Netflix の Chaos Monkey）。システムの回復力を継続的に検証する。</p></div></div>
-        <div class="step"><span class="badge">3</span><div><h4>レジリエンスの育成</h4><p>失敗に慣れることで対応が習慣化する。障害を例外ではなく前提として設計する。</p></div></div>
-      </div>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">just culture</span><span class="k">非難なき事後検証</span><span class="k">後知恵バイアス</span><span class="k">弱いシグナル／HRO</span><span class="k">game day／カオスエンジニアリング</span></div>
+    <div class="keywords"><span class="k">非難なき事後検証</span><span class="k">公正な文化</span><span class="k">障害注入訓練</span><span class="k">回復力</span><span class="k">学習の共有</span></div>
   </section>
 
   <!-- ===== 第20章 ===== -->
   <section class="chapter" id="ch20">
-    <div class="chapter-head"><span class="num">第20章</span><h2>局所的な発見を全体的な改善に変える</h2></div>
+    <div class="chapter-head"><span class="num">第20章</span><h2>局所の発見を全体の改善に変える</h2></div>
 
     <div class="in-a-nutshell">
-      <span class="emoji">🔁</span>
+      <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>個人やチームの <mark>局所的な発見を組織全体の改善に変える</mark>。暗黙知を形式知化し、コード・リポジトリ・テスト・文書・共同体を通じて <b>一度の発見を組織の資産にする</b>。</p>
+        <p>あるチームの学びを、再利用可能な形（共有ライブラリ・自動化・文書）に変えて全体へ広げる。標準は文書ではなく仕組みに埋め込む。</p>
       </div>
     </div>
 
-    <div class="flow" style="margin-bottom:8px;">
-      <div class="node"><div class="emoji">💡</div><div class="t">局所的発見</div><div class="s">個人・チームの<br>暗黙知</div></div>
-      <div class="arrow">→</div>
-      <div class="node"><div class="emoji">📝</div><div class="t">形式知化</div><div class="s">コード・文書・<br>テストに記録</div></div>
-      <div class="arrow">→</div>
-      <div class="node"><div class="emoji">🌐</div><div class="t">横展開</div><div class="s">組織全体の<br>改善へ</div></div>
-    </div>
-
     <div class="topic">
-      <h3 class="ic"><span class="emoji">💬</span>チャットルームとチャットボットによる知識の自動化（ChatOps）</h3>
-      <p class="summary">作業を <span class="term">チャットルーム</span> に集約し、会話と操作を同じ場所に記録する。<mark>局所的な解決策を全員に伝播させる</mark>。</p>
+      <h3 class="ic"><span class="emoji">🔁</span>知識を再利用可能な形にする</h3>
+      <p class="summary">個人やチームに留まる知見を、誰もが使える共有資産に変換する。</p>
+      <p>著者は、暗黙知のままでは局所の改善が組織の力にならないと述べる。学びを共有ライブラリ・テンプレート・自動化されたプロセスに変換すれば、他のチームが同じ問題を解き直さずに済む。知識を再利用可能な資産にすることが、第三の道の「個人の学習を組織の学習へ転換する」を技術面で実現する。</p>
       <ul>
-        <li>チャット中心の運用で、新メンバーが過去ログから学べる</li>
-        <li>ボット経由でデプロイや運用タスクを実行し、操作履歴を透明・再現可能に残す</li>
-        <li>暗黙知をボットのコマンドとして形式知化する</li>
+        <li>共有ライブラリやテンプレートとして知見を再利用可能にする。</li>
+        <li>他チームが同じ問題を解き直す手間をなくす。</li>
       </ul>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🧰</span>プロセスの標準化と再利用可能なコードによる自動化</h3>
-      <p class="summary">属人的な手順を共通プロセスに変え、知識を <mark>再利用可能なコード</mark> として埋め込む。一度の発見を組織の資産にする。</p>
+      <h3 class="ic"><span class="emoji">⚙️</span>標準を仕組みに埋め込む</h3>
+      <p class="summary">守ってほしい標準は、文書で求めるのではなく自動化された仕組みに組み込む。</p>
+      <p>著者は、文書化された標準は守られにくく、容易に形骸化すると述べる。標準を自動化されたパイプラインや共通基盤に組み込めば、正しいやり方が最も簡単な道になり、自然と守られる。人の規律に頼るのではなく、仕組みが標準を担保する形にすべきだとする。</p>
       <ul>
-        <li>手順書ではなく実行可能なコードで共有し、コピー&ペーストの誤りを減らす</li>
-        <li>ベストプラクティスがデフォルトになる</li>
+        <li>標準を自動化された仕組みに組み込み、形骸化を防ぐ。</li>
+        <li>正しいやり方を「最も簡単な道」にする。</li>
       </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">📦</span>単一の共有ソースコードリポジトリ</h3>
-      <p class="summary">全社で共有するリポジトリにライブラリ・構成・スクリプトを一元管理し、<mark>車輪の再発明を防ぐ</mark>。</p>
-      <ul>
-        <li>良い実装が組織全体に広がり、依存関係とビルドの一貫性を確保する</li>
-        <li>セキュリティ修正を一括で展開できる</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">✅</span>自動テストをドキュメントとして活用する</h3>
-      <p class="summary">自動テストはシステムの振る舞いを記述する、<mark>常に最新で実行可能な「生きた仕様」</mark> になる。</p>
-      <ul>
-        <li>仕様と実装の乖離を防ぎ、新規参加者がテストから挙動を学べる</li>
-        <li>利用例（usage example）として機能し、安心してリファクタリングできる</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">👥</span>実践共同体（communities of practice）</h3>
-      <p class="summary">専門領域ごとに横断的な集まりを作り、<mark>チームの壁を越えて知見を交換する</mark>。</p>
-      <ul>
-        <li>局所的な学びを組織全体に拡散し、共通の課題を協働で解決する</li>
-        <li>専門知識の集約と標準の形成を進め、内製の専門家ネットワークを育てる</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🗺️</span>生きたアーキテクチャドキュメント</h3>
-      <p class="summary">システムの構造を継続的に更新し、陳腐化した設計書を排除する。<mark>意思決定の背景（why）を残す</mark>。</p>
-      <ul>
-        <li>開発者が全体像を把握でき、変更の影響範囲を予測しやすくする</li>
-        <li>オンボーディングを高速化する</li>
-      </ul>
+      <div class="callout why">
+        <span class="emoji">🧭</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>正しいやり方が最も簡単な道になっていれば、規律に頼らずとも標準は自然に守られる。</p></div>
+      </div>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">ChatOps</span><span class="k">標準化／再利用コード</span><span class="k">共有リポジトリ</span><span class="k">テスト＝生きた仕様</span><span class="k">実践共同体</span><span class="k">生きた設計文書</span></div>
+    <div class="keywords"><span class="k">組織的学習</span><span class="k">共有ライブラリ</span><span class="k">再利用</span><span class="k">標準の自動化</span><span class="k">知識の集約</span></div>
   </section>
 
   <!-- ===== 第21章 ===== -->
   <section class="chapter" id="ch21">
-    <div class="chapter-head"><span class="num">第21章</span><h2>組織的な学習と改善のための時間を確保する</h2></div>
+    <div class="chapter-head"><span class="num">第21章</span><h2>学習と改善のための時間を確保する</h2></div>
 
     <div class="in-a-nutshell">
-      <span class="emoji">🕓</span>
+      <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>学習と改善は <mark>時間を確保しなければ続かない</mark>。改善ブリッツや負債返済の儀式を制度化し、教え学び合う場を設けて、<b>改善を日常業務の一部にする</b>。</p>
+        <p>改善と学習を「余った時間にやること」にせず、計画的に時間を割り当てる。技術的負債の返済や教え合いを、日常業務に組み込む。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">⚡</span>改善ブリッツ（improvement blitz／kaizen blitz）</h3>
-      <p class="summary">一定期間チームが改善活動に専念し、<mark>蓄積した非効率や負債を一掃する</mark>。<span class="term">kaizen</span> を制度として組み込む。</p>
+      <h3 class="ic"><span class="emoji">⏱️</span>改善のための時間を意図的に割り当てる</h3>
+      <p class="summary">改善活動を任意にせず、決まった時間を確保して計画的に取り組む。</p>
+      <p>著者は、改善を余剰時間に任せると永遠に後回しになると述べる。日々の納期に追われる中で、誰も自発的に技術的負債へは手をつけない。改善のための期間や時間枠を制度として確保することで、負債の返済や仕組みの改善が継続的に進む。集中して改善に取り組む期間を設ける運営が有効だとする。</p>
       <ul>
-        <li>日常業務から離れ、改善対象を選んで短期間で集中的に実施する</li>
-        <li>小さく速いサイクルで成果を出し、自律的なチームによる問題解決を促す</li>
-        <li>チームの当事者意識とモチベーションを高め、継続的改善の文化を強化する</li>
+        <li>改善に充てる時間枠や期間を、制度として確保する。</li>
+        <li>技術的負債の返済を、計画的な業務として扱う。</li>
       </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>集中して改善に取り組む活動は、トヨタ生産方式に由来する「カイゼン（改善）」の考え方として知られる。</p></div>
+      </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">💳</span>技術的負債を返済する儀式の制度化</h3>
-      <p class="summary">負債返済を定例化し、<mark>「いつかやる」を「定期的にやる」に変える</mark>。持続可能な開発ペースを維持する。</p>
+      <h3 class="ic"><span class="emoji">🎓</span>教え合いで知識を広げる</h3>
+      <p class="summary">学んだことを互いに教え合う場を設け、知識を組織全体に行き渡らせる。</p>
+      <p>著者は、知識は共有されて初めて組織の力になると述べる。社内外の勉強会や教え合いの場を設けることで、個人の学びが他のメンバーへ伝わり、組織全体の能力が底上げされる。学習を個人の活動に閉じず、共有を促す仕組みを用意することが重要だとする。</p>
       <ul>
-        <li>機能開発と並行して継続的に返済し、放置による劣化を防ぐ</li>
-        <li>改善やリファクタリングに専用の時間枠を割り当てる</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🎓</span>全員が教え学べる環境</h3>
-      <p class="summary">勉強会・社内カンファレンスで知見を発表する。<mark>教えることで自らの理解も深まる</mark>。</p>
-      <ul>
-        <li>meetup：関心あるテーマで自発的に集まり、学習を日常業務の一部にする</li>
-        <li>社内カンファレンスで知見を発表し、専門知識を組織全体に展開する</li>
-        <li>誰もが教師であり生徒であるという相互学習の文化を作る</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">📣</span>改善ブリッツの経験共有</h3>
-      <p class="summary">ブリッツの成果と学びを組織全体に発信し、<mark>他チームへの横展開とモチベーションの伝播</mark> を促す。</p>
-      <ul>
-        <li>成功・失敗の両方から学び、他チームへ横展開する</li>
-        <li>改善の達成感を可視化し、継続的改善の好循環を生む</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🥋</span>dojo（道場）</h3>
-      <p class="summary">実践を通じて新しい手法を習得する没入型の学習環境。<mark>知識の伝達から能力の獲得へ</mark>。</p>
-      <ul>
-        <li>チームが集中して新スキルを学び、経験豊富なコーチが伴走する</li>
-        <li>学んだことを即座に実プロジェクトに適用し、自律的に改善できるチームを育てる</li>
+        <li>社内外の勉強会や教え合いの場を設ける。</li>
+        <li>学んだ知識を共有し、組織全体の能力を底上げする。</li>
       </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">改善ブリッツ／kaizen</span><span class="k">負債返済の制度化</span><span class="k">meetup／社内カンファレンス</span><span class="k">経験共有</span><span class="k">dojo</span></div>
+    <div class="keywords"><span class="k">改善の時間確保</span><span class="k">カイゼン</span><span class="k">技術的負債の返済</span><span class="k">教え合い</span><span class="k">学習文化</span></div>
   </section>
 
   <nav class="pager">
-    <a class="prev" href="part4.html"><span class="dir">← 前の部</span><span class="ttl">第4部 フィードバックの技術的実践</span></a>
-    <a class="next" href="part6.html"><span class="dir">次の部 →</span><span class="ttl">第6部 情報セキュリティの統合</span></a>
+    <a class="prev" href="part4.html"><span class="dir">← 前</span><span class="ttl">第4部 フィードバックの技術的実践</span></a>
+    <a class="next" href="part6.html"><span class="dir">次 →</span><span class="ttl">第6部 情報セキュリティの統合</span></a>
   </nav>
 
 </main>
 
-<footer class="foot"><p>The DevOps ハンドブック 要点まとめ ／ 第5部</p></footer>
+<footer class="foot"><p>The DevOps ハンドブック 要点まとめ（詳細版）</p></footer>
 
 </body>
 </html>

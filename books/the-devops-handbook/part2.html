@@ -5,16 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>第2部 どこから始めるか ― 要点まとめ</title>
 <link rel="stylesheet" href="style.css">
-<style>:root{ --accent:#2f7d6b; --accent-soft:#e8f3ef; }</style>
+<style>:root{ --accent:#2f7d6b; --accent-soft:#e9f3ef; }</style>
 </head>
 <body>
 
 <nav class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="index.html"><b>The DevOps</b> ハンドブック ― 要点まとめ</a>
+    <a class="brand" href="index.html"><b>THE DEVOPS</b> ハンドブック ― 要点まとめ</a>
     <div class="nav-links">
       <a class="home" href="index.html">目次</a>
       <a href="part1.html">第1部</a>
+      <a href="part2.html">第2部</a>
       <a href="part3.html">第3部</a>
       <a href="part4.html">第4部</a>
       <a href="part5.html">第5部</a>
@@ -26,208 +27,96 @@
 <header class="hero">
   <span class="eyebrow">PART 2 ― 第5〜8章</span>
   <h1>どこから始めるか</h1>
-  <p class="lead">DevOps変革の最初の一歩を扱う。どの <span class="term">バリューストリーム</span> から着手するか、現状をどう可視化するか、<span class="term">コンウェイの法則</span> を踏まえてどう組織とアーキテクチャを設計するか、そして運用をどう日常業務に統合するかを示す。</p>
+  <p class="lead">第2部は変革の着手を扱う。全社一斉ではなく、<mark>1つのバリューストリームを選んで始める</mark>。現状を可視化し、コンウェイの法則を踏まえて組織とアーキテクチャを設計し、運用を開発の日常業務へ統合していく。</p>
 </header>
 
 <main>
 
   <nav class="toc" aria-label="この部の目次">
-    <h2>この部の章</h2>
+    <h2>このページの章</h2>
     <ol>
-      <li><a href="#ch5"><span class="ch-no">5</span><span>最初に取り組むバリューストリームの選択</span></a></li>
-      <li><a href="#ch6"><span class="ch-no">6</span><span>バリューストリームの理解・可視化・組織への展開</span></a></li>
-      <li><a href="#ch7"><span class="ch-no">7</span><span>コンウェイの法則を踏まえた組織とアーキテクチャの設計</span></a></li>
-      <li><a href="#ch8"><span class="ch-no">8</span><span>運用を日常業務に統合して優れた成果を生む</span></a></li>
+      <li><a href="#ch5"><span class="ch-no">5</span><span>取り組むバリューストリームの選択</span></a></li>
+      <li><a href="#ch6"><span class="ch-no">6</span><span>仕事の理解・可視化・展開</span></a></li>
+      <li><a href="#ch7"><span class="ch-no">7</span><span>コンウェイの法則を踏まえた設計</span></a></li>
+      <li><a href="#ch8"><span class="ch-no">8</span><span>運用を開発の日常業務へ統合する</span></a></li>
     </ol>
   </nav>
 
   <!-- ===== 第5章 ===== -->
   <section class="chapter" id="ch5">
-    <div class="chapter-head"><span class="num">第5章</span><h2>最初に取り組むバリューストリームの選択</h2></div>
+    <div class="chapter-head"><span class="num">第5章</span><h2>取り組むバリューストリームの選択</h2></div>
 
     <div class="in-a-nutshell">
-      <span class="emoji">🎯</span>
+      <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>全社一斉ではなく、<mark>協力的なチームの小さな成功から始めて広げる</mark>。DevOpsは新規・既存どちらのシステムにも適用できる。</p>
+        <p>変革は全社一斉ではなく、成功しやすいバリューストリームを1つ選んで始める。小さな成功で支持を広げ、徐々に展開する。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🌱</span>グリーンフィールド vs ブラウンフィールド</h3>
-      <p class="summary">新規開発（グリーンフィールド）だけでなく、既存システム（ブラウンフィールド）にもDevOpsは適用できる。<mark>変革による効果が最も大きいのはブラウンフィールド</mark>である。</p>
-      <div class="versus">
-        <div class="side a">
-          <h4>🌱 グリーンフィールド（新規）</h4>
-          <ul>
-            <li>レガシーコードやプロセスの制約が少ない</li>
-            <li>新技術やDevOps原則を導入しやすい</li>
-            <li>実験や学習のショーケースになりやすい</li>
-          </ul>
-        </div>
-        <div class="vs"><span>VS</span></div>
-        <div class="side b">
-          <h4>🏚️ ブラウンフィールド（既存）</h4>
-          <ul>
-            <li>技術的負債やレガシーな依存関係が多い</li>
-            <li>改善の余地が大きく<b>効果が最も大きい</b></li>
-            <li>多くの組織が価値を得られる領域</li>
-          </ul>
-        </div>
-      </div>
-      <div class="callout tip">
-        <span class="emoji">✅</span>
-        <div><span class="ctitle">よくある誤解</span><p>「DevOpsは新規開発でしか使えない」という考えは誤りである。どちらのフィールドにも原則は適用できる。改善の余地が大きい既存システムを軽視しない。</p></div>
-      </div>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🗂️</span>エンゲージメントのシステム vs 記録のシステム</h3>
-      <p class="summary">Gartnerが提唱した <span class="term">bimodal IT</span> ではシステムを2種類に分類する。どちらのモードにもDevOpsは有効で、<mark>安定性と俊敏性のトレードオフは否定できる</mark>。</p>
-      <div class="versus">
-        <div class="side b">
-          <h4>📒 記録のシステム</h4>
-          <ul>
-            <li>ERPのような正確性重視の基幹系</li>
-            <li>変更頻度が低く安定性を優先する</li>
-            <li>「ゆっくり正確に」が求められる</li>
-          </ul>
-        </div>
-        <div class="vs"><span>と</span></div>
-        <div class="side a">
-          <h4>💬 エンゲージメントのシステム</h4>
-          <ul>
-            <li>顧客接点となるフロントエンド系</li>
-            <li>変更頻度が高く市場対応の速さが必要</li>
-            <li>「速く俊敏に」が求められる</li>
-          </ul>
-        </div>
-      </div>
-      <div class="callout why">
-        <span class="emoji">🔎</span>
-        <div><span class="ctitle">両モードへの適用</span><p>高い品質と速さは両立できる。記録のシステムとエンゲージメントのシステムのどちらにもDevOpsは有効である。</p></div>
-      </div>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🤝</span>最も革新的で協力的なグループから始める</h3>
-      <p class="summary">変化に抵抗するチームから始めない。改善に前向きで、<mark>DevOps手法に既に興味を持つ協力的なグループ</mark>を選ぶ。</p>
+      <h3 class="ic"><span class="emoji">🎯</span>1つのバリューストリームに絞って始める</h3>
+      <p class="summary">最初から全社展開を狙わず、成果を出しやすい範囲を選んで着手する。</p>
+      <p>著者は、大規模変革の一斉導入は失敗のリスクが高いと述べる。多くの部門を同時に巻き込むと調整コストと抵抗が大きく、初期の挫折が全体の信頼を損なう。1つのバリューストリームに絞れば、学習を重ねながらリスクを抑えて進められ、得られた成功事例が次の展開の足がかりになる、という筋道である。</p>
       <ul>
-        <li>リスクの低い範囲で実証し、小さな勝利を積み重ねて信頼を得る</li>
-        <li>成功事例が組織内の説得材料になる</li>
-        <li>開発と運用の協調関係と相互の信頼を醸成する</li>
+        <li>新規開発（グリーンフィールド）と既存改修（ブラウンフィールド）のどちらも対象になりうる。</li>
+        <li>初期は成功確率の高い対象を選び、実績を作る。</li>
       </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">📈</span>イノベーション普及理論と組織全体への展開</h3>
-      <p class="summary">全員の合意を最初から得ようとしない。Everett Rogersの <span class="term">普及理論</span> に基づき、<mark>イノベーターとアーリーアダプターを獲得して臨界質量を超える</mark>。</p>
-      <div class="steps">
-        <div class="step"><span class="badge">1</span><div><h4>イノベーター</h4><p>最初に飛びつく層。</p></div></div>
-        <div class="step"><span class="badge">2</span><div><h4>アーリーアダプター</h4><p>先見性のある層。ここまでで <b>25%程度の支持</b>に達すると臨界質量を超える。</p></div></div>
-        <div class="step"><span class="badge">3</span><div><h4>アーリーマジョリティ</h4><p>実用重視の多数派。支持者が一定数を超えると勢いが加速する。</p></div></div>
-        <div class="step"><span class="badge">4</span><div><h4>レイトマジョリティ／ラガード</h4><p>慎重・懐疑的な層。抵抗勢力の説得に労力を浪費しない。</p></div></div>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>グリーンフィールドは新規システム、ブラウンフィールドは既存の稼働中システムを指す一般的な用語である。</p></div>
       </div>
-      <p style="font-size:14px;color:var(--ink-soft);margin:6px 0 0;">成功したチームから段階的に拡大し、学んだ教訓を次のチームに伝える。一度に全社展開しようとしない。</p>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🛡️</span>チームを特定し守り育てる</h3>
-      <p class="summary">対象チームを <mark>経営層のサポートで外圧から守り</mark>、失敗を許容する安全な環境で育てる。</p>
+      <h3 class="ic"><span class="emoji">🌱</span>賛同者から広げる</h3>
+      <p class="summary">変化に前向きなチームから着手し、成功を見せて懐疑的な層へ広げる。</p>
+      <p>著者は、変革の普及を新しい考えの受容度の差に沿って進めるべきだとする。最初から全員を説得しようとせず、革新に前向きな人々と協力して早期の成功を作る。その実績が、慎重な層や懐疑的な層を動かす説得材料になる。抵抗の強い相手を最初の対象に選ぶと、消耗して頓挫しやすい。</p>
       <ul>
-        <li>バリューストリームに関わる全員を把握し、改善に意欲的なメンバーを見極める</li>
-        <li>経営層のサポートで外圧から保護し、新しい働き方を試す余地を確保する</li>
-        <li>学習と実験を奨励し、成果を可視化して評価する。成功体験を組織の財産として共有する</li>
+        <li>協力的・革新的なグループを早期の協力相手にする。</li>
+        <li>早期の成功事例を、次の賛同者を増やす材料にする。</li>
       </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">グリーン／ブラウンフィールド</span><span class="k">bimodal IT</span><span class="k">普及理論</span><span class="k">臨界質量</span><span class="k">チームの保護</span></div>
+    <div class="keywords"><span class="k">バリューストリーム</span><span class="k">グリーンフィールド</span><span class="k">ブラウンフィールド</span><span class="k">早期の成功</span></div>
   </section>
 
   <!-- ===== 第6章 ===== -->
   <section class="chapter" id="ch6">
-    <div class="chapter-head"><span class="num">第6章</span><h2>バリューストリームの理解・可視化・組織への展開</h2></div>
+    <div class="chapter-head"><span class="num">第6章</span><h2>仕事の理解・可視化・組織への展開</h2></div>
 
     <div class="in-a-nutshell">
-      <span class="emoji">🗺️</span>
+      <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>価値提供に関わる全員を洗い出し、<mark>現状の流れを地図にして共有する</mark>。専任の変革チームを置き、短いサイクルで改善し、開発キャパシティの一部を負債返済に確保する。</p>
+        <p>価値が顧客に届くまでの流れ全体を関係者で描き出し、ムダと制約を特定する。専任のチームで改善を主導する。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">👥</span>バリューストリームを支えるチームを特定する</h3>
-      <p class="summary">価値提供に関わる全員を洗い出し、<mark>誰が何に責任を持つか</mark>とサイロ間の依存関係を明確にする。</p>
+      <h3 class="ic"><span class="emoji">🗺️</span>バリューストリームを描き出す</h3>
+      <p class="summary">価値が生まれてから顧客に届くまでの工程を、関係者全員で図にして共有する。</p>
+      <p>著者は、改善の出発点は全体の流れを正しく把握することだとする。各部門は自分の工程しか見ていないため、全工程を一枚の図にすると、待ち時間・再作業・受け渡しの実態が初めて見える。可視化された流れの中で最も時間を奪っている箇所が、最初に取り組むべき制約として浮かび上がる。</p>
       <ul>
-        <li>製品オーナー、開発、QA、運用を把握する</li>
-        <li>インフォメーションセキュリティやリリースマネージャーなど、価値提供に関わる全員を網羅する</li>
+        <li>関係する全部門の代表が参加してマッピングする。</li>
+        <li>各工程の作業時間・待ち時間・手戻り率を見える化する。</li>
+        <li>最も流れを妨げている制約を、改善の起点にする。</li>
       </ul>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🗺️</span>バリューストリームマップで作業を見える化する</h3>
-      <p class="summary">まず <span class="term">現状（as-is）</span> の流れを描き、<mark>どこに時間がかかっているか</mark>を全員で共有する。</p>
+      <h3 class="ic"><span class="emoji">🧑‍🤝‍🧑</span>専任の変革チームを置く</h3>
+      <p class="summary">改善を日常業務の片手間にせず、明確な目標を持つ専任チームが主導する。</p>
+      <p>著者は、変革を既存業務に上乗せするだけでは推進力が続かないと述べる。日々の運用に追われる中で改善を任意の活動にすると後回しになる。専任のチームと明確で測定可能な目標を設けることで、改善が継続的に前進する。短い期間で成果を測りながら進める運営が望ましいとする。</p>
       <ul>
-        <li>顧客への価値提供の流れを図示し、全員が同じ現状認識を持つ</li>
-        <li>価値を生まない待ち時間や手戻りを可視化する。主要な手順は数十程度に抑える</li>
-      </ul>
-      <div class="callout tip">
-        <span class="emoji">📐</span>
-        <div><span class="ctitle">計測する主要指標</span><p><b>リードタイム</b>（要求から完了までの全経過時間）、<b>処理時間</b>（実作業の時間）、<b>%C/A</b>（完全かつ正確な割合）を計測する。</p></div>
-      </div>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🚩</span>専任の変革チームを作る</h3>
-      <p class="summary">改善活動は日常業務の片手間ではできない。<mark>日常業務から切り離した専任・専用リソースの変革チーム</mark>を編成する。</p>
-      <ul>
-        <li>専任チームを作り、既存業務と並行させない</li>
-        <li>専用の場所・予算を割り当て、既存組織の評価指標から独立させて改善成果で評価する</li>
-        <li>チーム内で用語と目標を統一し、学習した内容を組織に橋渡しする</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">⏱️</span>共有の目標に合意し改善の期限を短く保つ</h3>
-      <p class="summary">測定可能でビジネス成果に結びつく目標を、<mark>数週間〜数ヶ月の短いサイクル</mark>で追う。</p>
-      <ul>
-        <li>具体的で測定可能なゴールを設定し、全員が理解できる明確な指標にする</li>
-        <li>長期計画より短期の反復を優先し、小さな成功を積み重ねる</li>
-        <li>関係者全員が目標に納得し、経営層のコミットメントを得る</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">💳</span>20%を非機能要件と技術的負債の返済に確保する</h3>
-      <p class="summary">開発キャパシティの <mark>20%を改善に充て</mark>、持続可能な開発速度を保つ。</p>
-      <div class="metrics">
-        <div class="metric"><div class="big">20%</div><div class="name">改善・負債返済</div><div class="dir">継続的に確保</div></div>
-        <div class="metric"><div class="big">80%</div><div class="name">機能開発</div><div class="dir">全リソースを使わない</div></div>
-      </div>
-      <ul>
-        <li>負債を放置すると改善が困難になるため、計画的に返済時間を確保する</li>
-        <li>保守性・拡張性・運用性を高め、アーキテクチャの健全性を維持して将来の生産性を確保する</li>
-      </ul>
-      <div class="callout why">
-        <span class="emoji">📌</span>
-        <div><span class="ctitle">LinkedIn の事例</span><p>LinkedIn の Operation InVersion が、技術的負債への計画的な対処の事例として挙げられている。</p></div>
-      </div>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">📡</span>作業の可視性を高め、行動を強化するツールを使う</h3>
-      <p class="summary">開発と運用が <mark>同じ指標・同じツールを共有する</mark>ことで、自然な協調とサイロの破壊を促す。</p>
-      <ul>
-        <li>共有の情報ラジエーターを設置し、開発・運用双方の作業と進捗・問題を透明にする</li>
-        <li>共有チャットルームなど同じツールを使い、知識共有とコラボレーションを習慣化する</li>
-        <li>ツールが望ましい行動様式を後押しし、ツールの統一でサイロを壊す</li>
+        <li>変革に責任を持つ専任メンバーと明確な目標を置く。</li>
+        <li>短いサイクルで成果を測定し、軌道を修正する。</li>
       </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">関係者の特定</span><span class="k">バリューストリームマップ</span><span class="k">専任変革チーム</span><span class="k">短い改善サイクル</span><span class="k">20%ルール</span><span class="k">共有ツール</span></div>
+    <div class="keywords"><span class="k">バリューストリームマッピング</span><span class="k">制約</span><span class="k">専任変革チーム</span><span class="k">可視化</span></div>
   </section>
 
   <!-- ===== 第7章 ===== -->
@@ -235,237 +124,100 @@
     <div class="chapter-head"><span class="num">第7章</span><h2>コンウェイの法則を踏まえた組織とアーキテクチャの設計</h2></div>
 
     <div class="in-a-nutshell">
-      <span class="emoji">🧬</span>
+      <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>システムの設計は組織のコミュニケーション構造を反映する（<span class="term">コンウェイの法則</span>）。だから <mark>望ましいアーキテクチャから逆算して組織を設計する</mark>。価値提供を速くするなら市場志向の機能横断チームが有利である。</p>
+        <p>組織の構造はシステムの構造に表れる（コンウェイの法則）。だから疎結合なアーキテクチャと、自律して動ける小さなチームを意図的に設計する。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🧬</span>コンウェイの法則</h3>
-      <p class="summary">Melvin Conwayが提唱した経験則で、<mark>システムの設計は組織のコミュニケーション構造を反映する</mark>。設計したい構造に合わせて組織を作る。</p>
+      <h3 class="ic"><span class="emoji">🪞</span>組織構造はアーキテクチャに反映される</h3>
+      <p class="summary">コンウェイの法則により、組織のコミュニケーション構造がそのままシステム設計に表れる。</p>
+      <p>著者はコンウェイの法則を引き、システムは作る組織の構造を写し取ると述べる。したがって望ましいアーキテクチャを得たいなら、まず組織を意図的に設計しなければならない。強く結合した組織は密結合なシステムを生み、変更のたびに多数の調整が必要になる。組織設計はアーキテクチャ設計と切り離せない、という筋道である。</p>
       <ul>
-        <li>組織図を変えるとアーキテクチャも変わり、チーム境界がシステム境界になる</li>
-        <li>Etsy の Sprouter の事例：組織構造とアーキテクチャの不整合が摩擦を生み、それを解消した</li>
+        <li>組織のコミュニケーション経路が、システムの境界を決める。</li>
+        <li>望ましい設計のために、組織構造を先に設計する。</li>
       </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🏢</span>組織形態 ― 機能別・マトリクス・市場志向</h3>
-      <p class="summary">3つの編成軸がある。<mark>価値提供の速さを求めるなら市場志向の機能横断チームが有利</mark>である。</p>
-      <div class="ways-map">
-        <div class="way-row" style="--wc:#8c6a3a">
-          <div class="icon-box">🧱</div>
-          <div>
-            <div class="wlabel">Functional</div>
-            <h4>機能別志向</h4>
-            <p>DBA・ネットワーク・サーバ管理など専門スキルごとに部門化する。<b>規模の経済とコスト最適化</b>を狙う。</p>
-          </div>
-        </div>
-        <div class="way-row" style="--wc:#3a5a8c">
-          <div class="icon-box">🔀</div>
-          <div>
-            <div class="wlabel">Matrix</div>
-            <h4>マトリクス志向</h4>
-            <p>機能別と市場志向の組み合わせ。複数の上司への報告が生じ、<b>複雑で管理しにくい構造</b>になりがち。</p>
-          </div>
-        </div>
-        <div class="way-row" style="--wc:#2f7d6b">
-          <div class="icon-box">🎯</div>
-          <div>
-            <div class="wlabel">Market-oriented</div>
-            <h4>市場志向</h4>
-            <p>顧客・市場ニーズで編成する。<b>機能横断チームが価値提供に責任</b>を持ち、迅速な意思決定を可能にする。</p>
-          </div>
-        </div>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>コンウェイの法則は「システムを設計する組織は、その組織のコミュニケーション構造を写したシステムを作る」という1968年のメルヴィン・コンウェイの観察である。</p></div>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">⚠️</span>過度な機能別志向の問題</h3>
-      <p class="summary">各部門のコスト最適化が <mark>全体最適を損なう</mark>。ハンドオフと待ち時間でリードタイムが長くなる。</p>
-      <div class="steps escalate">
-        <div class="step"><span class="badge">1</span><div><h4>局所最適</h4><p>各部門の効率化が全体最適を損ない、引き継ぎと待ち時間が増えてリードタイムが長くなる。</p></div></div>
-        <div class="step"><span class="badge">2</span><div><h4>サイロ化</h4><p>部門間のハンドオフが摩擦を生み、責任の所在が曖昧になり、顧客から遠い意思決定になる。</p></div></div>
-        <div class="step"><span class="badge">3</span><div><h4>スピードの低下</h4><p>チケットのキューが滞留し、部門をまたぐ調整に時間がかかる。</p></div></div>
-      </div>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🧩</span>市場志向の疎結合チームを実現する</h3>
-      <p class="summary">機能横断で完結した <mark>自律的なチームに権限を委譲</mark>し、迅速かつ安全に変更できるようにする。</p>
+      <h3 class="ic"><span class="emoji">🔗</span>疎結合なアーキテクチャで自律性を得る</h3>
+      <p class="summary">チームが互いに待たずに変更・テスト・デプロイできるよう、システムを疎結合に保つ。</p>
+      <p>著者は、密結合なシステムでは1つの変更が広範囲の調整を必要とし、流れが止まると述べる。疎結合な設計なら、各チームは他チームの承認や同時リリースを待たずに、自分の担当を独立して変更・デプロイできる。これが第一の道のフローを支える技術的な前提になる。</p>
       <ul>
-        <li>他チームへの依存を最小化し、価値提供に end-to-end で責任を持つ</li>
-        <li>中央集権的な承認を減らし、意思決定を分散する</li>
+        <li>疎結合な設計は、チーム間の待ち合わせを減らす。</li>
+        <li>独立してデプロイできることが、変更の安全性と速度を両立させる。</li>
       </ul>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🔠</span>メンバーをジェネラリスト化する</h3>
-      <p class="summary">単一専門の <span class="term">I型</span> より、幅広く対応できる <span class="term">T型</span> 人材がチームの柔軟性を高め、<mark>ボトルネックを解消する</mark>。</p>
-      <div class="versus">
-        <div class="side b">
-          <h4>📏 I型人材</h4>
-          <ul>
-            <li>単一の専門分野に深い</li>
-            <li>特定個人への依存が生じやすい</li>
-          </ul>
-        </div>
-        <div class="vs"><span>→</span></div>
-        <div class="side a">
-          <h4>📐 T型人材</h4>
-          <ul>
-            <li>専門性を持ちつつ幅広く対応できる</li>
-            <li>チームの柔軟性を高める</li>
-          </ul>
-        </div>
-      </div>
+      <h3 class="ic"><span class="emoji">🧩</span>機能別より市場志向のチーム</h3>
+      <p class="summary">職能ごとに分けた組織より、サービス単位で完結する部門横断チームの方が速く価値を届けられる。</p>
+      <p>著者は、開発・テスト・運用を職能で分ける編成は受け渡しと待ち行列を増やすと指摘する。市場志向（サービス単位）のチームに必要な職能を集めれば、1つのチームの中で設計から運用まで完結し、受け渡しが減る。少人数で自律的に動けるチーム編成が、流れを速める。</p>
       <ul>
-        <li>複数領域のスキル習得を支援し、特定個人への依存を減らす</li>
-        <li>「専門の壁を越える」ことを評価し、互いの仕事を理解し合う</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">📦</span>プロジェクトではなくサービス・プロダクトに投資する</h3>
-      <p class="summary">一度きりのプロジェクトでなく <mark>継続的にプロダクトを育てる</mark>。<span class="term">you build it, you run it</span> の原則に従う。</p>
-      <ul>
-        <li>同じ長期的なチームが開発と運用を担い、ナレッジを蓄積し続ける。短期プロジェクトの解散を避ける</li>
-        <li>ビジネス成果でチームを評価し、作ったものの運用結果に向き合う</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">✂️</span>コンウェイの法則を踏まえてチーム境界を設計する</h3>
-      <p class="summary">望ましいアーキテクチャから逆算し、<mark>チーム境界とサービス境界を一致させ</mark>、チームを小さく保つ。</p>
-      <ul>
-        <li>サービス間を疎結合にし、独立してデプロイ・テストできるようにする（マイクロサービス、bounded context、API）</li>
-        <li><b>two-pizza team</b>：5〜10人程度に抑える（Amazon の事例）</li>
-        <li>小さなチームが俊敏性と当事者意識を生む</li>
+        <li>サービス単位の部門横断チームが、受け渡しを内部に閉じる。</li>
+        <li>小さく自律的なチームほど、調整コストが小さい。</li>
       </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">コンウェイの法則</span><span class="k">市場志向の組織</span><span class="k">疎結合チーム</span><span class="k">T型人材</span><span class="k">プロダクト思考</span><span class="k">two-pizza team</span></div>
+    <div class="keywords"><span class="k">コンウェイの法則</span><span class="k">疎結合</span><span class="k">市場志向チーム</span><span class="k">部門横断</span><span class="k">自律性</span></div>
   </section>
 
   <!-- ===== 第8章 ===== -->
   <section class="chapter" id="ch8">
-    <div class="chapter-head"><span class="num">第8章</span><h2>運用を日常業務に統合して優れた成果を生む</h2></div>
+    <div class="chapter-head"><span class="num">第8章</span><h2>運用を開発の日常業務へ統合する</h2></div>
 
     <div class="in-a-nutshell">
-      <span class="emoji">🔗</span>
+      <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>開発と運用のサイロを解消する。<mark>運用を開発の日常業務に統合し、価値提供の流れを途切れさせない</mark>。統合には組織状況に応じた3つの基本パターンがある。</p>
+        <p>運用の知見を開発チームに行き渡らせ、開発と運用の壁をなくす。共有サービス・専任の連絡役・チームへの組み込みなど、いくつかの統合の形がある。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🔗</span>運用統合の3つの基本パターン</h3>
-      <p class="summary">開発と運用のサイロを解消する3つのアプローチがある。<mark>価値提供の流れを途切れさせない</mark>ことが目的である。</p>
+      <h3 class="ic"><span class="emoji">🤝</span>運用の専門性を開発の流れに入れる</h3>
+      <p class="summary">運用を別工程として後ろに置かず、開発の日常業務に組み込む。</p>
+      <p>著者は、開発が完成後に運用へ「投げ渡す」方式が分断と障害を生むと述べる。運用上の関心（監視・信頼性・容易な復旧）を開発の初期から考慮させることで、本番で動かしやすいものが作られる。運用知見を流れの上流に届けることが、第二の道の「下流のために最適化する」を組織面で実現する。</p>
+      <ul>
+        <li>運用の関心事を、設計・開発の段階から考慮させる。</li>
+        <li>「投げ渡し」をなくし、開発が運用まで関与する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧰</span>統合の3つの形</h3>
+      <p class="summary">組織の規模や事情に応じて、共有サービス・連絡役・チームへの組み込みなどを使い分ける。</p>
+      <p>著者は、運用統合を一律のやり方ではなく複数の形態で示す。セルフサービス化された共有プラットフォームを開発に提供する、運用の連絡役を開発チームに割り当てる、運用エンジニアを開発チームに常駐させる、といった選択肢がある。組織の制約に応じて適切な形を選ぶことで、開発と運用の協働を実装できる。</p>
       <div class="ways-map">
-        <div class="way-row" style="--wc:#2f7d6b">
-          <div class="icon-box">🛠️</div>
-          <div>
-            <div class="wlabel">Pattern ①</div>
-            <h4>共有サービス</h4>
-            <p>運用が再利用可能なセルフサービス基盤を提供し、開発者の生産性を高める。</p>
-          </div>
-        </div>
-        <div class="way-row" style="--wc:#3a5a8c">
-          <div class="icon-box">🧑‍🔧</div>
-          <div>
-            <div class="wlabel">Pattern ②</div>
-            <h4>運用エンジニアの組み込み</h4>
-            <p>運用エンジニアをサービスチームに組み込み、運用視点を設計段階から取り込む。</p>
-          </div>
-        </div>
-        <div class="way-row" style="--wc:#8c6a3a">
-          <div class="icon-box">🤝</div>
-          <div>
-            <div class="wlabel">Pattern ③</div>
-            <h4>運用リエゾン</h4>
-            <p>各サービスチームに運用リエゾンを割り当て、橋渡し役を置く。</p>
-          </div>
-        </div>
-      </div>
-      <div class="callout why">
-        <span class="emoji">📌</span>
-        <div><span class="ctitle">Big Fish Games の事例</span><p>運用の専門知識を開発に近づけ、チームの自律性と成果を両立させた事例が挙げられている。</p></div>
-      </div>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🛠️</span>① 共有サービスで開発者の生産性を高める</h3>
-      <p class="summary">運用が再利用可能なセルフサービス基盤を提供し、<mark>開発者のチケット待ちを減らす</mark>。</p>
-      <ul>
-        <li>開発者が自分で環境を構築でき、本番に近い環境を簡単に作れる</li>
-        <li>ビルド・デプロイ・テストの共通基盤にベストプラクティスを埋め込む</li>
-        <li>自動化により1人の運用が多くの開発を支援でき、人手のボトルネックを解消する</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🧑‍🔧</span>② 運用エンジニアをサービスチームに組み込む</h3>
-      <p class="summary"><span class="term">embed（埋め込み）モデル</span>。運用を開発チームに常駐させ、<mark>運用視点を設計段階から取り込む</mark>。</p>
-      <ul>
-        <li>運用エンジニアを機能横断チームの一員にし、日常的に協働する</li>
-        <li>相互のスキル移転を促し、チーム全体で運用性に責任を持つ</li>
-        <li>「壁の向こうに投げる」文化をなくす</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🤝</span>③ 各サービスチームに運用リエゾンを割り当てる</h3>
-      <p class="summary">全チームに専任を置けない場合の現実解。<mark>リエゾンが橋渡し役として複数チームを担当する</mark>。</p>
-      <ul>
-        <li>開発チームの運用ニーズを代弁し、運用上の懸念を早期に持ち込む</li>
-        <li>定期的に開発チームと関わり、必要なリソースを調整する</li>
-        <li>運用の専門性を効率的に分配する</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">📅</span>運用を開発の儀式に統合する</h3>
-      <p class="summary"><mark>朝会・計画・レトロスペクティブに運用が参加</mark>し、問題を早期に発見して共同で改善する。</p>
-      <div class="flow">
-        <div class="node"><div class="emoji">🗣️</div><div class="t">朝会</div><div class="s">当日の作業と<br>障害を共有</div></div>
-        <div class="arrow">→</div>
-        <div class="node"><div class="emoji">📋</div><div class="t">計画</div><div class="s">運用作業を<br>バックログに</div></div>
-        <div class="arrow">→</div>
-        <div class="node"><div class="emoji">🔁</div><div class="t">振り返り</div><div class="s">障害から学び<br>改善を共同決定</div></div>
+        <div class="way-row" style="--wc:#2f7d6b"><b>共有サービス</b><span>運用がセルフサービス基盤を提供し、開発が自律的に使う</span></div>
+        <div class="way-row" style="--wc:#3a73a8"><b>運用連絡役</b><span>運用の担当者を開発チームに割り当てて橋渡しする</span></div>
+        <div class="way-row" style="--wc:#b06a2c"><b>チームへの組み込み</b><span>運用エンジニアを開発チームの一員として常駐させる</span></div>
       </div>
       <ul>
-        <li>daily standup に運用が加わり、当日の作業と障害を共有して問題を早期に発見する</li>
-        <li>スプリント計画に運用作業をバックログとして含め、キャパシティを正しく見積もる</li>
-        <li>振り返りに運用も参加し、障害やインシデントから学び改善アクションを共同で決める</li>
-      </ul>
-    </div>
-
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">📋</span>運用作業を共有kanbanで見える化する</h3>
-      <p class="summary">開発と運用の作業を <mark>1つのボードで管理</mark>し、計画外作業も含めてすべてを可視化する。</p>
-      <ul>
-        <li>すべての作業を可視化し、WIPを制限する</li>
-        <li>計画外作業も見えるようにし、ボトルネックを浮かび上がらせる</li>
-        <li>同じボードで優先順位を議論し、運用と開発の作業バランスを取る</li>
+        <li>規模・成熟度・制約に応じて統合の形を選ぶ。</li>
+        <li>共通基盤のセルフサービス化は、開発の待ち時間を減らす。</li>
       </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">3つの統合パターン</span><span class="k">セルフサービス基盤</span><span class="k">embed</span><span class="k">運用リエゾン</span><span class="k">開発儀式への参加</span><span class="k">共有kanban</span></div>
+    <div class="keywords"><span class="k">運用統合</span><span class="k">共有サービス</span><span class="k">連絡役</span><span class="k">セルフサービス基盤</span><span class="k">投げ渡しの解消</span></div>
   </section>
 
   <nav class="pager">
-    <a class="prev" href="part1.html"><span class="dir">← 前の部</span><span class="ttl">第1部 DevOpsと3つの道</span></a>
-    <a class="next" href="part3.html"><span class="dir">次の部 →</span><span class="ttl">第3部 フローの技術的実践</span></a>
+    <a class="prev" href="part1.html"><span class="dir">← 前</span><span class="ttl">第1部 DevOps と 3つの道</span></a>
+    <a class="next" href="part3.html"><span class="dir">次 →</span><span class="ttl">第3部 フローの技術的実践</span></a>
   </nav>
 
 </main>
 
-<footer class="foot"><p>The DevOps ハンドブック 要点まとめ ／ 第2部</p></footer>
+<footer class="foot"><p>The DevOps ハンドブック 要点まとめ（詳細版）</p></footer>
 
 </body>
 </html>

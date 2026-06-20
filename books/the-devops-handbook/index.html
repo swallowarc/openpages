@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THE DEVOPS ハンドブック ― 要点まとめ</title>
+<title>The DevOps ハンドブック ― 要点まとめ</title>
 <link rel="stylesheet" href="style.css">
 <style>
   :root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }
@@ -43,13 +43,13 @@
 </nav>
 
 <header class="hero">
-  <span class="eyebrow">READING NOTES</span>
+  <span class="eyebrow">READING NOTES ― 詳細版</span>
   <h1>The DevOps ハンドブック<br>理論・原則・実践のすべて</h1>
-  <p class="lead">本書全24章の要点を、本の論理構造（6つの部）に沿ってまとめた読書ノートである。各部のページで、章ごとの主要トピックと簡潔な解説を確認できる。</p>
+  <p class="lead">本書全23章の要点を、本の論理構造（6つの部）に沿ってまとめた読書ノートである。各部のページでは、章ごとの主張に加え、著者がその主張を支える論拠・前提・筋道まで展開する。</p>
 </header>
 
 <main>
-<!-- ===== ご利用前の注意（固定文・文言は変更しない／index 冒頭に必ず置く） ===== -->
+  <!-- ===== ご利用前の注意（固定文・文言は変更しない） ===== -->
   <aside class="about-notice">
     <span class="emoji">⚠️</span>
     <div>
@@ -75,25 +75,25 @@
   </section>
 
   <section class="book-overview">
-    <h2>本書が描く世界</h2>
-    <p>開発（Dev）と運用（Ops）は、しばしば<b>構造的に相反する目標</b>を持たされ、技術的負債と障害が積み上がる「負のスパイラル」に陥る。DevOps は共通の目標と小さなバッチでの仕事の流れによってこの悪循環を断ち切り、<b>短いリードタイム・高いデプロイ頻度・高い安定性・働く人の幸福</b>を同時に実現する。</p>
-    <p>その実践は <b>The Three Ways（3つの道）</b> という原則に集約される。</p>
+    <h2>本書の全体像</h2>
+    <p>開発（Dev）と運用（Ops）は、しばしば<b>構造的に相反する目標</b>を負わされる。開発は変更のスピードで評価され、運用は安定性で評価される。両者が分断されたまま局所最適を追うと、技術的負債と障害が積み上がる「負のスパイラル」に陥る。DevOps は共通の目標と小さなバッチでの仕事の流れによってこの悪循環を断ち、<b>短いリードタイム・高いデプロイ頻度・高い安定性・働く人の幸福</b>を同時に成立させる。</p>
+    <p>その実践は <b>The Three Ways（3つの道）</b> という原則に集約される。著者はまず原則を提示し（第1部）、着手の仕方（第2部）を示したうえで、各原則を支える技術的実践（第3〜5部）と、セキュリティ・コンプライアンスの統合（第6部）へと展開する。</p>
 
     <div class="three-ways">
       <div class="way">
         <span class="tag">FIRST WAY</span>
         <h3>フロー</h3>
-        <p>開発→運用への左から右への流れを高速化する。可視化・WIP制限・小さなバッチ。</p>
+        <p>開発から運用への左から右への流れを高速化する。可視化・WIP制限・小さなバッチで、リードタイムを縮める。</p>
       </div>
       <div class="way">
         <span class="tag">SECOND WAY</span>
         <h3>フィードバック</h3>
-        <p>右から左への速く絶え間ないフィードバック。問題の早期検知と源流での品質作り込み。</p>
+        <p>右から左への速く絶え間ないフィードバック。問題を早期に検知し、源流で品質を作り込む。</p>
       </div>
       <div class="way">
         <span class="tag">THIRD WAY</span>
         <h3>継続的な学習と実験</h3>
-        <p>失敗から学ぶ文化と実験の奨励。学習と改善を組織に定着させる。</p>
+        <p>失敗から学ぶ文化と実験の奨励。個人の学習を組織の学習へ転換し、改善を日常に定着させる。</p>
       </div>
     </div>
   </section>
@@ -101,7 +101,7 @@
   <!-- ===== ターゲット読者（本書の内容から推定） ===== -->
   <section class="book-overview">
     <h2>この本がターゲットとする読者</h2>
-    <p>本書は、DevOps を組織に導入・定着させたい<b>技術リーダーと実務者</b>を主な対象とする。個別ツールの操作知識よりも、原則と全体像を体系的に押さえたい層に向く。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
+    <p>本書は、DevOps を組織に導入・定着させたい<b>技術リーダーと実務者</b>を主な対象とする。個別ツールの操作知識よりも、原則・全体像と「なぜその実践が効くのか」という論拠を体系的に押さえたい層に向く。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
     <div class="persona-grid">
       <div class="persona">
         <span class="emoji">👩‍💻</span>
@@ -165,7 +165,7 @@
       <span class="pc-eyebrow">PART 1 ― 序章・第1〜4章</span>
       <h3>DevOps と 3つの道</h3>
       <p>DevOps が解決する課題、バリューストリームの考え方、そして本書の背骨となる「フロー・フィードバック・継続的な学習と実験」という3つの原則を概観する。</p>
-      <div class="chapters"><span>序章｜1</span> アジャイル・継続的デリバリーと3つの道 ／ <span>2</span> フロー ／ <span>3</span> フィードバック ／ <span>4</span> 学習と実験</div>
+      <div class="chapters"><span>1</span> アジャイル・継続的デリバリーと3つの道 ／ <span>2</span> フローの原則 ／ <span>3</span> フィードバックの原則 ／ <span>4</span> 継続的な学習と実験の原則</div>
     </a>
 
     <a class="part-card" style="--pc:#2f7d6b" href="part2.html">
@@ -186,7 +186,7 @@
       <span class="pc-eyebrow">PART 4 ― 第14〜18章</span>
       <h3>第二の道：フィードバックの技術的実践</h3>
       <p>テレメトリの構築と分析、安全なデプロイのためのフィードバック、仮説駆動開発とA/Bテスト、品質を高めるレビューと調整プロセス。</p>
-      <div class="chapters"><span>14</span> テレメトリ構築 ／ <span>15</span> 分析と予測 ／ <span>16</span> 安全なデプロイ ／ <span>17</span> 仮説駆動・A/B ／ <span>18</span> レビュー</div>
+      <div class="chapters"><span>14</span> テレメトリ構築 ／ <span>15</span> 分析と予測 ／ <span>16</span> 安全なデプロイ ／ <span>17</span> 仮説駆動・A/B ／ <span>18</span> レビューと調整</div>
     </a>
 
     <a class="part-card" style="--pc:#5a6b1f" href="part5.html">
@@ -200,7 +200,7 @@
       <span class="pc-eyebrow">PART 6 ― 第22〜23章</span>
       <h3>情報セキュリティ・変更管理・コンプライアンスの統合</h3>
       <p>セキュリティを全員の日常業務に組み込み、デプロイパイプラインを保護する。コンプライアンスと変更管理を流れを止めずに両立させる。</p>
-      <div class="chapters"><span>22</span> 全員の情報セキュリティ ／ <span>23</span> パイプラインの保護</div>
+      <div class="chapters"><span>22</span> 全員の情報セキュリティ ／ <span>23</span> パイプラインの保護と変更管理</div>
     </a>
 
   </div>
@@ -208,7 +208,7 @@
 </main>
 
 <footer class="foot">
-  <p>The DevOps ハンドブック 要点まとめ</p>
+  <p>The DevOps ハンドブック 要点まとめ（詳細版）</p>
 </footer>
 
 </body>

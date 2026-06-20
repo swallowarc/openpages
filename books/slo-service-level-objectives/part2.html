@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第II部 SLOの実装 ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#b5651d; --accent-soft:#f6ece1; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SLO サービスレベル目標</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第I部</a>
+      <a href="part2.html">第II部</a>
+      <a href="part3.html">第III部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART II ― 第6〜12章</span>
+  <h1>SLOの実装</h1>
+  <p class="lead">第I部の概念を現実のシステムに落とし込む部である。導入はまず組織の同意を得るところから始まり、SLI/SLOの計測、SLOに基づくアラート、確率・統計による検証、信頼性を支えるアーキテクチャとデータ、そして一気通貫の実例へと進む。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch6"><span class="ch-no">6</span><span>同意の獲得</span></a></li>
+      <li><a href="#ch7"><span class="ch-no">7</span><span>SLIとSLOの計測</span></a></li>
+      <li><a href="#ch8"><span class="ch-no">8</span><span>SLOの監視とアラート</span></a></li>
+      <li><a href="#ch9"><span class="ch-no">9</span><span>SLIとSLOの確率と統計</span></a></li>
+      <li><a href="#ch10"><span class="ch-no">10</span><span>信頼性を得るためのアーキテクチャ</span></a></li>
+      <li><a href="#ch11"><span class="ch-no">11</span><span>データの信頼性</span></a></li>
+      <li><a href="#ch12"><span class="ch-no">12</span><span>適切に機能した例</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第6章 ===== -->
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="num">第6章</span><h2>同意の獲得</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SLOの導入は技術ではなく合意形成から始まる。関係者の同意がないSLOは運用されず機能しない。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤝</span>導入は技術より先に同意から始める</h3>
+      <p class="summary">SLOを実装に移す前に、関係者の同意を得ることが先である。同意のないSLOは、目標値が正しくても守られない。</p>
+      <p>その理由は、SLOがエラーバジェットを通じて意思決定の権限に関わるからである。バジェットの枯渇が「機能開発を止めて信頼性を回復する」という判断につながる以上、開発側・運用側・経営側がその規則を事前に受け入れていなければ、いざという時に守られない。著者が同意の獲得を第II部の冒頭に置くのは、合意がSLO運用の前提条件だからである。</p>
+      <ul>
+        <li>SLOはエラーバジェットを通じて意思決定の規則を含む。</li>
+        <li>規則を事前に受け入れていなければ、危機時に機能しない。</li>
+        <li>同意は経営層・開発・運用など複数の立場から得る必要がある。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🪜</span>小さく始めて実績で広げる</h3>
+      <p class="summary">最初から完璧で網羅的なSLO体系を目指すのではなく、限られた範囲で始め、有効性を示してから広げる。</p>
+      <p>前提は、SLOが反復で改善するプロセスだという第I部の立場である。最初のSLOが不完全でも、運用しながら直せる。小さく始めれば導入のハードルが下がり、最初の成功事例が次の同意を得る材料になる、という筋道で段階的な拡大を勧める。</p>
+      <ul>
+        <li>初期のSLOは不完全でよく、反復で改善する。</li>
+        <li>小さな成功が、次の部署・サービスへの同意を生む。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">同意の獲得</span><span class="k">合意形成</span><span class="k">段階的導入</span><span class="k">ステークホルダー</span></div>
+  </section>
+
+  <!-- ===== 第7章 ===== -->
+  <section class="chapter" id="ch7">
+    <div class="chapter-head"><span class="num">第7章</span><h2>SLIとSLOの計測</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SLI/SLOは計測して初めて運用できる。どこで、どの時間窓で、どう集計するかが指標の意味を左右する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📏</span>計測点と時間窓が指標の意味を決める</h3>
+      <p class="summary">同じSLIでも、どこで計測するか（計測点）と、どの期間で集計するか（時間窓）で結果は変わる。これらを意図して選ぶ必要がある。</p>
+      <p>論拠は、計測点がユーザー体験からの距離を決めるという点にある。ユーザーに近い場所（ロードバランサやクライアント側）で測るほど、実際の体験に近い値になる。一方、時間窓は判断の単位を決める。短い窓は変動に敏感で、長い窓は傾向を見るのに向く。著者は、SLIを定義するだけでなく、その計測条件まで決めて初めて運用可能になると述べる。</p>
+      <ul>
+        <li>計測点がユーザーから遠いほど、体験との乖離が増える。</li>
+        <li>ローリングウィンドウ（移動窓）とカレンダーウィンドウ（暦の区切り）で性質が異なる。</li>
+        <li>計測条件はSLOの妥当性に直結する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">計測点</span><span class="k">時間窓</span><span class="k">ローリングウィンドウ</span><span class="k">集計</span></div>
+  </section>
+
+  <!-- ===== 第8章 ===== -->
+  <section class="chapter" id="ch8">
+    <div class="chapter-head"><span class="num">第8章</span><h2>SLOの監視とアラート</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>アラートは個々のメトリクスの閾値超えではなく、エラーバジェットの消費速度（バーンレート）に基づいて出す。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔥</span>バーンレートでアラートを出す</h3>
+      <p class="summary">SLOベースのアラートは、エラーバジェットをどれだけ速く消費しているか（バーンレート）を基準にする。バジェットを早く食い潰す事象ほど緊急度が高い。</p>
+      <p>従来の閾値アラートが抱える問題は、ユーザー影響と無関係に鳴る、あるいは鳴らない点にある。CPUが一時的に高くてもユーザーが困らなければ対応は不要であり、逆に小さなエラー率でも長く続けばバジェットを使い切る。バーンレートを基準にすれば、「このままだとバジェットが尽きるか」というユーザー影響の見込みで緊急度を判定できる。著者は、これによりアラートがユーザー影響と整合し、無駄な呼び出しを減らせると述べる。</p>
+      <ul>
+        <li>バーンレート＝エラーバジェットの消費速度。</li>
+        <li>速い消費＝短時間で対応が必要な重大事象。</li>
+        <li>遅い消費＝緊急ではないが追跡すべき事象。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>アラートの目的を「異常の検知」ではなく「ユーザー影響が許容量を超える前の通知」と定義し直すから、消費速度（バーンレート）が緊急度の指標になる。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">SLOベースのアラート</span><span class="k">バーンレート</span><span class="k">緊急度</span><span class="k">アラート疲れの抑制</span></div>
+  </section>
+
+  <!-- ===== 第9章 ===== -->
+  <section class="chapter" id="ch9">
+    <div class="chapter-head"><span class="num">第9章</span><h2>SLIとSLOの確率と統計</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SLOの目標値や達成見込みは、平均値だけでなく分布・確率で捉えるべきである。統計はSLOを正しく解釈するための道具である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📊</span>SLOは分布で捉える</h3>
+      <p class="summary">SLIの値は平均だけでは実態を表さない。分布やパーセンタイルで見て初めて、ユーザーが実際に体験する状態が分かる。</p>
+      <p>論拠は、平均が外れ値や偏りを隠すという統計的事実にある。応答時間のように分布が偏る指標では、平均が良くても一部のユーザーが極端に悪い体験をしていることがある。パーセンタイル（たとえば上位の遅いリクエスト）で見れば、その悪い体験を捉えられる。著者は、SLOの目標を引くときも達成を評価するときも、分布で考えることを求める。</p>
+      <ul>
+        <li>平均は偏った分布の実態を隠す。</li>
+        <li>パーセンタイルで「遅い側のユーザー」を捉える。</li>
+        <li>確率的に「目標を満たし続けられるか」を見積もる。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>パーセンタイルとは、値を小さい順に並べたとき下から何%の位置にあるかを示す指標である（例：p99は遅い方から1%を除いた値）。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">確率と統計</span><span class="k">分布</span><span class="k">パーセンタイル</span><span class="k">平均の限界</span></div>
+  </section>
+
+  <!-- ===== 第10章 ===== -->
+  <section class="chapter" id="ch10">
+    <div class="chapter-head"><span class="num">第10章</span><h2>信頼性を得るためのアーキテクチャ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>信頼性はSLOを掲げるだけでは生まれない。システムの構造そのものを、目標とする信頼性を支えられるよう設計する必要がある。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏗️</span>アーキテクチャが信頼性の上限を決める</h3>
+      <p class="summary">達成できる信頼性は、システムの構造によって上限が決まる。依存関係・冗長性・障害の分離などの設計が、SLOの実現可能性を左右する。</p>
+      <p>前提は、信頼性スタックの土台がSLIであり、そのSLIを生むのは実際のシステムだという点である。いくら高いSLOを掲げても、単一障害点があれば達成できない。逆に、冗長化や障害の切り離しを設計に組み込めば、個々の部品が落ちても全体のSLIを保てる。著者は、目標とする信頼性に見合うようアーキテクチャを設計すべきだと述べる。</p>
+      <ul>
+        <li>単一障害点は達成可能な信頼性の上限を下げる。</li>
+        <li>冗長性・障害分離は構成要素の故障を全体の故障にしない。</li>
+        <li>目標信頼性に対して過剰な構造もコスト過多になる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">アーキテクチャ</span><span class="k">冗長性</span><span class="k">障害分離</span><span class="k">単一障害点</span></div>
+  </section>
+
+  <!-- ===== 第11章 ===== -->
+  <section class="chapter" id="ch11">
+    <div class="chapter-head"><span class="num">第11章</span><h2>データの信頼性</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>信頼性は可用性だけの話ではない。データの正しさ・鮮度・完全性もユーザー体験を左右する信頼性の対象である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗄️</span>データの正しさも信頼性に含める</h3>
+      <p class="summary">サービスが応答しても、返すデータが古い・欠けている・誤っていればユーザーの体験は損なわれる。データの質もSLIで扱うべき信頼性である。</p>
+      <p>論拠は、ユーザー視点という第I部の原則を一貫させる点にある。ユーザーにとって重要なのは「応答が返ったか」だけでなく「返ってきた内容が正しいか」である。可用性だけを測ると、正しく動いているが誤った結果を返す状態を見逃す。そこで鮮度・完全性・正確さといったデータの性質もSLIの対象に含める、という筋道になる。</p>
+      <ul>
+        <li>可用性の指標だけでは、誤ったデータを返す障害を捉えられない。</li>
+        <li>鮮度・完全性・正確さもユーザー体験の一部。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">データの信頼性</span><span class="k">鮮度</span><span class="k">完全性</span><span class="k">正確さ</span></div>
+  </section>
+
+  <!-- ===== 第12章 ===== -->
+  <section class="chapter" id="ch12">
+    <div class="chapter-head"><span class="num">第12章</span><h2>適切に機能した例</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>これまでの概念を一つの例に通して適用し、SLIの定義からSLO・エラーバジェットの運用までの流れを具体的に示す。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>ユーザージャーニーからSLIを組み立てる</h3>
+      <p class="summary">実例では、ユーザーがサービスを使う一連の流れ（ユーザージャーニー）を起点に、各段階で何が「良いイベント」かを定義してSLIを組み立てる。</p>
+      <p>この進め方を採る理由は、ユーザー視点のSLIを漏れなく作るためである。システム構成からSLIを考えると内部都合に寄りやすいが、ユーザーが体験する流れに沿えば、ユーザーにとって重要な事象を順に拾える。大規模で構成要素が多いシステムほど、この組み立て方が有効だと示される。</p>
+      <ul>
+        <li>起点はシステム構成でなくユーザーの操作の流れ。</li>
+        <li>各段階の「良いイベント」を定義してSLIに落とす。</li>
+        <li>定義したSLIにSLOとエラーバジェットを与えて運用する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">実例</span><span class="k">ユーザージャーニー</span><span class="k">SLIの組み立て</span><span class="k">一気通貫</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part1.html"><span class="dir">← 前</span><span class="ttl">第I部 SLOの開発</span></a>
+    <a class="next" href="part3.html"><span class="dir">次 →</span><span class="ttl">第III部 SLOの文化</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>SLO サービスレベル目標 要点まとめ</p></footer>
+
+</body>
+</html>

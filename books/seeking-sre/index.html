@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SREの探求 ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SREの探求</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第I部</a>
+      <a href="part2.html">第II部</a>
+      <a href="part3.html">第III部</a>
+      <a href="part4.html">第IV部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">READING NOTES</span>
+  <h1>SREの探求</h1>
+  <p class="lead">様々な企業におけるサイトリライアビリティエンジニアリングの導入と実践。多数の実践者が寄せた33章の論集を、4部構成にそって要点と著者の論拠で整理した要約である。</p>
+</header>
+
+<main>
+
+  <!-- ===== ご利用前の注意（固定文・文言は変更しない） ===== -->
+  <aside class="about-notice">
+    <span class="emoji">⚠️</span>
+    <div>
+      <span class="ctitle">ご利用前の注意</span>
+      <p>このまとめは、AIエージェントによる本書のWebリサーチの結果から生成したものです。書籍本文そのものから作成したものではないため、内容が書籍と一致していない可能性があり、また本書の内容を網羅したものでもありません。読む前に全体像のイメージをつかむため、または読了後に内容を見直す際の参考資料として、読書のサポート用にご活用ください。</p>
+    </div>
+  </aside>
+
+  <!-- ===== 書誌情報 ===== -->
+  <section class="bibliography">
+    <p class="title">SREの探求 ―様々な企業におけるサイトリライアビリティエンジニアリングの導入と実践／原題 Seeking SRE: Conversations About Running Production Systems at Scale</p>
+    <dl>
+      <dt>編者</dt><dd>David N. Blank-Edelman</dd>
+      <dt>監訳</dt><dd>山口能迪</dd>
+      <dt>訳者</dt><dd>渡邉了介</dd>
+      <dt>出版社</dt><dd>オライリー・ジャパン（原書：O'Reilly Media）</dd>
+      <dt>発行年</dt><dd>2021年（原書：2018年）</dd>
+    </dl>
+  </section>
+
+  <!-- ===== 本の全体像 ===== -->
+  <section class="book-overview">
+    <h2>本書の全体像</h2>
+    <p>本書は単一著者による教科書ではなく、多数の実践者が各社の現場から寄稿した33章の論集である。編者は表題の核となる語を「対話（Conversations）」だと述べ、SRE はまだ確立しきった分野ではなく、発展・拡大・変化の途上にある、という立場をとる。書名の「探求（Seeking）」は、唯一の正解を提示するのではなく、規模も文化も異なる多数の企業の実例を通じて、各自が自組織に合う SRE のかたちを探す姿勢を指す。</p>
+    <p>構成は4部からなる。第I部は組織への SRE 導入、第II部は信頼性に隣接する周辺領域（カオス・プライバシー・データベース・データ耐久性・機械学習）、第III部はベストプラクティスと技術、第IV部は心理的安全性やバーンアウトなど SRE の人間的側面を扱う。技術・組織・人間という三つの層に SRE の関心が広がっていることを、構成自体が示している。</p>
+  </section>
+
+  <!-- ===== この本がターゲットとする読者 ===== -->
+  <section class="book-overview">
+    <h2>この本がターゲットとする読者</h2>
+    <p>SRE の基礎をすでに押さえたうえで、自組織への導入と実践で具体的な壁にぶつかっている実務者・リーダーを主な対象とする。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
+    <div class="persona-grid">
+      <div class="persona">
+        <span class="emoji">🛠️</span>
+        <h3>SRE・運用エンジニア</h3>
+        <p>各社の導入事例・アンチパターン・周辺技術から、自社の状況に近い筋道を選び取りたい層。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🧭</span>
+        <h3>マネージャー・リーダー</h3>
+        <p>SRE チームを作るか、専任なしで原則を適用するか、大企業の組織構造とどう折り合うかを判断したい層。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🏢</span>
+        <h3>大企業・既存組織の責任者</h3>
+        <p>SaaS スタートアップ流の手法を、そのままでは適用できない組織でどう根づかせるかを考える層。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🤝</span>
+        <h3>チーム文化に関心のある人</h3>
+        <p>心理的安全性・バーンアウト・認知的作業など、技術以外の側面から信頼性を支えたい層。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== おすすめの読み進め方（AIによる分析・本書外） ===== -->
+  <section class="ai-analysis">
+    <div class="ai-badge"><span class="emoji">🤖</span>AIによる分析 ― 本書の記述ではなく、内容に基づく独自提案</div>
+    <h2>おすすめの読み進め方</h2>
+    <p>本書は各章が独立した論集であり、必ずしも先頭から通読する必要はない。関心と立場に応じて、自分に近いテーマの部から読み始める進め方を提案する。本書の4部構成・各章の主張と整合する範囲での提案である。</p>
+    <div class="path-row">
+      <span class="who">SRE導入を検討中のリーダー</span>
+      <span class="route"><b>第I部</b>（特に3・8・10章）→ 第III部の21章（SLO）→ 第IV部</span>
+    </div>
+    <div class="path-row">
+      <span class="who">専任チームを持てない組織</span>
+      <span class="route"><b>第I部6・7章</b>（SoundCloud／Spotify）→ 第III部 → 第I部11・13章</span>
+    </div>
+    <div class="path-row">
+      <span class="who">技術トピックを深めたい実務者</span>
+      <span class="route"><b>第II部</b>（周辺領域）→ <b>第III部</b>（SLO・アンチパターン・サービスメッシュ）</span>
+    </div>
+    <div class="path-row">
+      <span class="who">チーム文化・人の側面に関心</span>
+      <span class="route"><b>第IV部</b>（27〜32章）→ 第III部22章（成功の文化）→ 第I部1章</span>
+    </div>
+  </section>
+
+  <!-- ===== 各部へのカードナビ ===== -->
+  <div class="section-label">構成 ― クリックで各ページへ</div>
+  <div class="part-grid">
+    <a class="part-card" style="--pc:#3a5a8c" href="part1.html">
+      <span class="pc-eyebrow">PART I ― 第1〜13章</span>
+      <h3>SREの導入</h3>
+      <p>規模も文化も異なる各社が、SRE をどう組織に持ち込んだか。統制と文脈、採用、専任チームの有無、大企業の構造的障壁などを扱う。</p>
+      <div class="chapters"><span>1</span> コンテキストとコントロール ／ <span>3</span> SREチームを作りたいのですね ／ <span>7</span> Spotifyのケーススタディ ／ <span>13</span> Facebookのプロダクションエンジニアリング</div>
+    </a>
+    <a class="part-card" style="--pc:#2e7d6b" href="part2.html">
+      <span class="pc-eyebrow">PART II ― 第14〜18章</span>
+      <h3>SREの周辺領域</h3>
+      <p>信頼性に隣接する専門領域への入口。カオスエンジニアリング、プライバシー、データベース、データ耐久性、機械学習を概観する。</p>
+      <div class="chapters"><span>14</span> 初めにカオスありき ／ <span>16</span> データベースリライアビリティ ／ <span>17</span> データ耐久性 ／ <span>18</span> 機械学習入門</div>
+    </a>
+    <a class="part-card" style="--pc:#9a6b2f" href="part3.html">
+      <span class="pc-eyebrow">PART III ― 第19〜26章</span>
+      <h3>ベストプラクティスと技術</h3>
+      <p>ドキュメント、能動的学習、SLO、成功の文化、アンチパターン、イミュータブルインフラ、スクリプタブルLB、サービスメッシュ。</p>
+      <div class="chapters"><span>21</span> SLOの技法と科学 ／ <span>23</span> SREのアンチパターン ／ <span>24</span> イミュータブルインフラ ／ <span>26</span> サービスメッシュ</div>
+    </a>
+    <a class="part-card" style="--pc:#7a4a8c" href="part4.html">
+      <span class="pc-eyebrow">PART IV ― 第27〜33章</span>
+      <h3>SREの人間的側面</h3>
+      <p>心理的安全性、認知的作業、バーンアウト、オンコール、複雑系、運用と社会運動。見過ごせない文化的側面を考察する。</p>
+      <div class="chapters"><span>27</span> 心理的安全性 ／ <span>28</span> 認知的作業 ／ <span>30</span> オンコール反対論 ／ <span>32</span> 運用と社会運動</div>
+    </a>
+  </div>
+
+</main>
+
+<footer class="foot"><p>SREの探求 要点まとめ</p></footer>
+
+</body>
+</html>

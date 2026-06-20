@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>加速とは何か／4つの指標で計測する ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#2f7d6b; --accent-soft:#e9f4f0; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>LeanとDevOpsの科学</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第1部①</a>
+      <a href="part2.html">第1部②</a>
+      <a href="part3.html">第1部③</a>
+      <a href="part4.html">第2部</a>
+      <a href="part5.html">第3部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART 1 ― 第1〜2章</span>
+  <h1>加速とは何か／4つの指標で計測する</h1>
+  <p class="lead">改善の対象を「成熟度」から「ケイパビリティ」へ移すべきだという主張と、ソフトウェアデリバリのパフォーマンスを定義する4つの指標を扱う。ここが本書全体の測定の土台になる。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch1"><span class="ch-no">1</span><span>業務を加速させるということ</span></a></li>
+      <li><a href="#ch2"><span class="ch-no">2</span><span>開発組織のパフォーマンスを計測</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第1章 ===== -->
+  <section class="chapter" id="ch1">
+    <div class="chapter-head"><span class="num">第1章</span><h2>業務を加速させるということ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>改善努力が向かう先は、固定的な「成熟度」ではなく、継続的に伸ばせる「ケイパビリティ」である。ソフトウェアデリバリの能力は組織の競争力を左右する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>成熟度モデルではなくケイパビリティに焦点を当てる</h3>
+      <p class="summary">組織の状態を測るとき、「成熟度レベル」のような到達点ラベルではなく、伸ばし続けられるケイパビリティ（能力）で捉えるべきだと著者は主張する。</p>
+      <p>著者がこの転換を求める筋道はこうである。成熟度モデルは「レベルに到達したら完了」とみなしやすく、到達後に改善が止まる。また、業種や状況が違う組織を同じ段階表に当てはめるため、各組織が次に何をすべきかを示しにくい。これに対しケイパビリティ志向は、現在地に関わらず「次に伸ばす能力」を常に持つため、技術と市場の変化に合わせて継続的に改善し続けられる。著者は、変化の速い環境で競争力を保つには、完了のない継続的改善のモデルが必要だと位置づける。</p>
+      <ul>
+        <li>成熟度モデルは到達点を示すため、達成後に改善のインセンティブが弱まる。</li>
+        <li>ケイパビリティは結果（アウトカム）に結びつけて測り、改善の優先順位を示せる。</li>
+        <li>本書は後の各章で、デリバリ業績を押し上げる具体的なケイパビリティを特定する。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔑</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>到達で止まる指標より、常に「次に伸ばすもの」を示す指標のほうが、継続的改善を駆動するから。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📈</span>ソフトウェアデリバリの能力は組織の競争力を左右する</h3>
+      <p class="summary">ソフトウェアをすばやく安全に届ける能力は、特定の業種に限らず、組織のパフォーマンスを高める要因であると著者は主張する。</p>
+      <p>この主張の前提として、著者はソフトウェアを「コスト部門」ではなく価値創出の中核と捉える。論拠は本書全体を貫く調査結果であり、デリバリのパフォーマンスが高い組織は、収益性・生産性・市場シェアといった商業的な成果でも優れる傾向が、4年間・多数の組織を対象にした分析で確認されたという。著者は、この関係が一部の先進企業だけでなく幅広い業種で観察された点を根拠に、DevOpsの採用には測定可能な価値があると結論づける。</p>
+      <ul>
+        <li>分析対象は特定業種に限らず、多様な組織を含む。</li>
+        <li>デリバリ能力の高さは商業的成果と統計的に結びつく（詳細は第2章）。</li>
+        <li>この関係を測る具体的な指標と方法は、第2章以降と第2部で示される。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">ケイパビリティ</span>
+      <span class="k">成熟度モデル</span>
+      <span class="k">継続的改善</span>
+      <span class="k">DevOps採用の価値</span>
+    </div>
+  </section>
+
+  <!-- ===== 第2章 ===== -->
+  <section class="chapter" id="ch2">
+    <div class="chapter-head"><span class="num">第2章</span><h2>開発組織のパフォーマンスを計測</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>デリバリのパフォーマンスは4つの指標で測る。スループットと安定性はトレードオフではなく、高パフォーマーは両方で優れる。デリバリ業績は組織業績を予測する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚠️</span>従来の測定手法は成果を捉えそこなう</h3>
+      <p class="summary">速度（ベロシティ）・稼働率・コード行数といった従来の尺度は、局所的な活動量を測るだけで、組織にとっての成果を測れないと著者は指摘する。</p>
+      <p>著者の論拠は、望ましい尺度が満たすべき条件から導かれる。良い尺度は「個々の活動量ではなくグローバルな成果に焦点を当てる」こと、そして「アウトプット（作業量）ではなくアウトカム（結果）を測る」ことだとする。この基準に照らすと、ベロシティはチーム間で比較できず増やすこと自体が目的化しやすい、稼働率は100%に近づくほどリードタイムが延びる、コード行数は多いほど良いとは限らない、という弱点を持つ。いずれも局所最適を促し、全体の成果と結びつかないため、測定の土台にできないと著者は結論づける。</p>
+      <ul>
+        <li>ベロシティは相対見積りであり、チーム横断の比較や目標化に向かない。</li>
+        <li>稼働率を上げすぎるとリードタイムが延び、かえって流れが滞る。</li>
+        <li>コード行数は成果ではなく、少ないコードで同じ成果を出すほうが望ましい場合がある。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📐</span>デリバリのパフォーマンスを4つの指標で定義する</h3>
+      <p class="summary">著者はデリバリのパフォーマンスを、スループットを表す2指標と安定性を表す2指標、計4つで定義する。</p>
+      <p>4指標を選ぶ筋道は、デリバリを2つの軸で捉える点にある。スループット（速さ）は「変更のリードタイム」と「デプロイの頻度」で、安定性（壊れにくさと回復力）は「サービス復旧までの時間（MTTR）」と「変更失敗率」で測る。著者は、片方だけを上げる測定では速さと安定の偏りを見逃すため、両軸をそろえて測ることが必要だとする。これらはチームやシステムをまたいで比較でき、活動量ではなく結果を測る尺度であるため、前項の基準を満たす。</p>
+      <div class="metrics">
+        <div class="metric"><div class="big up">↑</div><div class="name">デプロイの頻度</div><div class="dir">高いほど良い（スループット）</div></div>
+        <div class="metric"><div class="big down">↓</div><div class="name">変更のリードタイム</div><div class="dir">短いほど良い（スループット）</div></div>
+        <div class="metric"><div class="big down">↓</div><div class="name">サービス復旧時間（MTTR）</div><div class="dir">短いほど良い（安定性）</div></div>
+        <div class="metric"><div class="big down">↓</div><div class="name">変更失敗率</div><div class="dir">低いほど良い（安定性）</div></div>
+      </div>
+      <ul>
+        <li>変更のリードタイムは、コードのコミットから本番稼働までの時間を指す。</li>
+        <li>デプロイの頻度は、本番環境へのリリースをどれだけ小さく頻繁に行えるかを表す。</li>
+        <li>変更失敗率は、本番への変更のうち修正対応（ホットフィックス・ロールバック等）を要した割合を指す。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>この4指標は後年「DORA(DevOps Research and Assessment)の4つの指標／Four Keys」と呼ばれ広く参照されるようになった。呼称は本書刊行後に定着したもの。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚖️</span>速度と安定性はトレードオフではない</h3>
+      <p class="summary">分析の結果、デリバリのパフォーマンスでチームは高・中・低のグループに分かれ、高パフォーマーは4指標すべてで優れていた。速さと安定は両立すると著者は主張する。</p>
+      <p>この結論は、回答の統計的なまとまり（クラスタ分析）から導かれる。チームを分類すると、スループットが高いグループは安定性も高く、両者は相反しなかった。著者は、これが「速くするには品質を犠牲にせざるを得ない」という通念を覆す根拠だとする。前提として、速さと安定を同時に得るのは、後の章で扱う継続的デリバリなどのケイパビリティによって、小さな変更を安全に頻繁に出せる状態をつくることである。</p>
+      <ul>
+        <li>高パフォーマーはデプロイ頻度・リードタイムだけでなく、復旧時間・変更失敗率でも優れる。</li>
+        <li>速度を追うと安定が落ちる、という前提は分析では支持されなかった。</li>
+        <li>両立を可能にする具体的なケイパビリティは第4章以降で示される。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏛️</span>デリバリのパフォーマンスは組織のパフォーマンスを予測する</h3>
+      <p class="summary">デリバリのパフォーマンスの高さは、組織の収益性・生産性・市場シェアといった商業的成果や、非営利的な目標の達成とも統計的に結びつくと著者は主張する。</p>
+      <p>著者の論拠は、デリバリ指標と組織成果の双方を測り、その関連を分析した結果である。デリバリのパフォーマンスが高い組織ほど、商業的な業績目標を上回って達成する傾向が見られた。さらにこの関係は、収益などの商業指標を持たない組織（公共部門など）の目標達成についても観察された。著者は、これによりデリバリ能力が一部業種だけの話ではなく、組織全体の成果に効く要因だと位置づける。なお「相関の検出」と「測定の妥当性」を担保する方法は第2部で扱う。</p>
+      <ul>
+        <li>高いデリバリ業績は、収益性・生産性・市場シェアの目標達成と結びつく。</li>
+        <li>商業指標を持たない組織でも、目標達成との関連が見られた。</li>
+        <li>この関連を「測定」と呼べる根拠は第2部（第12〜15章）で示される。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">デプロイの頻度</span>
+      <span class="k">変更のリードタイム</span>
+      <span class="k">サービス復旧時間（MTTR）</span>
+      <span class="k">変更失敗率</span>
+      <span class="k">スループットと安定性</span>
+      <span class="k">クラスタ分析</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="index.html"><span class="dir">← 目次</span><span class="ttl">トップへ</span></a>
+    <a class="next" href="part2.html"><span class="dir">次 →</span><span class="ttl">文化・技術・アーキテクチャ・セキュリティ</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>LeanとDevOpsの科学［Accelerate］ 要点まとめ</p></footer>
+
+</body>
+</html>

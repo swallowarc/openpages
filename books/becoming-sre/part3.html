@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第Ⅲ部 組織がSREをはじめるには ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#b06a2c; --accent-soft:#f7efe6; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SREをはじめよう</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第Ⅰ部</a>
+      <a href="part2.html">第Ⅱ部</a>
+      <a href="part3.html">第Ⅲ部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART Ⅲ ― 第11〜18章</span>
+  <h1>組織がSREをはじめるには</h1>
+  <p class="lead">組織がSREを導入・定着・拡大させるための要因、失敗の仕方、ビジネス視点、信頼性の階層、組み込みモデル、進化段階、拡大の段階を扱う。個人の視点から組織の視点へ議論を広げる。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch11"><span class="ch-no">11</span><span>成功のための組織的要因</span></a></li>
+      <li><a href="#ch12"><span class="ch-no">12</span><span>SREはいかにして失敗するか</span></a></li>
+      <li><a href="#ch13"><span class="ch-no">13</span><span>ビジネス視点からのSRE</span></a></li>
+      <li><a href="#ch14"><span class="ch-no">14</span><span>Dickersonの信頼性の階層構造</span></a></li>
+      <li><a href="#ch15"><span class="ch-no">15</span><span>SREを組織に組み込む</span></a></li>
+      <li><a href="#ch16"><span class="ch-no">16</span><span>SRE組織の進化段階</span></a></li>
+      <li><a href="#ch17"><span class="ch-no">17</span><span>組織におけるSREの成長</span></a></li>
+      <li><a href="#ch18"><span class="ch-no">18</span><span>おわりに</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第11章 ===== -->
+  <section class="chapter" id="ch11">
+    <div class="chapter-head"><span class="num">第11章</span><h2>成功のための組織的要因</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREが組織で成功するかは複数の組織的要因に左右され、最終的には組織の価値観に行き着く。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧮</span>成功を左右する8つの要因</h3>
+      <p class="summary">SREの成功には、問題設定・組織の意思・忍耐・協働・データ・学習・影響力・摩擦への対処という要因が関わる。</p>
+      <p>要因を複数列挙する前提には、SREの成否が個人の技量より組織側の条件で決まる、という著者の見方がある。技術を導入しても、組織が解くべき問題を持たず、変化に必要な意思・忍耐・協働・データに基づく判断を欠けば定着しない、という筋道で、成功要因を組織の性質として並べる。</p>
+      <ul>
+        <li>① 解くべき問題は何か（問題設定）。</li>
+        <li>② 到達のために組織は何をする気があるか。</li>
+        <li>③ 必要な忍耐があるか。</li>
+        <li>④ 協働できるか。</li>
+        <li>⑤ データに基づいて意思決定するか。</li>
+        <li>⑥ 学び、学んだことを実行できるか。</li>
+        <li>⑦ 自分が変化を起こせるか。</li>
+        <li>⑧ システムの摩擦を見て対処できるか。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>これらの要因はいずれも組織の判断・行動の傾向であり、最終的には「組織の価値観次第」だと著者は結論づける。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">組織的要因</span><span class="k">忍耐</span><span class="k">データ</span><span class="k">価値観</span></div>
+  </section>
+
+  <!-- ===== 第12章 ===== -->
+  <section class="chapter" id="ch12">
+    <div class="chapter-head"><span class="num">第12章</span><h2>SREはいかにして失敗するか</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREは導入の仕方を誤ると失敗する。代表的な失敗パターンを知ることが回避につながる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚠️</span>典型的な失敗パターン</h3>
+      <p class="summary">肩書きの付け替えや、サポート部門の看板替え、オンコールだけの運用など、SREが失敗する典型を挙げる。</p>
+      <p>失敗を類型として示す前提は、SREが「名ばかり」で導入される事例が多い、という認識である。実態を変えずに名称や担当だけを変えると、SREの考え方（第Ⅰ部）が伴わないまま負荷だけが移り、機能しない、という筋道で各パターンが説明される。</p>
+      <ul>
+        <li>肩書きを付け替えてSREを作る（実態は変わらない）。</li>
+        <li>Tier3サポートをSREに転換する。</li>
+        <li>オンコールだけを担わせる。</li>
+        <li>誤った組織図に置く。</li>
+        <li>形だけ（rote）のSRE、門番化。</li>
+        <li>成功による消滅（必要性が見えなくなり解体される）。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔧</span>失敗そのものをSREする</h3>
+      <p class="summary">SREの失敗自体も、SREの考え方で振り返り改善の対象にできるとする。</p>
+      <p>失敗からの学習（10章）を組織のSRE導入そのものに適用する、という筋道である。導入の失敗を非難でなく学習材料として扱えば、次の試みを改善できるという立場を取る。</p>
+      <ul>
+        <li>導入の失敗も振り返りの対象にする。</li>
+        <li>失敗からの学習を組織レベルに適用する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">失敗パターン</span><span class="k">肩書きの付け替え</span><span class="k">門番化</span><span class="k">成功による消滅</span></div>
+  </section>
+
+  <!-- ===== 第13章 ===== -->
+  <section class="chapter" id="ch13">
+    <div class="chapter-head"><span class="num">第13章</span><h2>ビジネス視点からのSRE</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREを組織に根付かせるには、信頼性をビジネスの言葉で伝え、予算・関与モデル・チームを設計する必要がある。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">💼</span>ビジネスに信頼性を伝え、売り込む</h3>
+      <p class="summary">信頼性をビジネスに対して伝え、SREを「売り込み」、成功をビジネスへ示す。</p>
+      <p>ビジネスとの対話を重視する前提は、SREが予算と支持を得て初めて継続できる、という見方である。第Ⅰ部の提唱（4章）を組織の意思決定層に向けて行うものと位置づけ、信頼性の価値と成果をビジネスの言葉で示す必要がある、という筋道になる。</p>
+      <ul>
+        <li>信頼性についてビジネスと対話する。</li>
+        <li>SREを売り込み、成功を還元して示す。</li>
+        <li>SREグループの成功を他者に証明する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">💰</span>予算化と資金モデル</h3>
+      <p class="summary">SREの予算要求、資金の継続的な確保、資金モデルを扱う。</p>
+      <p>予算を独立した論点として置く前提は、SREが継続的な投資を要する活動だ、という認識である。最初の予算要求から、資金の継続（re-up）の対話、複数の資金モデルまでを扱い、SREを一過性でなく持続的に支える仕組みを設計する筋道を示す。</p>
+      <ul>
+        <li>最初の予算要求と、資金継続の対話。</li>
+        <li>複数の資金モデルを検討する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧷</span>関与モデルとチーム設計</h3>
+      <p class="summary">SREの関与モデル、チームの人数、チームの健全性の見極めを扱う。</p>
+      <p>チーム設計を論じる前提は、SREの配置の仕方が機能を左右する、という見方である。組み込み型を避けて独立組織を置く理由や、「ページ対応係／トイル受け皿」化の罠を挙げ、人数の選び方やチームが不調に陥る兆候まで示す。アラートノイズはチームの健全性を測る信号として扱われる。</p>
+      <ul>
+        <li>関与モデルを選ぶ（独立組織を置く理由を含む）。</li>
+        <li>「ページ対応係」「トイルの受け皿」化の罠を避ける。</li>
+        <li>人数の選び方、チーム不調の兆候を見極める。</li>
+        <li>アラートノイズをチーム健全性の信号とする。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ビジネス</span><span class="k">予算</span><span class="k">関与モデル</span><span class="k">アラートノイズ</span></div>
+  </section>
+
+  <!-- ===== 第14章 ===== -->
+  <section class="chapter" id="ch14">
+    <div class="chapter-head"><span class="num">第14章</span><h2>Dickersonの信頼性の階層構造（良い出発点）</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>信頼性は積み上げ式の階層として捉えられ、下位の土台から順に取り組むことが良い出発点になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🪜</span>7段階の信頼性の階層</h3>
+      <p class="summary">Dickersonの信頼性の階層は、監視を土台に、上位ほど高度な取り組みを積み上げる構造である。</p>
+      <p>階層（ピラミッド）として示す前提は、上位の取り組みが下位の土台なしには成り立たない、という見方である。たとえば監視・可観測性がなければインシデント対応も事後レビューも機能しない、という筋道で、下から順に取り組むことが「良い出発点」だと位置づけられる。著者は誤った進め方の兆候と、正しい方向の兆候も併せて示す。</p>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 480 300" role="img" aria-label="Dickersonの信頼性の階層構造（下から上への7段階のピラミッド）" style="width:100%;height:auto;">
+          <!-- レベル1（最下層・最も広い）から上へ。第6・7層は最上段にまとめる -->
+          <polygon points="40,290 440,290 406.7,245 73.3,245" fill="var(--accent-soft)" stroke="var(--line)"/>
+          <polygon points="73.3,245 406.7,245 373.3,200 106.7,200" fill="var(--card)" stroke="var(--line)"/>
+          <polygon points="106.7,200 373.3,200 340,155 140,155" fill="var(--accent-soft)" stroke="var(--line)"/>
+          <polygon points="140,155 340,155 306.7,110 173.3,110" fill="var(--card)" stroke="var(--line)"/>
+          <polygon points="173.3,110 306.7,110 273.3,65 206.7,65" fill="var(--accent-soft)" stroke="var(--line)"/>
+          <polygon points="206.7,65 273.3,65 240,20" fill="var(--card)" stroke="var(--line)"/>
+          <text x="240" y="272" text-anchor="middle" font-size="13" fill="var(--ink)">1. 監視／可観測性</text>
+          <text x="240" y="227" text-anchor="middle" font-size="13" fill="var(--ink)">2. インシデント対応</text>
+          <text x="240" y="182" text-anchor="middle" font-size="13" fill="var(--ink)">3. 事後レビュー</text>
+          <text x="240" y="137" text-anchor="middle" font-size="12" fill="var(--ink)">4. テスト／リリース</text>
+          <text x="240" y="92" text-anchor="middle" font-size="11" fill="var(--ink)">5. 容量計画</text>
+          <text x="240" y="48" text-anchor="middle" font-size="10" fill="var(--ink)">6・7</text>
+        </svg>
+        <figcaption>Dickersonの信頼性の階層構造。下から「1.監視／可観測性 → 2.インシデント対応 → 3.事後レビュー → 4.テスト／リリース → 5.プロビジョニング／容量計画 → 6・7.開発プロセス／製品設計」。上位は下位を土台とする。図中のラベルは紙幅の都合で略記しており、正式名称は下記のとおり。（階層・順序は本書由来。配色・レイアウトは識別用であり原書由来ではない）</figcaption>
+      </figure>
+
+      <ul>
+        <li>レベル1：監視／可観測性（土台）。</li>
+        <li>レベル2：インシデント対応。</li>
+        <li>レベル3：事後レビュー。</li>
+        <li>レベル4：テスト／リリース（デプロイ）。</li>
+        <li>レベル5：プロビジョニング／容量計画。</li>
+        <li>レベル6・7：開発プロセス／製品設計。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>各層が下位を前提とするため、土台を飛ばして上位に取り組むと機能しない。だから下から積むことが「良い出発点」になる。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">Dickerson階層</span><span class="k">監視/可観測性</span><span class="k">積み上げ</span><span class="k">出発点</span></div>
+  </section>
+
+  <!-- ===== 第15章 ===== -->
+  <section class="chapter" id="ch15">
+    <div class="chapter-head"><span class="num">第15章</span><h2>SREを組織に組み込む</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREを組織に組み込むには複数の統合モデルがあり、状況に応じて選び、フィードバックループを通す。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏗️</span>3つの統合モデル</h3>
+      <p class="summary">SREの組み込み方には、中央集権/パートナー型、分散/組み込み型、ハイブリッド型がある。</p>
+      <p>複数モデルを示す前提は、唯一の正解の配置はなく組織の状況に依存する、という見方である。集約して横断的に支える型、各チームに分散して入る型、両者を組み合わせる型を示し、それぞれの適性から選ぶ筋道を提供する。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#3a6ea5"><b>中央集権/パートナー型</b>：SREを集約し、横断的に関わる。</div>
+        <div class="way-row" style="--wc:#2f8f6b"><b>分散/組み込み型</b>：各チームにSREを組み込む。</div>
+        <div class="way-row" style="--wc:#b06a2c"><b>ハイブリッド型</b>：両者を組み合わせる。</div>
+      </div>
+      <ul>
+        <li>役割・チームを置く前段階の実践にも触れる。</li>
+        <li>モデルは状況に応じて選ぶ。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔁</span>フィードバックループを組織に通す</h3>
+      <p class="summary">組み込みを機能させる鍵として、適切なフィードバックループを作り組織に挿入する。</p>
+      <p>2章で心構えの中核とされたフィードバックループを、組織構造の中で具体化する位置づけである。データ・反復・反復のための計画と結びつけ、ループをどこにどう挿入するかまで踏み込むことで、組み込みを一度の配置でなく回り続ける仕組みにする筋道を示す。</p>
+      <ul>
+        <li>フィードバックループとデータ・反復を結びつける。</li>
+        <li>ループの挿入箇所と方法を設計する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">統合モデル</span><span class="k">中央集権</span><span class="k">組み込み型</span><span class="k">ハイブリッド</span><span class="k">フィードバックループ</span></div>
+  </section>
+
+  <!-- ===== 第16章 ===== -->
+  <section class="chapter" id="ch16">
+    <div class="chapter-head"><span class="num">第16章</span><h2>SRE組織の進化段階</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SRE組織は5つの段階を経て進化し、自分たちが今どの段階にあるかを把握することが指針になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧗</span>5つの進化段階</h3>
+      <p class="summary">SRE組織は「消防士 → 門番 → 提唱者 → パートナー → エンジニア」と進化する。</p>
+      <p>段階で描く前提は、SRE組織の役割が固定でなく成熟に伴って変わる、という見方である。障害対応に追われる段階から、品質を守る段階、価値を広める段階、開発と協働する段階、そして信頼性を作り込む段階へと、注意の向け先が移っていく筋道を示す。現在地の把握が次に進む指針になる。</p>
+      <div class="flow">
+        <span class="node">消防士<br><small>Firefighter</small></span>
+        <span class="arrow">→</span>
+        <span class="node">門番<br><small>Gatekeeper</small></span>
+        <span class="arrow">→</span>
+        <span class="node">提唱者<br><small>Advocate</small></span>
+        <span class="arrow">→</span>
+        <span class="node">パートナー<br><small>Partner</small></span>
+        <span class="arrow">→</span>
+        <span class="node">エンジニア<br><small>Engineer</small></span>
+      </div>
+      <ul>
+        <li>消防士：発生した障害に追われる段階。</li>
+        <li>門番：品質を守る関門の役を担う段階。</li>
+        <li>提唱者：SREの価値を組織に広める段階。</li>
+        <li>パートナー：開発などと協働する段階。</li>
+        <li>エンジニア：信頼性を設計・構築する段階。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">進化段階</span><span class="k">消防士</span><span class="k">門番</span><span class="k">パートナー</span><span class="k">エンジニア</span></div>
+  </section>
+
+  <!-- ===== 第17章 ===== -->
+  <section class="chapter" id="ch17">
+    <div class="chapter-head"><span class="num">第17章</span><h2>組織におけるSREの成長</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREの拡大は規模の段階ごとに課題が変わり、いつスケールするかの見極めとリーダー育成が伴う。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📊</span>規模の段階ごとに変わる課題</h3>
+      <p class="summary">SREの拡大は人数規模の段階ごとに異なる課題を持ち、段階に応じた対応が要る。</p>
+      <p>規模で区切る前提は、少人数の立ち上げと大規模組織では運営の論点が異なる、という認識である。0から1、1から6、6から18、と段階を上げるごとに、調整・構造・運営の課題が変わる、という筋道で拡大を捉える。まず「いつスケールすべきか」の見極めを置く。</p>
+      <div class="steps">
+        <div class="step"><span class="badge">0→1</span><p>最初の1人を立ち上げる段階。</p></div>
+        <div class="step"><span class="badge">1→6</span><p>小さなチームを作る段階。</p></div>
+        <div class="step"><span class="badge">6→18</span><p>複数チーム化していく段階。</p></div>
+        <div class="step"><span class="badge">18→48</span><p>組織として広げる段階。</p></div>
+        <div class="step"><span class="badge">48→108+</span><p>大規模に拡大する段階。</p></div>
+      </div>
+      <ul>
+        <li>まず「いつスケールするか」を見極める。</li>
+        <li>段階ごとに運営上の課題が変わる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧑‍✈️</span>リーダー層の育成</h3>
+      <p class="summary">拡大に伴い、SREのリーダー層の代表性を育てる必要がある。</p>
+      <p>規模拡大と並行してリーダー育成を置く前提は、人数だけ増やしても導く層がなければ機能が伴わない、という見方である。拡大を人数の問題に限らず、リードできる人を育てる問題として捉える筋道を示す。</p>
+      <ul>
+        <li>拡大とともにリーダー層を育てる。</li>
+        <li>人数の拡大と運営能力の両立を図る。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">スケール</span><span class="k">規模の段階</span><span class="k">リーダー育成</span></div>
+  </section>
+
+  <!-- ===== 第18章 ===== -->
+  <section class="chapter" id="ch18">
+    <div class="chapter-head"><span class="num">第18章</span><h2>おわりに</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>本書は個人と組織の双方に向けた「はじめの一歩」を示すものであり、SREの理解を出発点として位置づける。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚩</span>はじめの一歩としての位置づけ</h3>
+      <p class="summary">本書は完成された手順書でなく、個人と組織が信頼性に向かう「最初の一歩」を支えるものとして締めくくられる。</p>
+      <p>結論で「はじめの一歩」を強調する前提は、SREが一度導入して終わる状態でなく継続的に育てる営みだ、という本書全体の見方である。原題の副題が示すとおり、本書は到達点でなく出発点を扱う、という筋道で全体を締める。付録では若いSREへの手紙・元SREの助言・リソース集を補う。</p>
+      <ul>
+        <li>SREの理解を出発点として位置づける。</li>
+        <li>付録で手紙・助言・リソースを補う。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">はじめの一歩</span><span class="k">継続</span><span class="k">付録</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part2.html"><span class="dir">← 前</span><span class="ttl">第Ⅱ部 個人がSREをはじめるには</span></a>
+    <a class="next" href="index.html"><span class="dir">目次 →</span><span class="ttl">トップへ</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>SREをはじめよう 要点まとめ</p></footer>
+
+</body>
+</html>

@@ -420,24 +420,6 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 24px 24px 104px; }
 .book-overview p { margin: 0 0 12px; color: var(--ink-soft); font-size: 15px; }
 .book-overview p:last-child { margin-bottom: 0; }
 
-/* 全体像の図版（生成済み画像） */
-.book-figure { margin: 18px 0 4px; }
-.book-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  background: var(--card);
-}
-.book-figure figcaption {
-  margin-top: 8px;
-  font-size: 12.5px;
-  color: var(--ink-faint);
-  line-height: 1.6;
-}
-
 /* 書誌情報（index・固定書式） */
 .bibliography {
   position: relative;

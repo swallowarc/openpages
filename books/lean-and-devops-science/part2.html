@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文化・技術プラクティス・アーキテクチャ・セキュリティ ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#b06a2c; --accent-soft:#f7eee2; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>LeanとDevOpsの科学</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第1部①</a>
+      <a href="part2.html">第1部②</a>
+      <a href="part3.html">第1部③</a>
+      <a href="part4.html">第2部</a>
+      <a href="part5.html">第3部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART 1 ― 第3〜6章</span>
+  <h1>文化・技術プラクティス・アーキテクチャ・セキュリティ</h1>
+  <p class="lead">生成的な組織文化、継続的デリバリ、疎結合アーキテクチャ、デリバリ工程へのセキュリティ組み込み。これら4つが、それぞれデリバリのパフォーマンスに何を与えるかを論じる。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch3"><span class="ch-no">3</span><span>組織文化のモデル化と測定、改善の方法</span></a></li>
+      <li><a href="#ch4"><span class="ch-no">4</span><span>技術的プラクティス</span></a></li>
+      <li><a href="#ch5"><span class="ch-no">5</span><span>アーキテクチャのキーポイント</span></a></li>
+      <li><a href="#ch6"><span class="ch-no">6</span><span>デリバリライフサイクルに情報セキュリティを組み込む</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第3章 ===== -->
+  <section class="chapter" id="ch3">
+    <div class="chapter-head"><span class="num">第3章</span><h2>組織文化のモデル化と測定、改善の方法</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>組織文化はWestrumの類型で測定でき、情報がよく流れる「生成的」な文化はデリバリと組織のパフォーマンスを高める。文化は計測でき、変えられる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>Westrumの3類型で組織文化を捉える</h3>
+      <p class="summary">著者は社会学者Westrumの分類を用い、組織文化を情報の流れ方によって3つに分ける。</p>
+      <p>この類型を採る筋道は、Westrumがもともと「情報がどう流れるか」で組織の安全性を説明した点にある。著者はこれをソフトウェア組織に当てはめ、文化を「権力志向で情報を隠す病理的」「規則と縄張りを重んじる官僚的」「使命を中心に情報が自由に流れる生成的」の3段階で捉える。前提は、優れた情報の流れが協力・信頼・問題の早期発見を生むという見方である。</p>
+      <figure style="margin:20px 0;">
+        <div class="ways-map">
+          <div class="way-row" style="--wc:#b03a4c">
+            <div class="icon-box">🚫</div>
+            <div><span class="wlabel">PATHOLOGICAL</span><h4>病理的（権力志向）</h4><p>恐れと権力で動き、情報は隠される。問題の報告者が責められやすい。</p></div>
+          </div>
+          <div class="way-row" style="--wc:#b08a2c">
+            <div class="icon-box">📋</div>
+            <div><span class="wlabel">BUREAUCRATIC</span><h4>官僚的（規則志向）</h4><p>部門の縄張りと規則を重んじ、情報の共有は部分的にとどまる。</p></div>
+          </div>
+          <div class="way-row" style="--wc:#2f8a5c">
+            <div class="icon-box">🤝</div>
+            <div><span class="wlabel">GENERATIVE</span><h4>生成的（使命志向）</h4><p>使命の達成を中心に据え、情報が自由に流れ、協力と学習が促される。</p></div>
+          </div>
+        </div>
+        <figcaption style="font-size:12px;color:var(--ink-faint);margin-top:8px;">3類型はWestrum／本書による分類。配色は識別用であり原書由来ではない。</figcaption>
+      </figure>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔄</span>生成的文化はデリバリと組織の成果を高める</h3>
+      <p class="summary">生成的な文化は、デリバリのパフォーマンスと組織のパフォーマンスの双方を統計的に押し上げると著者は主張する。</p>
+      <p>論拠は、Westrumの文化をアンケートで数値化し、デリバリ指標・組織成果との関連を分析した結果である。生成的な文化の度合いが高いほど、デリバリ業績が高く、組織の成果もよい傾向が見られた。著者が示す筋道は、情報がよく流れる文化では、失敗を罰するのではなく学びに変えるため、問題が早く表面化し、部門をまたぐ協力が進み、意思決定の質が上がる、というものである。文化は測定できる構成概念であり、プラクティスを通じて変えられる対象だと位置づける。</p>
+      <ul>
+        <li>文化は主観的印象ではなく、アンケートで測定できる構成概念として扱う。</li>
+        <li>生成的文化は、継続的デリバリなど技術的プラクティスの導入によっても強まる（第4章と相互に関連）。</li>
+        <li>情報の流れの良さが、信頼・協力・問題の早期発見につながる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">Westrumの組織類型</span>
+      <span class="k">生成的文化</span>
+      <span class="k">情報の流れ</span>
+      <span class="k">文化の測定</span>
+    </div>
+  </section>
+
+  <!-- ===== 第4章 ===== -->
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="num">第4章</span><h2>技術的プラクティス</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>継続的デリバリ（CD）はデリバリのパフォーマンスを高め、デプロイの苦痛と燃え尽きを減らし、生成的文化を強める。CDは複数の基礎プラクティスの上に成り立つ。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏗️</span>継続的デリバリは複数の基礎プラクティスの上に成り立つ</h3>
+      <p class="summary">著者は、継続的デリバリを支える基礎として、バージョン管理・自動化・継続的インテグレーション・継続的テストなどを挙げる。</p>
+      <p>著者がこれらを基礎と位置づける筋道は、CDの定義「ソフトウェアをいつでも安全に本番へ出せる状態を保つ」から逆算される。常に出せる状態を保つには、本番に必要な成果物すべてをバージョン管理し、ビルドとデプロイを自動化し、変更を頻繁に統合（CI）して、テストを継続的に走らせる必要がある。前提は、これらが個別の道具ではなく、互いに支え合う一連の能力として働くことである。</p>
+      <ul>
+        <li>アプリだけでなく構成（設定）など本番に必要な成果物をバージョン管理する。</li>
+        <li>ビルド・テスト・デプロイを自動化し、手作業の介在を減らす。</li>
+        <li>変更を小さく頻繁に統合（継続的インテグレーション）し、継続的にテストする。</li>
+        <li>セキュリティを工程の早い段階に組み込む（第6章と関連）。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">✅</span>品質は工程に作り込む</h3>
+      <p class="summary">品質は後工程の検査で確保するのではなく、小さなバッチで作業し自動化を進めることで、工程そのものに作り込むべきだと著者は主張する。</p>
+      <p>この主張の論拠は、後追いの大規模な検査が遅く、問題の発見を遅らせるという見方である。小さなバッチで変更すれば、問題が起きてもどの変更が原因か特定しやすく、フィードバックが速くなる。著者はこれをリーンの考え方に連なるものとして示し、自動化されたテストと頻繁な統合が「速さ」と「安定」を同時に支える、と筋道を立てる（第2章の両立の主張と対応する）。</p>
+      <ul>
+        <li>大きなバッチでの変更は原因特定を難しくし、フィードバックを遅らせる。</li>
+        <li>小さく頻繁な変更は、問題の局所化と早い修正を可能にする。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌿</span>継続的デリバリはデリバリ業績・人・文化に波及する</h3>
+      <p class="summary">CDを実践するチームは、デリバリのパフォーマンスが高く、デプロイの苦痛が小さく、燃え尽きが少なく、生成的文化が強いと著者は示す。</p>
+      <p>論拠は、CDの度合いと各成果の関連を測った分析である。CDが進むほどデリバリ4指標が改善し、デプロイに伴う不安や残業（デプロイの苦痛）が減り、燃え尽きの度合いも下がる。著者が示す筋道は、自動化と小さなバッチがデプロイを日常的で低リスクな作業に変え、それが心理的負荷と文化の双方を改善する、というものである。技術的プラクティスが人と文化にまで波及する点が、この章の主張の核である。</p>
+      <ul>
+        <li>CDはデリバリのパフォーマンスを高める。</li>
+        <li>CDはデプロイの苦痛（デプロイ時の不安・時間外作業）を減らす（第9章と関連）。</li>
+        <li>CDは生成的文化を強める方向に働く（第3章と相互に関連）。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">継続的デリバリ（CD）</span>
+      <span class="k">継続的インテグレーション</span>
+      <span class="k">バージョン管理</span>
+      <span class="k">テスト自動化</span>
+      <span class="k">小さなバッチ</span>
+      <span class="k">品質の作り込み</span>
+    </div>
+  </section>
+
+  <!-- ===== 第5章 ===== -->
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="num">第5章</span><h2>アーキテクチャのキーポイント</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>疎結合のアーキテクチャは、チームが他者に依存せず独立してテスト・デプロイできる状態をつくり、継続的デリバリとスケールを可能にする。重要なのは特定技術ではなく、その性質である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>疎結合アーキテクチャがデリバリのスケールを可能にする</h3>
+      <p class="summary">チームが他チームへの細かな調整なしに、テストとデプロイを独立して行える疎結合のアーキテクチャが、デリバリ能力を左右すると著者は主張する。</p>
+      <p>論拠は、アーキテクチャの性質とデリバリ業績・スケール性の関連を測った分析である。チームが独立して作業・デプロイできるほど、チーム数を増やしてもデリバリのパフォーマンスが落ちにくい。著者が立てる筋道は、依存が密だと変更のたびに他者との調整が必要になり、リードタイムが延び頻度が下がる、というものである。前提は、組織が大きくなってもデリバリ能力を保つには、技術的な疎結合とチームの自律がそろう必要があるという点である。</p>
+      <ul>
+        <li>独立してテスト・デプロイできることが、継続的デリバリの実現条件になる。</li>
+        <li>疎結合であれば、チーム数を増やしてもデリバリ業績が維持されやすい。</li>
+        <li>密結合は、変更のたびにチーム横断の調整を要し、流れを滞らせる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛠️</span>チームが自らツールを選べることが効く</h3>
+      <p class="summary">特定のアーキテクチャ様式そのものより、チームが必要なツールを自ら選べる自律性が、デリバリ業績に効くと著者は示す。</p>
+      <p>著者の筋道は、成果に責任を持つチームが、その達成に必要な道具を選べるとき、最も成果が上がるという点にある。論拠として、ツールの選択権を持つチームほどデリバリ業績や生成的文化の度合いが高い傾向が示される。著者は「重要なのはエンジニアと成果であり、ツールや技術を中央が固定することではない」と述べ、技術の流行ではなく独立性・テスト容易性・デプロイ容易性という性質に注目すべきだとする。</p>
+      <ul>
+        <li>注目すべきはアーキテクチャの「性質」（独立性・テスト/デプロイの容易さ）である。</li>
+        <li>ツール選択の自律はデリバリ業績と結びつく。</li>
+        <li>中央による一律のツール強制は、必ずしも成果を高めない。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">疎結合アーキテクチャ</span>
+      <span class="k">独立したデプロイ</span>
+      <span class="k">チームの自律</span>
+      <span class="k">ツール選択の自由</span>
+      <span class="k">スケーラビリティ</span>
+    </div>
+  </section>
+
+  <!-- ===== 第6章 ===== -->
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="num">第6章</span><h2>デリバリライフサイクルに情報セキュリティを組み込む</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>セキュリティをデリバリ工程の早い段階に組み込むと、高パフォーマーはセキュリティ対応に費やす時間が少なく済む。セキュリティは最後の関門ではなく、工程全体の一部である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛡️</span>セキュリティを工程の早い段階に組み込む</h3>
+      <p class="summary">セキュリティのレビューや要件を、リリース直前ではなく設計・開発の段階から組み込むべきだと著者は主張する。</p>
+      <p>著者の筋道は、セキュリティを最後の関門にすると、問題の発見が遅れ手戻りが大きくなる、という点にある。論拠として、セキュリティを工程に組み込んでいる（情報セキュリティの観点を早期から取り入れている）チームほど、デリバリ業績が高く、セキュリティ問題の修正に費やす時間が少ない傾向が示される。前提は、開発と情報セキュリティが対立する関門ではなく、協力して品質を作り込む関係になることである。</p>
+      <ul>
+        <li>セキュリティを早期に組み込んだチームは、修正に費やす時間が少ない。</li>
+        <li>セキュリティの要件・レビューを開発の流れに統合する。</li>
+        <li>情報セキュリティチームは関門ではなく、開発と協力して支援する役割を担う。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>セキュリティを工程の早い段階へ移す考え方は一般に「シフトレフト」と呼ばれる。本文の趣旨を表す通称として補う。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">情報セキュリティの組み込み</span>
+      <span class="k">早期のセキュリティ</span>
+      <span class="k">修正時間の削減</span>
+      <span class="k">開発とセキュリティの協力</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part1.html"><span class="dir">← 前</span><span class="ttl">加速とは何か／4つの指標</span></a>
+    <a class="next" href="part3.html"><span class="dir">次 →</span><span class="ttl">リーン管理・製品開発・人・リーダーシップ</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>LeanとDevOpsの科学［Accelerate］ 要点まとめ</p></footer>
+
+</body>
+</html>

@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>第Ⅲ部 チームのためのオブザーバビリティ ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
-<style>:root{ --accent:#8c5a3a; --accent-soft:#f4ece6; }</style>
+<style>:root{ --accent:#9a4f8c; --accent-soft:#f6edf4; }</style>
 </head>
 <body>
 
@@ -26,7 +28,7 @@
 <header class="hero">
   <span class="eyebrow">PART Ⅲ ― 第10〜14章</span>
   <h1>チームのためのオブザーバビリティ</h1>
-  <p class="lead">オブザーバビリティをチームの実践として根づかせる方法を扱う。導入の進め方、オブザーバビリティ駆動開発、SLO による信頼性の運用とアラート、そしてソフトウェアサプライチェーンへの適用を論じる。</p>
+  <p class="lead">オブザーバビリティを個人の技術から、チームの開発・運用の実践へと広げる。チームへの定着、開発工程への組み込み（オブザーバビリティ駆動開発）、SLOによる信頼性運用、SLOアラートへの対応、ソフトウェアサプライチェーンへの応用を扱う。</p>
 </header>
 
 <main>
@@ -50,30 +52,32 @@
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>オブザーバビリティの導入は <mark>既存の痛みを起点に始める</mark>。号令で一斉に変えるのではなく、価値が分かりやすい場所から実践し、成果で広げる。</p>
+        <p>オブザーバビリティの導入は技術選定だけでなく、既存の課題から着手し、チームに価値を実感させながら段階的に広げる取り組みとして進める。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🩹</span>痛みのある場所から着手する</h3>
-      <p class="summary">著者は、最も調査に苦労している領域や、繰り返し障害が起きる箇所から計装と解析を始めることを勧める。早い段階で具体的な効果を示すことが定着につながる。</p>
+      <h3 class="ic"><span class="emoji">🚀</span>痛みのある課題から導入する</h3>
+      <p class="summary">導入は網羅的な計装から始めるのではなく、現に困っている調査課題に当てて価値を示すところから始める。</p>
+      <p>著者がこの順序を勧める前提は、導入の正否が技術より定着にかかっているという認識である。最初から全システムを計装しようとすると負荷が大きく、効果も見えにくい。実際に時間を取られている調査にオブザーバビリティを当て、解決が速くなる体験を作れば、チーム内に採用の動機が生まれる、という筋道で段階的導入を正当化する。</p>
       <ul>
-        <li>全システムを一度に変えようとせず、効果の見えやすい範囲を選ぶ。</li>
-        <li>実際の調査がどれだけ速くなったかを、チーム内で共有する。</li>
+        <li>全体計装より、効果の見えやすい課題への適用を先に行う。</li>
+        <li>解決体験が、チームへの広がりの動機になる。</li>
       </ul>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">👥</span>ツール導入ではなく実践の定着</h3>
-      <p class="summary">オブザーバビリティはツールを買えば手に入るものではなく、<span class="term">日々の調査の進め方</span> を変えることだと位置づける。チームの習慣として根づかせることが目的になる。</p>
-      <div class="callout why">
-        <span class="emoji">🧠</span>
-        <div><span class="ctitle">なぜ実践が要るか</span><p>計装されたデータがあっても、それを使って問いを立てる習慣がなければ価値は出ない。導入は人とプロセスの変化を伴う。</p></div>
-      </div>
+      <h3 class="ic"><span class="emoji">🧑‍🤝‍🧑</span>調査を属人化させない</h3>
+      <p class="summary">特定の熟練者だけが障害を調べられる状態を解消し、チームの誰もがデータから調査できる状態を目指す。</p>
+      <p>この主張は第2章の「勘への依存からの脱却」をチーム単位に展開したものである。調査がデータの分解手順に置き換われば、システムを隅々まで知る人でなくても原因へ近づける。知識の偏りに依存しないことで、対応できる人を増やし、運用の持続性を高められる、という筋道で属人化の解消を位置づける。</p>
+      <ul>
+        <li>調査をデータ手順に置き換え、対応者を限定しない。</li>
+        <li>知識の偏りへの依存を減らし、運用を持続可能にする。</li>
+      </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">導入</span><span class="k">スモールスタート</span><span class="k">実践の定着</span></div>
+    <div class="keywords"><span class="k">導入</span><span class="k">段階的適用</span><span class="k">脱・属人化</span><span class="k">チーム定着</span></div>
   </section>
 
   <!-- ===== 第11章 ===== -->
@@ -84,30 +88,36 @@
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>オブザーバビリティ駆動開発とは、<mark>計装を開発と同時に行い、本番での挙動を前提にコードを書く</mark>進め方である。観測性をテストと同様に開発工程に組み込む。</p>
+        <p>計装は本番障害後に足すものではなく、テスト駆動開発と同様に開発工程へ組み込み、本番での挙動を前提に設計する（オブザーバビリティ駆動開発）。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">⌨️</span>計装をコードと一緒に書く</h3>
-      <p class="summary">機能を実装するときに、その機能が本番でどう振る舞うかを後から問えるよう、計装を同時に書く。観測できないコードは完成とみなさない、という考え方である。</p>
+      <h3 class="ic"><span class="emoji">🏗️</span>開発段階から計装する</h3>
+      <p class="summary">機能を書くときに計装も同時に書き、本番でどう振る舞うかを開発者自身が確認できる状態にする。</p>
+      <p>著者がこの実践を主張する前提は、計装を後付けにすると、本当に必要な文脈が漏れやすいという点である。書いた本人が、どの属性が調査に効くかを最もよく知っている。開発時に計装を組み込めば、コードの意図に沿った文脈を残せるうえ、自分の変更が本番でどう動くかを実地で確認できる、という筋道で開発工程への統合を正当化する。</p>
       <ul>
-        <li>「本番で何を確認したいか」を実装時に決めて、属性として埋め込む。</li>
-        <li>リリース後、実際の挙動を観測して期待と照合する。</li>
+        <li>機能の実装と計装を同じ工程で行う。</li>
+        <li>書いた本人が意図に沿った調査用の属性を残せる。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>計装を本番障害後に追加する運用では、まさに調べたい場面の文脈が記録されていない、という事態を招きやすい。開発時に組み込めばこの欠落を避けられる。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔍</span>本番こそが検証の場である</h3>
+      <p class="summary">テスト環境だけでなく本番での観測を前提に開発し、デプロイ後に自分の変更の挙動を確認する習慣を組み込む。</p>
+      <p>この主張の前提は、テスト環境では本番の負荷・データ・構成の組み合わせを完全には再現できないという認識である。ゆえに、変更が正しく動くかの最終的な確認は本番の観測に委ねざるをえない。オブザーバビリティが整っていれば、デプロイ直後に自分の変更の影響を実データで見られる、という筋道で「本番での検証」を開発の一部に組み込む。これは第Ⅰ部のDevOps・SREとの関連とも整合する。</p>
+      <ul>
+        <li>テスト環境は本番の組み合わせを完全には再現できない。</li>
+        <li>デプロイ後の観測を、変更検証の手順として組み込む。</li>
       </ul>
     </div>
 
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">🚀</span>本番を一級の対象として扱う</h3>
-      <p class="summary">著者は、開発者がローカルやステージングだけでなく <span class="term">本番の挙動を直接観測する</span> ことを重視する。本番は避けるべき領域ではなく、理解すべき対象である。</p>
-      <div class="callout tip">
-        <span class="emoji">✅</span>
-        <div><span class="ctitle">テスト駆動開発との対比</span><p>テストが「リリース前の正しさ」を確かめるのに対し、オブザーバビリティ駆動開発は「リリース後の実際の振る舞い」を確かめることを開発の一部に含める。</p></div>
-      </div>
-    </div>
-
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">オブザーバビリティ駆動開発</span><span class="k">計装の習慣化</span><span class="k">本番の観測</span></div>
+    <div class="keywords"><span class="k">オブザーバビリティ駆動開発</span><span class="k">計装の前倒し</span><span class="k">本番での検証</span><span class="k">開発工程</span></div>
   </section>
 
   <!-- ===== 第12章 ===== -->
@@ -118,30 +128,47 @@
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>SLO（サービスレベル目標）は、<mark>固定閾値アラートより信頼性を適切に表現する</mark>。利用者の体験に基づいて目標を定め、エラーバジェットで許容範囲を管理する。</p>
+        <p>信頼性は、ユーザー体験に基づくサービスレベル目標（SLO）とエラーバジェットで運用し、個別メトリクスのアラートを大量に積み上げる方式を置き換える。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🎯</span>利用者体験を基準にする</h3>
-      <p class="summary">SLO は、システムが「十分に良い」状態を利用者の体験に基づいて定義する。CPU 使用率のような内部指標の閾値ではなく、リクエストの成否や速さといった結果で信頼性を測る。</p>
+      <h3 class="ic"><span class="emoji">🎯</span>SLOはユーザー体験を基準にする</h3>
+      <p class="summary"><span class="term">SLO</span>は、CPU使用率のような内部指標ではなく、ユーザーから見た成否（成功・十分な速さ）を測る指標（SLI）に基づいて定める。</p>
+      <p>著者がこの基準を置く前提は、内部指標の異常が必ずしもユーザーの不利益を意味しないという点である。リソースが逼迫していてもユーザー体験が保たれていれば、信頼性は満たされている。逆も成り立つ。だから、守るべき対象をユーザー視点の指標に置けば、本当に重要な事象に注意を集中できる、という筋道でSLOを位置づける。</p>
       <ul>
-        <li>SLI（サービスレベル指標）で「良いリクエストの割合」などを定義する。</li>
-        <li>SLO はその目標値で、達成すべき水準を表す。</li>
+        <li>SLIはユーザーから見た成功・十分な速さを測る。</li>
+        <li>内部指標の異常そのものを目標にしない。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>SLIはサービスレベル指標（実測値）、SLOはその目標値を指す。「直近30日のリクエストの99.9%を成功させる」がSLOの例である。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔋</span>エラーバジェットで信頼性を運用する</h3>
+      <p class="summary">SLOの目標値から許容される失敗の総量を<span class="term">エラーバジェット</span>として定め、その消費状況を運用判断の基準にする。</p>
+      <p>著者がエラーバジェットを重視する筋道は、信頼性を「100%を目指す」対象から「予算内に収める」対象へ転換するためである。一定の失敗を許容予算として明示すれば、バジェットに余裕があるうちは変更を進め、消費が速いときは安定化を優先する、という形で開発速度と信頼性のバランスを数値で判断できる。個別アラートの乱立を、バジェット消費という単一の基準に集約できる、という論理である。</p>
+      <ul>
+        <li>許容される失敗量を予算として明示する。</li>
+        <li>バジェットの消費状況で、変更と安定化の優先度を判断する。</li>
+        <li>多数の個別アラートを単一の基準へ集約する。</li>
       </ul>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🔋</span>エラーバジェットで許容を管理する</h3>
-      <p class="summary">SLO の裏返しとして <span class="term">エラーバジェット</span> が定まる。完璧を目指すのではなく、目標を下回らない範囲で失敗を許容し、その残量で運用判断を行う。</p>
-      <div class="callout why">
-        <span class="emoji">🧠</span>
-        <div><span class="ctitle">なぜ固定閾値より良いか</span><p>個別指標の閾値アラートは、利用者に影響のない誤報を多発させがちである。SLO は利用者影響に直結するため、本当に対応すべき劣化に集中できる。</p></div>
-      </div>
+      <h3 class="ic"><span class="emoji">🔗</span>SLO違反の調査はオブザーバビリティで行う</h3>
+      <p class="summary">SLOは何が問題かを示すが、なぜ起きたかは示さないため、原因調査はイベントの分解（オブザーバビリティ）に委ねる。</p>
+      <p>この役割分担の前提は、SLOが集約された達成率であり、個別リクエストの文脈を持たない点である。SLOは「予算を消費している」という事実を知らせるが、どの条件の組み合わせで失敗が起きているかは答えない。そこで、SLOを起点に第Ⅱ部のイベント解析へ移り、原因の特徴を絞り込む、という筋道で両者が接続する。</p>
+      <ul>
+        <li>SLOは問題の発生を知らせ、原因は示さない。</li>
+        <li>原因の特定は高カーディナリティなイベントの分解に委ねる。</li>
+      </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">SLO</span><span class="k">SLI</span><span class="k">エラーバジェット</span><span class="k">信頼性</span></div>
+    <div class="keywords"><span class="k">SLO</span><span class="k">SLI</span><span class="k">エラーバジェット</span><span class="k">ユーザー体験</span><span class="k">信頼性運用</span></div>
   </section>
 
   <!-- ===== 第13章 ===== -->
@@ -152,30 +179,42 @@
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>SLO に基づくアラートは <mark>エラーバジェットの消費速度（バーンレート）</mark> で出す。アラートを受けたら、オブザーバビリティで原因をその場で調査する。</p>
+        <p>アラートは個別指標の閾値超過ではなく、エラーバジェットの消費速度（バーンレート）に基づいて発し、枯渇を予測して対応する。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🔥</span>バーンレートでアラートする</h3>
-      <p class="summary">エラーバジェットをどれだけ速く消費しているかに応じてアラートを出す。急速に消費しているときは即時対応、緩やかなときは余裕を持った対応とする。</p>
-      <div class="metrics">
-        <div class="metric"><div class="big up">⬆</div><div class="name">バーンレートが高い</div><div class="dir">即時対応</div></div>
-        <div class="metric"><div class="big down">⬇</div><div class="name">バーンレートが低い</div><div class="dir">余裕を持つ</div></div>
-      </div>
+      <h3 class="ic"><span class="emoji">🔥</span>バーンレートで通知する</h3>
+      <p class="summary">エラーバジェットの<span class="term">消費速度（バーンレート）</span>を基準にアラートを発し、バジェットを使い切る前に対応を促す。</p>
+      <p>著者がバーンレートを採る根拠は、閾値ベースのアラートが「重要さ」と「緊急さ」を区別できないという問題にある。瞬間的な閾値超過は、無視できる揺らぎのこともあれば重大な障害のこともある。これに対し、バジェットを今の速度で消費するとどれだけで枯渇するかを見れば、対応の緊急度を一貫した基準で判断できる、という筋道でバーンレート方式を正当化する。</p>
+      <ul>
+        <li>瞬間的な閾値超過ではなく、予算消費の速さで判断する。</li>
+        <li>緊急度を、枯渇までの時間という一貫した基準で測る。</li>
+      </ul>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🔬</span>アラートからオブザーバビリティで掘り下げる</h3>
-      <p class="summary">SLO アラートは「利用者影響が出ている」ことを知らせるが、原因までは示さない。そこから先は <span class="term">イベント解析</span> によって、どの集合で劣化が起きているかを絞り込む。</p>
-      <div class="callout tip">
-        <span class="emoji">✅</span>
-        <div><span class="ctitle">第8章との接続</span><p>アラートで「影響の発生」を捉え、コア解析ループ（第8章）で「原因」へ到達する。検知と調査を役割分担させる。</p></div>
-      </div>
+      <h3 class="ic"><span class="emoji">⏱️</span>枯渇を予測して先回りする</h3>
+      <p class="summary">現在の消費傾向から、エラーバジェットがいつ枯渇するかを予測し、枯渇する前に通知して先回りの対応を可能にする。</p>
+      <p>この予測的な通知の前提は、対応には準備と着手の時間が要るという点である。枯渇してから動くのでは遅い場合、消費の傾向を将来へ延長して「このままなら枯渇する」と早めに知らせれば、余裕を持って対処できる。一方で観測する時間窓を短くすると誤報が増えるため、時間窓の取り方が予測の精度を左右する、という筋道で運用上の調整点が示される。</p>
+      <ul>
+        <li>消費傾向を将来へ延長し、枯渇前に通知する。</li>
+        <li>観測する時間窓の長さが、誤報と感度のバランスを決める。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛠️</span>アラートから原因調査へつなぐ</h3>
+      <p class="summary">アラートは対応の起点にすぎず、そこからイベントの分解に移って、バジェットを消費させている原因の特徴を特定する。</p>
+      <p>著者がこの接続を示すのは、アラートが「予算が減っている」ことしか伝えないためである。何が原因かは、第Ⅱ部のコア分析ループでイベントを分解しないと分からない。アラートを受けたらダッシュボードを眺めるのではなく、バジェットを消費しているリクエスト群を起点に分解を始める、という筋道で、通知と調査が一続きの流れになる。</p>
+      <ul>
+        <li>アラートは起点であり、原因はイベント分解で特定する。</li>
+        <li>失敗しているリクエスト群を起点に分解を始める。</li>
+      </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">バーンレート</span><span class="k">SLOアラート</span><span class="k">エラーバジェット消費</span><span class="k">調査</span></div>
+    <div class="keywords"><span class="k">バーンレート</span><span class="k">予測的アラート</span><span class="k">時間窓</span><span class="k">エラーバジェット</span><span class="k">原因調査</span></div>
   </section>
 
   <!-- ===== 第14章 ===== -->
@@ -186,25 +225,22 @@
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>オブザーバビリティは本番サービスだけでなく、<mark>ビルドやデプロイのソフトウェアサプライチェーンにも適用すべき</mark>である。CI/CD のパイプライン自体を観測対象とする。</p>
+        <p>オブザーバビリティは本番のアプリケーションだけでなく、CI/CDやビルドといったソフトウェアサプライチェーンにも適用でき、開発・デリバリ過程の問題調査に役立つ。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🏭</span>パイプラインを観測対象にする</h3>
-      <p class="summary">この章は、ソフトウェアを届けるまでの工程（ビルド・テスト・デプロイ）にもオブザーバビリティの考え方を持ち込む事例として書かれている。遅さや失敗の原因を、本番と同じ手法で調査できる。</p>
+      <h3 class="ic"><span class="emoji">🚚</span>デリバリ過程も観測対象にする</h3>
+      <p class="summary">ビルドやデプロイのパイプラインもイベントとして計装し、遅延や失敗の原因を本番システムと同じ手法で調べられるようにする。</p>
+      <p>著者がこの応用を示す前提は、サプライチェーンの各工程も多数の要素が絡む複雑な処理であり、本番システムと同じ「未知の遅延・失敗」が起きるという点である。各工程をイベント化して分解できるようにすれば、どの段階・どの条件で時間を取られているかを、勘ではなくデータで特定できる、という筋道で本番と同じ枠組みを当てはめる。</p>
       <ul>
-        <li>ビルドやテストの各ステップをイベントとして記録し、どこが遅いか・不安定かを切り分ける。</li>
-        <li>開発者の生産性に影響するパイプラインの問題を、勘ではなくデータで特定する。</li>
+        <li>パイプラインの各工程をイベントとして計装する。</li>
+        <li>遅延・失敗の原因を、本番と同じ分解手法で特定する。</li>
       </ul>
-      <div class="callout tip">
-        <span class="emoji">✅</span>
-        <div><span class="ctitle">適用範囲の拡張</span><p>オブザーバビリティの原則は本番システムに限らない。複雑で時間のかかる工程であれば、サプライチェーンにも同じ手法が有効になる。</p></div>
-      </div>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">ソフトウェアサプライチェーン</span><span class="k">CI/CD</span><span class="k">パイプラインの観測</span></div>
+    <div class="keywords"><span class="k">ソフトウェアサプライチェーン</span><span class="k">CI/CD</span><span class="k">パイプライン</span><span class="k">ビルドの観測</span></div>
   </section>
 
   <nav class="pager">

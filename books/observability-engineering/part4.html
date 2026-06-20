@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>第Ⅳ部 大規模なオブザーバビリティ ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
-<style>:root{ --accent:#6b3a8c; --accent-soft:#efe6f4; }</style>
+<style>:root{ --accent:#b06a2c; --accent-soft:#f7eee2; }</style>
 </head>
 <body>
 
@@ -26,7 +28,7 @@
 <header class="hero">
   <span class="eyebrow">PART Ⅳ ― 第15〜18章</span>
   <h1>大規模なオブザーバビリティ</h1>
-  <p class="lead">テレメトリーの量が増えたときに生じる課題を扱う。自作と購入の判断、高カーディナリティに耐えるデータストア、コストを抑えるサンプリング、そしてパイプラインによるテレメトリー管理を論じる。</p>
+  <p class="lead">大量のテレメトリーを扱う段階で生じるコストと運用の課題を扱う。作るか買うかの投資判断、効率的なデータストア、サンプリングによるデータ量の削減、パイプラインによるテレメトリー管理を通じて、「安価で十分な精度」を成立させる方法を示す。</p>
 </header>
 
 <main>
@@ -34,7 +36,7 @@
   <nav class="toc" aria-label="この部の目次">
     <h2>このページの章</h2>
     <ol>
-      <li><a href="#ch15"><span class="ch-no">15</span><span>投資収益性: 作るか、それとも買うか</span></a></li>
+      <li><a href="#ch15"><span class="ch-no">15</span><span>投資収益性：作るか、それとも買うか</span></a></li>
       <li><a href="#ch16"><span class="ch-no">16</span><span>効率的なデータストア</span></a></li>
       <li><a href="#ch17"><span class="ch-no">17</span><span>安価で十分な精度にするためのサンプリング戦略</span></a></li>
       <li><a href="#ch18"><span class="ch-no">18</span><span>パイプラインによるテレメトリー管理</span></a></li>
@@ -43,46 +45,42 @@
 
   <!-- ===== 第15章 ===== -->
   <section class="chapter" id="ch15">
-    <div class="chapter-head"><span class="num">第15章</span><h2>投資収益性: 作るか、それとも買うか</h2></div>
+    <div class="chapter-head"><span class="num">第15章</span><h2>投資収益性：作るか、それとも買うか</h2></div>
 
     <div class="in-a-nutshell">
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>オブザーバビリティ基盤を <mark>自作するか購入するかは投資収益性（ROI）で判断する</mark>。自作の見えにくいコストを見落とさないことが要点である。</p>
+        <p>オブザーバビリティ基盤を自作するか購入するかは、ライセンス料だけでなく、構築・運用にかかる人的コストと機会費用を含めた総保有コストで判断する。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">💰</span>総コストで比較する</h3>
-      <p class="summary">著者は、購入価格だけでなく、自作・運用にかかる人件費や機会費用を含めた総コストで比較すべきだと述べる。自作は無料に見えても、開発と維持に継続的な労力を要する。</p>
-      <div class="versus">
-        <div class="side a">
-          <h4>🔨 作る（自作）</h4>
-          <ul>
-            <li>要件に合わせて作り込める</li>
-            <li>開発・運用・保守の継続コストがかかる</li>
-            <li>本業に割く時間を奪う機会費用がある</li>
-          </ul>
-        </div>
-        <div class="vs"><span>VS</span></div>
-        <div class="side b">
-          <h4>🛒 買う（購入）</h4>
-          <ul>
-            <li>導入が速く運用負荷が小さい</li>
-            <li>利用料が発生する</li>
-            <li>自社固有の要件に制約が出ることがある</li>
-          </ul>
-        </div>
-      </div>
-      <div class="callout why">
-        <span class="emoji">🧠</span>
-        <div><span class="ctitle">判断の観点</span><p>オブザーバビリティ基盤の構築・運用が自社の競争力に直結しないなら、その労力を本業に向けたほうが収益性が高い場合が多い。</p></div>
+      <h3 class="ic"><span class="emoji">💰</span>見えないコストを含めて判断する</h3>
+      <p class="summary">自作の費用は無料に見えがちだが、構築・保守・運用に割く人的時間という<span class="term">隠れたコスト</span>を含めて評価すべきだとする。</p>
+      <p>著者がこの観点を強調する根拠は、自作の判断が表面的なライセンス料の比較に流れやすいという点である。自作基盤は購入料こそ不要だが、構築と継続的な運用に高スキルの人員を割く必要があり、その時間は本来の製品開発に充てられたはずである。この機会費用まで含めると、無料に見えた自作が割高になる場合がある、という筋道で総保有コストでの判断を促す。</p>
+      <ul>
+        <li>ライセンス料だけでなく、人的時間と機会費用を勘定に入れる。</li>
+        <li>自作の「無料」は、運用人員のコストを見落とした評価である。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>総保有コスト（TCO）は、導入費だけでなく運用・保守・人件費まで含めた、保有期間全体の費用を指す。</p></div>
       </div>
     </div>
 
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚖️</span>差別化につながるかで線引きする</h3>
+      <p class="summary">自社の競争力に直結しない基盤は購入し、人的資源は自社の差別化につながる部分に集中させる。</p>
+      <p>この判断軸の前提は、人的資源が有限であり、どこに投じるかが成果を左右するという点である。オブザーバビリティ基盤そのものは多くの企業にとって製品の差別化要因ではない。差別化につながらない領域に貴重な人員を費やすより、購入で代替し、その人員を自社固有の価値を生む開発に向けるほうが投資効率が高い、という筋道で結論づける。</p>
+      <ul>
+        <li>差別化につながらない領域は購入で代替する。</li>
+        <li>有限の人的資源を自社固有の価値創出に集中させる。</li>
+      </ul>
+    </div>
+
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">ROI</span><span class="k">作るか買うか</span><span class="k">総コスト</span><span class="k">機会費用</span></div>
+    <div class="keywords"><span class="k">作るか買うか</span><span class="k">総保有コスト</span><span class="k">機会費用</span><span class="k">投資収益性</span><span class="k">差別化</span></div>
   </section>
 
   <!-- ===== 第16章 ===== -->
@@ -93,30 +91,36 @@
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>オブザーバビリティ向けのデータストアは <mark>高カーディナリティのデータに対する高速なクエリ</mark> に耐える設計が要る。著者は Honeycomb の保存・検索エンジン Retriever を例に、その要件を示す。</p>
+        <p>任意の属性で高速に分解・集計するというオブザーバビリティの要求には、行指向ではなく列指向のデータストアが適する。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🗄️</span>解析の要件がストア設計を決める</h3>
-      <p class="summary">任意の属性で絞り込み、対話的に解析するには、データストアがその問い合わせに素早く応えられなければならない。汎用のデータベースでは、この用途に十分な性能や柔軟性を満たしにくい。</p>
+      <h3 class="ic"><span class="emoji">🗄️</span>列指向ストアが分析に適する</h3>
+      <p class="summary">任意の属性で集計するクエリには、属性（列）単位でデータを格納する<span class="term">列指向ストア</span>が、行指向より効率的である。</p>
+      <p>著者が列指向を採る根拠は、オブザーバビリティのクエリが「多数のイベントの特定の属性だけを横断的に集計する」形を取る点にある。行指向では各イベントの全属性をまとめて読むため、必要のない属性まで走査してしまう。列指向なら、クエリが使う属性の列だけを読めばよく、無駄な読み取りが減る。属性数（次元）が多いオブザーバビリティのデータほど、この差が効く、という筋道で列指向を正当化する。</p>
       <ul>
-        <li>列指向の保存により、必要な属性だけを効率的に走査する。</li>
-        <li>高カーディナリティな属性でも事前集計に頼らず検索できる。</li>
+        <li>クエリが使う属性の列だけを読むため、無駄な走査が減る。</li>
+        <li>高次元のイベントほど、列指向の効率が効く。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>列指向ストアは、レコードを行ごとではなく列（属性）ごとにまとめて格納する方式で、特定の列だけを集計する分析クエリに向く。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚡</span>探索的クエリの速さを保つ</h3>
+      <p class="summary">コア分析ループは反復的にクエリを投げるため、データストアは大量データに対しても対話的な速さで応答する必要がある。</p>
+      <p>この要求の前提は、第Ⅱ部のコア分析ループが「分解しては比較する」反復で成り立つ点である。各反復のクエリが遅いと、調査全体の速度が落ち、探索的なデバッグが成り立たなくなる。したがってデータストアは、事前に決めた集計だけでなく、任意の軸での対話的なクエリに高速応答できる設計でなければならない、という筋道で性能要件が導かれる。</p>
+      <ul>
+        <li>反復的な探索クエリに対話的な速さで応答する必要がある。</li>
+        <li>事前集計に頼らず、任意の軸のクエリを速く返す設計が要る。</li>
       </ul>
     </div>
 
-    <div class="topic">
-      <h3 class="ic"><span class="emoji">⚙️</span>Retriever という実例</h3>
-      <p class="summary">この章は、<span class="term">Retriever</span> という Honeycomb 内部のクエリエンジンを題材に、大量のイベントを対話的に解析するためのストアがどう作られているかを具体的に説明する。</p>
-      <div class="callout tip">
-        <span class="emoji">✅</span>
-        <div><span class="ctitle">この章の位置づけ</span><p>抽象的な要件にとどめず、実装上の判断（保存形式・分散・クエリ実行）を示すことで、何が「効率的なデータストア」を成り立たせるかを具体化する。</p></div>
-      </div>
-    </div>
-
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">データストア</span><span class="k">列指向</span><span class="k">Retriever</span><span class="k">対話的クエリ</span></div>
+    <div class="keywords"><span class="k">列指向ストア</span><span class="k">データストア</span><span class="k">高速クエリ</span><span class="k">探索的解析</span></div>
   </section>
 
   <!-- ===== 第17章 ===== -->
@@ -127,30 +131,36 @@
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>大規模では <mark>すべてのイベントを保持するとコストが見合わなくなる</mark>。サンプリングにより、十分な精度を保ちつつデータ量とコストを抑える。</p>
+        <p>全イベントの保存はコスト上現実的でないため、サンプリングでデータ量を削減する。ただし一律ではなく、重要なイベントを残す動的なサンプリングを用いる。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">📐</span>サンプリングは精度とコストの調整である</h3>
-      <p class="summary">著者は、全件保持を前提とせず、代表性を保つように標本を選ぶことで、コストを抑えながら解析に必要な情報を残せると述べる。重要なのは、何をどの割合で残すかの戦略である。</p>
+      <h3 class="ic"><span class="emoji">✂️</span>サンプリングでコストと精度を両立する</h3>
+      <p class="summary">代表性を保ちつつ一部のイベントだけを保存する<span class="term">サンプリング</span>により、データ量を抑えながら分析に必要な精度を確保する。</p>
+      <p>著者がサンプリングを正当化する前提は、大量のイベントを全件保存・処理するコストが規模とともに非現実的になる点である。一方で、多くのイベントは似通っており、すべてを残さなくても全体の傾向は十分に把握できる。代表となるイベントを残し、保存比率を記録して後で重みづけすれば、削減後でも妥当な集計が得られる、という筋道で「安価で十分な精度」を成立させる。</p>
       <ul>
-        <li>稀だが重要なイベント（エラーや遅いリクエスト）は高い割合で残す。</li>
-        <li>大量にあるありふれた成功イベントは低い割合に間引く。</li>
+        <li>全件保存のコストは規模とともに非現実的になる。</li>
+        <li>代表イベントを残し、保存比率で重みづけして集計の妥当性を保つ。</li>
       </ul>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🎚️</span>動的・テールベースの考え方</h3>
-      <p class="summary">一律の割合ではなく、イベントの内容に応じて残す割合を変える <span class="term">動的なサンプリング</span> を扱う。結果を見てから残すかを決める方式（テールベース）も含めて、精度を落とさない工夫を示す。</p>
+      <h3 class="ic"><span class="emoji">🎚️</span>一律でなく動的にサンプリングする</h3>
+      <p class="summary">すべてを同じ確率で残すのではなく、エラーや稀なイベントは高い確率で残し、ありふれた正常イベントは低い確率で残す。</p>
+      <p>著者が動的サンプリングを採る根拠は、イベントの価値が一様でないという点である。正常な大量のリクエストは少数を残せば傾向が分かるが、エラーや稀なケースは件数が少なく、調査で最も必要とされる。これらを一律の低確率で間引くと、肝心のイベントが消えてしまう。だから、価値の高いイベントほど高い確率で残すよう保存率を変える、という筋道で動的な方式を導く。</p>
+      <ul>
+        <li>正常で大量なイベントは低い確率で残しても傾向が分かる。</li>
+        <li>エラーや稀なイベントは高い確率で残し、調査価値を保つ。</li>
+      </ul>
       <div class="callout why">
-        <span class="emoji">🧠</span>
-        <div><span class="ctitle">なぜ精度が保てるか</span><p>サンプルに重み（残した割合の逆数）を持たせれば、間引いた後でも全体の傾向を復元できる。重要な事象を厚く残せば、調査に必要な解像度は維持される。</p></div>
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>件数の少ない異常イベントこそ調査で必要になる。一律サンプリングはその少数を確率的に失わせるため、価値に応じて保存率を変える必要がある。</p></div>
       </div>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">サンプリング</span><span class="k">動的サンプリング</span><span class="k">テールベース</span><span class="k">コスト最適化</span></div>
+    <div class="keywords"><span class="k">サンプリング</span><span class="k">動的サンプリング</span><span class="k">データ量削減</span><span class="k">重みづけ</span><span class="k">コストと精度</span></div>
   </section>
 
   <!-- ===== 第18章 ===== -->
@@ -161,37 +171,39 @@
       <span class="emoji">💡</span>
       <div>
         <p class="label">この章を一言で</p>
-        <p>大規模なテレメトリーは <mark>パイプラインで集約・加工・ルーティングして管理する</mark>。生成側と送り先の間にパイプラインを置くことで、運用の柔軟性が増す。</p>
+        <p>大規模なテレメトリーは、生成元と分析基盤の間にパイプラインを挟んで集約・加工・振り分けを行うことで、柔軟かつ管理可能になる。</p>
       </div>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🔀</span>テレメトリーパイプラインの役割</h3>
-      <p class="summary">アプリケーションから出るテレメトリーを直接バックエンドに送るのではなく、間にパイプラインを挟む。これにより、加工・絞り込み・複数送り先への振り分けを一元的に管理できる。</p>
+      <h3 class="ic"><span class="emoji">🔀</span>テレメトリーパイプラインを挟む</h3>
+      <p class="summary">アプリケーションと分析基盤の間に<span class="term">テレメトリーパイプライン</span>を置き、データの集約・変換・サンプリング・送り先の振り分けを一元的に行う。</p>
+      <p>著者がパイプラインを推す前提は、規模が大きくなるとテレメトリーの取り回しが個々のアプリケーション任せでは管理しきれなくなる点である。生成元から分析基盤へ直送する構成では、加工やサンプリング、送り先変更のたびに各アプリへ手を入れることになる。間にパイプラインを置けば、これらの処理を一箇所に集約でき、アプリを変えずに運用方針を調整できる、という筋道で中間層の価値を示す。</p>
       <div class="flow">
         <div class="node">アプリ（計装）</div>
         <div class="arrow">→</div>
-        <div class="node">パイプライン</div>
+        <div class="node">パイプライン<br>（集約・変換・振り分け）</div>
         <div class="arrow">→</div>
-        <div class="node">複数の送り先</div>
+        <div class="node">分析基盤</div>
       </div>
       <ul>
-        <li>機微な情報の除去や属性の整形を集中して行える。</li>
-        <li>送り先の変更やサンプリングの適用を、アプリを変えずに管理できる。</li>
+        <li>集約・変換・サンプリング・振り分けを一箇所に集約する。</li>
+        <li>アプリを変えずに、送り先や加工方針を調整できる。</li>
       </ul>
     </div>
 
     <div class="topic">
-      <h3 class="ic"><span class="emoji">🛡️</span>規模に応じた運用</h3>
-      <p class="summary">著者は、テレメトリー量が増えるほどパイプラインによる管理の価値が高まると述べる。バックプレッシャーや障害時のバッファリングなど、安定運用のための制御もここで担う。</p>
-      <div class="callout tip">
-        <span class="emoji">✅</span>
-        <div><span class="ctitle">第Ⅳ部のまとめ</span><p>データストア・サンプリング・パイプラインは、いずれも「規模が増えても解析の価値を保ちつつコストと運用を制御する」という共通の課題への答えである。</p></div>
-      </div>
+      <h3 class="ic"><span class="emoji">🧭</span>運用の柔軟性とガバナンスを得る</h3>
+      <p class="summary">パイプラインを介することで、送り先の切り替えや機密データの除去といった管理を、生成元から独立して行える。</p>
+      <p>この利点の前提は、テレメトリーの運用要件が時とともに変わるという点である。分析基盤の乗り換えや、規制対応のための機密情報の除去は、生成元に直結した構成では各所の改修を要する。パイプラインに処理を寄せておけば、これらを一元的に管理でき、第15章の「作るか買うか」で送り先を変える判断とも整合する、という筋道で柔軟性を裏づける。</p>
+      <ul>
+        <li>送り先の切り替えを生成元と独立に行える。</li>
+        <li>機密データの除去など、規制対応の管理を一元化できる。</li>
+      </ul>
     </div>
 
     <p class="kw-label">Keywords</p>
-    <div class="keywords"><span class="k">テレメトリーパイプライン</span><span class="k">ルーティング</span><span class="k">バッファリング</span><span class="k">一元管理</span></div>
+    <div class="keywords"><span class="k">テレメトリーパイプライン</span><span class="k">集約と変換</span><span class="k">振り分け</span><span class="k">ガバナンス</span><span class="k">柔軟性</span></div>
   </section>
 
   <nav class="pager">

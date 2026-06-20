@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第IV部 SREの人間的側面 ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#7a4a8c; --accent-soft:#f1eaf5; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>SREの探求</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第I部</a>
+      <a href="part2.html">第II部</a>
+      <a href="part3.html">第III部</a>
+      <a href="part4.html">第IV部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART IV ― 第27〜33章</span>
+  <h1>SREの人間的側面</h1>
+  <p class="lead">技術や組織の外側にある、見過ごせない文化的・人間的な側面を扱う部である。心理的安全性、認知的作業、バーンアウト、オンコール、複雑系、運用と社会運動、そして本書全体のまとめを論じる。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch27"><span class="ch-no">27</span><span>SREにおける心理的安全性</span></a></li>
+      <li><a href="#ch28"><span class="ch-no">28</span><span>SREの認知的作業</span></a></li>
+      <li><a href="#ch29"><span class="ch-no">29</span><span>燃え尽きを超えて</span></a></li>
+      <li><a href="#ch30"><span class="ch-no">30</span><span>オンコール反対論</span></a></li>
+      <li><a href="#ch31"><span class="ch-no">31</span><span>複雑なシステムのためのエレジー</span></a></li>
+      <li><a href="#ch32"><span class="ch-no">32</span><span>運用と社会運動が交わるところ</span></a></li>
+      <li><a href="#ch33"><span class="ch-no">33</span><span>まとめ</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第27章 ===== -->
+  <section class="chapter" id="ch27">
+    <div class="chapter-head"><span class="num">第27章</span><h2>SREにおける心理的安全性</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>チームの成功を左右する最大の指標は、在籍年数や職位や報酬ではなく心理的安全性である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛡️</span>安全でないチームは最終的に崩れる</h3>
+      <p class="summary">著者は、チームの成功を左右する最大の指標が在籍年数・職位・報酬ではなく心理的安全性だと主張する。心理的に安全でないチームは、狭い目標に集中する間は一時的に成果を出せても、未解決の対人的緊張により最終的にはパフォーマンスを落とすか崩壊するとする。</p>
+      <p>論拠は Google の「Project Aristotle」研究の知見である。著者は安全でないチームを特徴づける5つの兆候として、ミスが個人の責任にされること、新参者に閉鎖的な強い内輪文化、苦戦するメンバーを助けようとしないこと、個人の才能がチーム目標に従属させられること、デリケートな問題をオープンに議論しにくいことを挙げる。対人的な力学が技術的パフォーマンスに有意に影響し、関係性の問題に対処しないとチームの結束が劣化する、という前提に立つ。Project Aristotle が成功の鍵を心理的安全性と特定したことから、安全性を築く実践的な戦略が必要だ、という筋道である。</p>
+      <ul>
+        <li>成功の最大指標は心理的安全性であり、年数や職位ではない。</li>
+        <li>ミスを個人の責任にする、助け合わないなど5つの兆候を示す。</li>
+        <li>関係性の問題に対処しないと、チームの結束は劣化する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">心理的安全性</span><span class="k">Project Aristotle</span><span class="k">チームの兆候</span><span class="k">対人的力学</span></div>
+  </section>
+
+  <!-- ===== 第28章 ===== -->
+  <section class="chapter" id="ch28">
+    <div class="chapter-head"><span class="num">第28章</span><h2>SREの認知的作業</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREの仕事は本質的に高度な認知的作業であり、その多くは「見えない」人間の判断として存在し、自動化できない。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧠</span>システムを動かす「見えない」専門性</h3>
+      <p class="summary">著者らは、SRE の仕事を本質的に高度な認知的・複雑な作業とし、ルーティンな技術タスクではなく真の専門性を要するとする。その専門性の多くは見えない、すなわち定量化できず、人間の判断という質的な形で存在すると主張する。</p>
+      <p>論拠は、SRE 実務者が診断・修復・保守を行う様子の観察研究である。著者らは Bainbridge (1983) を引き、制御システムが高度になるほど人間オペレーターの貢献はかえって重要になりうると述べる。不確実性と時間的プレッシャーのもとで行われる重要な意思決定は標準化・スクリプト化・自動化できず、適応的な人間の認知を必要とする。インシデントは、個人や集団がシステムの挙動についてのメンタルモデルを再較正する機会と位置づけられ、調整のオーバーヘッドが過小評価された認知的負荷として強調される。現代のシステムは常に変化する複雑な集合体であり、実際の作業を研究して認知を理解することが信頼性向上に資する、という筋道である。</p>
+      <ul>
+        <li>SREの専門性の多くは定量化できない人間の判断として存在する。</li>
+        <li>不確実性下の重要な意思決定は標準化・自動化できない。</li>
+        <li>調整のオーバーヘッドは過小評価された認知的負荷である。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">認知的作業</span><span class="k">メンタルモデル</span><span class="k">調整コスト</span><span class="k">適応的認知</span></div>
+  </section>
+
+  <!-- ===== 第29章 ===== -->
+  <section class="chapter" id="ch29">
+    <div class="chapter-head"><span class="num">第29章</span><h2>燃え尽きを超えて</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>職場環境はメンタルヘルスを体系的に害するので、雇用のあらゆる側面でこれに対処する「フルスタックなインクルーシビティ」を採るべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌡️</span>メンタルヘルスをダイバーシティの議論に含める</h3>
+      <p class="summary">著者は、職場環境がメンタルヘルスを体系的に害すると主張する。組織は雇用のあらゆる側面でメンタルヘルスに対処する「フルスタックなインクルーシビティ」を採るべきであり、精神的な障害がダイバーシティの議論から抜け落ちている現状を改めるべきだとする。</p>
+      <p>論拠として、座りっぱなしの職場・オープンオフィス・人工照明が、身体的損傷とともに心理的なウェルビーイングを直接害することを示す研究の蓄積に依拠する。メンタルヘルスへの配慮は、診断を受けた人だけでなく全従業員に有益だと論じる。ここから、採用・報酬・福利厚生・オンボーディング・労働条件・職務・研修・昇進・休暇制度に至るまで、雇用の全領域でメンタルヘルスに配慮した変革が必要だ、という筋道を示す。なお著者は、自身がメンタルヘルスの専門家でも弁護士でもなく、本章が専門的見解ではなく個人の分析であると明示している。</p>
+      <ul>
+        <li>職場の設計がメンタルヘルスを体系的に害する。</li>
+        <li>メンタルヘルスをダイバーシティ／インクルージョンの問題として扱う。</li>
+        <li>雇用の全領域にわたる配慮が、全従業員に有益である。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">バーンアウト</span><span class="k">メンタルヘルス</span><span class="k">フルスタックなインクルーシビティ</span><span class="k">職場環境</span></div>
+  </section>
+
+  <!-- ===== 第30章 ===== -->
+  <section class="chapter" id="ch30">
+    <div class="chapter-head"><span class="num">第30章</span><h2>オンコール反対論</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>現状のオンコールは、それを行う人々に有害でシステム維持の手段として非効率であり、廃止を問い直すべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📟</span>長年変わらない慣行を、論争として問い直す</h3>
+      <p class="summary">著者は、現状のオンコールは終わらせるべきだと主張する。それを実行する人々に有害であり、システムを稼働させ続ける手段として非効率だからである。オンコールが本当に有益なのか、真の代替手段が存在するのかを問い直すべきだとする。</p>
+      <p>論拠は歴史的な観察である。オンコールの活動は75年以上前まで遡れ、コンピューティングが飛躍的に進歩したにもかかわらず、慣行は黎明期からほぼ変わっていない。なぜこの慣行を続けるのかを問うべきだ、という。さらに著者は、技術職の専門的アイデンティティがインシデント対応や緊急の問題解決と深く結びついており、それゆえ実務者がこの仕組みを問い直すことに消極的になる、と障壁を指摘する。慣行が長年不変で害と非効率が放置されているうえ、専門的な自己肯定感への結びつきが批判を妨げているため、漸進的改善ではなく体系的な変革を提起する論争として本章を提示する。</p>
+      <ul>
+        <li>オンコールは長年ほぼ変わらず、害と非効率が放置されている。</li>
+        <li>専門的アイデンティティとの結びつきが問い直しを妨げる。</li>
+        <li>漸進的改善でなく、廃止を含む体系的変革を論争として提起する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">オンコール</span><span class="k">論争（polemic）</span><span class="k">専門的アイデンティティ</span><span class="k">体系的変革</span></div>
+  </section>
+
+  <!-- ===== 第31章 ===== -->
+  <section class="chapter" id="ch31">
+    <div class="chapter-head"><span class="num">第31章</span><h2>複雑なシステムのためのエレジー</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>複雑なシステムは常に部分的に障害が起きている状態にあり、組織は調整のオーバーヘッドを体系的に過小評価する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚙️</span>計画どおりには進まないという常態</h3>
+      <p class="summary">著者は、コンピューターシステムと人間システムは分離できないとし、複雑なシステムは常に部分的に障害が起きている状態にあると主張する。さらに、組織は調整のオーバーヘッドを体系的に過小評価するとする。</p>
+      <p>論拠は HealthCare.gov の立て直しの経験である。著者はこのケーススタディを通じて、複雑系がプレッシャーのもとでどう振る舞うかを示す。デコヒーレンスやカスケード障害は複雑系に内在し、予期せぬ事態が計画の前提を崩す「ノベルティ優先順位逆転」が起こる。「計画どおりには進まない。何ひとつ計画どおりには行かない」という語りで、予測不能性が例外ではなく根本的であると示す。完全な機能性は到達不能で不予測性が常態だという前提から、複雑系の本質的特性を一般化し、システムへの挽歌として提示する。</p>
+      <ul>
+        <li>コンピューターシステムと人間システムは分離できない。</li>
+        <li>複雑系は常に部分的に障害が起きている状態にある。</li>
+        <li>調整のオーバーヘッドは組織に体系的に過小評価される。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">複雑系</span><span class="k">部分的障害</span><span class="k">カスケード障害</span><span class="k">調整コスト</span><span class="k">HealthCare.gov</span></div>
+  </section>
+
+  <!-- ===== 第32章 ===== -->
+  <section class="chapter" id="ch32">
+    <div class="chapter-head"><span class="num">第32章</span><h2>運用と社会運動が交わるところ</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>SREは技術指標を超えた倫理的責任を負い、運用で用いる手法は社会運動の文脈にも転用できる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚖️</span>確実に動かす価値のあるサービスかを問う</h3>
+      <p class="summary">著者らは、SRE 専門家が技術的な信頼性指標を超えた倫理的責任を負うと主張する。人々に害を与え、不正を助長し、周縁化された集団を排除する仕事を確実に行うサービスは、構築・維持する価値のあるサービスではないとする。さらに、SRE が運用で用いる手法は社会運動の文脈に転用できると論じる。</p>
+      <p>論拠は、確立された SRE の実践（設計レビュー、インシデント管理、ポストモーテム）と、アクティビスト的な組織化の原則との間にある並行性である。エンジニアは公共の利益のために働き、生活の質やプライバシーを損なわず、環境を害さない責任を共有するとする。SRE が計測とデータに注力することは、周縁化されたユーザーやコミュニティを擁護する立場に適している。技術的専門性は道徳的責任を伴うという前提から、運用の方法論を社会変革にも適用できる、あるいは適用すべきだ、という筋道を導く。</p>
+      <ul>
+        <li>害をなすサービスを確実に動かすことに価値はない。</li>
+        <li>設計レビューやポストモーテムは社会運動の組織化にも通じる。</li>
+        <li>計測とデータへの注力が、周縁化された集団の擁護に適する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">倫理的責任</span><span class="k">社会運動</span><span class="k">公共の利益</span><span class="k">計測とデータ</span></div>
+  </section>
+
+  <!-- ===== 第33章 ===== -->
+  <section class="chapter" id="ch33">
+    <div class="chapter-head"><span class="num">第33章</span><h2>まとめ</h2></div>
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>本書の終わりは真の終わりではなく一時停止であり、読者はこのページを超えてSREの対話を継続すべきである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔄</span>対話の出発点として本書を閉じる</h3>
+      <p class="summary">編者は、本書の終わりを真の終わりではなく一時停止と位置づける。読者はこのページを超えて SRE の対話を継続すべきであり、コミュニティへの関与が不可欠だと述べる。</p>
+      <p>本書が扱ったテーマも省いたテーマも、対話を続けてほしいという呼びかけが筋道の中心である。編者は多様な貢献の形を歓迎し、カンファレンスに登壇を応募してもよいし、本を書いてもよい、というように、各自が自分のやり方でSREの議論を生かし続ける責任を負うと位置づける。本書を最終的な結論ではなく、継続するコミュニティの対話の出発点として閉じる。</p>
+      <ul>
+        <li>本書の終わりは一時停止であり、対話の継続を促す。</li>
+        <li>扱ったテーマも省いたテーマも、議論を続けてほしいと呼びかける。</li>
+        <li>読者自身が各自の職場・業界でSREの議論を生かす責任を負う。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">まとめ</span><span class="k">対話の継続</span><span class="k">コミュニティ</span><span class="k">探求の継続</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part3.html"><span class="dir">← 前</span><span class="ttl">第III部 ベストプラクティスと技術</span></a>
+    <a class="next" href="index.html"><span class="dir">目次 →</span><span class="ttl">要点まとめトップ</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>SREの探求 要点まとめ</p></footer>
+
+</body>
+</html>
