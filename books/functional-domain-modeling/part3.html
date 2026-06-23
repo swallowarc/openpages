@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3部 モデルの実装 ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3f7e5c; --accent-soft:#eaf4ee; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>関数型ドメインモデリング</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第1部</a>
+      <a href="part2.html">第2部</a>
+      <a href="part3.html">第3部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART 3 ― 第8〜13章</span>
+  <h1>モデルの実装</h1>
+  <p class="lead">第2部で設計した型とワークフローを、F# で実装する。著者は、関数の合成でパイプラインを組み立て、Result 型でエラーを明示的に扱い、シリアライズと永続化を端に追いやり、要件変更に型で対応する方法を示す。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch8"><span class="ch-no">8</span><span>関数の理解</span></a></li>
+      <li><a href="#ch9"><span class="ch-no">9</span><span>実装：パイプラインの合成</span></a></li>
+      <li><a href="#ch10"><span class="ch-no">10</span><span>実装：エラーの扱い</span></a></li>
+      <li><a href="#ch11"><span class="ch-no">11</span><span>シリアライズ</span></a></li>
+      <li><a href="#ch12"><span class="ch-no">12</span><span>永続化</span></a></li>
+      <li><a href="#ch13"><span class="ch-no">13</span><span>設計を進化させ、きれいに保つ</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第8章 ===== -->
+  <section class="chapter" id="ch8">
+    <div class="chapter-head"><span class="num">第8章</span><h2>関数の理解</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>関数を値と同じ「物」として扱い、合成可能にする。さらに、すべての入力に対して値を返す全域関数を用い、例外を避ける。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧮</span>関数を「物」として合成する</h3>
+      <p class="summary">関数は引数にも戻り値にもできる値であり、つなげて新しい関数を作れる。</p>
+      <p>著者の筋道は、関数を値として扱えるなら、ある関数の出力を次の関数の入力につなぐことで、小さな関数から大きな処理を組み立てられる、という点にある。これが第7章のパイプライン合成を実装で支える基盤になる。型が合えば、関数は部品のように連結できる。</p>
+      <ul>
+        <li>関数を引数・戻り値として渡し、合成して新しい処理を作る。</li>
+        <li>出力型と入力型が合う関数どうしを連結する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">✅</span>全域関数で例外を避ける</h3>
+      <p class="summary">すべての入力に対して必ず値を返す全域関数を用い、想定外で例外を投げない設計にする。</p>
+      <p>著者の論拠は、入力の一部で例外を投げる関数（部分関数）は、シグネチャに失敗の可能性が表れず、呼び出し側が見落とす、という点にある。全域関数にすれば、起こりうる失敗も戻り値の型に表れ、扱い忘れを型で防げる。これが第10章の Result 型によるエラー処理につながる。</p>
+      <ul>
+        <li>部分関数（一部の入力で例外を投げる）を避ける。</li>
+        <li>失敗も戻り値の型に表し、呼び出し側に明示する。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>全域関数（total function）は、定義域のすべての入力に対して値を返す関数を指す。一部の入力で例外や未定義になる関数は部分関数（partial function）と呼ばれる。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">関数は物</span><span class="k">合成</span><span class="k">全域関数</span><span class="k">部分関数</span></div>
+  </section>
+
+  <!-- ===== 第9章 ===== -->
+  <section class="chapter" id="ch9">
+    <div class="chapter-head"><span class="num">第9章</span><h2>実装：パイプラインの合成</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>関数の型を先に決め、それに沿って各ステップを実装する。依存は関数の引数として注入し、テスト可能にする。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>関数の型が実装を導く</h3>
+      <p class="summary">先に定義したステップの型をたよりに、各ステップの中身を実装していく。</p>
+      <p>著者は、入力型と出力型が決まっていれば、実装すべきことの範囲が型によって絞られると説く。検証ステップ、価格計算ステップなどを、それぞれ定められた型に合わせて実装し、最後に合成して一本のパイプラインにする。型が先にあることで、実装が設計から逸れにくい。</p>
+      <ul>
+        <li>検証・価格計算などの各ステップを、定義済みの型に合わせて実装する。</li>
+        <li>実装したステップを合成し、組み上がったパイプラインにする。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">💉</span>依存を関数の引数として注入する</h3>
+      <p class="summary">外部への依存をステップの引数として渡し、ステップを純粋に保ってテストしやすくする。</p>
+      <p>著者の筋道は、依存を関数の中に隠すと、その関数を実行するのに実物の依存が必要になりテストしにくい、という点にある。依存を引数として外から渡せば、テスト時には代わりの実装を渡せる。これにより、ステップ単体をインフラなしで検証できる。</p>
+      <ul>
+        <li>依存を引数として渡し、ステップ内部に隠さない。</li>
+        <li>テスト時は代替の依存を渡し、ステップ単体で検証する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">型駆動の実装</span><span class="k">依存性注入</span><span class="k">パイプライン合成</span><span class="k">テスト</span></div>
+  </section>
+
+  <!-- ===== 第10章 ===== -->
+  <section class="chapter" id="ch10">
+    <div class="chapter-head"><span class="num">第10章</span><h2>実装：エラーの扱い</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>例外でなく Result 型でエラーを明示し、成功と失敗の2本の道として扱う。bind と map で関数を連結し、失敗は自動的に失敗の道へ流す。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>Result 型でエラーを明示する</h3>
+      <p class="summary">失敗を例外で投げるのではなく、戻り値の型（Result）に表して扱い忘れを防ぐ。</p>
+      <p>著者の論拠は、例外はシグネチャに表れないため、どの関数がどんな失敗を起こすか呼び出し側から見えない、という点にある。Result 型で成功値と失敗値の両方を戻り値に表せば、起こりうるエラーが型に現れ、呼び出し側は失敗の処理を省けない。さらに、扱うのはドメインに関係するエラーに絞り、外部例外は Result を返す関数で包む。</p>
+      <ul>
+        <li>成功と失敗を Result 型で表し、シグネチャにエラーを明示する。</li>
+        <li>ドメインに関係するエラーだけを扱い、外部の例外は Result に変換して取り込む。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛤️</span>成功と失敗を2本の道として連結する</h3>
+      <p class="summary">処理を成功の道と失敗の道の2本に見立て、bind と map で各ステップをつなぐ。</p>
+      <p>著者の筋道はこうである。各ステップが Result を返すと、ステップを単純に連結できない。そこで bind を「分岐を接ぐ部品」として使い、前のステップが成功なら次へ進め、失敗ならその先を飛ばして失敗を持ち越す。map は成功の道の値だけを変換し、失敗の道はそのまま通す。これにより、いったん失敗するとそれ以降の処理を短絡して失敗を運ぶ仕組みが、各ステップに分岐コードを書かずに実現できる。著者はこの構成を Railway Oriented Programming（鉄道指向プログラミング）と呼ぶ。</p>
+      <div class="versus">
+        <div class="side a">
+          <span class="vlabel">成功の道</span>
+          <p>処理が進むかぎりこの道を通る。map は成功の値だけを変換する。</p>
+        </div>
+        <div class="vs">⇄</div>
+        <div class="side b">
+          <span class="vlabel">失敗の道</span>
+          <p>いったん失敗するとこの道へ移り、以降の処理を飛ばして失敗を持ち越す。</p>
+        </div>
+      </div>
+      <ul>
+        <li>bind は Result を返す関数を連結する部品で、失敗を後続へ持ち越す。</li>
+        <li>map は成功の道の値だけを変換し、失敗の道には触れない。</li>
+        <li>計算式（computation expression）で連結を読みやすく書け、非同期（Async）の効果も加えられる。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>失敗を持ち越す処理を bind と map に閉じ込めるため、各ステップは成功時の処理だけを書けばよく、エラー伝播のコードが各所に散らばらない。</p></div>
+      </div>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>計算式（computation expression）は、bind などの連結を裏で行いつつ、逐次的なコードのように書ける F# の構文機能を指す。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">Result型</span><span class="k">bind / map</span><span class="k">Railway Oriented Programming</span><span class="k">計算式</span><span class="k">Async効果</span><span class="k">ドメインエラー</span></div>
+  </section>
+
+  <!-- ===== 第11章 ===== -->
+  <section class="chapter" id="ch11">
+    <div class="chapter-head"><span class="num">第11章</span><h2>シリアライズ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>シリアライズと永続化を別の関心として分け、ドメイン型を外向けの DTO に変換してからシリアライズする。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔄</span>ドメイン型を DTO に変換してシリアライズする</h3>
+      <p class="summary">ドメイン型を直接シリアライズせず、シリアライズ向けの単純な DTO に変換する。</p>
+      <p>著者の論拠は、ドメイン型は制約や判別共用体を含み、そのままでは一般的なシリアライズ形式に素直に乗らない、という点にある。シリアライズ専用の DTO へ一度変換すれば、ドメイン型は外部形式の都合に縛られず、変換コードがその橋渡しを一手に引き受ける。シリアライズはワークフローの端で行い、中核のドメインロジックから切り離す。</p>
+      <ul>
+        <li>シリアライズ向けに設計した DTO を介してドメイン型と外部形式を橋渡しする。</li>
+        <li>シリアライズの処理はワークフローの端に置き、ドメインロジックと分離する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">シリアライズ</span><span class="k">DTO</span><span class="k">永続化との分離</span><span class="k">型の変換</span></div>
+  </section>
+
+  <!-- ===== 第12章 ===== -->
+  <section class="chapter" id="ch12">
+    <div class="chapter-head"><span class="num">第12章</span><h2>永続化</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>永続化をワークフローの端に押し出し、コマンドとクエリを分け、各コンテキストが自分のデータの保存を所有する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧱</span>永続化を端に押し出す</h3>
+      <p class="summary">データの読み書きをワークフローの入口と出口に集め、中核のロジックを純粋に保つ。</p>
+      <p>著者の筋道は、保存処理を中核に混ぜると、ドメインロジックがデータベースに依存してテストしにくくなる、という点にある。読み込みをワークフローの始めに、書き込みを終わりに置けば、中間のロジックは I/O を含まない純粋な関数のまま保てる。これは第3部を通じた「I/O を端に」という方針を永続化に適用したものである。</p>
+      <ul>
+        <li>読み込みは入口、書き込みは出口に置く。</li>
+        <li>中核のロジックを I/O から切り離し、純粋に保つ。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔀</span>コマンドとクエリを分け、データの所有を明確にする</h3>
+      <p class="summary">状態を変える操作と読み取る操作を分け、各コンテキストが自分のデータ保存を所有する。</p>
+      <p>著者は、コマンド（変更）とクエリ（参照）を分離する（CQS）と、それぞれを独立して設計・最適化できると説く。さらに、境界づけられたコンテキストは自分のデータストレージを所有すべきだとする。コンテキストが他のコンテキストのデータに直接触れると境界が崩れるため、データの所有を分けることで第1部で引いた境界を保つ。文書データベース・関係データベースの扱いやトランザクションにも触れる。</p>
+      <ul>
+        <li>コマンドとクエリを分離し、それぞれを独立して扱う。</li>
+        <li>各コンテキストが自分のデータ保存を所有し、境界を保つ。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>CQS（コマンドクエリ分離）は、状態を変更する操作（コマンド）と、値を返すだけで状態を変えない操作（クエリ）を分けて設計する原則を指す。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">永続化を端に</span><span class="k">CQS</span><span class="k">データの所有</span><span class="k">境界づけられたコンテキスト</span><span class="k">トランザクション</span></div>
+  </section>
+
+  <!-- ===== 第13章 ===== -->
+  <section class="chapter" id="ch13">
+    <div class="chapter-head"><span class="num">第13章</span><h2>設計を進化させ、きれいに保つ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>要件変更を型に反映すると、修正が必要な箇所をコンパイラが教えてくれる。型に支えられた設計は、変更を重ねても整合を保ちやすい。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>型の変更にコンパイラが追従させる</h3>
+      <p class="summary">要件変更で型を変えると、影響を受ける箇所がコンパイルエラーとして洗い出される。</p>
+      <p>著者の筋道は、ドメインを型で表していれば、要件変更はまず型の変更として現れる、という点にある。型を変えると、その型に依存するすべての箇所がコンパイルを通らなくなり、修正すべき場所が機械的に列挙される。これにより、変更の影響範囲を人手で探す手間と漏れが減る。著者は具体的な変更（送料の追加、VIP 顧客への対応、プロモーションコード、営業時間の制約）を順に加え、この進め方を示す。</p>
+      <div class="steps">
+        <div class="step"><span class="badge">変更1</span><div>送料の追加</div></div>
+        <div class="step"><span class="badge">変更2</span><div>VIP 顧客への対応</div></div>
+        <div class="step"><span class="badge">変更3</span><div>プロモーションコードへの対応</div></div>
+        <div class="step"><span class="badge">変更4</span><div>営業時間の制約</div></div>
+      </div>
+      <ul>
+        <li>要件変更を型の変更として表し、影響箇所をコンパイラに洗い出させる。</li>
+        <li>送料・VIP・プロモコード・営業時間の追加を例に、変更への対応を示す。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>ドメインが型で表されているため、型を変えるとそれに依存する箇所がコンパイルエラーになり、修正すべき場所が漏れなく可視化される。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">設計の進化</span><span class="k">型による影響範囲の可視化</span><span class="k">要件変更への対応</span><span class="k">コンパイラの活用</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part2.html"><span class="dir">← 前</span><span class="ttl">第2部 ドメインのモデリング</span></a>
+    <a class="next" href="index.html"><span class="dir">目次 →</span><span class="ttl">目次に戻る</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>関数型ドメインモデリング 要点まとめ</p></footer>
+
+</body>
+</html>

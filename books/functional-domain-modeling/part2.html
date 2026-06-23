@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2部 ドメインのモデリング ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#7a4f9c; --accent-soft:#f3eef8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>関数型ドメインモデリング</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第1部</a>
+      <a href="part2.html">第2部</a>
+      <a href="part3.html">第3部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART 2 ― 第4〜7章</span>
+  <h1>ドメインのモデリング</h1>
+  <p class="lead">第1部で理解したドメインを、型で表現する。著者は、AND型とOR型の組み合わせでドメインを組み立て、不正な状態を型で表現不可能にし、ワークフローを状態機械とパイプラインとしてモデル化する方法を示す。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch4"><span class="ch-no">4</span><span>型の理解</span></a></li>
+      <li><a href="#ch5"><span class="ch-no">5</span><span>型によるドメインモデリング</span></a></li>
+      <li><a href="#ch6"><span class="ch-no">6</span><span>ドメインの完全性と整合性</span></a></li>
+      <li><a href="#ch7"><span class="ch-no">7</span><span>パイプラインによるワークフローのモデリング</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第4章 ===== -->
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="num">第4章</span><h2>型の理解</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>型はドメインを表現する道具である。型は AND（複数の値の組み合わせ）と OR（複数の選択肢のいずれか）で合成でき、この2つを組み合わせてドメインモデルを組み立てる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧱</span>型は AND と OR の2種類で合成する</h3>
+      <p class="summary">ドメインの概念は、AND型（レコード）と OR型（判別共用体）の組み合わせで表現できる。</p>
+      <p>著者の筋道は、ドメインの言葉の多くが「AとBとCの組」または「AかBかCのいずれか」という構造を持つ、という観察から始まる。前者はレコード（AND型）、後者は判別共用体（OR型）で素直に表せる。この2種類の合成を基本部品にすれば、ドメインの構造を型の構造としてそのまま写し取れる。</p>
+      <div class="versus">
+        <div class="side a">
+          <span class="vlabel">AND型（レコード）</span>
+          <p>複数の値をすべて持つ組。例：注文は「注文ID」と「顧客」と「明細」を併せ持つ。</p>
+        </div>
+        <div class="vs">対</div>
+        <div class="side b">
+          <span class="vlabel">OR型（判別共用体）</span>
+          <p>複数の選択肢のいずれか一つ。例：支払い方法は「現金」か「カード」かのいずれか。</p>
+        </div>
+      </div>
+      <ul>
+        <li>AND型は複数の属性をまとめた一つの概念を表す。</li>
+        <li>OR型は排他的な選択肢を表し、状態や種別の表現に使う。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>判別共用体（discriminated union）は、いくつかの異なる選択肢のうちちょうど一つを取る型を指す。F# や一部の言語が言語機能として備える。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎁</span>関数も型も「物」として扱う</h3>
+      <p class="summary">関数は値と同じように扱える「物」であり、型と関数を組み合わせてモデルを構築する。</p>
+      <p>著者は、関数を引数や戻り値にできる「物」として捉える前提を置く。これにより、ワークフローの各ステップを「入力型から出力型への関数」として表現でき、ステップの連結が関数の合成として扱えるようになる。型がデータの形を、関数が変換を表し、両者の組み合わせがドメインモデルになる。</p>
+      <ul>
+        <li>ワークフローのステップを「入力型 → 出力型」の関数として表す。</li>
+        <li>省略可能な値・エラー・コレクションは Option・Result・list などでモデル化する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">AND型</span><span class="k">OR型</span><span class="k">レコード</span><span class="k">判別共用体</span><span class="k">型の合成</span><span class="k">Option / Result</span></div>
+  </section>
+
+  <!-- ===== 第5章 ===== -->
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="num">第5章</span><h2>型によるドメインモデリング</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>単純な値もドメインの型として表す。さらに、同一性が値で決まる値オブジェクトと、IDで決まるエンティティを区別し、整合性の単位として集約を設ける。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏷️</span>単純な値もプリミティブでなくドメイン型にする</h3>
+      <p class="summary">注文IDや商品コードのような値を、文字列や数値のままでなく専用の型にする。</p>
+      <p>著者の論拠は、プリミティブ型のまま扱うと意味の異なる値が取り違えられる、という点にある。注文IDも顧客IDも同じ文字列型なら、コンパイラは両者の取り違えを検出できない。専用の型を与えれば、ドメイン上の意味が型に表れ、誤った代入が型エラーとして弾かれる。</p>
+      <ul>
+        <li>OrderId・ProductCode などをそれぞれ独立した型として定義する。</li>
+        <li>意味の異なる値の取り違えを、コンパイル時に防ぐ。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🪪</span>値オブジェクトとエンティティを同一性で区別する</h3>
+      <p class="summary">同一性が値そのもので決まるものを値オブジェクト、IDで決まり時間とともに変化するものをエンティティとする。</p>
+      <p>著者の筋道は、概念ごとに「2つが同じものかをどう判断するか」が異なる、という点にある。住所や金額は中身が同じなら同じものとみなせる（値オブジェクト）。一方、顧客や注文は属性が変わっても同じ存在であり続け、識別はIDで行う（エンティティ）。この区別が、等価性の扱いと可変性の設計を決める。</p>
+      <div class="versus">
+        <div class="side a">
+          <span class="vlabel">値オブジェクト</span>
+          <p>同一性は値で決まる。中身が等しければ同じ。例：金額、住所。</p>
+        </div>
+        <div class="vs">対</div>
+        <div class="side b">
+          <span class="vlabel">エンティティ</span>
+          <p>同一性はIDで決まる。属性が変わっても同じ存在。例：顧客、注文。</p>
+        </div>
+      </div>
+      <ul>
+        <li>値オブジェクトは値の等しさで比較する。</li>
+        <li>エンティティはIDで識別し、属性の変化を許す。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧷</span>集約を整合性の単位として設ける</h3>
+      <p class="summary">関連するエンティティをまとめ、一貫性を保つ境界として集約を定義する。</p>
+      <p>著者は、すべてのデータを一度に整合させようとすると範囲が広がりすぎると見る。そこで、整合性を保つべきまとまりを集約として区切り、その単位で更新と一貫性を扱う。集約は、どこまでを一度に矛盾なく保つかという境界を定める。</p>
+      <ul>
+        <li>集約は一貫性を保証する境界として機能する。</li>
+        <li>関連するエンティティ・値をまとめ、更新の単位とする。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ドメイン型</span><span class="k">値オブジェクト</span><span class="k">エンティティ</span><span class="k">同一性</span><span class="k">集約</span></div>
+  </section>
+
+  <!-- ===== 第6章 ===== -->
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="num">第6章</span><h2>ドメインの完全性と整合性</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ビジネスルールを型システムに刻み込み、不正な状態を表現不可能にする。実行時のチェックに頼らず、型の段階で誤りを排除する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛡️</span>制約付きの値はスマートコンストラクタで守る</h3>
+      <p class="summary">妥当な値しか作れないようにし、一度作られた値はつねに制約を満たす状態に保つ。</p>
+      <p>著者の論拠は、制約を満たすかどうかを使うたびにチェックすると、チェック漏れが起きる、という点にある。代わりに、値の生成を専用の関数（スマートコンストラクタ）に限り、生成時に検証する。生成を通った値は以後つねに妥当だと保証されるため、利用側は再検証しなくてよい。</p>
+      <ul>
+        <li>値の生成口を一つに絞り、生成時に制約を検証する。</li>
+        <li>生成済みの値は妥当性が保証され、利用側でのチェックが不要になる。</li>
+        <li>数量や金額などには単位（units of measure）を型に持たせ、異なる単位の値の取り違えを防ぐ。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>スマートコンストラクタは、検証を通った値だけを作れるように生成手段を限定する設計手法を指す。生成に成功した値は制約を満たすことが保証される。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚫</span>不正な状態を型で表現不可能にする</h3>
+      <p class="summary">起こりえない状態の組み合わせを、そもそも型で書けないようにする。</p>
+      <p>著者の筋道はこうである。フラグ（例：エラーの有無を表す真偽値）で状態を表すと、矛盾した組み合わせ（成功なのにエラーメッセージがある等）が表現できてしまい、それを実行時に防ぐコードが必要になる。代わりに状態ごとに別の型を用意すれば、矛盾した組み合わせはコンパイルが通らない。著者はこれを「コンパイル時の単体テスト」と位置づけ、設計段階でバグを排除できると主張する。</p>
+      <ul>
+        <li>状態ごとに別の型を用意し、矛盾した組み合わせを型エラーにする。</li>
+        <li>検証済みメールアドレスと未検証のものを別の型で区別するなど、ビジネスルールを型で捕捉する。</li>
+        <li>整合性を保つ範囲は集約の境界に合わせる。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>ありえない状態を型で書けなくすれば、その状態に関するバグは実行前にコンパイラが検出するため、実行時チェックの抜けに頼らずに済む。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">スマートコンストラクタ</span><span class="k">不変条件</span><span class="k">不正な状態を表現不可能に</span><span class="k">ビジネスルールの型化</span><span class="k">単位（units of measure）</span></div>
+  </section>
+
+  <!-- ===== 第7章 ===== -->
+  <section class="chapter" id="ch7">
+    <div class="chapter-head"><span class="num">第7章</span><h2>パイプラインによるワークフローのモデリング</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ワークフローを状態の集合（状態機械）として捉え、各ステップを型で表す。副作用は効果として明示し、ステップを合成して一つのパイプラインに組み上げる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔁</span>注文を状態の集合（状態機械）としてモデル化する</h3>
+      <p class="summary">注文を一つの可変オブジェクトではなく、段階ごとに異なる状態の集合として表す。</p>
+      <p>著者は、第2章で区別したライフサイクルの各段階を、状態機械として明示する。注文は未検証から検証済み、価格計算済みへと、定義された遷移をたどる。各状態を別の型で表すことで、その状態で何が確定しているかが型に表れ、遷移の途中でしか起こりえない操作を取り違えにくくなる。</p>
+      <div class="flow">
+        <span class="node">未検証の注文</span>
+        <span class="arrow">→</span>
+        <span class="node">検証済みの注文</span>
+        <span class="arrow">→</span>
+        <span class="node">価格計算済みの注文</span>
+        <span class="arrow">→</span>
+        <span class="node">確定通知</span>
+      </div>
+      <ul>
+        <li>各状態を別の型で表し、許される操作を状態ごとに限定する。</li>
+        <li>状態遷移を、ある状態の型から次の状態の型への変換として表す。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>各ステップを型で表し、効果を明示する</h3>
+      <p class="summary">ワークフローの各ステップを関数の型として書き、副作用（効果）も型に表す。</p>
+      <p>著者の筋道は、各ステップの入力型と出力型を先に決めれば、それが実装の指針になる、という点にある。さらに、エラーや非同期などの副作用を戻り値の型に表す（効果のドキュメント化）ことで、関数のシグネチャだけで何が起こりうるかが読み取れる。依存を設計の一部として扱うかどうかも、この段階で検討する。</p>
+      <ul>
+        <li>各ステップの入力型・出力型を定義し、実装前に道筋を固める。</li>
+        <li>エラーや非同期などの効果を型に表し、シグネチャから把握できるようにする。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔗</span>ステップを合成して一つのパイプラインにする</h3>
+      <p class="summary">型で定義した各ステップを連結し、ワークフロー全体を一本のパイプラインに組み上げる。</p>
+      <p>著者は、各ステップの出力型を次のステップの入力型に合わせておけば、ステップは関数の合成として一直線につながると説く。これによりワークフロー全体が、コマンド入力からイベント出力への一つの変換になる。長時間かかるワークフローについても、状態を保存して中断・再開する扱いに触れる。</p>
+      <ul>
+        <li>出力型と入力型を揃え、ステップを合成して全体を構成する。</li>
+        <li>全体は「コマンド入力 → イベント出力」の一つのパイプラインになる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">状態機械</span><span class="k">状態の集合</span><span class="k">効果（Effect）</span><span class="k">ステップの型</span><span class="k">パイプラインの合成</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part1.html"><span class="dir">← 前</span><span class="ttl">第1部 ドメインの理解</span></a>
+    <a class="next" href="part3.html"><span class="dir">次 →</span><span class="ttl">第3部 モデルの実装</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>関数型ドメインモデリング 要点まとめ</p></footer>
+
+</body>
+</html>

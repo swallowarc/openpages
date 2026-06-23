@@ -5,13 +5,12 @@
 
 .DEFAULT_GOAL := index
 
-# サブフォルダの全 index.html（ルート自身は除く）が更新されたら作り直す
-SOURCES := $(filter-out ./index.html,$(shell find . -name index.html -not -path './.git/*'))
-
+# ルートの index.html を常に再生成する。
+# 生成物（index.html）の mtime に依存すると、手動編集や git 操作で
+# タイムスタンプが新しくなった際に make が「最新」と誤判定して再生成しない。
+# それを避けるため PHONY ターゲットで毎回スクリプトを走らせる。
 .PHONY: index
-index: index.html ## ルートの index.html を生成（既定ターゲット）
-
-index.html: scripts/gen-index.sh $(SOURCES)
+index: ## ルートの index.html を生成（既定ターゲット・常に再生成）
 	@bash scripts/gen-index.sh
 
 .PHONY: clean

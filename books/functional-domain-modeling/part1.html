@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第1部 ドメインの理解 ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>関数型ドメインモデリング</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第1部</a>
+      <a href="part2.html">第2部</a>
+      <a href="part3.html">第3部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART 1 ― 第1〜3章</span>
+  <h1>ドメインの理解</h1>
+  <p class="lead">設計を始める前に、ドメインそのものを正しく理解する。著者は、データ構造やデータベースから設計を始める衝動を抑え、ビジネスで起きるイベントを起点にドメインを発見し、関係者全員が共有する言語でモデルを記述すべきだと主張する。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch1"><span class="ch-no">1</span><span>ドメイン駆動設計の紹介</span></a></li>
+      <li><a href="#ch2"><span class="ch-no">2</span><span>ドメインの理解</span></a></li>
+      <li><a href="#ch3"><span class="ch-no">3</span><span>関数型アーキテクチャ</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第1章 ===== -->
+  <section class="chapter" id="ch1">
+    <div class="chapter-head"><span class="num">第1章</span><h2>ドメイン駆動設計の紹介</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ドメインの設計は、開発者と業務側が共有する一つのメンタルモデルから始まる。そのモデルはビジネスで起きるイベントを起点に発見し、関係者全員が同じ言葉で語れるようにする。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤝</span>共有されたメンタルモデルが設計の出発点である</h3>
+      <p class="summary">業務側・設計者・開発者が同じドメインモデルを共有することを、著者は良い設計の前提に置く。</p>
+      <p>著者の論拠は、関係者ごとに別々の用語と理解を持つと、要件が人から人へ渡るたびに意味のずれが累積する、という点にある。業務の言葉を設計者が解釈し直し、それを開発者がさらにコードの用語へ置き換える各段階で、元の意図が失われていく。共有モデルはこの変換の段数を減らし、ずれの発生源そのものを取り除く。</p>
+      <ul>
+        <li>業務側と開発側が別の語彙を使うと、引き継ぎのたびに意味の損失が積み重なる。</li>
+        <li>共有モデルを持てば、コード・会話・ドキュメントが同じ概念を指すようになる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚡</span>ドメインはイベントを起点に発見する</h3>
+      <p class="summary">静的なデータ構造ではなく、ビジネスで起きるイベントとそれを引き起こすコマンドからドメインを捉える。</p>
+      <p>著者は、ビジネスはデータを保持するだけでなく、データを変換する活動だと前提を置く。そこから、設計の出発点は「どんなデータを持つか」ではなく「どんな出来事が起き、何がそれを引き起こすか」だと導く。イベントは過去形（例：「注文を受け取った」）で表され、その連なりを並べることで業務プロセスの流れと、要件の抜けが見えてくる。</p>
+      <ul>
+        <li>イベントは過去形で名づけ、それを引き起こすコマンドと対にする。</li>
+        <li>イベントストーミングは、専門家がイベントを順に挙げていく発見の手法として紹介される。</li>
+        <li>イベントの連なりを並べることで、プロセスの抜けや部門間のつながりが露わになる。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>イベントストーミングは、付箋などを使い関係者が集まってドメインイベントを時系列に並べていくワークショップ形式の発見手法を指す。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗣️</span>ユビキタス言語をコードにそのまま反映する</h3>
+      <p class="summary">ドメイン専門家が使う語彙を、設計とコードの中でそのまま使う。</p>
+      <p>著者の筋道はこうである。共有メンタルモデルを保つには、モデルを表す言葉が会話とコードで一致していなければならない。そこで、専門家が日常的に使う用語をそのままコードの型名・関数名に持ち込み、技術的な都合で作った名前（例：OrderFactory のような実在しない概念）を混ぜない。コードに技術語が混じった時点で、コードはドメインの写しでなくなる。</p>
+      <ul>
+        <li>専門家の語彙とコードの語彙を一致させ、共通語彙（ユビキタス言語）を育てる。</li>
+        <li>専門家の会話に出てこない技術的な抽象を、モデルに持ち込まない。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>ドメインをサブドメインと境界づけられたコンテキストに分ける</h3>
+      <p class="summary">大きなドメインをサブドメインに分割し、解決策を境界づけられたコンテキストとして構成する。</p>
+      <p>著者は、一つの巨大なモデルですべてを表そうとすると語彙が衝突すると見る。同じ語が文脈によって別の意味を持つためだ。これを避けるため、ドメインを意味のまとまり（サブドメイン）に分け、それぞれに対応する境界づけられたコンテキストの中で語彙とモデルを閉じる。境界の内側では用語が一貫し、外との接続は明示的な契約で行う。</p>
+      <ul>
+        <li>サブドメインは問題領域の区分、境界づけられたコンテキストは解決策側の区分として対応づける。</li>
+        <li>境界の内側でユビキタス言語を一貫させ、コンテキストをまたぐ用語の衝突を防ぐ。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">共有メンタルモデル</span><span class="k">ドメインイベント</span><span class="k">イベントストーミング</span><span class="k">ユビキタス言語</span><span class="k">サブドメイン</span><span class="k">境界づけられたコンテキスト</span></div>
+  </section>
+
+  <!-- ===== 第2章 ===== -->
+  <section class="chapter" id="ch2">
+    <div class="chapter-head"><span class="num">第2章</span><h2>ドメインの理解</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ドメイン専門家への聞き取りからモデルを組み立てる。データベースやクラス階層を先に決める衝動を抑え、技術的な発想を混ぜずにドメインの事実を集める。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗃️</span>データベース駆動の設計を避ける</h3>
+      <p class="summary">保存方法（テーブル設計）からモデルを始めると、ドメインの事実が歪む。</p>
+      <p>著者の論拠は、関係データベースのスキーマに合わせてモデルを作ると、テーブルや正規化の都合に収まらないドメインの細部が落とされる、という点にある。本来はドメインの構造が先にあり、保存方法は後から選ぶべき従属的な決定だと著者は位置づける。順序を逆にすると、保存技術への不要な結合が設計の早い段階で入り込む。</p>
+      <ul>
+        <li>スキーマに合わせることでドメインの細部が省かれる危険がある。</li>
+        <li>永続化の都合はモデリングの段階では持ち込まない（永続化非依存）。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏗️</span>クラス駆動の設計を避ける</h3>
+      <p class="summary">継承階層など、オブジェクト指向の都合で作る抽象を先に置かない。</p>
+      <p>著者は、Order と Quote のように専門家の中では別物の概念を、共通の基底クラス（OrderBase のようなもの）でまとめると、専門家の会話に存在しない技術的な抽象が紛れ込むと指摘する。こうした抽象はドメインの事実ではなく実装の都合であり、モデルの正確さを損なう。ドメインの情報はまず慎重に集め、技術的な発想を混ぜないことが筋道として求められる。</p>
+      <ul>
+        <li>専門家が区別している概念を、実装の都合で無理に共通化しない。</li>
+        <li>ドメインの情報収集の段階で、継承や設計パターンの発想を持ち込まない。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📄</span>ドメインを構造化した擬似コードで記録する</h3>
+      <p class="summary">ER図やクラス図ではなく、入力・出力・制約を表す平易な擬似コードでドメインを文書化する。</p>
+      <p>著者の筋道は、ドキュメントは非技術者である専門家が読んで検証できなければ意味がない、という前提から始まる。ER図やクラス階層は技術者向けの表現であり、専門家が誤りを指摘しにくい。代わりに、ワークフローの入力・出力・制約を自然な言葉に近い擬似コードで書けば、専門家がそのまま読んで内容の正しさを確認できる。</p>
+      <ul>
+        <li>ワークフローを「入力・出力・依存・制約」の形で書き下す。</li>
+        <li>専門家がレビューできる表現を保ち、技術図に閉じない。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚦</span>注文のライフサイクルを別々の状態として捉える</h3>
+      <p class="summary">注文を一つの可変なオブジェクトではなく、段階ごとに異なる状態の連なりとして表す。</p>
+      <p>著者は、注文受付ワークフローを掘り下げ、検証前・検証後・価格計算後・確定といった段階を、それぞれ別の状態として区別する。フラグで状態を表すと、ありえない組み合わせ（例：未検証なのに価格計算済み）が表現できてしまう。段階ごとに分けて捉えることで、各段階で何が確定しているかが明確になり、後の章で型による表現につながっていく。</p>
+      <ul>
+        <li>検証前・検証後・価格計算後などライフサイクルの各段階を区別する。</li>
+        <li>段階ごとに「何が確定し、何が許されるか」が変わることをモデルに反映する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ドメイン専門家</span><span class="k">永続化非依存</span><span class="k">データベース駆動設計</span><span class="k">クラス駆動設計</span><span class="k">擬似コード</span><span class="k">ライフサイクル</span></div>
+  </section>
+
+  <!-- ===== 第3章 ===== -->
+  <section class="chapter" id="ch3">
+    <div class="chapter-head"><span class="num">第3章</span><h2>関数型アーキテクチャ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>境界づけられたコンテキストを自律したソフトウェア部品として扱い、各ワークフローを「コマンド入力からイベント出力への変換パイプライン」として設計する。I/O は端に押し出し、中核を純粋に保つ。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📦</span>境界づけられたコンテキストを自律した部品にする</h3>
+      <p class="summary">各コンテキストは明確な境界を持つ独立した部品として設計する。</p>
+      <p>著者は、コンテキストを自律部品にすると、配置方法（モノリスの一部かマイクロサービスか）を後から選べると説く。論理的な分離さえ保てば、物理的な配置はそれに従属する判断にできる。境界をまたぐやり取りは契約として明示し、コンテキスト同士が互いの内部に依存しないようにする。</p>
+      <ul>
+        <li>モノリス内の部品としても独立サービスとしても配置できる分離を保つ。</li>
+        <li>コンテキスト間の通信は契約（共有カーネル、コンシューマ駆動契約など）として明示的に選ぶ。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔀</span>ワークフローをコマンド入力・イベント出力のパイプラインにする</h3>
+      <p class="summary">各ワークフローは、コマンドを入力に取り、一つ以上のイベントを出力する変換として設計する。</p>
+      <p>著者の筋道は、ワークフローを純粋な変換として保つと、内部でイベントを直接処理しなくて済む、という点にある。結果はすべて出力イベントとして外に出し、後続の処理がそれを受け取る。これにより各ワークフローは独立してテスト・合成でき、副作用が内部に隠れない。これは本書を貫く「ワークフロー＝パイプライン」という見方の核になる。</p>
+      <ul>
+        <li>入力はコマンド、出力はイベント、という形に統一する。</li>
+        <li>ワークフロー内部でイベントを処理せず、すべて出力として外に渡す。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚪</span>入出力ゲートで DTO を検証し、ドメインを守る</h3>
+      <p class="summary">境界を越えるデータは入力ゲートで検証してドメイン型に変換し、出力ゲートで外向けの形に整える。</p>
+      <p>著者は、コンテキストの境界を越えるのは DTO（データ転送オブジェクト）であり、信頼できない形だと前提を置く。そこで入力ゲートで DTO を検証してドメイン型へ変換し、内部には妥当なデータだけが入るようにする。出力ゲートでは内部情報が漏れないように外向けの形へ変換する。これにより、シリアライズの都合とドメインモデルの安全性を分離できる。</p>
+      <ul>
+        <li>入力ゲート：DTO を検証し、妥当なドメイン型に変換する。</li>
+        <li>出力ゲート：ドメイン型を外向けの DTO に変換し、内部情報の漏れを防ぐ。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>DTO（Data Transfer Object）は、システムやコンテキストの境界を越えてデータをやり取りするための、振る舞いを持たない単純なデータ構造を指す。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧅</span>依存を内向きにし、永続化を端に押し出す</h3>
+      <p class="summary">ドメインを中心に置き、I/O や保存を周縁に配置して、依存の向きを内側へ向ける。</p>
+      <p>著者は、オニオンアーキテクチャの考えを採り、ドメインロジックを中心、インフラや永続化を外側に置く。依存の向きを内向きに統一する（依存の逆転）ことで、ドメイン関数はデータベースやフレームワークに依存せず、それらなしでテストできる。これが第2章で述べた永続化非依存を、アーキテクチャの構造として実現する筋道になる。さらに、予測可能な関数のために不変データと明示的な依存を用い、隠れた状態や副作用をなくす。</p>
+      <ul>
+        <li>ドメインを中心、I/O・保存を周縁に置き、依存を内向きにする。</li>
+        <li>ドメイン関数はインフラに依存せず、単体でテストできる。</li>
+        <li>不変データと明示的な依存により、関数の振る舞いを内部を見ずに把握できる。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">🔎</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>依存を内向きにすればドメインが外部技術を知らずに済むため、保存方法の変更がドメインに波及せず、テストもインフラなしで完結する。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">自律コンポーネント</span><span class="k">パイプライン</span><span class="k">コマンドとイベント</span><span class="k">入出力ゲート</span><span class="k">DTO</span><span class="k">オニオンアーキテクチャ</span><span class="k">依存の逆転</span><span class="k">不変データ</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="index.html"><span class="dir">← 戻る</span><span class="ttl">目次</span></a>
+    <a class="next" href="part2.html"><span class="dir">次 →</span><span class="ttl">第2部 ドメインのモデリング</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>関数型ドメインモデリング 要点まとめ</p></footer>
+
+</body>
+</html>

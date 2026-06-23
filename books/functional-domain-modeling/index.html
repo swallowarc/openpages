@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>関数型ドメインモデリング ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>関数型ドメインモデリング</b> ― 要点まとめ</a>
+    <div class="nav-links">
+      <a class="home" href="index.html">目次</a>
+      <a href="part1.html">第1部</a>
+      <a href="part2.html">第2部</a>
+      <a href="part3.html">第3部</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">READING NOTES</span>
+  <h1>関数型ドメインモデリング</h1>
+  <p class="lead">ドメイン駆動設計と関数型プログラミングを組み合わせ、ドメインの知識を型で表現してソフトウェアの複雑さに立ち向かう方法をまとめる。題材は F# だが、考え方は型システムを持つ言語に応用できる。本まとめは全3部・全13章を部ごとに整理する。</p>
+</header>
+
+<main>
+
+  <!-- ===== ご利用前の注意（固定文・文言は変更しない／index 冒頭に必ず置く） ===== -->
+  <aside class="about-notice">
+    <span class="emoji">⚠️</span>
+    <div>
+      <span class="ctitle">ご利用前の注意</span>
+      <p>このまとめは、AIエージェントによる本書のWebリサーチの結果から生成したものです。書籍本文そのものから作成したものではないため、内容が書籍と一致していない可能性があり、また本書の内容を網羅したものでもありません。読む前に全体像のイメージをつかむため、または読了後に内容を見直す際の参考資料として、読書のサポート用にご活用ください。</p>
+    </div>
+  </aside>
+
+  <!-- ===== 書誌情報 ===== -->
+  <section class="bibliography">
+    <p class="title">関数型ドメインモデリング ― ドメイン駆動設計とF#でソフトウェアの複雑さに立ち向かおう ／ 原題：Domain Modeling Made Functional: Tackle Software Complexity with Domain-Driven Design and F#</p>
+    <dl>
+      <dt>著者</dt><dd>Scott Wlaschin</dd>
+      <dt>訳者</dt><dd>猪股 健太郎</dd>
+      <dt>出版社</dt><dd>アスキードワンゴ（KADOKAWA）</dd>
+      <dt>発行年</dt><dd>2024年</dd>
+    </dl>
+  </section>
+
+  <!-- ===== 本の全体像 ===== -->
+  <section class="book-overview">
+    <h2>本書の全体像</h2>
+    <p>本書は、ドメイン駆動設計（DDD）と関数型プログラミングを結びつけ、ビジネスの要件を型で表現する手法を扱う。著者の中心的な主張は、ドメインの知識を <mark>型として表現することで、コードがそのまま設計のドキュメントになり、設計と実装が乖離しない</mark> という点にある。鍵となる考えが「不正な状態を表現不可能にする（make illegal states unrepresentable）」で、起こりえない状態を型で禁じることで多くのバグを設計段階で排除する。</p>
+    <p>構成は3部から成る。第1部でドメインを理解し（イベント起点の発見、ユビキタス言語、境界づけられたコンテキスト）、第2部で型を使ってドメインをモデリングし（AND型／OR型、値オブジェクトとエンティティ、状態機械、パイプライン）、第3部で F# によって実装する（関数の合成、Result 型によるエラー処理、シリアライズ・永続化、設計の進化）。一貫して、ワークフローを「入力から出力への変換パイプライン」として捉え、I/O を端に押し出して中核を純粋に保つ方針を取る。</p>
+  </section>
+
+  <!-- ===== この本がターゲットとする読者 ===== -->
+  <section class="book-overview">
+    <h2>この本がターゲットとする読者</h2>
+    <p>DDD または関数型プログラミングを本格的に使い始める実務エンジニアを主な対象とする。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
+    <div class="persona-grid">
+      <div class="persona">
+        <span class="emoji">🧑‍💻</span>
+        <h3>オブジェクト指向の経験があるエンジニア</h3>
+        <p>クラス中心の設計から、型でドメインを表現する設計へ視点を移したい層。AND型／OR型による設計の利点を具体例で得る。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">📐</span>
+        <h3>DDD を実装に落とし込みたい設計者</h3>
+        <p>ユビキタス言語・境界づけられたコンテキスト・集約を、図ではなくコンパイル可能な型として表す方法を得る。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🔧</span>
+        <h3>関数型を実務に導入したいエンジニア</h3>
+        <p>Result 型によるエラー処理やパイプライン合成（Railway Oriented Programming）を、現実のワークフローに適用する道筋を得る。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== おすすめの読み進め方（AIによる分析・本書外） ===== -->
+  <section class="ai-analysis">
+    <div class="ai-badge"><span class="emoji">🤖</span>AIによる分析 ― 本書の記述ではなく、内容に基づく独自提案</div>
+    <h2>おすすめの読み進め方</h2>
+    <p>本書は第1部→第3部へ概念から実装へ積み上がる構成のため、原則は通読が向く。関心に応じて重点の置き方を変える案を示す。</p>
+    <div class="path-row">
+      <span class="who">DDD を学びたい</span>
+      <span class="route"><b>第1部</b>（理解）→ <b>第5・6章</b>（値オブジェクト・整合性）→ 第7章（状態機械）</span>
+    </div>
+    <div class="path-row">
+      <span class="who">関数型の実装が目的</span>
+      <span class="route">第4章（型）→ <b>第8・9・10章</b>（関数合成・Result）→ 第11・12章（シリアライズ・永続化）</span>
+    </div>
+    <div class="path-row">
+      <span class="who">まず要点だけ</span>
+      <span class="route"><b>第1章</b>（DDDの骨格）→ 第5章（型モデリング）→ <b>第10章</b>（エラー処理）→ 第13章（進化）</span>
+    </div>
+  </section>
+
+  <!-- ===== 各ページへのカードナビ ===== -->
+  <div class="section-label">構成 ― クリックで各部へ</div>
+  <div class="part-grid">
+    <a class="part-card" style="--pc:#3a5a8c" href="part1.html">
+      <span class="pc-eyebrow">PART 1 ― 第1〜3章</span>
+      <h3>ドメインの理解</h3>
+      <p>イベント起点でドメインを発見し、ユビキタス言語と境界づけられたコンテキストで問題を分割する。ワークフローをパイプラインとして捉える土台を作る。</p>
+      <div class="chapters"><span>1</span> DDDの紹介 ／ <span>2</span> ドメインの理解 ／ <span>3</span> 関数型アーキテクチャ</div>
+    </a>
+    <a class="part-card" style="--pc:#7a4f9c" href="part2.html">
+      <span class="pc-eyebrow">PART 2 ― 第4〜7章</span>
+      <h3>ドメインのモデリング</h3>
+      <p>型を使ってドメインを表現する。AND型／OR型、値オブジェクトとエンティティ、整合性、状態機械としてのワークフローを扱う。</p>
+      <div class="chapters"><span>4</span> 型の理解 ／ <span>5</span> 型によるモデリング ／ <span>6</span> 完全性と整合性 ／ <span>7</span> パイプライン</div>
+    </a>
+    <a class="part-card" style="--pc:#3f7e5c" href="part3.html">
+      <span class="pc-eyebrow">PART 3 ― 第8〜13章</span>
+      <h3>モデルの実装</h3>
+      <p>F# でモデルを実装する。関数の合成、Result 型によるエラー処理、シリアライズと永続化、要件変更への対応までを扱う。</p>
+      <div class="chapters"><span>8</span> 関数の理解 ／ <span>9</span> パイプラインの合成 ／ <span>10</span> エラーの扱い ／ <span>11</span> シリアライズ ／ <span>12</span> 永続化 ／ <span>13</span> 設計の進化</div>
+    </a>
+  </div>
+
+</main>
+
+<footer class="foot"><p>関数型ドメインモデリング 要点まとめ</p></footer>
+
+</body>
+</html>
