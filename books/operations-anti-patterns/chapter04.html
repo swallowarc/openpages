@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4章 情報ではなくデータ ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#5a4f9c; --accent-soft:#f0eef8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 4</span>
+  <h1>情報ではなくデータ</h1>
+  <p class="lead">メトリクスやログを集めても、それだけでは整理されていない生の事実にすぎない。データに文脈と構造を与えて「情報」に変えなければ、運用の判断には使えない。本章はその変換の設計手順を、ダッシュボードを題材に示す。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="num">第4章</span><h2>情報ではなくデータ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>データをそのまま並べても判断はできない。<mark>読み手を起点にダッシュボードを設計し、文脈を与えてデータを情報に変える</mark>。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📊</span>データと情報は別物である</h3>
+      <p class="summary">データは整理されていない生の事実であり、コンテキストと構造を与えてはじめて情報になる。</p>
+      <p>数値をウィジェットに表示しただけでは、読み手はその値が正常なのか異常なのかを判断できない。判断には「この値はしきい値に対してどうか」「昨日と比べてどうか」といった比較の軸、すなわち文脈が必要になる。だから著者は、手元のデータをそのまま見せるのではなく、文脈と構造を与えて情報化することを求める。</p>
+      <ul>
+        <li>データ:収集しただけの生の値(メトリクス、ログ)</li>
+        <li>情報:読み手が判断に使えるよう、文脈と構造を与えたもの</li>
+      </ul>
+      <div class="versus">
+        <div class="side a">
+          <h4>データ</h4>
+          <p>CPU使用率 82% という数値の表示</p>
+        </div>
+        <div class="vs">VS</div>
+        <div class="side b">
+          <h4>情報</h4>
+          <p>しきい値線と前日の実測値を重ねた 82% の推移</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">👥</span>ダッシュボードはデータではなく利用者から始める</h3>
+      <p class="summary">「あるデータを何に使うか」ではなく「誰が何を判断するために見るのか」からダッシュボードを設計する。</p>
+      <p>同じシステムのデータでも、経営層と運用エンジニアでは知りたいことが異なる。読み手が決まらないままデータ起点で作られたダッシュボードは、誰の判断にも寄与しない。この前提から、著者は設計の順序を「対象者の決定→表示内容の選定→文脈の付与」と定める。</p>
+      <ul>
+        <li>①誰のためのダッシュボードかを決める</li>
+        <li>②その読み手に伝えるべき内容を選定する</li>
+        <li>③各ウィジェットに文脈(しきい値、比較対象)を与える</li>
+      </ul>
+      <div class="flow">
+        <span class="node">対象者を決める</span><span class="arrow">→</span>
+        <span class="node">表示内容を選ぶ</span><span class="arrow">→</span>
+        <span class="node">文脈を与える</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📈</span>ウィジェットは見せたい性質で使い分ける</h3>
+      <p class="summary">グラフの種類ごとに適した用途があり、伝えたい性質に合わせて選ぶ。</p>
+      <ul>
+        <li>折れ線グラフ:時系列の変化・ばらつき・過去の傾向を見るのに適する</li>
+        <li>棒グラフ:発生頻度が低いデータの表示に適する</li>
+        <li>ゲージ:ある時点の値を示すのに適する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎨</span>ウィジェットに文脈を与える</h3>
+      <p class="summary">色・しきい値線・時間比較という手法で、値の良し悪しを読み手が判断できるようにする。</p>
+      <p>文脈の付与とは、値と一緒に「判断の基準」を表示することである。色は状態の分類を、しきい値線は正常範囲との距離を、時間比較は普段との差を、それぞれ読み手に伝える。</p>
+      <ul>
+        <li>色:状態を色分けして良し悪しを即座に伝える</li>
+        <li>しきい値線:正常範囲の境界をグラフ上に描く</li>
+        <li>時間比較:前日・前週など過去の実測値と重ねて表示する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏷️</span>読み手を導く仕掛けを組み込む</h3>
+      <p class="summary">ダッシュボードの意図を説明するノートや、対象が分かる命名によって、作者がいなくても読めるダッシュボードにする。</p>
+      <ul>
+        <li>意図・背景を説明するノート(テキスト)ウィジェットや脚注を置く</li>
+        <li>ダッシュボード名は対象者・対象システム・ビューが分かるように付ける</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">データと情報</span>
+      <span class="k">ダッシュボード</span>
+      <span class="k">ウィジェット</span>
+      <span class="k">コンテキスト(文脈)</span>
+      <span class="k">しきい値線</span>
+      <span class="k">時間比較</span>
+      <span class="k">利用者起点の設計</span>
+      <span class="k">命名</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter03.html"><span class="dir">← 前</span><span class="ttl">第3章 盲目状態での運用</span></a>
+    <a class="next" href="chapter05.html"><span class="dir">次 →</span><span class="ttl">第5章 最後の味付けとしての品質</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

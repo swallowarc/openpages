@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第7章 空の道具箱 ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#7a6440; --accent-soft:#f5f1ea; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 7</span>
+  <h1>空の道具箱</h1>
+  <p class="lead">チームに責務が追加されるのに、それを支える社内ツールと自動化への投資が行われない状態がこの章のアンチパターン。手作業のコストを可視化し、自動化を文化的な優先事項に引き上げる。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch7">
+    <div class="chapter-head"><span class="num">第7章</span><h2>空の道具箱</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>手作業のコストは静かに積み重なる。<mark>自動化を後付けではなく文化的な優先事項として位置付ける</mark>。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧰</span>手作業のコストは静かに積み重なる</h3>
+      <p class="summary">社内ツール・自動化に投資しないと、細かな手作業が残り続け、遅さとばらつき(ミス)が組織に蓄積する。</p>
+      <p>売れるプロダクトや機能の開発への集中が支配的になると、それを作るための基盤への投資は後回しになる。しかし手作業は目に見えないままコストを積み上げる。人手による作業には対応漏れや設定漏れといったばらつきが避けられず、多数のサーバを手で更新すれば数台の漏れが起こる。</p>
+      <ul>
+        <li>組織がチームに責務を追加するとき、対応するツールへの投資を怠ると、繰り返し作業でチーム全体が減速する</li>
+        <li>手作業のコストを算出し、ビジネスインパクトとして透明に伝えることが改善の起点になる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⏱️</span>自動化が改善する4つの領域</h3>
+      <p class="summary">自動化の効果は「速くなる」だけではない。著者は改善される領域を4つに整理する。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#7a6440">
+          <span class="way-name">待ち時間</span>
+          <span class="way-desc">依頼から完了までの総時間(キュー時間)が短くなる</span>
+        </div>
+        <div class="way-row" style="--wc:#3a5a8c">
+          <span class="way-name">実行時間</span>
+          <span class="way-desc">コンピュータは人間より速く作業を実行できる</span>
+        </div>
+        <div class="way-row" style="--wc:#4f8a45">
+          <span class="way-name">実行頻度</span>
+          <span class="way-desc">人間の制約なしに何度でも実行できる</span>
+        </div>
+        <div class="way-row" style="--wc:#a04a5c">
+          <span class="way-name">実行のばらつき</span>
+          <span class="way-desc">手動対応による微妙な差異(ミス)を排除できる</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>自動化しないのは時間や技術ではなく文化の問題</h3>
+      <p class="summary">組織が自動化しない根本原因は、自動化が文化的な優先事項として位置付けられていないことにある。</p>
+      <p>自動化しない理由としては「時間が足りない」「優先順位が低い」「スキルを持つ人材がいない」が挙げられる。しかしこれらは表面的な理由であり、その背後には「自動化は本来業務の後でやるもの」という文化がある。だから解決策も、個人の頑張りではなく文化と業務プロセスの側に置かれる。</p>
+      <ul>
+        <li>自動化はシステム機能の一部として、早い段階から検討する</li>
+        <li>自動化のコストを見積もるときは、作成後のメンテナンスの時間も考慮する</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📋</span>自動化を優先する仕組みを作る</h3>
+      <p class="summary">自動化を「余裕があればやる」から「業務プロセスの一部」へ引き上げる具体策を打つ。</p>
+      <ul>
+        <li>作業の見積もりに自動化の時間を含める</li>
+        <li>学習時間を確保する</li>
+        <li>「手動作業を認めない」方針を立て、自動化されていない依頼を断ることをチームとして支援する</li>
+        <li>自動化の目標を決め、自動化すべきタスクを評価する</li>
+        <li>スキルセットのギャップは、採用・メンタリング・学習時間の確保で埋める</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">社内ツール</span>
+      <span class="k">自動化の文化</span>
+      <span class="k">待ち時間(キュー時間)</span>
+      <span class="k">実行時間</span>
+      <span class="k">実行頻度</span>
+      <span class="k">実行のばらつき</span>
+      <span class="k">手動作業の禁止</span>
+      <span class="k">自動化の目標</span>
+      <span class="k">スキルセットのギャップ</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter06.html"><span class="dir">← 前</span><span class="ttl">第6章 アラート疲れ</span></a>
+    <a class="next" href="chapter08.html"><span class="dir">次 →</span><span class="ttl">第8章 業務時間外のデプロイ</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

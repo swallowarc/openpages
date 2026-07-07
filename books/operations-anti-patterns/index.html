@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>システム運用アンチパターン ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">READING NOTES</span>
+  <h1>システム運用アンチパターン</h1>
+  <p class="lead">開発・運用が滞るチームに共通する12のアンチパターンを取り上げ、組織を変える権限を持たないエンジニアでも実行できる改善策を示した本の要点まとめ。全12章を章ごとに整理している。</p>
+</header>
+
+<main>
+
+  <!-- ===== ご利用前の注意(固定文) ===== -->
+  <aside class="about-notice">
+    <span class="emoji">⚠️</span>
+    <div>
+      <span class="ctitle">ご利用前の注意</span>
+      <p>このまとめは、AIエージェントによる本書のWebリサーチの結果から生成したものです。書籍本文そのものから作成したものではないため、内容が書籍と一致していない可能性があり、また本書の内容を網羅したものでもありません。読む前に全体像のイメージをつかむため、または読了後に内容を見直す際の参考資料として、読書のサポート用にご活用ください。</p>
+    </div>
+  </aside>
+
+  <!-- ===== 書誌情報 ===== -->
+  <section class="bibliography">
+    <p class="title">システム運用アンチパターン ―エンジニアがDevOpsで解決する組織・自動化・コミュニケーション ／ 原題:Operations Anti-Patterns, DevOps Solutions</p>
+    <dl>
+      <dt>著者</dt><dd>Jeffery D. Smith</dd>
+      <dt>訳者</dt><dd>田中裕一</dd>
+      <dt>出版社</dt><dd>オライリー・ジャパン</dd>
+      <dt>発行年</dt><dd>2022年4月</dd>
+    </dl>
+  </section>
+
+  <!-- ===== 本書の全体像 ===== -->
+  <section class="book-overview">
+    <h2>本書の全体像</h2>
+    <p>本書は、上層部がDevOpsに理解のない組織で、組織構造を変える権限を持たない開発者がチームにDevOpsを導入するための現実的な方法を示す。DevOpsをツールではなく「チームの働き方」と定義し、文化・自動化・メトリクス・共有(CAMS)を柱に据える(1章)。そのうえで、重厚な承認プロセス(2章)、可視化されていない運用(3〜4章)、工程の最後に回されるテスト(5章)、ノイズだらけのアラート(6章)、自動化への投資不足(7章)、深夜のデプロイ(8章)、インシデントから学ばない習慣(9章)、情報のため込み(10章)、命令で作ろうとする文化(11章)、バラバラな評価尺度(12章)という、チームや組織に共通してみられるアンチパターンを一つずつ取り上げ、それぞれに実行可能な改善策を対応させる。各章は独立して読める構成になっている。</p>
+  </section>
+
+  <!-- ===== ターゲット読者 ===== -->
+  <section class="book-overview">
+    <h2>この本がターゲットとする読者</h2>
+    <p>組織構造を変える権限を持たないまま、日々の運用・開発の滞りを自分の裁量で改善したいと考えている実務者。<span style="font-size:12px;color:var(--ink-faint);">(本書の内容から推定)</span></p>
+    <div class="persona-grid">
+      <div class="persona">
+        <span class="emoji">🧑‍💻</span>
+        <h3>現場の開発者・運用エンジニア</h3>
+        <p>承認待ち・ノイズアラート・手作業に日々悩まされている人。経営層の後ろ盾なしに自分から始められる具体的な行動プランを得られる。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🧭</span>
+        <h3>チームリーダー・テックリード</h3>
+        <p>チームの仕事の仕方を変えたい人。承認の自動化、オンコール設計、ポストモーテムなど、チーム単位で導入できるプラクティスの根拠と手順を得られる。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🛠️</span>
+        <h3>SRE・インフラ担当</h3>
+        <p>可視化・アラート・デプロイの仕組みを担う人。メトリクスとログの設計、アラートの品質基準、デプロイのレイヤ分解といった実装寄りの指針を得られる。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== おすすめの読み進め方(AIによる分析) ===== -->
+  <section class="ai-analysis">
+    <div class="ai-badge"><span class="emoji">🤖</span>AIによる分析 ― 本書の記述ではなく、内容に基づく独自提案</div>
+    <h2>おすすめの読み進め方</h2>
+    <p>各章は独立したアンチパターンを扱うため、通読にこだわらず、いま困っている問題の章から読み始められる。ただし1章のCAMSは全章の前提になるので最初に押さえたい。</p>
+    <div class="path-row">
+      <span class="who">体系的に学びたい</span>
+      <span class="route"><b>第1章</b>から順に通読。前半(2〜8章)が技術・プロセス寄り、後半(9〜12章)が組織・文化寄りの構成</span>
+    </div>
+    <div class="path-row">
+      <span class="who">アラート・オンコールに悩む運用者</span>
+      <span class="route"><b>第1章</b> → <b>第3章</b>(可視化) → <b>第4章</b>(ダッシュボード) → <b>第6章</b>(アラート疲れ) → <b>第9章</b>(ポストモーテム)</span>
+    </div>
+    <div class="path-row">
+      <span class="who">デプロイ・リリースを改善したい</span>
+      <span class="route"><b>第1章</b> → <b>第5章</b>(テスト) → <b>第8章</b>(デプロイ) → <b>第7章</b>(自動化) → <b>第2章</b>(承認プロセス)</span>
+    </div>
+    <div class="path-row">
+      <span class="who">組織・文化の問題に取り組みたい</span>
+      <span class="route"><b>第1章</b> → <b>第2章</b>(パターナリズム) → <b>第10章</b>(情報共有) → <b>第11章</b>(文化) → <b>第12章</b>(優先順位)</span>
+    </div>
+  </section>
+
+  <!-- ===== 各章へのカードナビ ===== -->
+  <div class="section-label">構成 ― クリックで各章へ</div>
+  <div class="part-grid">
+    <a class="part-card" style="--pc:#3a5a8c" href="chapter01.html">
+      <span class="pc-eyebrow">CHAPTER 1</span>
+      <h3>DevOpsを構成するもの</h3>
+      <p>DevOpsはツールではなくチームの働き方であり、文化・自動化・メトリクス・共有(CAMS)が柱となる。</p>
+    </a>
+    <a class="part-card" style="--pc:#a04a5c" href="chapter02.html">
+      <span class="pc-eyebrow">CHAPTER 2</span>
+      <h3>パターナリスト症候群</h3>
+      <p>ゲートキーパーは安全装置ではなく障壁。承認の目的を把握し、価値を付加しない承認を自動化に置き換える。</p>
+    </a>
+    <a class="part-card" style="--pc:#2f7f74" href="chapter03.html">
+      <span class="pc-eyebrow">CHAPTER 3</span>
+      <h3>盲目状態での運用</h3>
+      <p>汎用メトリクスだけでは行動できない。カスタムメトリクスと文脈のあるログで運用を可視化する。</p>
+    </a>
+    <a class="part-card" style="--pc:#5a4f9c" href="chapter04.html">
+      <span class="pc-eyebrow">CHAPTER 4</span>
+      <h3>情報ではなくデータ</h3>
+      <p>データは文脈と構造を得て情報になる。読み手を起点にダッシュボードを設計する。</p>
+    </a>
+    <a class="part-card" style="--pc:#4f8a45" href="chapter05.html">
+      <span class="pc-eyebrow">CHAPTER 5</span>
+      <h3>最後の味付けとしての品質</h3>
+      <p>品質は最後に足せない。テストピラミッドと継続的デリバリで品質担保を開発全体に組み込む。</p>
+    </a>
+    <a class="part-card" style="--pc:#c2703d" href="chapter06.html">
+      <span class="pc-eyebrow">CHAPTER 6</span>
+      <h3>アラート疲れ</h3>
+      <p>ノイズがアラートを無力化する。行動可能・タイムリー・優先順位付きの3条件とオンコール設計で立て直す。</p>
+    </a>
+    <a class="part-card" style="--pc:#7a6440" href="chapter07.html">
+      <span class="pc-eyebrow">CHAPTER 7</span>
+      <h3>空の道具箱</h3>
+      <p>手作業のコストは静かに積み重なる。自動化を文化的な優先事項として位置付ける。</p>
+    </a>
+    <a class="part-card" style="--pc:#3f7fa8" href="chapter08.html">
+      <span class="pc-eyebrow">CHAPTER 8</span>
+      <h3>業務時間外のデプロイ</h3>
+      <p>深夜デプロイは症状であって解決策ではない。頻度を増やしリスクを減らして、デプロイを日常にする。</p>
+    </a>
+    <a class="part-card" style="--pc:#8f4d7e" href="chapter09.html">
+      <span class="pc-eyebrow">CHAPTER 9</span>
+      <h3>せっかくのインシデントを無駄にする</h3>
+      <p>インシデントは組織学習の機会。24時間以内にブレームレスなポストモーテムを実施する。</p>
+    </a>
+    <a class="part-card" style="--pc:#5f7a4a" href="chapter10.html">
+      <span class="pc-eyebrow">CHAPTER 10</span>
+      <h3>情報のため込み:ブレントだけが知っている</h3>
+      <p>ため込みの多くは意図せず起こる。ドキュメント・儀式・場の設計で情報が流れる構造を作る。</p>
+    </a>
+    <a class="part-card" style="--pc:#b08a2e" href="chapter11.html">
+      <span class="pc-eyebrow">CHAPTER 11</span>
+      <h3>命じられた文化</h3>
+      <p>文化は命令では変わらない。価値観・習慣・信念の3要素からなり、個人の行動から変えられる。</p>
+    </a>
+    <a class="part-card" style="--pc:#607080" href="chapter12.html">
+      <span class="pc-eyebrow">CHAPTER 12</span>
+      <h3>多すぎる尺度</h3>
+      <p>尺度が行動を決める。目標の階層に立ち返り、緊急度と重要度を分けて仕事を選ぶ。</p>
+    </a>
+  </div>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

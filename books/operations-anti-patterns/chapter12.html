@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12章 多すぎる尺度 ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#607080; --accent-soft:#f0f2f4; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 12</span>
+  <h1>多すぎる尺度</h1>
+  <p class="lead">チームごとにパフォーマンスの測定基準がバラバラで、各チームが全体目標ではなく自分の担当部分に最適化してしまう状態がこの章のアンチパターン。目標の階層と優先順位づけの方法で立て直す。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch12">
+    <div class="chapter-head"><span class="num">第12章</span><h2>多すぎる尺度</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>尺度が行動を決める。<mark>目標の階層に立ち返り、緊急度と重要度を分けて意識的に仕事を選ぶ</mark>。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📏</span>尺度が行動のインセンティブを決める</h3>
+      <p class="summary">評価指標は行動のインセンティブを決める。チームごとに不整合な指標があると、互いに矛盾した行動が誘発される。</p>
+      <p>多くのチームは組織全体の目標ではなく、その目標のうち自分が担当するスライスの周りに凝集する傾向がある。各チームが自分の尺度だけを最適化すれば、部分最適が全体目標より優先され、組織全体の目標を損なう行動に報酬が与えられることになる。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗼</span>目標の階層に立ち返る</h3>
+      <p class="summary">目標には「組織の目標 → 部門の目標 → チームの目標」という階層がある。日々の作業の優先順位に迷ったら、上位の目標に立ち返って判断する。</p>
+      <div class="flow">
+        <span class="node">組織の目標(戦略的)</span><span class="arrow">→</span>
+        <span class="node">部門の目標</span><span class="arrow">→</span>
+        <span class="node">チームの目標(具体的な実行)</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚖️</span>緊急度と重要度を分けて判断する</h3>
+      <p class="summary">緊急度は「実行タイミングの時間的制約」、重要度は「業務の価値・影響度」であり、両者は別物である。緊急なものが重要とは限らない。</p>
+      <p>この2軸を分離して判断する道具が<span class="term">アイゼンハワーの意思決定マトリックス</span>である。すべてを引き受けるのではなく、象限に応じて実行・計画・委任・辞退を使い分ける。</p>
+      <figure>
+        <svg viewBox="0 0 560 360" role="img" aria-label="アイゼンハワーの意思決定マトリックス:緊急度と重要度の2軸による4象限">
+          <text x="305" y="18" text-anchor="middle" font-size="13" fill="var(--ink-faint)">緊急 ←→ 緊急でない</text>
+          <text x="16" y="190" text-anchor="middle" font-size="13" fill="var(--ink-faint)" transform="rotate(-90 16 190)">重要でない ←→ 重要</text>
+          <rect x="50" y="30" width="250" height="150" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+          <rect x="310" y="30" width="250" height="150" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          <rect x="50" y="190" width="250" height="150" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          <rect x="310" y="190" width="250" height="150" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          <text x="175" y="95" text-anchor="middle" font-size="17" fill="var(--accent)" font-weight="bold">実行</text>
+          <text x="175" y="120" text-anchor="middle" font-size="12" fill="var(--accent)">緊急かつ重要</text>
+          <text x="435" y="95" text-anchor="middle" font-size="17" fill="var(--accent)" font-weight="bold">計画</text>
+          <text x="435" y="120" text-anchor="middle" font-size="12" fill="var(--accent)">重要だが緊急でない</text>
+          <text x="175" y="255" text-anchor="middle" font-size="17" fill="var(--accent)" font-weight="bold">委任</text>
+          <text x="175" y="280" text-anchor="middle" font-size="12" fill="var(--accent)">緊急だが重要でない</text>
+          <text x="435" y="255" text-anchor="middle" font-size="17" fill="var(--accent)" font-weight="bold">断る</text>
+          <text x="435" y="280" text-anchor="middle" font-size="12" fill="var(--accent)">緊急でも重要でもない</text>
+        </svg>
+        <figcaption>アイゼンハワーの意思決定マトリックス。左上の象限のみ強調している(配色は識別用であり原書由来ではない)。</figcaption>
+      </figure>
+      <ul>
+        <li>コミットメントを辞退する(断る)ことも、意識的な優先順位づけの一部である</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗓️</span>イテレーションで仕事を区切る</h3>
+      <p class="summary">作業をタイムスライス(イテレーション)に区切り、イテレーション計画を作る。</p>
+      <p>タイムボックスの中でコミットする対象を決めることで、「今取り組まないタスクを無視してよい」状態が作れる。優先順位は一度決めて終わりではなく、イテレーションごとに見直される。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌪️</span>予定外の作業を管理する</h3>
+      <p class="summary">割り込みはゼロにできないが、管理はできる。</p>
+      <ul>
+        <li>予定外の作業の量をコントロールする</li>
+        <li>流入する作業を評価し、本当に緊急かを判断する</li>
+        <li>予定外の作業の発生源を記録する</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">多すぎる尺度</span>
+      <span class="k">目標の階層</span>
+      <span class="k">部分最適</span>
+      <span class="k">緊急度と重要度</span>
+      <span class="k">アイゼンハワーの意思決定マトリックス</span>
+      <span class="k">イテレーション</span>
+      <span class="k">予定外の作業</span>
+      <span class="k">断ることを学ぶ</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter11.html"><span class="dir">← 前</span><span class="ttl">第11章 命じられた文化</span></a>
+    <a class="next" href="index.html"><span class="dir">次 →</span><span class="ttl">目次へ戻る</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

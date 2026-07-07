@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2章 パターナリスト症候群 ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#a04a5c; --accent-soft:#f8eef1; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 2</span>
+  <h1>パターナリスト症候群</h1>
+  <p class="lead">問題が起きるたびに追加された承認プロセスとアクセス制限は、安全装置のつもりで作られた障壁である。承認の目的を把握し、人間の承認を自動化に置き換える道筋を示す。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch2">
+    <div class="chapter-head"><span class="num">第2章</span><h2>パターナリスト症候群</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ゲートキーパーは安全性を高めず、生産性だけを下げる。<mark>承認の目的を把握し、価値を付加しない承認を自動化に置き換える</mark>。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚧</span>安全装置ではなく障壁を作ってしまう</h3>
+      <p class="summary"><span class="term">パターナリスト症候群</span>とは、あるグループが他のグループに対して親のような関係を築き、特定の人物やグループだけが行動の実行や承認の資格を持つとみなす組織状態を指す。</p>
+      <p>問題が起きるたびに承認ステップや権限制限が追加されるのは、再発防止のためである。しかし操作できる人を限定しても誤操作のリスク自体は減らず、権限保有者にストレスを集中させるだけに終わる。承認ステップの追加は開発プロセスを肥大化させ、待ち時間とリリース日変更のリスク、さらには新たなヒューマンエラーの機会を増やす。安全性は高まらないまま、生産性の低下と業務遅延だけが残る。</p>
+      <ul>
+        <li>統制の典型は「権限の制限」と「承認プロセスの追加」の2つ</li>
+        <li>長い承認プロセスは非生産的な待ち時間を増やす</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔍</span>ゲートキーパーを分析する</h3>
+      <p class="summary"><span class="term">ゲートキーパー</span>の存在は、チーム間の信頼関係と安全性の欠如の表れである。</p>
+      <p>ゲートキーパーは問題の発生時にはそこに存在しているが、品質の向上には寄与していない。だから著者は、承認をなくす前にまず「その承認は何の価値を付加しているか」を分析することを求める。価値を付加する承認は残し、人為的な障壁になっているだけの承認を取り除く。</p>
+      <ul>
+        <li>承認を一律に廃止するのではなく、目的と付加価値で仕分ける</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚙️</span>承認の目的を把握し、自動化に置き換える</h3>
+      <p class="summary">人間の承認を自動化に置き換えるには、その承認プロセスが本来何を解決しようとしていたのかの理解から始める。</p>
+      <p>手動の承認が実際に確認していた懸念事項を洗い出せば、その多くは機械が判定できる条件に変換できる。また、ゲートキーパー本人を自動化の設計に参加させ、目的を説明することで、置き換えへの抵抗感を減らせる。</p>
+      <div class="flow">
+        <span class="node">承認の目的を把握</span><span class="arrow">→</span>
+        <span class="node">チェック項目を明確化</span><span class="arrow">→</span>
+        <span class="node">機械判定できる条件を自動化</span><span class="arrow">→</span>
+        <span class="node">継続的に改善</span>
+      </div>
+      <ul>
+        <li>自動化のコードでは、ロギング・通知・エラー処理を明確に構成する</li>
+        <li>ゲートキーパー(承認者)自身を自動化の設計に巻き込む</li>
+        <li>自動化は作って終わりではなく、継続的な改善の対象とする</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>DevOps的な改善の5つの目標</h3>
+      <p class="summary">パターナリスト症候群の解消は、次の5つの目標に向けた取り組みとして進める。</p>
+      <ul>
+        <li>チーム間のコラボレーションの強化</li>
+        <li>不必要なゲートと作業の受け渡しの削減</li>
+        <li>開発チームへのツールと権限の提供</li>
+        <li>予測可能なプロセスの構築</li>
+        <li>本番環境での責任の共有</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">パターナリスト症候群</span>
+      <span class="k">ゲートキーパー</span>
+      <span class="k">承認プロセス</span>
+      <span class="k">安全装置ではなく障壁</span>
+      <span class="k">承認の目的</span>
+      <span class="k">自動化</span>
+      <span class="k">ロギング・通知・エラー処理</span>
+      <span class="k">責任の共有</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter01.html"><span class="dir">← 前</span><span class="ttl">第1章 DevOpsを構成するもの</span></a>
+    <a class="next" href="chapter03.html"><span class="dir">次 →</span><span class="ttl">第3章 盲目状態での運用</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

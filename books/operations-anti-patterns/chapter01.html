@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第1章 DevOpsを構成するもの ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 1</span>
+  <h1>DevOpsを構成するもの</h1>
+  <p class="lead">2章以降のアンチパターンを読む前提として、DevOpsとは何か・何でないかを定義する章。DevOpsをツールの導入と捉える誤解を正し、柱となるCAMSモデルを導入する。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch1">
+    <div class="chapter-head"><span class="num">第1章</span><h2>DevOpsを構成するもの</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>DevOpsはツールではなくチームの働き方であり、<mark>文化・自動化・メトリクス・共有(CAMS)</mark>が柱である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔍</span>DevOpsの本質は「責任の共有」である</h3>
+      <p class="summary">DevOpsは「ソフトウェア開発の考え方をほかの役割に適用する開発手法」であり、開発ライフサイクルに関わる全チームが責任を共有することを指す。</p>
+      <p>DevOpsという言葉は流行とともに乱用され、人によって意味が異なる状態になっている。著者はその曖昧さを踏まえたうえで、本質を「職能の垣根を下げ、責任を共有すること」に置く。この定義に立てば、DevOpsの対象は開発と運用に限らず、セキュリティ・QA・データベース運用・ネットワークといった他の役割にも広がる。</p>
+      <ul>
+        <li>DevOpsの定義は人によってぶれるため、本書はまず定義を固定してから議論を進める</li>
+        <li>開発と運用の間だけでなく、開発ライフサイクルに関わるあらゆる職能に適用できる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧰</span>DevOpsはツールの話ではない</h3>
+      <p class="summary">DevOpsの優先順位は「人 → プロセス → ツール」であり、ツールの導入だけではDevOpsにならない。</p>
+      <p>CIツールを導入しても、自動テストを価値とみなす文化がチームになければ機能しない。ツールは文化とプロセスの上に載るものだからである。著者はDevOpsの真の目的を、仕事に対する見方や、異なるチームにまたがるタスクの関係を再定義することだとする。</p>
+      <ul>
+        <li>人・プロセスが整わないままツールを足しても効果は出ない</li>
+        <li>「DevOpsは何でないか」を理解することが、導入の失敗を避ける第一歩になる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏛️</span>DevOpsの柱となるCAMS</h3>
+      <p class="summary">文化(Culture)・自動化(Automation)・メトリクス(Metrics)・共有(Sharing)の4つがDevOpsの柱であり、本書全体の骨格になる。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#3a5a8c">
+          <span class="way-name">Culture ― 文化</span>
+          <span class="way-desc">企業文化がテクノロジーの成果に与える影響を過小評価しない</span>
+        </div>
+        <div class="way-row" style="--wc:#4f8a45">
+          <span class="way-name">Automation ― 自動化</span>
+          <span class="way-desc">人的資本を平凡な作業から解放する</span>
+        </div>
+        <div class="way-row" style="--wc:#c2703d">
+          <span class="way-name">Metrics ― メトリクス</span>
+          <span class="way-desc">物事がうまく機能しているかを判断するために必要になる</span>
+        </div>
+        <div class="way-row" style="--wc:#8f4d7e">
+          <span class="way-name">Sharing ― 共有</span>
+          <span class="way-desc">共有によって文化がさらに強化される</span>
+        </div>
+      </div>
+      <ul>
+        <li>以降の章のアンチパターンは、いずれかの柱の欠如として読める</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📖</span>権限を持たない人のためのDevOps本</h3>
+      <p class="summary">本書は、上層部がDevOpsに理解のない組織で、組織構造を変える権限を持たない開発者がチームにDevOpsを導入するための現実的な方法を示す。</p>
+      <p>多くの人はDevOpsを実行できない理由を上司の反対に求める。しかし著者は、個人やチームリーダーの小さな投資でも、無駄な作業時間を生産的な業務に転換できるとする。これが「また別のDevOps本」ではなく本書が書かれた理由である。また、著名企業の事例をそのまま自社に適用することには慎重な立場を取り、インスピレーションの源にとどめるべきだとする。</p>
+      <ul>
+        <li>組織全体の変革を待たず、自分の裁量の範囲で始められる行動を各章で示す</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">DevOps</span>
+      <span class="k">CAMS</span>
+      <span class="k">文化</span>
+      <span class="k">自動化</span>
+      <span class="k">メトリクス</span>
+      <span class="k">共有</span>
+      <span class="k">責任の共有</span>
+      <span class="k">人・プロセス・ツール</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="index.html"><span class="dir">← 前</span><span class="ttl">目次</span></a>
+    <a class="next" href="chapter02.html"><span class="dir">次 →</span><span class="ttl">第2章 パターナリスト症候群</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第11章 命じられた文化 ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#b08a2e; --accent-soft:#f8f4e8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 11</span>
+  <h1>命じられた文化</h1>
+  <p class="lead">ミッション声明には書かれているが行動としては存在しない文化、「文化は上から命じて作れる」という思い込みがこの章のアンチパターン。文化の構造を理解し、個人の行動から変えていく。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch11">
+    <div class="chapter-head"><span class="num">第11章</span><h2>命じられた文化</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>文化は命令では変わらない。<mark>価値観・習慣・信念の3要素からなり、個人の行動の積み重ねで変えられる</mark>。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏛️</span>福利厚生は文化ではない</h3>
+      <p class="summary">文化とは「あるグループの人々を他のグループから区別する、共有された価値観・習慣(儀式)・信念の集合体」である。卓球台やビールサーバー、スナックは文化ではない。</p>
+      <p>ロビーに掲げられた価値観の声明だけがあり、それを表現する習慣と、行動を駆動する信念が伴っていなければ、その文化は実在しない。文化は「何が許され、何が許されないか」を決め、チームのパフォーマンスと行動を規定する。DevOpsにおいて文化が重要なのは、文化が仕事の進め方の風潮を決めるからである。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>文化の3要素</h3>
+      <p class="summary">文化は価値観・習慣(儀式)・信念で構成される。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#b08a2e">
+          <span class="way-name">文化的価値観</span>
+          <span class="way-desc">組織が不可欠と考える原則・基準</span>
+        </div>
+        <div class="way-row" style="--wc:#4f8a45">
+          <span class="way-name">文化的習慣(儀式)</span>
+          <span class="way-desc">価値観を表現する反復的な行動</span>
+        </div>
+        <div class="way-row" style="--wc:#3a5a8c">
+          <span class="way-name">信念</span>
+          <span class="way-desc">行動を駆動する暗黙の前提・世界観</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📣</span>文化は言葉・物語・習慣で伝わる</h3>
+      <p class="summary">文化を変えたいなら、まず文化がどのように共有されているかを理解する必要がある。伝達のチャネルは言葉・物語・習慣の3つである。</p>
+      <ul>
+        <li>言葉:日々の発言や言い回しが文化を運ぶ</li>
+        <li>物語:組織で繰り返し語られるエピソードが文化を象徴する</li>
+        <li>習慣:繰り返される行動そのものが文化を伝える</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌱</span>個人が文化を変えることができる</h3>
+      <p class="summary">文化は育て、発展させ、言葉ではなく行動で示すことでしか根付かない。そしてそれは個人から始められる。</p>
+      <p>手順はこうである。まず会社の公式な価値観を調べて理解する。価値観に沿った行動は正当化しやすく、自分の行動の盾になるからである。次に価値観を体現する習慣(儀式)を作り、習慣と言葉を使って文化的規範を変えていく。</p>
+      <div class="flow">
+        <span class="node">会社の価値観を理解する</span><span class="arrow">→</span>
+        <span class="node">習慣(儀式)を作る</span><span class="arrow">→</span>
+        <span class="node">習慣と言葉で規範を変える</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤝</span>文化に合った人材を採用する</h3>
+      <p class="summary">文化は採用によっても形づくられる。面接は価値観との適合・チームとの適合・技術力の観点で構成する。</p>
+      <ul>
+        <li>組織の価値観との適合を確認する</li>
+        <li>チームとの適合を確認する</li>
+        <li>技術力は、実践的なシナリオで思考過程とトレードオフの考慮を見る</li>
+        <li>年功や肩書への偏重から脱却する</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">命じられた文化</span>
+      <span class="k">文化的価値観</span>
+      <span class="k">文化的習慣(儀式)</span>
+      <span class="k">信念</span>
+      <span class="k">言葉・物語・習慣</span>
+      <span class="k">文化的規範</span>
+      <span class="k">採用</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter10.html"><span class="dir">← 前</span><span class="ttl">第10章 情報のため込み:ブレントだけが知っている</span></a>
+    <a class="next" href="chapter12.html"><span class="dir">次 →</span><span class="ttl">第12章 多すぎる尺度</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

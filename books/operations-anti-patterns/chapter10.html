@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10章 情報のため込み:ブレントだけが知っている ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#5f7a4a; --accent-soft:#f1f5ec; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 10</span>
+  <h1>情報のため込み:ブレントだけが知っている</h1>
+  <p class="lead">知識が特定の個人や領域にサイロ化し、その人が不在だと仕事が止まる状態がこの章のアンチパターン。ため込みの多くは悪意ではなく仕組みの問題であり、情報が流通する構造を設計して解消する。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch10">
+    <div class="chapter-head"><span class="num">第10章</span><h2>情報のため込み:ブレントだけが知っている</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ため込みの多くは意図せず起こる。<mark>ドキュメント・儀式・場の設計で、情報が個人から組織へ流れる構造を作る</mark>。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤫</span>情報のため込みは意図せず起こる</h3>
+      <p class="summary">情報のため込みには「意図的」と「意図しない」の2種類があり、組織で問題になるのは多くが意図しないため込みである。</p>
+      <p>悪意で知識を隠しているケースは少ない。真因はインセンティブ設計の誤りにある。たとえば概念検証プロジェクトの担当者が次のプロジェクトへ移れば、「ドキュメントを書く」タスクは未完了のまま放置される。また、抽象化のつもりで行った設計が実際には難読化になっていることや、善意で設けたアクセス制限・承認フローが結果的に情報の障壁になることでも、ため込みは進行する。</p>
+      <ul>
+        <li>意図せぬため込みのサインは4観点:ドキュメントを大切にしない/抽象化と難読化の取り違え/アクセス制限/ゲートキーパー行動の評価</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足(本書外)</span><p>章題の「ブレント」は、DevOps小説『The Phoenix Project』に登場する、あらゆる問題解決が集中してボトルネックになるエンジニアの名前である。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗣️</span>「もっとドキュメントを書け」では解決しない</h3>
+      <p class="summary">ドキュメントは手段であり、目的は情報の共有である。書け、と命じるだけでは悪循環は断てない。</p>
+      <p>専門知識の保有者(SME)ほど問い合わせ対応の中心になって時間を奪われ、ドキュメント化の優先度がさらに下がるという悪循環がある。だから著者は、書く行為そのものではなく、伝わるコミュニケーションの構造を設計することを求める。</p>
+      <div class="flow">
+        <span class="node">トピックの定義</span><span class="arrow">→</span>
+        <span class="node">対象者の定義</span><span class="arrow">→</span>
+        <span class="node">キーポイントの説明</span><span class="arrow">→</span>
+        <span class="node">行動喚起の提示</span>
+      </div>
+      <ul>
+        <li>何について・誰に向けて・何が要点で・読んだ人に何をしてほしいか、の順で組み立てる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📚</span>ナレッジストアを構築する</h3>
+      <p class="summary">情報は書くだけでなく、見つけられる形で蓄積する。</p>
+      <ul>
+        <li>共通の辞書(用語)を使い、表記のばらつきをなくす</li>
+        <li>ドキュメントを階層化する</li>
+        <li>「部門ごと」ではなく「プロダクト・トピック中心」に整理し、発見可能性を高める</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎓</span>学習を習慣(儀式)にする</h3>
+      <p class="summary">知識共有を個人の善意に頼らず、定期的なイベントとして組織に組み込む。</p>
+      <ul>
+        <li>ランチ&amp;ラーン</li>
+        <li>ライトニングトーク</li>
+        <li>外部イベントのホスト</li>
+        <li>ブログ・執筆</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">💬</span>チャットツールを有効に使う</h3>
+      <p class="summary">チャットは情報流通の場になるが、作法(エチケット)を会社として確立する必要がある。</p>
+      <ul>
+        <li>チャットの使い方の作法をチーム・会社で合意する</li>
+        <li>チャットだけに頼らず、「誰が何をしているか」を可視化する仕組みを併用する</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">情報のため込み</span>
+      <span class="k">サイロ化</span>
+      <span class="k">SME(専門知識保有者)</span>
+      <span class="k">抽象化と難読化</span>
+      <span class="k">ゲートキーパー行動</span>
+      <span class="k">ナレッジストア</span>
+      <span class="k">トピック中心の階層化</span>
+      <span class="k">ランチ&amp;ラーン</span>
+      <span class="k">ライトニングトーク</span>
+      <span class="k">行動喚起</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter09.html"><span class="dir">← 前</span><span class="ttl">第9章 せっかくのインシデントを無駄にする</span></a>
+    <a class="next" href="chapter11.html"><span class="dir">次 →</span><span class="ttl">第11章 命じられた文化</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

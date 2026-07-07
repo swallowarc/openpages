@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第8章 業務時間外のデプロイ ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3f7fa8; --accent-soft:#ecf4f8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 8</span>
+  <h1>業務時間外のデプロイ</h1>
+  <p class="lead">デプロイを深夜や休日に行うのは、デプロイへの恐怖に対する対症療法である。恐怖の根本原因はデプロイ戦略にあり、頻度を上げリスクを下げることで、デプロイを日常的な作業に変える。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch8">
+    <div class="chapter-head"><span class="num">第8章</span><h2>業務時間外のデプロイ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>深夜デプロイは症状であって解決策ではない。<mark>頻度を増やしリスクを減らして、デプロイを日常にする</mark>。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌙</span>業務時間外デプロイはデプロイ戦略の問題の症状である</h3>
+      <p class="summary">「組織を守るため」と正当化される業務時間外デプロイは、恐怖とリスク回避に基づく対症療法にすぎない。</p>
+      <p>デプロイが「大ごと」になっていること自体が、デプロイ戦略に根本的な問題があることを示している。影響を恐れて利用の少ない時間帯に逃げても、デプロイのリスクそのものは減っていない。直すべきは時間帯ではなくプロセスである。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔁</span>遅いリリースサイクルは負のループを生む</h3>
+      <p class="summary">リリースの間隔が空くほど、1回のリリースは大きく・危険になり、恐怖がさらにプロセスを重くする。</p>
+      <div class="steps escalate">
+        <div class="step"><span class="badge">1</span>リリースサイクルが長い</div>
+        <div class="step"><span class="badge">2</span>1回のリリース規模が肥大化する</div>
+        <div class="step"><span class="badge">3</span>リスクが増大する</div>
+        <div class="step"><span class="badge">4</span>変更管理プロセスが複雑化する</div>
+        <div class="step"><span class="badge">5</span>恐怖と抵抗感がさらに強まる</div>
+      </div>
+      <p>このループを断つ方向は逆回転である。頻繁にデプロイすればチームの習熟度が上がり、1回あたりの変更範囲が小さくなってリスクが下がる。完全なバグの除去は不可能だという前提に立ち、テストを継続的に追加して不確実性を組織が許容できる範囲まで下げる。</p>
+      <div class="callout why">
+        <span class="emoji">❓</span>
+        <div><span class="ctitle">なぜ頻度を上げると恐怖が減るのか</span><p>デプロイの頻度が上がると1回に載る変更が減り、失敗時の原因特定と切り戻しが容易になる。反復により手順への習熟も進むためである。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧅</span>デプロイをレイヤに分解する</h3>
+      <p class="summary">デプロイという複雑な課題をレイヤに分解し、レイヤごとに失敗への対応を設計できるようにする。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#3f7fa8">
+          <span class="way-name">機能デプロイ</span>
+          <span class="way-desc">新機能の有効化(リリース)</span>
+        </div>
+        <div class="way-row" style="--wc:#4f8a45">
+          <span class="way-name">フリートデプロイ</span>
+          <span class="way-desc">サーバ群全体への展開</span>
+        </div>
+        <div class="way-row" style="--wc:#c2703d">
+          <span class="way-name">アーティファクトデプロイ</span>
+          <span class="way-desc">単一サーバへのインストール</span>
+        </div>
+        <div class="way-row" style="--wc:#a04a5c">
+          <span class="way-name">データベースデプロイ</span>
+          <span class="way-desc">スキーマ変更の適用</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛠️</span>リスクを減らす具体的な技術</h3>
+      <p class="summary">フィーチャーフラグ・ブルーグリーンデプロイ・追加的なスキーマ変更により、失敗の影響を小さく、切り戻しを容易にする。</p>
+      <ul>
+        <li><span class="term">フィーチャーフラグ</span>:コードのデプロイと機能のリリースを切り離す。機能単位のロールバックが可能になる。役目を終えたフラグは削除するリリースを行う</li>
+        <li><span class="term">ブルーグリーンデプロイ</span>:いつでも切り替え可能な2つの環境を用意する。DBスキーマの互換性の確保、バックグラウンド処理の分離、ローカルディスクに状態を持たないことが前提になる</li>
+        <li>DBスキーマ変更は既存のカラム等を変更・削除せず「常に追加的変更」で行う。削除には依存関係のリスクがあるためである</li>
+        <li>デプロイアーティファクトを作成し、パッケージ管理システムを活用する</li>
+        <li>本番前環境は本番と同一のアーキテクチャ・トポロジーにする</li>
+        <li>デプロイパイプラインを自動化する</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">デプロイの恐怖心</span>
+      <span class="k">リリースサイクル</span>
+      <span class="k">デプロイのレイヤ</span>
+      <span class="k">フィーチャーフラグ</span>
+      <span class="k">ブルーグリーンデプロイ</span>
+      <span class="k">ロールバック</span>
+      <span class="k">追加的スキーマ変更</span>
+      <span class="k">デプロイアーティファクト</span>
+      <span class="k">デプロイパイプライン</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter07.html"><span class="dir">← 前</span><span class="ttl">第7章 空の道具箱</span></a>
+    <a class="next" href="chapter09.html"><span class="dir">次 →</span><span class="ttl">第9章 せっかくのインシデントを無駄にする</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

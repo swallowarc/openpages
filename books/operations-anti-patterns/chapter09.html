@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第9章 せっかくのインシデントを無駄にする ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#8f4d7e; --accent-soft:#f7eff5; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 9</span>
+  <h1>せっかくのインシデントを無駄にする</h1>
+  <p class="lead">インシデント対応をその場しのぎで終わらせ、体系的な振り返りをしないことがこの章のアンチパターン。ブレームレスなポストモーテムで、インシデントを組織の学習に転換する。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch9">
+    <div class="chapter-head"><span class="num">第9章</span><h2>せっかくのインシデントを無駄にする</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>インシデントは組織学習の機会である。<mark>24時間以内に、人ではなくシステムを対象にしたポストモーテム</mark>を行う。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">♻️</span>インシデントを学習に変える</h3>
+      <p class="summary">インシデントとは「予期せぬ、あるいは計画外の出来事がシステムに悪影響を及ぼす場合」であり、<span class="term">ポストモーテム</span>は「チームがインシデントに至るまでの出来事を評価するプロセス」である。</p>
+      <p>体系的な振り返りをせず、その場しのぎの対応で終わらせれば、学習の機会は捨てられ、同じ問題が繰り返される。ポストモーテムの最終目標は、インシデントに関与したすべての要素を理解することである。関係者・対応者の全員が参加する会議形式で行う。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧠</span>ポストモーテムの価値はメンタルモデルのズレの発見にある</h3>
+      <p class="summary">各人が「その時、何を考えて行動したか」を共有することで、システム構成やプロセスに対する認識のズレを全員で修正できる。</p>
+      <p>インシデントの多くには、個々人が持つシステム像(メンタルモデル)と実際のシステムとの食い違いが関わっている。誰が悪かったかを探すのではなく、どこで認識がずれていたかを見つけて全員のモデルを更新することが、再発防止の実体になる。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⏰</span>24時間ルール</h3>
+      <p class="summary">ポストモーテムはインシデント発生後24時間以内に実施する。</p>
+      <p>根拠は2つある。第一に、時間が経つと詳細な記憶が失われる。第二に、インシデント直後には改善への動機付けとなる感情的なエネルギーがあり、それを活用できる。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🙅</span>人ではなくシステムに焦点を当てる</h3>
+      <p class="summary">ポストモーテムは学習の場であり、人を責める場ではない。グラウンドルールを設けてブレームレス(非難のない)な場を作る。</p>
+      <ul>
+        <li>問題はシステムにあり、人にはない、という前提を明示する</li>
+        <li>当時の判断を尊重する。その時点で得られていた情報の下では合理的だったはずである</li>
+        <li>非難のない文化は一夜では実現できないことを著者は認めている</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">❓</span>
+        <div><span class="ctitle">なぜ非難してはいけないのか</span><p>人が責められる場では、参加者は自分の行動や判断を正直に話さなくなる。事実が出てこなければ、メンタルモデルのズレは発見できず、学習は成立しない。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📝</span>ポストモーテムの進め方</h3>
+      <p class="summary">事実のみのタイムラインから始め、アクションアイテムとドキュメント化で締める。</p>
+      <div class="flow">
+        <span class="node">ルール設定</span><span class="arrow">→</span>
+        <span class="node">タイムラインを事実のみで記録</span><span class="arrow">→</span>
+        <span class="node">アクションアイテムの決定</span><span class="arrow">→</span>
+        <span class="node">ドキュメント化と共有</span>
+      </div>
+      <ul>
+        <li>アクションアイテムは「誰が・いつまでに・何をするか」で定義し、短期と長期に区分する</li>
+        <li>ドキュメントは対象読者(役割)ごとに節を設けて書く</li>
+        <li>すべてのポストモーテムを同一の場所で共有する。インシデントを経験していないメンバーもドキュメントから体験知を得られ、組織全体の知見が向上する</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">インシデント</span>
+      <span class="k">ポストモーテム</span>
+      <span class="k">24時間ルール</span>
+      <span class="k">メンタルモデル</span>
+      <span class="k">ブレームレス</span>
+      <span class="k">タイムライン</span>
+      <span class="k">アクションアイテム</span>
+      <span class="k">組織学習</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter08.html"><span class="dir">← 前</span><span class="ttl">第8章 業務時間外のデプロイ</span></a>
+    <a class="next" href="chapter10.html"><span class="dir">次 →</span><span class="ttl">第10章 情報のため込み:ブレントだけが知っている</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

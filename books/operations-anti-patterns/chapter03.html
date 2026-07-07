@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3章 盲目状態での運用 ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#2f7f74; --accent-soft:#eaf5f3; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 3</span>
+  <h1>盲目状態での運用</h1>
+  <p class="lead">システムが本番で実際にどう動き、ビジネスにどう影響しているかを把握できないまま運用している状態がこの章のアンチパターン。プロダクトに即したメトリクスと、文脈のあるログで運用を可視化する。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch3">
+    <div class="chapter-head"><span class="num">第3章</span><h2>盲目状態での運用</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>汎用的なシステムメトリクスだけでは行動できない。<mark>プロダクト固有のカスタムメトリクスと文脈のあるログ</mark>で運用を可視化する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🕶️</span>システムメトリクスだけでは行動につながらない</h3>
+      <p class="summary">CPU使用率などの汎用メトリクスが正常に見えても、障害の原因は特定できない。見るべきものを意図的に決める必要がある。</p>
+      <p>章冒頭の苦労話では、サイトがダウンしているのにシステムメトリクスはすべて正常に見え、原因の特定に手間取る。汎用メトリクスはインフラの状態しか語らず、プロダクトがユーザーにとってどう動いているかを語らないからである。ここから著者は、「取れているものを見る」のではなく「見るべきものを意図的に決めて測る」ことを求める。</p>
+      <ul>
+        <li>何を測定するかは、プロダクトの理解に基づいて意図的に決める</li>
+        <li>アプリケーションは重要な収益源であり、開発と運用の双方がシステム全体を理解する必要がある</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📐</span>カスタムメトリクスで運用を可視化する</h3>
+      <p class="summary">ユーザー・ビジネス観点でプロダクト固有のカスタムメトリクスを定義する。基本は次の3種である。</p>
+      <div class="metrics">
+        <div class="metric">
+          <span class="name">スループット</span>
+          <span class="big">処理量</span>
+          <span class="dir">一定時間内に処理したリクエスト数</span>
+        </div>
+        <div class="metric">
+          <span class="name">エラー率</span>
+          <span class="big">失敗率</span>
+          <span class="dir">リクエストに対する失敗の割合</span>
+        </div>
+        <div class="metric">
+          <span class="name">レイテンシ</span>
+          <span class="big">所要時間</span>
+          <span class="dir">アクション完了までにかかる時間</span>
+        </div>
+      </div>
+      <p>何をもって「健全」とするかはエンジニアだけでは決められない。ビジネスサイドも交えて健全なメトリクスを定義することを著者は求める。また、どこの計測から手を付けるかの優先順位付けには、故障モードを深刻度・発生頻度・検出可能性の観点で評価する<span class="term">故障モード影響分析(FMEA)</span>が使える。</p>
+      <ul>
+        <li>健全なメトリクスの定義には開発・運用・プロダクトチームの協働が必須</li>
+        <li>故障モード影響分析で、対処すべき故障モードに優先順位を付ける</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🪵</span>ログを価値のあるものにする</h3>
+      <p class="summary">文脈のないログは行動につながらない。適切なログレベルと文脈を持たせ、構造化して集約する。</p>
+      <p>「クレジットカードの認証に失敗した」というログだけでは、注文が拒否されたのか処理が中途で止まったのかが分からず、対応のしようがない。実際にはエラーである事象が INFO レベルで記録されていれば、重要な情報の検索も難しくなる。ログが判断に使えるかどうかは、書き込む時点の設計で決まる。</p>
+      <ul>
+        <li>適切なログレベルで記録する</li>
+        <li>ログには文脈を含める:実行しようとしたアクション、期待される結果、実際の結果など</li>
+        <li>構造化ログとログの集約により、注文IDなどを軸に複数サーバを横断して追跡できるようにする</li>
+        <li>既存システムへの後付けにはハードルがあることも著者は認めている</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤝</span>可視化は情報をチームに民主化する</h3>
+      <p class="summary">ログの集約とメトリクスの公開は、特定の担当者しか状態を知らない状況を解消し、情報をチーム全体に民主化する。</p>
+      <p>ログが集約されると、複数のシステムの活動を組み合わせてアラートを判断するといった、単体のログにはなかった使い方が生まれる。開発と運用が同じ可視化された情報を見ることは、非難の応酬を協働へ変える基盤にもなる。</p>
+      <ul>
+        <li>開発と運用の役割を変え、双方がプロダクトを理解して責任を共有する</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">盲目状態での運用</span>
+      <span class="k">運用の可視化</span>
+      <span class="k">カスタムメトリクス</span>
+      <span class="k">スループット</span>
+      <span class="k">エラー率</span>
+      <span class="k">レイテンシ</span>
+      <span class="k">故障モード影響分析(FMEA)</span>
+      <span class="k">ログレベル</span>
+      <span class="k">構造化ログ</span>
+      <span class="k">ログ集約</span>
+      <span class="k">情報の民主化</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter02.html"><span class="dir">← 前</span><span class="ttl">第2章 パターナリスト症候群</span></a>
+    <a class="next" href="chapter04.html"><span class="dir">次 →</span><span class="ttl">第4章 情報ではなくデータ</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第5章 最後の味付けとしての品質 ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#4f8a45; --accent-soft:#eef6ed; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 5</span>
+  <h1>最後の味付けとしての品質</h1>
+  <p class="lead">開発ライフサイクルの最後まで待ってからテストを行うことが、この章のアンチパターン。テストピラミッドを土台に、品質担保を開発プロセス全体に組み込む方法を示す。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="num">第5章</span><h2>最後の味付けとしての品質</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>品質は最後に足せない。<mark>テストピラミッドと継続的デリバリで、品質担保を開発ライフサイクルに組み込む</mark>。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧪</span>テストは開発ライフサイクルに組み込む</h3>
+      <p class="summary">品質担保を工程の最後の一手に置くのではなく、開発の全体に織り込む。</p>
+      <p>DevOpsで自動化が進むほど、人間が目視で確認する機会は減る。だから「変更が成功したか」を自動で検証する仕組みが、自動化の前提条件として必須になる。テストを最後に回す体制のままでは、自動化されたプロセスの安全性を担保できない。</p>
+      <ul>
+        <li>テストプロセスは、デプロイやリリースの自動化(8章)を支える土台になる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔺</span>テストピラミッド</h3>
+      <p class="summary">ユニットテストを土台に、統合テスト、エンドツーエンドテストの順で積み上げ、下層ほどテストの数を多くする。</p>
+      <figure>
+        <svg viewBox="0 0 560 300" role="img" aria-label="テストピラミッド:下からユニットテスト、統合テスト、エンドツーエンドテストの3層">
+          <polygon points="280,30 380,120 180,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+          <polygon points="170,130 390,130 450,220 110,220" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+          <polygon points="100,230 460,230 520,290 40,290" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+          <text x="280" y="85" text-anchor="middle" font-size="15" fill="var(--accent)">エンドツーエンド</text>
+          <text x="280" y="103" text-anchor="middle" font-size="11" fill="var(--accent)">少なく・遅い</text>
+          <text x="280" y="175" text-anchor="middle" font-size="15" fill="var(--accent)">統合テスト</text>
+          <text x="280" y="265" text-anchor="middle" font-size="15" fill="var(--accent)">ユニットテスト</text>
+          <text x="280" y="283" text-anchor="middle" font-size="11" fill="var(--accent)">最も多く・速い</text>
+        </svg>
+        <figcaption>テストピラミッド。層の幅はテスト数の多さを表す(配色は識別用であり原書由来ではない)。</figcaption>
+      </figure>
+      <ul>
+        <li>ユニットテスト:個々のコンポーネントやモジュールを検証する。最も数が多く高速</li>
+        <li>統合テスト:モジュール間・システム間のやりとりや、データベースなど外部システムとの通信を検証する</li>
+        <li>エンドツーエンドテスト:ブラウザ操作など、エンドユーザーと同じ方法でシステム全体を検証する。時間がかかるため数を絞る</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">❓</span>
+        <div><span class="ctitle">なぜ上層ほど絞るのか</span><p>エンドツーエンドテストは環境要因で壊れやすく実行も遅い。信頼できるテストスイートを保つには、壊れやすい層のテストを最小限にする必要がある。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛡️</span>テストスイートは信頼できなければ意味がない</h3>
+      <p class="summary">コード以外の原因で失敗する不安定なテストを許容してはならない。</p>
+      <p>テストが失敗したとき、本来疑うべきは変更したコードである。それなのに開発者が「とりあえず再実行」で済ませているなら、疑われているのは変更差分ではなくテストスイート自体であり、それはテストスイートの信頼性が失われている証拠である。信頼を失ったテストは、品質の判定材料として機能しない。</p>
+      <ul>
+        <li>不安定な(flaky な)テストは放置せず、修正するか取り除く</li>
+        <li>テストカバレッジのような数値を「虚栄のメトリクス」として追わない</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚚</span>継続的デリバリと継続的デプロイを区別する</h3>
+      <p class="summary">継続的デリバリは「常にデプロイ可能な状態を保つこと」、継続的デプロイは「コミットを引き金に自動で本番リリースすること」であり、両者は別物である。</p>
+      <p>著者は、多くの組織にとって継続的デプロイまでは必要ないとする。目指すべきはまず継続的デリバリであり、静的解析・ユニットテスト・統合テスト・成果物のビルドといったステップをパイプラインで自動実行し、いつでも出せる状態を維持することである。</p>
+      <ul>
+        <li>継続的デリバリ:アプリケーションを常にデプロイ可能な状態に保つ</li>
+        <li>継続的デプロイ:メインブランチへのコミットをトリガーに本番へ自動リリースする</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚩</span>フィーチャーフラグとDevSecOps</h3>
+      <p class="summary">コードのデプロイと機能のリリースはフィーチャーフラグで分離できる。セキュリティのテストも開発ライフサイクルに組み込む。</p>
+      <ul>
+        <li><span class="term">フィーチャーフラグ</span>により、コードを本番に置いたまま機能の有効化を制御できる(8章で詳述)</li>
+        <li>DevSecOps:セキュリティスキャン・セキュリティテストも「最後の味付け」にせず、パイプラインに組み込む</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">テストピラミッド</span>
+      <span class="k">ユニットテスト</span>
+      <span class="k">統合テスト</span>
+      <span class="k">エンドツーエンドテスト</span>
+      <span class="k">テストスイートの信頼性</span>
+      <span class="k">不安定なテスト</span>
+      <span class="k">虚栄のメトリクス</span>
+      <span class="k">継続的デリバリ</span>
+      <span class="k">継続的デプロイ</span>
+      <span class="k">フィーチャーフラグ</span>
+      <span class="k">DevSecOps</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter04.html"><span class="dir">← 前</span><span class="ttl">第4章 情報ではなくデータ</span></a>
+    <a class="next" href="chapter06.html"><span class="dir">次 →</span><span class="ttl">第6章 アラート疲れ</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>

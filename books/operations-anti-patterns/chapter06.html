@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第6章 アラート疲れ ― システム運用アンチパターン 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#c2703d; --accent-soft:#f9f1ea; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>システム運用アンチパターン</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">CHAPTER 6</span>
+  <h1>アラート疲れ</h1>
+  <p class="lead">大量のノイズアラートにさらされ続けたオペレータは、アラートそのものに鈍感になる。アラートの品質基準とオンコール体制の設計により、通知を再び信頼できるものにする。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="num">第6章</span><h2>アラート疲れ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ノイズの多いアラートはアラートを役に立たないものにする。<mark>行動可能・タイムリー・優先順位付き</mark>の3条件と、オンコール体制の設計で立て直す。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">😵</span>ノイズがアラートを無力化する</h3>
+      <p class="summary"><span class="term">アラート疲れ</span>とは、頻繁に大量のアラートにさらされたオペレータがアラートに鈍感になる現象である。</p>
+      <p>章冒頭の苦労話では、深夜4時に「データベースのCPU使用率95%」のアラートで起こされるが、調査してもログにエラーはなく1時間後に自然回復し、翌晩も同じアラートで起こされる。行動につながらないアラートが繰り返されると、オペレータは偽アラートに慣れて応答が遅くなり、やがてノイズを無視するのが正常な状態になる。この時点で、アラートシステム全体の有効性が失われている。</p>
+      <ul>
+        <li>ノイズアラートはエンジニアの健康と、本物のインシデントへの対応力の両方を損なう</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">✅</span>良いアラートの3条件</h3>
+      <p class="summary">アラートは「行動可能」「タイムリー」「適切に優先順位付けされている」の3条件を満たすべきである。</p>
+      <p>CPU使用率のようなシステムメトリクス単体のアラートは、行動可能でない場合が多い。何が問題でどう対処するかが分からないからである。だから、手順書(runbook)の整備と「なぜこの通知が必要か」の明確化、そしてコンポーネントの状態を顧客への実際の影響と結びつける複合アラートが必要になる。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#c2703d">
+          <span class="way-name">行動可能</span>
+          <span class="way-desc">何が問題で、どう対処するかが分かる。手順書(runbook)が添えられている</span>
+        </div>
+        <div class="way-row" style="--wc:#a04a5c">
+          <span class="way-name">タイムリー</span>
+          <span class="way-desc">待てば自然回復するものを鳴らさない</span>
+        </div>
+        <div class="way-row" style="--wc:#3a5a8c">
+          <span class="way-name">適切な優先順位付け</span>
+          <span class="way-desc">すべてのアラートが深夜の呼び出しを要するわけではない。緊急度により通知手段を変える</span>
+        </div>
+      </div>
+      <ul>
+        <li>しきい値は一度決めて終わりではない。システムは需要増加で変化するため継続的に見直す</li>
+        <li>ユーザー・ビジネス観点のカスタムメトリクス(3章)を、アラートの判断材料に使う</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📟</span>オンコールローテーションを設計する</h3>
+      <p class="summary">特定の個人を一定期間「最初の連絡先」に指定するローテーションを組み、エスカレーションの段階と対応期待値を明文化する。</p>
+      <div class="flow">
+        <span class="node">プライマリ(最初の受信者)</span><span class="arrow">→</span>
+        <span class="node">セカンダリ(予備)</span><span class="arrow">→</span>
+        <span class="node">マネージャー(最後の砦)</span>
+      </div>
+      <p>アラートへの対応期待値は、3つのカテゴリで定義する。確認までの時間(通知の受信確認の期限)、開始までの時間(解決作業に着手する期限)、解決までの時間(故障状態を許容できる期間)である。期待値が明文化されていなければ、担当者は全アラートに即時対応を迫られ、疲弊する。</p>
+      <ul>
+        <li>ローテーションの人数の目安は4〜8人程度とされる</li>
+        <li>オンコール担当者は優先度の高い開発案件から外し、手順書の更新・自動化・アラートシステムの改善・根本原因の解決に充てる</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">💰</span>オンコールは補償されるべき負担である</h3>
+      <p class="summary">オンコールはスタッフの生活に食い込む負担であり、何らかの形で補償されるべきだと著者は主張する。</p>
+      <ul>
+        <li>金銭的な補償</li>
+        <li>休暇</li>
+        <li>在宅勤務など働き方の柔軟性の向上</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📊</span>オンコール幸福度を追跡する</h3>
+      <p class="summary">オンコールの負担は計測できる。データは体制改善を上層部に提案するときの材料になる。</p>
+      <ul>
+        <li>誰がアラートを受けているか</li>
+        <li>アラートの緊急度</li>
+        <li>通知方法</li>
+        <li>受信の時間帯(就業時間・勤務時間外・就寝時間)</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">アラート疲れ</span>
+      <span class="k">ノイズの多いアラート</span>
+      <span class="k">行動可能なアラート</span>
+      <span class="k">手順書(runbook)</span>
+      <span class="k">複合アラート</span>
+      <span class="k">しきい値</span>
+      <span class="k">オンコールローテーション</span>
+      <span class="k">エスカレーション</span>
+      <span class="k">対応期待値</span>
+      <span class="k">オンコール補償</span>
+      <span class="k">オンコール幸福度</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter05.html"><span class="dir">← 前</span><span class="ttl">第5章 最後の味付けとしての品質</span></a>
+    <a class="next" href="chapter07.html"><span class="dir">次 →</span><span class="ttl">第7章 空の道具箱</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>システム運用アンチパターン 要点まとめ</p></footer>
+
+</body>
+</html>
