@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第II部 技術的・戦術的・チーム組織的なドメイン駆動トランスフォーメーション ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#8c5a3a; --accent-soft:#f7efe9; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>ドメイン駆動トランスフォーメーション</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="part1.html">第I部</a>
+        <a href="part2.html">第II部</a>
+        <a href="part3.html">第III部</a>
+        <a href="part4.html">第IV部</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART II ― 第7〜9章</span>
+  <h1>技術的・戦術的・チーム組織的なドメイン駆動トランスフォーメーション</h1>
+  <p class="lead">戦略的な変革（第III部）を支える技術・チーム面の改善を扱う部である。レガシーシステムの技術的安定化、ドメイン知識によるコードの強化、チーム組織の改善の3章からなる。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch7"><span class="ch-no">7</span><span>レガシーシステムの技術的安定化</span></a></li>
+      <li><a href="#ch8"><span class="ch-no">8</span><span>ドメイン知識によるソースコードの強化</span></a></li>
+      <li><a href="#ch9"><span class="ch-no">9</span><span>チーム組織の改善</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第7章 ===== -->
+  <section class="chapter" id="ch7">
+    <div class="chapter-head"><span class="num">第7章</span><h2>レガシーシステムの技術的安定化</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>大きな変革に入る前に、レガシーシステムを技術面で安定させる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛠️</span>戦略的変革の前段としての安定化</h3>
+      <p class="summary">第II部の最初の改善として、レガシーシステムの技術的な安定化を扱う。</p>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>この章の具体的な手法は今回のWebリサーチでは確認できなかったため、目次と部の構成から確認できる位置づけのみ記載している。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">技術的安定化</span><span class="k">レガシーシステム</span></div>
+  </section>
+
+  <!-- ===== 第8章 ===== -->
+  <section class="chapter" id="ch8">
+    <div class="chapter-head"><span class="num">第8章</span><h2>ドメイン知識によるソースコードの強化</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ドメイン知識をコードに反映させる戦術的リファクタリングを扱う。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧬</span>ドメイン知識を強化する戦術的リファクタリング</h3>
+      <p class="summary">コード上の名前・型・構造を業務の概念に揃える、一連の戦術的リファクタリングを示す。</p>
+      <p>本書が扱う問題には、業務のコードと技術のコードの混在が含まれる。以下のリファクタリングは、この混在を解き、ユビキタス言語（第3章）をコードのレベルまで反映させるためのものである。</p>
+      <ul>
+        <li><b>ユビキタス言語の徹底</b>：コード上の名前を業務の用語に揃える。</li>
+        <li><b>プリミティブ型の値オブジェクト化</b>：基本型で表現されている業務概念を値オブジェクトに置き換える。</li>
+        <li><b>貧血エンティティの解消</b>：データだけを持つエンティティに業務ロジックを取り戻す。</li>
+        <li><b>セッターの除去</b>：無制限な状態変更を排除する。</li>
+        <li><b>ロジックのエンティティへの移動</b>：散在する業務ロジックをエンティティに寄せる。</li>
+        <li><b>契約（コントラクト）の導入</b>：満たすべき条件を明示する。</li>
+        <li><b>スマートUIからのエンティティ・サービスの抽出</b>：UIに埋め込まれた業務ロジックを取り出す。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">戦術的リファクタリング</span><span class="k">値オブジェクト</span><span class="k">貧血エンティティ</span><span class="k">スマートUI</span><span class="k">ユビキタス言語</span></div>
+  </section>
+
+  <!-- ===== 第9章 ===== -->
+  <section class="chapter" id="ch9">
+    <div class="chapter-head"><span class="num">第9章</span><h2>チーム組織の改善</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>アーキテクチャの変革にはチーム構造の変革が伴う。アーキテクチャだけ変えてチームを変えないままにしない。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">👥</span>社会技術的リファクタリング</h3>
+      <p class="summary">コードだけでなくチーム構造を組み替える「社会技術的リファクタリング」を示す。本書が扱う問題には、不適切なチーム構造も含まれる。</p>
+      <p>チームの再編は、コードのリファクタリングと同じくカタログ化されたリファクタリングとして扱われる。</p>
+      <ul>
+        <li><b>職能横断チームの形成</b>：レイヤー別のチームをドメイン中心に再編する。</li>
+        <li><b>第2チームの形成</b>：混成メンバーから新しいチームを分離する。</li>
+        <li><b>運用のDevOpsへの移行</b>：運用の役割を組み替える。</li>
+        <li><b>既存チームへのコンテキスト割り当て</b>：チームと境界づけられたコンテキストを対応づける。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>チームトポロジーの活用</h3>
+      <p class="summary">チームの再編にはチームトポロジーを用い、ストリームアラインドチームへの再編を推奨する。</p>
+      <ul>
+        <li>チームトポロジーによる組織編成は本書の主要ツールのひとつとして挙げられており、付録Dでも扱われる。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>チームトポロジーはSkeltonとPaisが提唱した組織設計のモデルで、ストリームアラインドチームは価値の流れ（ストリーム）に沿って編成されたチームを指す。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">社会技術的リファクタリング</span><span class="k">職能横断チーム</span><span class="k">チームトポロジー</span><span class="k">ストリームアラインドチーム</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part1.html"><span class="dir">← 前</span><span class="ttl">第I部 基礎</span></a>
+    <a class="next" href="part3.html"><span class="dir">次 →</span><span class="ttl">第III部 戦略的ドメイン駆動トランスフォーメーション</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>ドメイン駆動トランスフォーメーション 要点まとめ</p></footer>
+
+</body>
+</html>

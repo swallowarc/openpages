@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ドメイン駆動トランスフォーメーション ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>ドメイン駆動トランスフォーメーション</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="part1.html">第I部</a>
+        <a href="part2.html">第II部</a>
+        <a href="part3.html">第III部</a>
+        <a href="part4.html">第IV部</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">READING NOTES</span>
+  <h1>ドメイン駆動トランスフォーメーション</h1>
+  <p class="lead">老朽化したレガシーシステムを、ドメイン駆動設計（DDD）を軸に、マイクロサービスまたは保守性の高いモジュラーモノリスへと段階的に変革する方法論をまとめた読書ノート。部ごとに要点と著者の論拠を整理する。</p>
+</header>
+
+<main>
+
+  <!-- ===== ご利用前の注意（固定文） ===== -->
+  <aside class="about-notice">
+    <span class="emoji">⚠️</span>
+    <div>
+      <span class="ctitle">ご利用前の注意</span>
+      <p>このまとめは、AIエージェントによる本書のWebリサーチの結果から生成したものです。書籍本文そのものから作成したものではないため、内容が書籍と一致していない可能性があり、また本書の内容を網羅したものでもありません。読む前に全体像のイメージをつかむため、または読了後に内容を見直す際の参考資料として、読書のサポート用にご活用ください。</p>
+    </div>
+  </aside>
+
+  <!-- ===== 書誌情報 ===== -->
+  <section class="bibliography">
+    <p class="title">ドメイン駆動トランスフォーメーション ―レガシーシステムのモダナイゼーションとリスク低減 ／ 原題：Domain-Driven Transformation</p>
+    <dl>
+      <dt>著者</dt><dd>Carola Lilienthal、Henning Schwentner</dd>
+      <dt>訳者</dt><dd>株式会社トップスタジオHR</dd>
+      <dt>出版社</dt><dd>オライリー・ジャパン</dd>
+      <dt>発行年</dt><dd>2026年6月19日</dd>
+    </dl>
+  </section>
+
+  <!-- ===== 本の全体像 ===== -->
+  <section class="book-overview">
+    <h2>本書の全体像</h2>
+    <p>老朽化した大規模なレガシーシステムを、マイクロサービスへの分割または保守性の高い<span class="term">モジュラーモノリス</span>への変換によって再生させるための実践的なガイドである。アーキテクチャが劣化したソフトウェアシステムを、<mark>戦略・技術・チーム組織という3つのレベルで包括的に変革する</mark>アプローチを提示する。</p>
+    <p>方法論の中核は、ビジネスプロセスの分析を通じて<span class="term">境界づけられたコンテキスト</span>を特定し、ドメイン駆動リファクタリングをアジャイルチームの中で適用していく流れにある。第III部で示される「ドメイン再発見 → ターゲットアーキテクチャのモデリング → 現状とのすり合わせ → 施策の優先順位づけと実施」の4ステップがその骨格であり、現状分析にはモジュール性の成熟度を測る指標（MMI）、組織編成にはチームトポロジー、設計の可視化にはイベントストーミングなどの具体的なツールと技法を用いる。</p>
+  </section>
+
+  <!-- ===== ターゲット読者（本の内容から推定） ===== -->
+  <section class="book-overview">
+    <h2>この本がターゲットとする読者</h2>
+    <p>レガシーシステムの刷新に責任を持つ実務者を想定している。新規開発のDDDではなく、既存システムをDDDの考え方で変革する手順を求めている層である。<span style="font-size:12px;color:var(--ink-faint);">（本書の内容から推定）</span></p>
+    <div class="persona-grid">
+      <div class="persona">
+        <span class="emoji">🏗️</span>
+        <h3>ソフトウェアアーキテクト</h3>
+        <p>劣化したアーキテクチャを評価し、ターゲットアーキテクチャへ導く4ステップの進め方を得る。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">💻</span>
+        <h3>リードエンジニア・開発者</h3>
+        <p>ドメイン知識をコードに反映させる戦術的リファクタリングと、付録の具体カタログを得る。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">📋</span>
+        <h3>技術マネージャ・プロジェクト責任者</h3>
+        <p>ビッグバン置換を避け、リスクを抑えて段階的に進める優先順位づけとチーム編成の指針を得る。</p>
+      </div>
+      <div class="persona">
+        <span class="emoji">🧭</span>
+        <h3>ITコンサルタント</h3>
+        <p>MMIによる現状評価と、評価結果に応じた変革パスの選び方を得る。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== おすすめの読み進め方（AIによる分析） ===== -->
+  <section class="ai-analysis">
+    <div class="ai-badge"><span class="emoji">🤖</span>AIによる分析 ― 本書の記述ではなく、内容に基づく独自提案</div>
+    <h2>おすすめの読み進め方</h2>
+    <p>本書は第1章で実例を通じて方法論全体を体験させ、第I部で基礎、第II部で技術・チーム面の改善、第III部で中核の4ステップ、第IV部で総括という構成を取る。関心に応じて次の順序を提案する。</p>
+    <div class="path-row">
+      <span class="who">まず全体像を素早くつかみたい</span>
+      <span class="route"><b>第1章</b>（実例で4ステップを体験）→ <b>第15章</b>（総括）→ <b>第III部</b>（4ステップの詳細）</span>
+    </div>
+    <div class="path-row">
+      <span class="who">DDDの基礎から固めたい</span>
+      <span class="route"><b>第I部</b>を順に読む → <b>第III部</b> → 第II部・付録で実践手段を補う</span>
+    </div>
+    <div class="path-row">
+      <span class="who">コード改善にすぐ着手したい実装者</span>
+      <span class="route"><b>第8章</b>（ドメイン知識によるコード強化）→ <b>付録A〜E</b>（リファクタリングカタログ）→ 第III部で全体文脈を確認</span>
+    </div>
+    <div class="path-row">
+      <span class="who">組織・マネジメントの観点で読みたい</span>
+      <span class="route"><b>第9章</b>（チーム組織の改善）→ <b>第13章</b>（優先順位づけと並行実施）→ 第6章（アプローチの選び方）</span>
+    </div>
+  </section>
+
+  <!-- ===== 各ページへのカードナビ ===== -->
+  <div class="section-label">構成 ― クリックで各ページへ</div>
+  <div class="part-grid">
+    <a class="part-card" style="--pc:#2f6f6f" href="part1.html">
+      <span class="pc-eyebrow">PART I ― 第1〜6章</span>
+      <h3>基礎</h3>
+      <p>方法論の全体像と、変革を支える基礎概念。DDD・協働モデリング・アーキテクチャ概念・アプローチの選び方を押さえる。</p>
+      <div class="chapters"><span>1</span> 導入 ／ <span>2</span> 複雑性を制する ／ <span>3</span> ドメイン駆動設計 ／ <span>4</span> 協働モデリング ／ <span>5</span> ソフトウェアアーキテクチャの概念 ／ <span>6</span> トランスフォーメーションへのアプローチ方法</div>
+    </a>
+    <a class="part-card" style="--pc:#8c5a3a" href="part2.html">
+      <span class="pc-eyebrow">PART II ― 第7〜9章</span>
+      <h3>技術的・戦術的・チーム組織的なドメイン駆動トランスフォーメーション</h3>
+      <p>戦略的変革を支える技術・チーム面の改善。技術的安定化、ドメイン知識によるコード強化、チーム組織の改善を扱う。</p>
+      <div class="chapters"><span>7</span> レガシーシステムの技術的安定化 ／ <span>8</span> ドメイン知識によるソースコードの強化 ／ <span>9</span> チーム組織の改善</div>
+    </a>
+    <a class="part-card" style="--pc:#5a3a8c" href="part3.html">
+      <span class="pc-eyebrow">PART III ― 第10〜13章</span>
+      <h3>戦略的ドメイン駆動トランスフォーメーション</h3>
+      <p>本書の中核。ドメイン再発見からターゲット設計、現状とのすり合わせ、施策の優先順位づけと実施までの4ステップを詳解する。</p>
+      <div class="chapters"><span>10</span> ドメイン再発見 ／ <span>11</span> ターゲットアーキテクチャのモデリング ／ <span>12</span> 現状とのすり合わせ ／ <span>13</span> 優先順位づけと実施</div>
+    </a>
+    <a class="part-card" style="--pc:#3a8c5a" href="part4.html">
+      <span class="pc-eyebrow">PART IV ― 第14〜15章＋付録</span>
+      <h3>総括</h3>
+      <p>境界づけられたコンテキストの実装に向けたドメインパターンと全体の総括。付録のリファクタリングカタログも整理する。</p>
+      <div class="chapters"><span>14</span> ドメインパターンと実装 ／ <span>15</span> まとめ ／ <span>A–E</span> 付録</div>
+    </a>
+  </div>
+
+</main>
+
+<footer class="foot"><p>ドメイン駆動トランスフォーメーション 要点まとめ</p></footer>
+
+</body>
+</html>

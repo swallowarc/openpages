@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第I部 基礎 ― ドメイン駆動トランスフォーメーション 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#2f6f6f; --accent-soft:#eaf4f4; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>ドメイン駆動トランスフォーメーション</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="part1.html">第I部</a>
+        <a href="part2.html">第II部</a>
+        <a href="part3.html">第III部</a>
+        <a href="part4.html">第IV部</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART I ― 第1〜6章</span>
+  <h1>基礎</h1>
+  <p class="lead">ドメイン駆動トランスフォーメーションの全体像と、それを支える基礎概念を示す部である。DDDの基本、協働モデリング、アーキテクチャの概念を押さえたうえで、現状からアプローチを決める考え方までを扱う。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch1"><span class="ch-no">1</span><span>導入：ドメイン駆動トランスフォーメーションの全体像</span></a></li>
+      <li><a href="#ch2"><span class="ch-no">2</span><span>複雑性を制する</span></a></li>
+      <li><a href="#ch3"><span class="ch-no">3</span><span>ドメイン駆動設計</span></a></li>
+      <li><a href="#ch4"><span class="ch-no">4</span><span>協働モデリング</span></a></li>
+      <li><a href="#ch5"><span class="ch-no">5</span><span>ソフトウェアアーキテクチャの概念</span></a></li>
+      <li><a href="#ch6"><span class="ch-no">6</span><span>トランスフォーメーションへのアプローチ方法</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第1章 ===== -->
+  <section class="chapter" id="ch1">
+    <div class="chapter-head"><span class="num">第1章</span><h2>導入：ドメイン駆動トランスフォーメーションの全体像</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>レガシーシステムの変革は、ドメイン再発見から施策実施までの4ステップで段階的に進める。第1章はこの全体像を実例で体験させる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗺️</span>3つのレベルで包括的に変革する</h3>
+      <p class="summary">本書が提示するのは、アーキテクチャが劣化したソフトウェアシステムを、戦略・技術・チーム組織の3つのレベルで変革する包括的なアプローチである。</p>
+      <p>変革の対象を技術（コードとアーキテクチャ）だけに限定せず、ドメインの捉え直し（戦略）とチームの編成（組織）まで含めるのが本書の立場である。この3レベルの区分は本書の構成にも対応しており、第II部が技術・戦術・チーム組織面の改善を、第III部が戦略面の変革を扱う。</p>
+      <ul>
+        <li>ゴールは、大規模レガシーシステムをマイクロサービス群へ分割するか、保守性の高いモジュラーモノリスへ変換すること。</li>
+        <li>ビジネスプロセスの分析から境界づけられたコンテキストを特定し、ドメイン駆動リファクタリングをアジャイルチームで適用する流れを取る。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🪜</span>4ステップの進め方</h3>
+      <p class="summary">戦略的なトランスフォーメーションは4つのステップで進める。この4ステップが第III部（第10〜13章）の骨格になる。</p>
+      <div class="flow">
+        <div class="node"><span class="emoji">🔍</span><span class="t">ステップ1</span><span class="s">ドメイン再発見</span></div>
+        <span class="arrow">→</span>
+        <div class="node"><span class="emoji">🎯</span><span class="t">ステップ2</span><span class="s">ターゲットアーキテクチャのモデリング</span></div>
+        <span class="arrow">→</span>
+        <div class="node"><span class="emoji">⚖️</span><span class="t">ステップ3</span><span class="s">現状とのすり合わせ</span></div>
+        <span class="arrow">→</span>
+        <div class="node"><span class="emoji">🚀</span><span class="t">ステップ4</span><span class="s">優先順位づけと実施</span></div>
+      </div>
+      <ul>
+        <li>第1章では、コンテナターミナルの実例を通じてこの4ステップを一通り体験する構成が取られている。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ドメイン駆動トランスフォーメーション</span><span class="k">4ステップ</span><span class="k">戦略・技術・チーム組織</span><span class="k">コンテナターミナルの実例</span></div>
+  </section>
+
+  <!-- ===== 第2章 ===== -->
+  <section class="chapter" id="ch2">
+    <div class="chapter-head"><span class="num">第2章</span><h2>複雑性を制する</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>レガシーシステムの保守を難しくする複雑性の制御を扱う。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧩</span>複雑性の管理にDDDとモジュール化を据える</h3>
+      <p class="summary">本書はアーキテクチャが劣化（侵食）したシステムを対象とし、その複雑性を管理する枠組みとしてDDDの戦略的・戦術的アプローチとモジュール化を位置づける。</p>
+      <ul>
+        <li>モジュール性は本書の現状分析でも指標として用いられる（第6章のMMIにつながる）。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>この章の詳細な論拠は今回のWebリサーチでは確認できなかったため、出典で確認できた範囲に絞って記載している。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">複雑性</span><span class="k">アーキテクチャの劣化</span><span class="k">モジュール化</span></div>
+  </section>
+
+  <!-- ===== 第3章 ===== -->
+  <section class="chapter" id="ch3">
+    <div class="chapter-head"><span class="num">第3章</span><h2>ドメイン駆動設計</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ユビキタス言語・境界づけられたコンテキスト・サブドメインの3分類というDDDの基本概念が、変革全体の判断基準になる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗣️</span>ユビキタス言語</h3>
+      <p class="summary">業務担当者と開発者が同じ用語を使って会話し、その用語をそのままコードに反映する。</p>
+      <ul>
+        <li>業務で使われる用語を、会話・モデル・コードで一貫して用いる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚧</span>境界づけられたコンテキスト</h3>
+      <p class="summary">同じ用語でも文脈によって意味が変わる場合は、コンテキストごとにモデルを分割する。</p>
+      <p>同じ「Customer」という語でも、コンテキストが違えば別物として扱う。用語の意味が文脈で変わる以上、システム全体でひとつのモデルに押し込めるのではなく、意味が一貫する範囲＝境界づけられたコンテキストを単位にモデルを分ける、というのがこの概念の筋道である。この分割単位が、後のターゲットアーキテクチャ（第11章）やチーム編成（第9章）の単位にもなる。</p>
+      <ul>
+        <li>境界づけられたコンテキストの特定は、ビジネスプロセスの分析を通じて行う。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>サブドメインの3分類</h3>
+      <p class="summary">ドメインをコア・支援・汎用の3種類に分類し、どこに開発投資するかの判断につなげる。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#2f6f6f">
+          <div class="icon-box">⭐</div>
+          <div><span class="wlabel">コアサブドメイン</span><h4>事業の差別化要因</h4><p>競争力の源泉となる領域。自社で開発する。</p></div>
+        </div>
+        <div class="way-row" style="--wc:#5a8c6f">
+          <div class="icon-box">🔧</div>
+          <div><span class="wlabel">支援サブドメイン</span><h4>必要だが差別化しない</h4><p>事業に必要だが競争力には直結しない領域。通常の開発で対応する。</p></div>
+        </div>
+        <div class="way-row" style="--wc:#8c8c5a">
+          <div class="icon-box">📦</div>
+          <div><span class="wlabel">汎用サブドメイン</span><h4>どの会社にもある</h4><p>業界を問わず共通の領域。既製品の購入で済ませる。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ユビキタス言語</span><span class="k">境界づけられたコンテキスト</span><span class="k">コアサブドメイン</span><span class="k">支援サブドメイン</span><span class="k">汎用サブドメイン</span></div>
+  </section>
+
+  <!-- ===== 第4章 ===== -->
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="num">第4章</span><h2>協働モデリング</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ドメイン知識は関係者との協働モデリングで引き出し、設計を可視化する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤝</span>設計を明確化する3つの手法</h3>
+      <p class="summary">イベントストーミング、ドメインストーリーテリング、シナリオキャスティングを、設計を明確化する手法として用いる。</p>
+      <p>これらの手法は、業務担当者と開発者が一緒にビジネスプロセスを可視化するためのものであり、第III部のステップ1（ドメイン再発見）で実際に使われる。ドメインの理解を個人の頭の中に留めず、関係者の協働作業として形にすることが、境界づけられたコンテキストの特定につながる。</p>
+      <ul>
+        <li><b>イベントストーミング</b>：ドメインイベントを起点に業務の流れを可視化する。本書では設計の可視化に用いる。</li>
+        <li><b>ドメインストーリーテリング</b>：業務の物語（ストーリー）を絵記号で記述し、関係者の共通理解をつくる。</li>
+        <li><b>シナリオキャスティング</b>：設計を明確化する協働モデリング手法のひとつとして挙げられている。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">協働モデリング</span><span class="k">イベントストーミング</span><span class="k">ドメインストーリーテリング</span><span class="k">シナリオキャスティング</span></div>
+  </section>
+
+  <!-- ===== 第5章 ===== -->
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="num">第5章</span><h2>ソフトウェアアーキテクチャの概念</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>変革のターゲットには、マイクロサービスと保守性の高いモジュラーモノリスの2つの形があり得る。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏛️</span>2つのターゲットアーキテクチャ</h3>
+      <p class="summary">本書はマイクロサービスへの分割を唯一の正解とせず、モジュラーモノリスへの変換を同格の選択肢として扱う。</p>
+      <div class="versus">
+        <div class="side a">
+          <h4>マイクロサービスへ分割</h4>
+          <ul>
+            <li>大規模レガシーシステムを複数のサービスに分割する</li>
+          </ul>
+        </div>
+        <div class="vs"><span>or</span></div>
+        <div class="side b">
+          <h4>モジュラーモノリスへ変換</h4>
+          <ul>
+            <li>ひとつのシステムのまま、保守性の高いモジュール構造に組み替える</li>
+          </ul>
+        </div>
+      </div>
+      <ul>
+        <li>どちらを選ぶかは、現状のアーキテクチャの状態に基づいて決める（第6章）。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>この章の節構成・詳細な論点は今回のWebリサーチでは確認できなかったため、出典で確認できた範囲に絞って記載している。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">マイクロサービス</span><span class="k">モジュラーモノリス</span><span class="k">ターゲットアーキテクチャ</span></div>
+  </section>
+
+  <!-- ===== 第6章 ===== -->
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="num">第6章</span><h2>トランスフォーメーションへのアプローチ方法</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>どう変革するかは、現状のアーキテクチャの状態を測ってから決める。その指標がMMIである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📏</span>MMI（モジュール性成熟度インデックス）で現状を測る</h3>
+      <p class="summary">MMIは0〜10のスコアでシステムの現状を定量評価し、取るべき変革のパスを決める指標である。</p>
+      <p>本書は、既存アーキテクチャの現状に基づいてトランスフォーメーションのプロセスを設計する、という指針を取る。その現状を数値で把握するための指標がMMIであり、モジュール性の成熟度を測る。</p>
+      <ul>
+        <li>MMIのスコアが、取るべき変革のパスを決める判断材料になる。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>著者Lilienthalによる別著・講演でのMMIの解説では、評価はモジュール性・階層性・パターン一貫性の基準に基づき、おおむね8以上は健全（維持）、4〜8はリファクタリング推奨、4未満は置き換えも含めた判断の対象とされる。本書内の定義・しきい値は本文で確認してほしい。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">MMI</span><span class="k">モジュール性成熟度インデックス</span><span class="k">現状分析</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="index.html"><span class="dir">← 前</span><span class="ttl">目次</span></a>
+    <a class="next" href="part2.html"><span class="dir">次 →</span><span class="ttl">第II部 技術的・戦術的・チーム組織的なドメイン駆動トランスフォーメーション</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>ドメイン駆動トランスフォーメーション 要点まとめ</p></footer>
+
+</body>
+</html>

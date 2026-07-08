@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第III部 戦略的ドメイン駆動トランスフォーメーション ― 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#5a3a8c; --accent-soft:#f1ecf8; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>ドメイン駆動トランスフォーメーション</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="part1.html">第I部</a>
+        <a href="part2.html">第II部</a>
+        <a href="part3.html">第III部</a>
+        <a href="part4.html">第IV部</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART III ― 第10〜13章</span>
+  <h1>戦略的ドメイン駆動トランスフォーメーション</h1>
+  <p class="lead">本書の中核となる部である。ドメイン再発見、ターゲットアーキテクチャのモデリング、現状とのすり合わせ、施策の優先順位づけと実施という4ステップを、1章ずつ詳しく解説する。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch10"><span class="ch-no">10</span><span>ステップ1―ドメイン再発見</span></a></li>
+      <li><a href="#ch11"><span class="ch-no">11</span><span>ステップ2―ドメイン駆動ターゲットアーキテクチャのモデリング</span></a></li>
+      <li><a href="#ch12"><span class="ch-no">12</span><span>ステップ3―現状のアーキテクチャとターゲットアーキテクチャのすり合わせ</span></a></li>
+      <li><a href="#ch13"><span class="ch-no">13</span><span>ステップ4―トランスフォーメーション施策の優先順位づけと実施</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第10章 ===== -->
+  <section class="chapter" id="ch10">
+    <div class="chapter-head"><span class="num">第10章</span><h2>ステップ1―ドメイン再発見</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>「コードから始めるな、人と話せ」。ドメインはコードではなく業務プロセスから再発見する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚫</span>コードを読まない、という原則</h3>
+      <p class="summary">ドメイン再発見の段階では、既存コードを読まないことを原則とする。</p>
+      <p>本書の方法論は、境界づけられたコンテキストをビジネスプロセスの分析を通じて特定する。したがってステップ1の出発点は現行コードの構造ではなく、業務担当者との対話と業務プロセスの可視化になる。ドメインの本来の区切りを業務側から取り出すことが、このステップの目的である。</p>
+      <ul>
+        <li>「コードから始めるな、人と話せ」が本書の中心的なメッセージとして示されている。</li>
+      </ul>
+      <div class="callout why">
+        <span class="emoji">❓</span>
+        <div><span class="ctitle">なぜそうなるか</span><p>境界づけられたコンテキストはビジネスプロセスの分析を通じて特定する、というのが本書の方法だからである。コードの現状分析はステップ3で行う。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗣️</span>使う手法：ドメインストーリーテリングとイベントストーミング</h3>
+      <p class="summary">ドメイン再発見には、第4章で示した協働モデリングの手法（ドメインストーリーテリング、イベントストーミング）を用いる。</p>
+      <ul>
+        <li>業務担当者と一緒にビジネスプロセスを可視化し、そこから境界づけられたコンテキストの候補を取り出す。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ドメイン再発見</span><span class="k">コードを読まない</span><span class="k">ドメインストーリーテリング</span><span class="k">イベントストーミング</span></div>
+  </section>
+
+  <!-- ===== 第11章 ===== -->
+  <section class="chapter" id="ch11">
+    <div class="chapter-head"><span class="num">第11章</span><h2>ステップ2―ドメイン駆動ターゲットアーキテクチャのモデリング</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>再発見したドメインを境界づけられたコンテキストに分割し、あるべきターゲットアーキテクチャを設計する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>ターゲットアーキテクチャで決めること</h3>
+      <p class="summary">ステップ1で再発見したドメインを境界づけられたコンテキストへ分割し、コンテキストごとの設計と運営の方針を決める。</p>
+      <p>決める対象はコードの構造だけではない。どのチームがどのコンテキストを担当するか、コンテキスト間をどう連携させるかまで含めるため、チーム編成（第9章）と一体の設計になる。</p>
+      <ul>
+        <li>ドメインを境界づけられたコンテキストに分割する。</li>
+        <li>各コンテキストのチーム担当を決める。</li>
+        <li>コンテキスト間の連携方法を決める。</li>
+        <li>コンテキスト内のモデルを設計する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ターゲットアーキテクチャ</span><span class="k">境界づけられたコンテキスト</span><span class="k">チーム担当</span><span class="k">コンテキスト間連携</span></div>
+  </section>
+
+  <!-- ===== 第12章 ===== -->
+  <section class="chapter" id="ch12">
+    <div class="chapter-head"><span class="num">第12章</span><h2>ステップ3―現状のアーキテクチャとターゲットアーキテクチャのすり合わせ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>現状のアーキテクチャを可視化し、ターゲットとの差分を洗い出す。ここで初めてコードと向き合う。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔬</span>依存関係の可視化と差分の抽出</h3>
+      <p class="summary">アーキテクチャ可視化ツールを使って現状の依存関係を可視化し、ターゲットアーキテクチャとの差分を抽出する。</p>
+      <p>ステップ1・2で業務側から導いたターゲットと、ツールで測った現状を突き合わせることで、どこをどう組み替えるべきかが具体的な差分として現れる。この差分がステップ4で優先順位づけされる施策の元になる。</p>
+      <ul>
+        <li>可視化にはSonargraphなどのアーキテクチャ分析ツールを用いる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚠️</span>「再利用性」の名の無境界ドメインモデルを温存しない</h3>
+      <p class="summary">「再利用できるから」という理由で温存されてきた巨大な共有ドメインモデルを、本書は「無境界ドメインモデル」（12.5節）として問題視する。</p>
+      <p>再利用に見えているものが、実際には異なる業務概念の混在であるケースがある。同じ名前で呼ばれていても、コンテキストが違えば別の概念であり（第3章の境界づけられたコンテキストの原則）、それをひとつのモデルに束ねたままでは境界を引けない。</p>
+      <ul>
+        <li>差分のすり合わせでは、こうした共有モデルをコンテキストごとに分ける判断が求められる。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">依存関係の可視化</span><span class="k">Sonargraph</span><span class="k">差分抽出</span><span class="k">無境界ドメインモデル</span></div>
+  </section>
+
+  <!-- ===== 第13章 ===== -->
+  <section class="chapter" id="ch13">
+    <div class="chapter-head"><span class="num">第13章</span><h2>ステップ4―トランスフォーメーション施策の優先順位づけと実施</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>施策をスプリントで完了するサイズに分割し、新機能開発と並行して段階的に実施する。ビッグバン置換は避ける。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧨</span>ビッグバン置換を避け、段階的に置き換える</h3>
+      <p class="summary">システム全体を一度に書き直すビッグバン置換が有効なケースはほとんどない、というのが本書の立場である。段階的な置き換えを取る。</p>
+      <p>段階的リファクタリングは、リスクの軽減と価値の提供を兼ねるパターンとして位置づけられている。一度にすべてを置き換えるのではなく、部分ごとに新しい実装へ移していく。</p>
+      <ul>
+        <li>段階置換の手段としてストラングラーフィグパターンを用いる。</li>
+      </ul>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>ストラングラーフィグパターンは、既存システムの機能を新実装で少しずつ置き換え、最終的に旧実装を退役させる段階移行のパターンである。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📆</span>スプリントサイズに分割し、開発と並行して進める</h3>
+      <p class="summary">トランスフォーメーション施策は1スプリントで完了するサイズに分割し、新機能開発と並行して実施する。</p>
+      <p>変革を専任プロジェクトとして切り出すのではなく、日常の開発の中に組み込むのが本書の進め方である。その配分の目安として、作業量の約30%をモダナイゼーションに充てることを推奨している。</p>
+      <ul>
+        <li>施策は1スプリントで完了するサイズに分割する。</li>
+        <li>作業量の約30%をモダナイゼーションに充て、残りで新機能開発を続ける。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">優先順位づけ</span><span class="k">ビッグバン置換の回避</span><span class="k">ストラングラーフィグパターン</span><span class="k">作業量の約30%</span><span class="k">スプリント</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part2.html"><span class="dir">← 前</span><span class="ttl">第II部 技術的・戦術的・チーム組織的なドメイン駆動トランスフォーメーション</span></a>
+    <a class="next" href="part4.html"><span class="dir">次 →</span><span class="ttl">第IV部 総括</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>ドメイン駆動トランスフォーメーション 要点まとめ</p></footer>
+
+</body>
+</html>

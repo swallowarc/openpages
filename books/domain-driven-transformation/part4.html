@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第IV部 総括 ― ドメイン駆動トランスフォーメーション 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#3a8c5a; --accent-soft:#ecf6f0; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>ドメイン駆動トランスフォーメーション</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="part1.html">第I部</a>
+        <a href="part2.html">第II部</a>
+        <a href="part3.html">第III部</a>
+        <a href="part4.html">第IV部</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART IV ― 第14〜15章＋付録A〜E</span>
+  <h1>総括</h1>
+  <p class="lead">境界づけられたコンテキストの実装に向けたドメインパターンと、ドメイン駆動トランスフォーメーション全体のまとめを扱う部である。あわせて、付録のリファクタリングカタログを整理する。</p>
+</header>
+
+<main>
+
+  <nav class="toc" aria-label="この部の目次">
+    <h2>このページの章</h2>
+    <ol>
+      <li><a href="#ch14"><span class="ch-no">14</span><span>今後に向けて：ドメインパターンと境界づけられたコンテキストへの実装</span></a></li>
+      <li><a href="#ch15"><span class="ch-no">15</span><span>ドメイン駆動トランスフォーメーションのまとめ</span></a></li>
+      <li><a href="#appendix"><span class="ch-no">A–E</span><span>付録：ドメイン駆動リファクタリングのカタログ</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 第14章 ===== -->
+  <section class="chapter" id="ch14">
+    <div class="chapter-head"><span class="num">第14章</span><h2>今後に向けて：ドメインパターンと境界づけられたコンテキストへの実装</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>境界づけられたコンテキストを実装に落とす際の指針として、ドメインパターンを示す。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧱</span>ドメインパターン</h3>
+      <p class="summary">境界づけられたコンテキストの実装に向けた指針として、ドメインパターンを扱う。原書の目次では、パイプライン、ブラックボード、ダイアログといったドメインパターンが挙げられている。</p>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>各パターンの定義と適用条件は今回のWebリサーチでは確認できなかったため、パターン名の列挙にとどめている。詳細は本文で確認してほしい。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ドメインパターン</span><span class="k">境界づけられたコンテキストの実装</span></div>
+  </section>
+
+  <!-- ===== 第15章 ===== -->
+  <section class="chapter" id="ch15">
+    <div class="chapter-head"><span class="num">第15章</span><h2>ドメイン駆動トランスフォーメーションのまとめ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>戦略・技術・チーム組織の3レベルと4ステップからなる方法論全体を総括する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧾</span>方法論の骨子</h3>
+      <p class="summary">本書全体の骨子は次のとおりである。</p>
+      <ul>
+        <li>変革の対象は戦略・技術・チーム組織の3レベルに及ぶ（第1章）。</li>
+        <li>ターゲットはマイクロサービスまたはモジュラーモノリスであり、現状（MMIで測る）に基づいてアプローチを決める（第5〜6章）。</li>
+        <li>戦略的変革は「ドメイン再発見 → ターゲットアーキテクチャのモデリング → 現状とのすり合わせ → 優先順位づけと実施」の4ステップで進める（第10〜13章）。</li>
+        <li>ビッグバン置換を避け、スプリントサイズの施策を新機能開発と並行して段階的に実施する（第13章）。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">総括</span><span class="k">3レベル</span><span class="k">4ステップ</span></div>
+  </section>
+
+  <!-- ===== 付録 ===== -->
+  <section class="chapter" id="appendix">
+    <div class="chapter-head"><span class="num">付録A〜E</span><h2>ドメイン駆動リファクタリングのカタログ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この付録を一言で</p>
+        <p>本文で使ったドメイン駆動リファクタリングの具体カタログである。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📚</span>カタログの構成</h3>
+      <p class="summary">本書のリファクタリングは、戦略的なもの・戦略を支える戦術的なもの・社会技術的なもの・ドメイン知識を強化する戦術的なものに大別される。</p>
+      <ul>
+        <li><b>戦略的リファクタリング</b>：境界づけられたコンテキストの抽出、境界づけられたコンテキストのゼロからの実装、共有カーネルの抽出。</li>
+        <li><b>戦略を支える戦術的リファクタリング</b>：特化したサービスの抽出、特化したエンティティの抽出、特化した貧血エンティティの抽出、特化したテーブルの抽出、メソッド呼び出しのドメインイベントへの置き換え。</li>
+        <li><b>社会技術的リファクタリング</b>：職能横断チームの形成、第2チームの形成、運用のDevOpsへの移行、既存チームへのコンテキスト割り当て（第9章に対応）。</li>
+        <li><b>ドメイン知識を強化する戦術的リファクタリング</b>：値オブジェクト化・貧血エンティティの解消など（第8章に対応）。</li>
+      </ul>
+      <p>付録にはチームトポロジーに関する内容も含まれる（付録D）。</p>
+      <div class="callout supplement">
+        <span class="emoji">📎</span>
+        <div><span class="ctitle">補足（本書外）</span><p>著者Henning Schwentnerは、本書のリファクタリングカタログを自身のWebサイト（hschwentner.io）でも公開している。付録A〜Eと各リファクタリングの対応関係は本文で確認してほしい。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords"><span class="k">ドメイン駆動リファクタリング</span><span class="k">境界づけられたコンテキストの抽出</span><span class="k">共有カーネル</span><span class="k">ドメインイベント</span></div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="part3.html"><span class="dir">← 前</span><span class="ttl">第III部 戦略的ドメイン駆動トランスフォーメーション</span></a>
+    <a class="next ghost" href="index.html"><span class="dir">目次へ →</span><span class="ttl">目次</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>ドメイン駆動トランスフォーメーション 要点まとめ</p></footer>
+
+</body>
+</html>
