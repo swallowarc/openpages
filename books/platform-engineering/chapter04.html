@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4章 素晴らしいプラットフォームチームを作る ― プラットフォームエンジニアリング 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#2e7d5b; --accent-soft:#eaf5f0; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>プラットフォームエンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+        <a href="chapter13.html">13章</a>
+        <a href="chapter14.html">14章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART II ― CHAPTER 4</span>
+  <h1>素晴らしいプラットフォームチームを作る</h1>
+  <p class="lead">プラットフォームチームに必要な人材構成、採用で見るべき資質、マネージャーに求める条件を扱う章。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="num">第4章</span><h2>素晴らしいプラットフォームチームを作る</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>プラットフォームチームは<mark>ソフトウェアエンジニアとシステムエンジニアの混成</mark>で作る。採用では顧客共感を技術力と同等に重視する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤝</span>単一の専門性に依存せず、バランスの取れた混成チームを作る</h3>
+      <p class="summary">プラットフォームチームにはソフトウェアエンジニアとシステムエンジニアの混成が必須であり、どちらか一方への依存はリスクになる。</p>
+      <p>構成が偏ると、チームは運用過多または開発過多に傾く。プラットフォームエンジニアリングの成功にはソフトウェアエンジニアリングの能力が必要だが、著者は「ソフトウェアエンジニアだけが欲しいわけではない」と明言する。前提にあるのは、「両方できる人だけを集めればよい」という発想は非現実的であり、多様な強みを持つ人を雇い、それぞれが成功できる文化を作る方が現実的だという判断である。プロダクト面を作る力と基盤プリミティブへの習熟という役割別の強みを組み合わせることで、チームとして必要な能力を満たす。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#2e7d5b"><b>ソフトウェアエンジニア</b><span>API・SDK・ポータルなどプラットフォームのプロダクト面を構築する</span></div>
+        <div class="way-row" style="--wc:#3a5a8c"><b>システムエンジニア</b><span>Kubernetes・Linux・ネットワーク・クラウド制御プレーンなどの基盤に習熟する</span></div>
+        <div class="way-row" style="--wc:#a05a2c"><b>信頼性エンジニア</b><span>SLO・可観測性・運用品質を担う</span></div>
+        <div class="way-row" style="--wc:#7d2e5b"><b>システムスペシャリスト</b><span>データベース・セキュリティなど特定領域の深い専門性を持つ</span></div>
+      </div>
+      <ul>
+        <li>視野の狭いチームにはリスクがある。役割の多様性がそれを防ぐ。</li>
+        <li>システムスペシャリストの市場価値はソフトウェアエンジニアの昇進ラダーと合わないことがあり、タイトルやラダーの柔軟性が必要になる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">💚</span>採用では顧客共感を技術力と同等に重視する</h3>
+      <p class="summary">プラットフォームを使うエンジニアへのサポートは仕事の大きな部分を占めるため、採用では顧客への共感を技術力と並ぶ評価軸にする。</p>
+      <p>プラットフォームチームの顧客は社内の開発者であり、日常的なサポートの接点が品質フィードバックの主経路になる。共感力を欠くエンジニアは、アーキテクチャとしては正しくても使われないプラットフォームを作ってしまう。</p>
+      <ul>
+        <li>面接の評価軸には、コーディング、システム理解度、設計能力に加えて顧客共感性が含まれる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧑‍✈️</span>マネージャーには運用経験と長期デリバリの経験を求める</h3>
+      <p class="summary">プラットフォームチームのマネージャーには、実際にプラットフォームを運用した経験、複数四半期に及ぶプロジェクトをデリバリした経験、そして細部への執着が必要である。</p>
+      <p>細部へのこだわりが必要なのは、設計時に「稀にしか起きない」と判断して飛ばしたケースが、後のサポート負荷の大きな部分を占めることがあるためである。長期プロジェクトの経験が必要なのは、プラットフォームの仕事の多くが四半期をまたぐ息の長いデリバリだからである。</p>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">混成チーム</span>
+      <span class="k">4つの役割</span>
+      <span class="k">顧客共感</span>
+      <span class="k">マネージャーの条件</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter03.html"><span class="dir">← 前</span><span class="ttl">第3章 どのように、そしていつ始めるか</span></a>
+    <a class="next" href="chapter05.html"><span class="dir">次 →</span><span class="ttl">第5章 プロダクトとしてのプラットフォーム</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>プラットフォームエンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>

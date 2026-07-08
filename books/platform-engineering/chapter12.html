@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12章 プラットフォームが信頼されている ― プラットフォームエンジニアリング 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#a05a2c; --accent-soft:#f7efe7; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>プラットフォームエンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+        <a href="chapter13.html">13章</a>
+        <a href="chapter14.html">14章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART III ― CHAPTER 12</span>
+  <h1>プラットフォームが信頼されている</h1>
+  <p class="lead">成功の第2の状態は「信頼されている」こと。信頼は成果の結果として自然に付いてくるものではなく、成果を出すために先に必要になる条件だと本章は論じる。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch12">
+    <div class="chapter-head"><span class="num">第12章</span><h2>プラットフォームが信頼されている</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p><mark>信頼は成果に先行して必要な条件</mark>である。信頼を失う経路は「運用能力を示せない」「賛同（buy-in）なしの大投資」「ボトルネック化」の3つに大別される。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🤝</span>信頼は成果に先行して必要になる</h3>
+      <p class="summary">機能や改善のデリバリには時間がかかり、その間、テスト・検証・採用のための忍耐とパートナーシップという形の顧客の信頼が必要になる。信頼がなければ、たった一つの不運な出来事が丁寧に作られたプロダクトロードマップを無用にする。</p>
+      <p>著者は「価値を出せば信頼は後から付いてくる」という反論を先に提示したうえで、デリバリ自体が顧客の忍耐と協力を前提とすることを示して反駁する。プラットフォームはすでに本番で稼働しており、改善の提供には長いリードタイムがある。信頼を失ったチームは、危機対応のための使い捨ての作業に追われることになる。信頼は、壊すよりも築く方がはるかに時間がかかる。</p>
+      <div class="callout warn">
+        <span class="emoji">🚩</span>
+        <div><span class="ctitle">紛らわしい成功の兆候</span><p>リーダー個人への信頼をプラットフォームへの信頼と思い込むこと。善意の独裁者体制は効率的だが、その人が去るか顧客数が限界を超えた瞬間に、意思決定者と信頼を同時に失う。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🕳️</span>信頼を失う主要な経路は3つある</h3>
+      <p class="summary">著者2人の経験では、プラットフォームが信頼を失う主な経路は、(1)顧客が必要とする規模での運用能力を示せない、(2)大きな投資の開始前に賛同（buy-in）を得ない、(3)ビジネスのボトルネックになる、の3つである。</p>
+      <p>章全体が、この3経路それぞれの回避策――運用への信頼、大投資への信頼、デリバリの優先順位付けへの信頼――を順に論じる構造をとる。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#a05a2c"><b>経路1</b><span>顧客が必要とする規模での運用能力を示せない</span></div>
+        <div class="way-row" style="--wc:#7d2e5b"><b>経路2</b><span>大きな投資の開始前に賛同を得ない</span></div>
+        <div class="way-row" style="--wc:#3a5a8c"><b>経路3</b><span>ビジネスのボトルネックになる</span></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏔️</span>運用の信頼: 経験に圧縮アルゴリズムはない</h3>
+      <p class="summary">規模での基盤システム運用は、規模で運用することでしか上達しない。SLOやオンコールなどのプラクティスを整備するだけでは、運用への信頼は得られない。</p>
+      <p>チェックボックスをすべて埋めても、アプリケーションチームのシニアエンジニアからの運用面の信頼は得られないことがある、と著者は前提を置く。運用力は経験でしか得られない以上、打てる手は2つに絞られる。第一に、規模での運用経験を持つリーダーを雇い、権限を与えて学習曲線を加速する。第二に、運用リスクの許容度に基づいてユースケースの導入順序を最適化する。すなわち、クリティカルでないアプリケーションから段階的にオンボードしてデータを集め、その実績で次のより重要なユースケースの信頼を得る。</p>
+      <ul>
+        <li>「経験に圧縮アルゴリズムはない」はAmazonで使われてきた格言として引かれる。</li>
+        <li>著者の実例として、運用安定性のOKRを設定して全社に公開した結果、顧客満足度調査の改善、オンコール負荷の低減、経営層の議論の変化が起きたことが紹介される。</li>
+        <li>逆の実例として、性能テストが不足したまま採用を推進した結果、レイテンシ問題と部分的なサービス低下が発生して不信を招いたことが紹介される。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏗️</span>大投資の信頼: 着手前の賛同と旧システムへの投資継続</h3>
+      <p class="summary">新プラットフォームやリアーキテクチャのような大きな投資は、着手前に技術ステークホルダの賛同と経営のスポンサーシップを獲得し、マイグレーション中も旧システムへの投資を続けなければ信頼を失う。</p>
+      <p>大投資は、実証された価値に先立つ大きな信頼を要し、通常は数年がかりで、その間は現行プラットフォームの改善リソースを奪う。賛同なしで始めると「現ユーザーのニーズが満たされていないのに、なぜこれに資金を出すのか」という突き上げでロードマップが覆される。シニアICには開始前にフィードバックの機会を与えなければ、後で採用を迫ったときに「黙ってコミット」は期待できない。マイグレーション中の旧システムについては、負荷が大きく減り始めるまで改善への投資を続ける必要がある。さもなければ信頼を失う。</p>
+      <ul>
+        <li>事例として、コストは高いが予測可能性を高めた新オファリングを、まず可視性の高い用途で数か月運用して見せてからマイグレーションのコミットを得たチームの話が紹介される。</li>
+        <li>技術的な「正しさ」をめぐる膠着状態は、実は信頼の問題である。両者のニーズを満たす妥協案と高水準の運用実証で解く。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚦</span>ボトルネック化を防ぐ: ビルディングブロックであれ</h3>
+      <p class="summary">プラットフォームがビジネスのボトルネックになると信頼を失う。ボトルネック化しやすいのは、大きな機能表面積を公開しようとし、多様なアプリケーションをサポートしようとし、ユーザー自身によるブロック解除を信頼しない設計のプラットフォームである。</p>
+      <p>対策は、スコープの限定、適切な抽象、ユーザーが自分でブロックを解除できる制御点の設計、拡張性メカニズムの4点である。過度に結合したプラットフォームの信頼回復策として、著者は「バッテリー同梱ではなくビルディングブロック（building blocks, not batteries included）」という方針を挙げる。ブロックは、明確なAPIで統合できる基盤的なものであること、上級顧客が抽象を突き破って（pierce）自分で問題を解決できるよう組み合わせ可能であること、漸進的に交換可能であることが求められる。</p>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">信頼</span>
+      <span class="k">賛同（buy-in）</span>
+      <span class="k">経験に圧縮アルゴリズムはない</span>
+      <span class="k">運用安定性のOKR</span>
+      <span class="k">ボトルネック</span>
+      <span class="k">ビルディングブロック</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter11.html"><span class="dir">← 前</span><span class="ttl">第11章 プラットフォームに整合性がある</span></a>
+    <a class="next" href="chapter13.html"><span class="dir">次 →</span><span class="ttl">第13章 プラットフォームが複雑性を管理している</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>プラットフォームエンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>

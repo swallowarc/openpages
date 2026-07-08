@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第1章 プラットフォームエンジニアリングが重要になりつつある理由 ― プラットフォームエンジニアリング 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>
+:root{ --accent:#3a5a8c; --accent-soft:#eef2f8; }
+.table-wrap table{ width:100%; border-collapse:collapse; font-size:14px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-sm); }
+.table-wrap th,.table-wrap td{ padding:10px 12px; border:1px solid var(--line-soft); text-align:left; vertical-align:top; }
+.table-wrap thead th{ background:var(--accent-soft); color:var(--ink); }
+.table-wrap tbody th{ background:var(--accent-soft); white-space:nowrap; }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>プラットフォームエンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+        <a href="chapter13.html">13章</a>
+        <a href="chapter14.html">14章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART I ― CHAPTER 1</span>
+  <h1>プラットフォームエンジニアリングが重要になりつつある理由</h1>
+  <p class="lead">クラウドとOSSはアプリケーションを作ることを容易にしたが、維持することを難しくした。本章はこの状況が生まれた経緯を分析し、既存のアプローチでは解決できない理由と、プラットフォームエンジニアリングが投資に値する理由を論じる。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch1">
+    <div class="chapter-head"><span class="num">第1章</span><h2>プラットフォームエンジニアリングが重要になりつつある理由</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>クラウドとOSSの選択肢の爆発は組織を<mark>「過度な一般化の泥沼」</mark>に沈めた。ここから抜け出すには、厳選と抽象化で複雑性を管理するプラットフォームエンジニアリングへの投資が必要である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌊</span>クラウドとOSSは開発を速くしたが、所有コストを増大させた</h3>
+      <p class="summary">ソフトウェアの主なコストは開発ではなく維持にある。クラウドとOSSは「作る」を速くした一方で「維持する」を難しくし、組織を変更困難な複雑性の沼に沈めた。</p>
+      <p>著者はソフトウェア保守の研究を引き、ソフトウェアのライフタイムコストの少なくとも60〜75%は初期開発の後に発生し、そのうち約4分の1はマイグレーションのような「適応的」保守に費やされるとする。クラウドとOSSが提供するのは、広い能力を持つが相互に統合されていない汎用部品＝<span class="term">プリミティブ</span>であり、プリミティブ同士をつなぐには統合コード・一回限りの自動化・設定・管理ツールといった<span class="term">グルー（糊）</span>が必要になる。グルーは物事を固着させ、将来の変更を困難にする。各アプリケーションチームは「速く出荷すること」で称賛と報酬を得るため、それぞれ独立に最適なプリミティブを選び、必要なグルーを都度自作する。この積み重ねの帰結として、セキュリティパッチ程度の些細な更新でも全社的な統合・再テストの工数が発生する状態、すなわち組織の生産性への大きな税金が生まれる。著者はこの状態を<span class="term">過度な一般化の泥沼（over-general swamp）</span>と呼ぶ。</p>
+      <ul>
+        <li>プリミティブという語は2003年のAWSのビジョン文書に由来する。</li>
+        <li>解決の鍵はグルー総量の制約にある。限定したOSS・ベンダーの選択肢の上に、意見を持った（opinionated）抽象を作ることがそれを可能にする。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚧</span>PaaS・Kubernetes・DevOps・SREは泥沼を解決しきれていない</h3>
+      <p class="summary">泥沼に至った原因は「選択肢の爆発的増加」と「運用に対する高い要求」という過去25年の2つの変化であり、これまでの主要なアプローチはいずれもこの問題を解決しきれていない。</p>
+      <p>著者の分析では、PaaSは幅広いアプリケーションと既存インフラへの統合に失敗し、ほぼすべての大規模な内製企業は柔軟性を取ってIaaSを受け入れた結果、かえってアプリケーションをインフラに縛り付けた。Kubernetesの隆盛について著者は「PaaSとIaaSの双方がエンタープライズの要求を満たせなかったことの告白」と評し、Kubernetesは典型的な漏れのある抽象であって「TerraformのグルーがYAMLのグルーに置き換わっただけ」だとする。OSSについては「子犬のように無料」という言葉を引き、導入は無料でも選択したチームが保守コストを負い続けると指摘する。運用面では、開発と運用の責任分界の曖昧さから生まれたDevOpsが「split型」と「merged型」の2つの実装に割れ、運用作業そのものは消えなかった。SREについては「当初売り込まれた形では、Googleの外で広範な成功を収めていない」と主張する。プロセスが重く、Googleの文化資本に依存しすぎたためである。</p>
+      <ul>
+        <li>セキュリティ要件の高まりにより、更新の周期は年単位から月単位に短縮された。より多くのチームが、より複雑なプリミティブ群の上で、より多くの選択を行うようになった。</li>
+        <li>SRE批判の補強として、元Google SREディレクターDave O'Connorの記事「6 Reasons You Don't Need an SRE Team」（2023年）が引用されている。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚙️</span>プラットフォームエンジニアリングは4つのメカニズムで投資を正当化する</h3>
+      <p class="summary">プラットフォームエンジニアリングには構築・支援コスト、選択制限のオーバーヘッド、組織変更のコストがかかる。著者はその投資を上回る長期価値を4つのメカニズムで論証する。</p>
+      <p>第一に、権威によらずプリミティブを制限する。専門家・アーキテクト・CTOによるトップダウンの標準化は業務ニーズを理解できず失敗するため、顧客中心のプロダクトアプローチで「幅広い要件を満たせる少数のプリミティブ」を厳選する。第二に、アプリケーションごとのグルーを削減する。著者はTerraformを例に、アプリチーム各自に書かせる→中央の「Terraform代筆チーム」化→優秀な開発者が去りスパゲッティ化する、という悪化の過程を示し、「グルー保守センター」ではなく「物を作るエンジニアリングセンター」への進化が必要だとする。第三に、マイグレーションコストを集約する。プリミティブの多様性削減、APIによるOSS・ベンダーシステムのカプセル化、プラットフォーム利用のオブザーバビリティ、マイグレーションツールを書けるチームへの所有権付与により、組織全体のマイグレーションコストが下がる。第四に、開発者が自分の作った物を運用できるようにする。基盤の運用複雑性をプラットフォームの抽象が吸収すれば、アプリ起因の問題だけがオンコール対象になり、多くのチームが運用責任を引き受けるようになる。</p>
+      <div class="steps">
+        <div class="step"><span class="badge">1</span>権威によらずプリミティブを制限する</div>
+        <div class="step"><span class="badge">2</span>アプリケーションごとのグルーを削減する</div>
+        <div class="step"><span class="badge">3</span>マイグレーションコストを集約する</div>
+        <div class="step"><span class="badge">4</span>開発者が自分の作った物を運用できるようにする</div>
+      </div>
+      <div class="callout why">
+        <span class="emoji">🧠</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>DevOpsの「you build it, you run it」が多くの企業で実行できなかったのは、基盤の運用複雑性がアプリ自体の問題を圧倒していたからであり、成功した企業ではプラットフォームのレバレッジがそれを吸収していた、というのが著者の観察である。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔭</span>既存の4アプローチとの違いは「チームのミッション」にある</h3>
+      <p class="summary">Infrastructure・DevTools・DevOps・SREの各アプローチは、いずれもプラットフォーム構築に必要な焦点とスキルの組み合わせを持つように設計されていない。プラットフォームエンジニアリングは組織的期待の意図的なリセットである。</p>
+      <p>問題は個人の能力ではなく「チームのミッション」にあり、個人の役割はチームのミッションに制約される。組織はチームに「これまで通りのこと」を期待し続けるため、既存チームのミッション変更は難しい。だからこそ、各サイロから出て「バランスを提供するプラットフォームを作る」という広いミッションを持つチームを新設することが、組織的期待のリセットになると著者は結論する。</p>
+      <div class="table-wrap" style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>アプローチ</th><th>焦点</th><th>欠けているもの</th></tr></thead>
+          <tbody>
+            <tr><td>Infrastructure</td><td>基盤の堅牢な運用</td><td>アプリケーションを単純化する抽象化への焦点</td></tr>
+            <tr><td>DevTools</td><td>本番デリバリまでの開発者生産性</td><td>本番で動くシステムに起因する生産性問題への焦点</td></tr>
+            <tr><td>DevOps</td><td>アプリケーションの本番デリバリ</td><td>自動化を最大多数に役立てる焦点</td></tr>
+            <tr><td>SRE</td><td>信頼性</td><td>信頼性以外のシステム特性への焦点</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📖</span>プラットフォームの定義とレバレッジ</h3>
+      <p class="summary">プラットフォームとは、セルフサービスのAPI・ツール・サービス・知識・サポートの基盤であり、魅力的な内部プロダクトとして編成されたものである。自律的なアプリケーションチームは、これを利用することで調整を減らしつつ高いペースでプロダクト機能を提供できる。</p>
+      <p>この定義はEvan Bottcherによる2018年の定義を一部更新して採用したものである。系として、エンジニアリングの対象でないものはプラットフォームではない。Wikiページはエンジニアリングの余地がないためプラットフォームではなく、「クラウド」もそれ単体では一貫したプラットフォームと見なすには巨大すぎる。プラットフォームエンジニアリングの目標は、システム全体の複雑性を管理してビジネスに<span class="term">レバレッジ</span>をもたらすことである。レバレッジとは、少数のプラットフォームチームのエンジニアの仕事が、より大きな組織の仕事を減らすことを指し、アプリ開発者の生産性向上と、重複作業の排除による組織効率化という2つの経路で達成される。厳選されたプロダクトアプローチとは、幅広い機能要求に対して「何をするか」と、より重要な「何をしないか」によって意図的に選別することであり、プロダクトマネージャーを形だけ雇うことではない。</p>
+      <ul>
+        <li>プラットフォームは「既知の技術の範囲内での」ビジネスイノベーションは支援するが、それを超えるイノベーションはむしろ阻害しうる。異なる性能特性を要する新規事業チームがプラットフォームを部分的に離れることには正しい例外もある。</li>
+        <li>すべての例外と戦うプラットフォームチームは、自システムを過度に一般化させ、健全なイノベーションを阻害する。成功して広い需要が生まれたものだけを後からプラットフォームに取り込むのが最善である。</li>
+        <li><span class="term">シャドープラットフォーム</span>とは、中央システムが課す制限を埋める・回避するために中央部門以外が構築したシステムを指す。中央提供へ誘導すべき時とシャドープラットフォームを許すべき時の見極めがプラットフォームリーダーの鍵となるスキルである。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">過度な一般化の泥沼</span>
+      <span class="k">プリミティブ</span>
+      <span class="k">グルー</span>
+      <span class="k">レバレッジ</span>
+      <span class="k">厳選されたプロダクトアプローチ</span>
+      <span class="k">シャドープラットフォーム</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="index.html"><span class="dir">← 前</span><span class="ttl">目次</span></a>
+    <a class="next" href="chapter02.html"><span class="dir">次 →</span><span class="ttl">第2章 プラットフォームエンジニアリングの柱</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>プラットフォームエンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>

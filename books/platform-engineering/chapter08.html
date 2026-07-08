@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第8章 プラットフォームのリアーキテクチャ ― プラットフォームエンジニアリング 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#2e7d5b; --accent-soft:#eaf5f0; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>プラットフォームエンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+        <a href="chapter13.html">13章</a>
+        <a href="chapter14.html">14章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART II ― CHAPTER 8</span>
+  <h1>プラットフォームのリアーキテクチャ</h1>
+  <p class="lead">成長や要件の変化でアーキテクチャが限界を迎えたとき、どう作り直すかを扱う章。ゼロからの「v2」ではなく、稼働中システムの段階的な再設計を論じる。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch8">
+    <div class="chapter-head"><span class="num">第8章</span><h2>プラットフォームのリアーキテクチャ</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ゼロから「v2」を作るのではなく、<mark>稼働中のシステムを段階的に再実装する</mark>。セキュリティは後付けせず、アーキテクチャに内在させる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔁</span>「v2」よりも段階的リアーキテクチャを選ぶ</h3>
+      <p class="summary">ゼロから作り直す「v2」アプローチより、稼働中システムの段階的なリアーキテクチャの方が現実的で効果的である。</p>
+      <p>リアーキテクチャとは、システムが稼働しつつ、アーキテクチャを段階的に再実装する反復的プロセスである。v2アプローチはセカンドシステム効果により失敗リスクが高く、実際にはv1への投資凍結、タイムラインの過小見積り、マイグレーションコストの膨張が繰り返し起きる。前提にあるのは、既存システムには稼働中の顧客がいて、マイグレーションそのものが最大のコストだという認識である。稼働を止めない段階的な再実装は、このリスクを最小化する。</p>
+      <div class="versus">
+        <div class="side a">
+          <b>v2アプローチ</b>
+          <p>ゼロから作り直す。v1への投資が凍結され、タイムラインは過小に見積られ、マイグレーションコストが膨張する。</p>
+        </div>
+        <div class="vs">対</div>
+        <div class="side b">
+          <b>段階的リアーキテクチャ</b>
+          <p>システムを稼働させたまま、アーキテクチャを段階的に再実装する反復的プロセス。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🛤️</span>ガードレールと段階的な計画が成功の鍵になる</h3>
+      <p class="summary">リアーキテクチャは、ガードレールを設けたうえで、長期の目標と短期の成果を両立させる計画で進める。</p>
+      <p>ガードレールは互換性、テスト、下位環境、段階的リリースの4項目である。計画は、複数年のアーキテクチャ目標を定義し、現実的なマイグレーションコストを織り込み、12ヶ月以内に投資の継続を正当化できる成果を特定し、長期化を受け入れつつリーダーシップの合意を得る、という流れで組み立てる。</p>
+      <div class="steps">
+        <div class="step"><span class="badge">1</span>複数年のアーキテクチャ目標を定義する</div>
+        <div class="step"><span class="badge">2</span>現実的なマイグレーションコストを織り込む</div>
+        <div class="step"><span class="badge">3</span>12ヶ月以内に投資継続を正当化する成果を特定する</div>
+        <div class="step"><span class="badge">4</span>長期化を受け入れつつリーダーシップの合意を得る</div>
+      </div>
+      <ul>
+        <li>既存チームの文化が再構築に不向きな場合がある。この文脈でパイオニア・セトラー・タウンプランナーというエンジニアの類型が言及される。</li>
+        <li>再設計の目標には、開発者が安全な選択肢をデフォルトで使える<span class="term">舗装された道（paved path）</span>の提供が含まれる。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔐</span>セキュリティは後付けせず、アーキテクチャに内在させる</h3>
+      <p class="summary">セキュリティは後から足せるものではなく、アーキテクチャに組み込んで開発者から「見えないもの」にする。</p>
+      <p>サイバー攻撃は完全には防止できないため、防止だけでなく適応（レジリエンス）が必要になる。最小権限・分離・トレーサビリティといった性質は設計に固有であるべきで、利用者に手動のセキュリティ設定を要求するのであれば、それは利用チームではなくプラットフォーム側の欠陥である。</p>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">リアーキテクチャ</span>
+      <span class="k">セカンドシステム効果</span>
+      <span class="k">ガードレール</span>
+      <span class="k">舗装された道</span>
+      <span class="k">セキュリティの内在化</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter07.html"><span class="dir">← 前</span><span class="ttl">第7章 計画とデリバリ</span></a>
+    <a class="next" href="chapter09.html"><span class="dir">次 →</span><span class="ttl">第9章 プラットフォームのマイグレーションと廃止</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>プラットフォームエンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>

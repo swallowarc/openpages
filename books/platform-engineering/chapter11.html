@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第11章 プラットフォームに整合性がある ― プラットフォームエンジニアリング 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#a05a2c; --accent-soft:#f7efe7; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>プラットフォームエンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+        <a href="chapter13.html">13章</a>
+        <a href="chapter14.html">14章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART III ― CHAPTER 11</span>
+  <h1>プラットフォームに整合性がある</h1>
+  <p class="lead">第III部は成功したプラットフォーム組織の姿を4つの状態として描く。最初の状態は「整合している」こと――複数のプラットフォームチームが同じ方向を向いていることである。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch11">
+    <div class="chapter-head"><span class="num">第11章</span><h2>プラットフォームに整合性がある</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>成功には複数チームが<mark>目的・プロダクト戦略・計画の3層</mark>で整合していることが必要であり、最終的な整合はコンセンサスではなく原則に基づいたリーダーシップから生まれる。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧭</span>整合は目的・プロダクト戦略・計画の3層で成立する</h3>
+      <p class="summary">プラットフォーム組織の成功には、複数チームが目的・プロダクト戦略・計画の3つのレベルで同じ方向を向いていることが不可欠である。一部のチームだけの部分的成功では、組織全体の大きな成果は達成できない。</p>
+      <p>前提には、プラットフォーム組織が複数チーム・複数プロダクトから成り、チーム単位の局所最適が起こりうるという構造がある。不整合は3つの形で現れる。目的のミスマッチ（狭い焦点で運用されるプラットフォーム）、プロダクト戦略のミスマッチ（重複や互換性のないプロダクト）、計画のミスマッチ（プロジェクト実行時の相互サポートの欠如）である。章は、目的への整合（人材の組み合わせ、共通の取り組み、チーム間協力）から、プロダクト戦略への整合（独立したプロダクトマネジメント、顧客調査、組織再編）、計画への整合へと、内側から外側へ整合を積み上げる構成をとる。</p>
+      <div class="steps">
+        <div class="step"><span class="badge">1</span><b>目的への整合</b> ― 何のためのプラットフォーム組織かを揃える</div>
+        <div class="step"><span class="badge">2</span><b>プロダクト戦略への整合</b> ― 重複や非互換を生まない戦略を揃える</div>
+        <div class="step"><span class="badge">3</span><b>計画への整合</b> ― プロジェクト実行時に相互にサポートする</div>
+      </div>
+      <ul>
+        <li>チーム間協業を促進する手段としてドッグフーディングが言及される。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📊</span>利用率を成功の一次指標にしない</h3>
+      <p class="summary">利用率（usage）は成功の一次指標ではなく、二次指標にとどめるべきである。</p>
+      <p>社内プラットフォームでは利用が事実上強制されることがあり、利用率の重視は顧客ニーズの無視につながるリスクを持つ。縦割りの意識を排し、ユーザーを顧客として捉えることが求められる。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚖️</span>最終的な整合は原則に基づいたリーダーシップから生まれる</h3>
+      <p class="summary">チーム間の意見対立は自然には解消しない。最終的な整合はコンセンサスではなく、原則に基づいたリーダーシップの裁定から生まれる。</p>
+      <p>整合は細部ではなく大きなプロジェクトの単位でのみ行うことで、整合のコストを抑える。それでも残る対立には、率直に立ち向かう。この文脈で「Disagree and Commit（反対し、そしてコミットする）」の原則が鍵概念として挙げられる。放置された対立は、戦略の不整合として固定化する。</p>
+      <ul>
+        <li>整合プロセスの具体例として、一部の大型イニシアチブを一時停止して最重要事項に集中する判断がある。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">整合性</span>
+      <span class="k">目的・プロダクト戦略・計画</span>
+      <span class="k">ドッグフーディング</span>
+      <span class="k">Disagree and Commit</span>
+      <span class="k">原則に基づいたリーダーシップ</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter10.html"><span class="dir">← 前</span><span class="ttl">第10章 ステークホルダとの関係管理</span></a>
+    <a class="next" href="chapter12.html"><span class="dir">次 →</span><span class="ttl">第12章 プラットフォームが信頼されている</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>プラットフォームエンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>

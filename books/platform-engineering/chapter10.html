@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10章 ステークホルダとの関係管理 ― プラットフォームエンジニアリング 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>
+:root{ --accent:#2e7d5b; --accent-soft:#eaf5f0; }
+.table-wrap table{ width:100%; border-collapse:collapse; font-size:14px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-sm); }
+.table-wrap th,.table-wrap td{ padding:10px 12px; border:1px solid var(--line-soft); text-align:left; vertical-align:top; }
+.table-wrap thead th{ background:var(--accent-soft); color:var(--ink); }
+.table-wrap tbody th{ background:var(--accent-soft); white-space:nowrap; }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>プラットフォームエンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+        <a href="chapter13.html">13章</a>
+        <a href="chapter14.html">14章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART II ― CHAPTER 10</span>
+  <h1>ステークホルダとの関係管理</h1>
+  <p class="lead">プラットフォームの資金も採用も社内の合意に依存する。関係者をどう把握し、どう情報を届け、どう断り、シャドープラットフォームにどう向き合うかを扱う章。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch10">
+    <div class="chapter-head"><span class="num">第10章</span><h2>ステークホルダとの関係管理</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>ステークホルダ管理は政治活動ではなく<mark>組織規模の拡大に伴い必須になる調整業務</mark>である。断るときはビジネス成果に結びつけて定量的に説明する。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🏢</span>ステークホルダ管理は必須の調整業務である</h3>
+      <p class="summary">異なる視点と優先順位を持つ関係者の調整は、組織規模の拡大に伴い構造的に必要になる。これは「政治」ではなく業務である。</p>
+      <p>前提には、プラットフォームは社内の予算で作られ、社内の顧客に使ってもらうものであり、資金と採用の両方が社内の合意に依存するという構造がある。関係者からの支持がなければ、どれほど優れたプラットフォームも成功は難しい。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗺️</span>パワー・インタレストグリッドで関わり方を変える</h3>
+      <p class="summary">ステークホルダは影響力（パワー）と関心度（インタレスト）の2軸4象限でマッピングし、象限ごとに関わり方を変える。</p>
+      <p>影響力も関心も高い相手には定期的な相談を行い、影響力も関心も低い相手にはステータスページによる情報提供で足りる。ただし、高関心・高影響力のステークホルダが常に優先されるわけではない。期待値が高い相手ほど、失敗したときのリスクも大きい。</p>
+      <div class="table-wrap" style="overflow-x:auto;">
+        <table>
+          <thead><tr><th></th><th>関心度 高</th><th>関心度 低</th></tr></thead>
+          <tbody>
+            <tr><th>影響力 高</th><td>定期的に相談し、密に関与する</td><td>満足を維持し、必要な時に動けるようにする</td></tr>
+            <tr><th>影響力 低</th><td>情報を継続的に提供する</td><td>ステータスページなどの受動的な情報提供で足りる</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">💬</span>断るとき・交渉するときはビジネス成果で語る</h3>
+      <p class="summary">要求を断る、または交渉する際は、技術の詳細ではなくビジネス成果に直接結びつけて定量的に説明する。</p>
+      <p>たとえば機能追加の依頼に対しては、それが進行中のマイグレーションをどれだけ遅らせ、会社にどれだけのコストをもたらすかという形で答える。ビジネスインパクトの説明には、開発への寄与、使わなかった場合に起きる問題、複数チームへ横展開したときの投資対効果という要素が使われる。リーダー層に伝えるべきはマイルストーンの確度とリスクであり、技術実装の詳細を論争する必要はない。</p>
+      <ul>
+        <li>予算は人単位ではなくケイパビリティ・チーム単位で要求し、何を守り何を切るかについて強い意見を持つ。判断基準を財務部門任せにしない。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">👥</span>シャドープラットフォームは常に潰すべきものではない</h3>
+      <p class="summary">プラットフォームチームの提供物と重複してアプリケーション側チームが構築するシャドープラットフォームは、是正コストが実害を上回るなら許容する判断も合理的である。</p>
+      <p>取り込みやマイグレーションといった是正のコストと、放置した場合の運用上の害を比較して判断する。すべてを潰す方針は現実的でない。</p>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">ステークホルダ</span>
+      <span class="k">パワー・インタレストグリッド</span>
+      <span class="k">ビジネスインパクト</span>
+      <span class="k">予算管理</span>
+      <span class="k">シャドープラットフォーム</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter09.html"><span class="dir">← 前</span><span class="ttl">第9章 プラットフォームのマイグレーションと廃止</span></a>
+    <a class="next" href="chapter11.html"><span class="dir">次 →</span><span class="ttl">第11章 プラットフォームに整合性がある</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>プラットフォームエンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>

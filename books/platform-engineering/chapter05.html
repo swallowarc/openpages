@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第5章 プロダクトとしてのプラットフォーム ― プラットフォームエンジニアリング 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#2e7d5b; --accent-soft:#eaf5f0; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>プラットフォームエンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+        <a href="chapter13.html">13章</a>
+        <a href="chapter14.html">14章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART II ― CHAPTER 5</span>
+  <h1>プロダクトとしてのプラットフォーム</h1>
+  <p class="lead">社内プラットフォームにプロダクトマネジメントを適用する方法を扱う章。社内顧客という特殊な市場の性質、価値の測り方、ロードマップの作り方、典型的な失敗モードを論じる。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="num">第5章</span><h2>プロダクトとしてのプラットフォーム</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>「プロダクトとして扱う」はブランディングではなく<mark>働き方の方法論</mark>である。囲い込まれた社内顧客には、消費者向けプロダクトとは異なるアプローチが要る。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎯</span>社内顧客は囲い込まれた顧客であり、意図的なディスカバリが必要になる</h3>
+      <p class="summary">社内プラットフォームのユーザーは囲い込まれた顧客（captive audience）であり、市場による淘汰圧が働かない。だからこそ、プロダクトディスカバリと採用の計測を意図的な仕組みとして持つ必要がある。</p>
+      <p>社内ユーザーは強い意見を持つ一方で、顧客数が少ないため消費者向けプロダクトで使われる手法がそのまま機能しない。著者は書籍に先行する自身の記事で、少数の観客に対するA/Bテストはほとんど教訓をもたらさないこと、囲い込みのせいで採用のメトリクスが無視され、複数の重複した未完成プロダクトが生じることを指摘している。市場の淘汰が働かない以上、パイロットによる検証や顧客タイプの理解といったディスカバリを、仕組みとして意図的に行うしかない。</p>
+      <ul>
+        <li>章にはプロダクトディスカバリ、市場調査、顧客中心のプロダクト文化という要素が含まれる。</li>
+        <li>厳選（キュレーション）は「何を作らないか」の判断を含む。過剰な作り込みを避けることがプロダクトアプローチの一部である。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📏</span>価値は売上ではなくインパクトメトリクスで測る</h3>
+      <p class="summary">社内プラットフォームには売上がないため、価値は採用率・時間削減・満足度などのインパクトメトリクスで測る。</p>
+      <p>計測の焦点は、利用者の満足度と生産性の向上に置かれる。リードタイムの削減や運用の改善といった、開発チームに対する効果が計測対象になる。</p>
+      <div class="metrics">
+        <div class="metric"><span class="big">採用率</span><span class="name">どれだけのチームが使っているか</span><span class="dir up">増やす</span></div>
+        <div class="metric"><span class="big">時間削減</span><span class="name">開発者の作業時間・リードタイム</span><span class="dir down">減らす</span></div>
+        <div class="metric"><span class="big">満足度</span><span class="name">CSATスコアなどの顧客満足</span><span class="dir up">上げる</span></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🗺️</span>ロードマップは時間軸の階層で構成する</h3>
+      <p class="summary">ロードマップは、ビジョン・戦略・目標と指標・マイルストーンという時間軸の異なる階層で構成する。</p>
+      <div class="steps">
+        <div class="step"><span class="badge">1</span><b>ビジョン</b> ― 複数年の方向性</div>
+        <div class="step"><span class="badge">2</span><b>戦略</b> ― 年次の賭け</div>
+        <div class="step"><span class="badge">3</span><b>目標と指標</b> ― 四半期〜年次の成功の定義</div>
+        <div class="step"><span class="badge">4</span><b>マイルストーン</b> ― 四半期のデリバリ単位</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">⚠️</span>典型的な失敗モードはマイグレーションコストの過小評価である</h3>
+      <p class="summary">プラットフォームのプロダクト運営で繰り返される失敗は、マイグレーションコストの過小評価と、安定性が不足している段階での新機能の過大評価である。</p>
+      <p>ユーザーであるアプリケーションチームが「変化に割ける予算」は限られており、それを過小評価してロードマップを組むことがアンチパターンになる。マイグレーションの負担を軽く見積もった計画は、実際には大きく超過する。</p>
+      <div class="callout warn">
+        <span class="emoji">🚩</span>
+        <div><span class="ctitle">落とし穴</span><p>基盤の安定性が不足しているうちに新機能へ投資を振り向けると、信頼を失う。新機能の価値は安定性の土台の上でしか評価されない。</p></div>
+      </div>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">囲い込まれた顧客</span>
+      <span class="k">プロダクトディスカバリ</span>
+      <span class="k">インパクトメトリクス</span>
+      <span class="k">ロードマップの階層</span>
+      <span class="k">マイグレーションコストの過小評価</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter04.html"><span class="dir">← 前</span><span class="ttl">第4章 素晴らしいプラットフォームチームを作る</span></a>
+    <a class="next" href="chapter06.html"><span class="dir">次 →</span><span class="ttl">第6章 プラットフォームの運用</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>プラットフォームエンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>

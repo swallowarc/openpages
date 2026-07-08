@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第9章 プラットフォームのマイグレーションと廃止 ― プラットフォームエンジニアリング 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#2e7d5b; --accent-soft:#eaf5f0; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>プラットフォームエンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+        <a href="chapter13.html">13章</a>
+        <a href="chapter14.html">14章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART II ― CHAPTER 9</span>
+  <h1>プラットフォームのマイグレーションと廃止</h1>
+  <p class="lead">避けられないマイグレーションを、顧客に負担を丸投げせずにやり切る方法と、古いシステムを廃止する判断を扱う章。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch9">
+    <div class="chapter-head"><span class="num">第9章</span><h2>プラットフォームのマイグレーションと廃止</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>マイグレーション作業を顧客に丸投げする<mark>「DIYマイグレーション」はアンチパターン</mark>である。プラットフォームチームがマイグレーションの大半を担い、条件が揃えば廃止を恐れない。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">♻️</span>マイグレーションは避けられない継続的課題である</h3>
+      <p class="summary">セキュリティ要件やベンダーの変更によりシステムの進化は必然であり、マイグレーションはプラットフォームチームにとって避けて通れない継続的な課題である。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🚚</span>マイグレーション作業はプラットフォームチームが担う</h3>
+      <p class="summary">互換性のない新システムを提供してマイグレーション作業を顧客に期待する「DIYマイグレーション」はアンチパターンであり、プラットフォームチームがマイグレーションプロセスのはるかに多くを所有すべきである。</p>
+      <p>著者は、マイグレーションがプロジェクトマネージャーに依存関係を追跡させるほど苦痛なら、それはインフラチームがユーザー体験の所有権を取れていない証拠だとする。前提には、マイグレーションコストの過小評価が最も頻繁な失敗モードであるという5章の議論がある。優れたマイグレーションのやり方として、利用状況メタデータの追跡（誰がプラットフォームのどの部分を使っているかの把握）、チェックリストではなく自動化（アプリチームの手作業ではなくプラットフォームチームのスクリプト）、透過的マイグレーション（新システムが旧APIを受け付け、バックエンドだけを切り替える）、セルフサービスを可能にする明確なドキュメントが挙げられる。</p>
+      <ul>
+        <li>マイグレーション戦略は、プロダクト計画の主要部でなければならない。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧲</span>強制ではなく、新しい道の機能的優位で採用を促す</h3>
+      <p class="summary">上層部の権威による強制マイグレーションは繰り返し使える手ではなく、やがてノイズになる。新しい道を機能的に優位にして、自然な採用を促す方がよい。</p>
+      <p>マイグレーションのアンチパターンとして、上層部からの強制、要件の不明瞭さ、テスト不足が挙げられる。機能的な優位性はマンデートよりも有機的な採用を促す。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌇</span>条件が揃えば廃止を恐れない</h3>
+      <p class="summary">古いシステムの廃止（サンセット）は難しいが、成熟したチームがやるべき仕事であり、条件が揃えば恐れず実行する。</p>
+      <p>中途半端にサポートされたシステムが複数並び立つ状態は、堅実な1つのシステムより悪い。廃止の判断基準は、依存しているユーザーが少数であること、サポート負担が高いこと、その複雑性がプラットフォームの変更を困難にしていることである。一方で、廃止は最終手段として限定的に適用すべきものとされる。</p>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">DIYマイグレーション</span>
+      <span class="k">利用状況メタデータ</span>
+      <span class="k">透過的マイグレーション</span>
+      <span class="k">マイグレーションのアンチパターン</span>
+      <span class="k">サンセット（廃止）</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter08.html"><span class="dir">← 前</span><span class="ttl">第8章 プラットフォームのリアーキテクチャ</span></a>
+    <a class="next" href="chapter10.html"><span class="dir">次 →</span><span class="ttl">第10章 ステークホルダとの関係管理</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>プラットフォームエンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第13章 プラットフォームが複雑性を管理している ― プラットフォームエンジニアリング 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#a05a2c; --accent-soft:#f7efe7; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>プラットフォームエンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+        <a href="chapter13.html">13章</a>
+        <a href="chapter14.html">14章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART III ― CHAPTER 13</span>
+  <h1>プラットフォームが複雑性を管理している</h1>
+  <p class="lead">成功の第3の状態は「複雑性を管理している」こと。複雑性は除去できるものではなく、管理し続けるものだと本章は論じる。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch13">
+    <div class="chapter-head"><span class="num">第13章</span><h2>プラットフォームが複雑性を管理している</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p>プラットフォームは複雑性を排除するのではなく<mark>効果的に管理することでレバレッジを生む</mark>。物差しは「人間の糊」への依存度である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧮</span>複雑性は除去するのではなく管理する</h3>
+      <p class="summary">プラットフォームがすべての複雑性を取り除くわけではない。複雑性を排除するのではなく、効果的に管理することでレバレッジを生成する。</p>
+      <p>前提には、1章の問題設定――技術の複雑性の急増がアプリケーションチームを減速させ、開発者あたりの事業価値が下がっている――がある。著者は、技術的アプローチは必要だが十分ではなく、テクノロジーと人間・組織のダイナミクスの理解を組み合わせたときにレバレッジが生まれるとする。章の冒頭にはDonald A. Norman『Living with Complexity』から「人がそう振る舞ってほしいと願う姿ではなく、実際に振る舞う姿に合わせて設計せよ」という言葉が掲げられる。管理すべき領域は4つ提示される。</p>
+      <div class="ways-map">
+        <div class="way-row" style="--wc:#a05a2c"><b>偶発的複雑性</b><span>複雑性への対策が問題を別の場所に移し、人間の新たな仕事を生むもの</span></div>
+        <div class="way-row" style="--wc:#7d2e5b"><b>シャドープラットフォーム</b><span>アプリ組織の俊敏さを保ちつつ、類似プラットフォームの乱立を防ぐ</span></div>
+        <div class="way-row" style="--wc:#3a5a8c"><b>無制御な成長</b><span>「人を増やせる」前提が複雑性への投資判断を歪める</span></div>
+        <div class="way-row" style="--wc:#2e7d5b"><b>プロダクトディスカバリ</b><span>複雑性を実際に減らすプロダクトを反復的に発見する</span></div>
+      </div>
+      <div class="callout warn">
+        <span class="emoji">🚩</span>
+        <div><span class="ctitle">紛らわしい成功の兆候</span><p>「Single Pane of Glass（単一の統合UI）」。ペルソナごとに（同一人物でも日によって）望むインターフェースは違い、ベンダーツールのワークフロー再実装競争になるため持続しない。目標はガラスの一枚板ではなく、ユーザーが必要とするすべてが手の届く範囲にあるエルゴノミクスであり、その基本構成要素はAPIと対応するデータモデルである。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧷</span>「人間の糊」への依存度が物差しになる</h3>
+      <p class="summary">問題の解決を人間の調整にどれだけ頼っているかが、複雑性管理の成否を測る物差しである。人間は真に複雑なシナリオのために温存し、単に込み入っているだけのものはソフトウェアで解決する。</p>
+      <p>著者はTanya Reillyの「Being Glue」を引きつつ、技術的なグルーを減らそうとして<span class="term">人間の糊（human glue）</span>――ギャップを埋める手作業の回避策・文書化・調整作業――に過度に依存する新たな偶発的複雑性を生むチームがあると指摘する。アプリケーションチームが自前で作るグルーの総量が少ないことが、インフラの複雑性を減らせている証拠になる。診断ツールを提供しないプラットフォームは、障害のたびにプラットフォームエンジニアやSREを「人間ダッシュボード」にする。逆に、ホスト追跡コード、所有権のメタデータレジストリ、チケットの自動起票を組み合わせてOSアップグレードのマイグレーションを人手のプロジェクト管理なしに完了した事例では、プロジェクトマネージャーの役割が各チームとの折衝から監督者へと変わり、自動化に乗らない例外的なケースに集中できるようになった。</p>
+      <div class="callout why">
+        <span class="emoji">🧠</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>人間を協調に使う必要が少ないほど、ユーザーの生活から複雑性を除去できている――これが著者の経験則である。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌱</span>シャドープラットフォームは把握し、成長は抑制する</h3>
+      <p class="summary">シャドープラットフォームを全面的に止めるのは不可能かつ不得策であり、目標は制限ではなく把握である。また、組織の無制御な成長そのものが複雑性を助長するため、成長を抑えることが複雑性管理になる。</p>
+      <p>シャドープラットフォームの禁止は規模的に不可能であり、プラットフォームに関する実験と革新をすべて止めてしまう。シャドープラットフォームは次の価値あるプラットフォームの初稿になるかもしれない。著者の実例では、経営の支援を受けた新規イニシアチブが作るシャドープラットフォームに開発者を送り込み、「プロジェクトを遅らせず、長期的なコンポーネントを早めに作れる場所を見つける」という妥協で臨み、数年のイノベーションの後に統合プラットフォームへ収束させた。成長については、無制御な成長は自動化への投資ではなく人を投げ込む誘惑を生み、エンジニアが嫌う退屈な仕事と非スケーラブルな人員モデルに行き着く。成長は「何を作りどこに投資するか」を賢く考える圧力を取り除いてしまう。</p>
+      <ul>
+        <li>前提: プラットフォームチームはコストセンターと見なされやすく、効率が期待される。複雑性は効率の敵である。</li>
+        <li>経験則として「既存領域の新しい仕事の大半は、そのチームの既存人員で賄うべき」が示される。KTLO・マンデート・運用改善の工数計測でチームサイズの下限を把握し、それを超える増員は投資判断として吟味する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🔬</span>プロダクトディスカバリが複雑性を減らす鍵になる</h3>
+      <p class="summary">顧客が「好む」ものではなく「必要とする」ものを見つけるプロダクトディスカバリこそが、シンプルでスケーラブルなソリューションを見つける鍵である。</p>
+      <p>OSSをそのまま提供すると、運用の複雑性はユーザー数とユースケース数に比例して増える。一方で、アプリケーション開発者は「選択肢が少ない方が楽だ」と総論では同意しても、どの選択肢に絞るかでは合意しないため、単純な標準化の強制は政治的に失敗しやすい。著者が挙げるデータベース信頼性チームの実例では、複数のOSSデータベースの運用に忙殺されるなかで3つの試み（ベンダーホスティングへのマイグレーション、SLAの文書化、完全カプセル化API）が失敗した後、プロダクトディスカバリによって「キーバリューで足りる設定用途」と「限定的なSQL」という2つの機会を特定し、サポートするデータベースの絞り込みに道筋をつけた。「千の花を咲かせて我慢できなくなるまで放置する」ことと「変化をほぼ許さない厳格なプラットフォーム」の中間の道が、反復的なディスカバリを行うプロダクト文化である。</p>
+      <div class="callout why">
+        <span class="emoji">🧠</span>
+        <div><span class="ctitle">なぜそう言えるか</span><p>失敗と複数年のマイグレーションを含む長い反復であっても、複雑性を実際に減らす解にたどり着けば成功である。トレードオフは難しく、最良の解が問題発見の時点では実行可能でないこともある。反復を恐れるな、と著者は結論する。</p></div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🌟</span>複雑性管理は「北極星」である</h3>
+      <p class="summary">整合と信頼は達成可能な目標だが、複雑性の管理は決して完全には達成できない。組織を導くための北極星として使うものである。</p>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">複雑性の管理</span>
+      <span class="k">偶発的複雑性</span>
+      <span class="k">人間の糊</span>
+      <span class="k">シャドープラットフォーム</span>
+      <span class="k">プロダクトディスカバリ</span>
+      <span class="k">Single Pane of Glass</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter12.html"><span class="dir">← 前</span><span class="ttl">第12章 プラットフォームが信頼されている</span></a>
+    <a class="next" href="chapter14.html"><span class="dir">次 →</span><span class="ttl">第14章 プラットフォームが愛されている</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>プラットフォームエンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>

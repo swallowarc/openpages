@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第6章 プラットフォームの運用 ― プラットフォームエンジニアリング 要点まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>:root{ --accent:#2e7d5b; --accent-soft:#eaf5f0; }</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><b>プラットフォームエンジニアリング</b> ― 要点まとめ</a>
+    <div class="nav">
+      <input type="checkbox" id="navtoggle" class="nav-checkbox" aria-label="ページ一覧を開閉">
+      <label for="navtoggle" class="nav-toggle">章 <span class="chev" aria-hidden="true">▾</span></label>
+      <div class="nav-links">
+        <a class="home" href="index.html">目次</a>
+        <a href="chapter01.html">1章</a>
+        <a href="chapter02.html">2章</a>
+        <a href="chapter03.html">3章</a>
+        <a href="chapter04.html">4章</a>
+        <a href="chapter05.html">5章</a>
+        <a href="chapter06.html">6章</a>
+        <a href="chapter07.html">7章</a>
+        <a href="chapter08.html">8章</a>
+        <a href="chapter09.html">9章</a>
+        <a href="chapter10.html">10章</a>
+        <a href="chapter11.html">11章</a>
+        <a href="chapter12.html">12章</a>
+        <a href="chapter13.html">13章</a>
+        <a href="chapter14.html">14章</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">PART II ― CHAPTER 6</span>
+  <h1>プラットフォームの運用</h1>
+  <p class="lead">ビジネスの基盤として運用する（第4の柱）の実践編。誰が運用を担うか、オンコールの負荷をどう管理するか、サポートをどう組織化するかを扱う。</p>
+</header>
+
+<main>
+
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="num">第6章</span><h2>プラットフォームの運用</h2></div>
+
+    <div class="in-a-nutshell">
+      <span class="emoji">💡</span>
+      <div>
+        <p class="label">この章を一言で</p>
+        <p><mark>作ったチーム自身が運用する</mark>。恒常的なオンコール過負荷は、スケジュール調整ではなくアーキテクチャ改善で直すべき問題である。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🧑‍🚒</span>プラットフォームチーム自身が運用とオンコールを担う</h3>
+      <p class="summary">開発者と運用担当者を分離せず、同じチームに所属させ、開発者もオンコールに参加する体制を著者は推奨する。</p>
+      <p>著者は、プラットフォームチームの価値の多くが「アプリケーションチームから取り除く運用負担の量」に関係しており、運用から距離を置くことはその価値を失うことだと論じる。前提には、作った者が運用する（you build it, you run it）ことで生まれるフィードバックループが継続的な改善を駆動するという考えがある。運用とサポートを通じて、顧客が実際に何に困っているか、プラットフォームがなぜ必要とされるかを知ることができる。</p>
+      <ul>
+        <li>この体制は、開発と運用を統合するmerged型のDevOpsに相当する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📉</span>オンコール負荷には上限を設け、超過はアーキテクチャで直す</h3>
+      <p class="summary">誤報を取り除き、オンコールの負荷をビジネスに影響する問題に絞って一定の件数以下に抑える。恒常的な過負荷はスケジュールの工夫ではなく、アーキテクチャ改善で解決すべき問題である。</p>
+      <p>オンコール担当者のバーンアウトは、個人の問題ではなくシステミックな問題の兆候として扱われる。負荷が慢性的に高いなら、それはローテーションの組み方ではなく、プラットフォーム自体の品質・設計に原因がある。</p>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">🎧</span>サポートは規模に応じて段階的に公式化する</h3>
+      <p class="summary">サポート業務は、組織とプラットフォームの規模に応じて段階的に公式な体制へ移行させる。</p>
+      <div class="steps">
+        <div class="step"><span class="badge">1</span>応答時間のSLAを設定し、緊急度（P0とP3）を区別する</div>
+        <div class="step"><span class="badge">2</span>非クリティカルなサポートをオンコールローテーションから分離し、ルーチンの質問でページさせない</div>
+        <div class="step"><span class="badge">3</span>量が正当化される規模になったら専任のサポート担当を置く</div>
+        <div class="step"><span class="badge">4</span>大規模組織ではエンジニアで構成されたサポート組織を作る</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3 class="ic"><span class="emoji">📋</span>運用の規律を実践する</h3>
+      <p class="summary">SLO/SLAの管理、変更管理、合成モニタリング、運用レビューといった運用の規律を継続的に実践する。</p>
+      <ul>
+        <li>合成モニタリング: ユーザーからのチケットより先に障害モードを検知する。</li>
+        <li>運用レビュー: ダッシュボードを眺めるのではなく、データを精査する。</li>
+      </ul>
+    </div>
+
+    <p class="kw-label">Keywords</p>
+    <div class="keywords">
+      <span class="k">merged型DevOps</span>
+      <span class="k">オンコール</span>
+      <span class="k">サポート戦略</span>
+      <span class="k">合成モニタリング</span>
+      <span class="k">運用レビュー</span>
+    </div>
+  </section>
+
+  <nav class="pager">
+    <a class="prev" href="chapter05.html"><span class="dir">← 前</span><span class="ttl">第5章 プロダクトとしてのプラットフォーム</span></a>
+    <a class="next" href="chapter07.html"><span class="dir">次 →</span><span class="ttl">第7章 計画とデリバリ</span></a>
+  </nav>
+
+</main>
+
+<footer class="foot"><p>プラットフォームエンジニアリング 要点まとめ</p></footer>
+
+</body>
+</html>
